@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>nlp任务 | 小傻瓜别回头</title>
+  <meta name="description" content="https:&#x2F;&#x2F;blog.csdn.net&#x2F;lz_peter&#x2F;article&#x2F;details&#x2F;81588430 词法分析（Lexical Analysis）:对自然语言进行词汇层面的分析，是NLP基础性工作 分词（Word Segmentation&#x2F;Tokenization）:对没有明显边界的文本进行切分，得到词序列 新词发现（New Words Identification）:找出文本中具有新形">
+<meta property="og:type" content="article">
+<meta property="og:title" content="nlp任务">
+<meta property="og:url" content="https://tlylft.github.io/NLP/nlp_task/index.html">
+<meta property="og:site_name" content="小傻瓜别回头">
+<meta property="og:description" content="https:&#x2F;&#x2F;blog.csdn.net&#x2F;lz_peter&#x2F;article&#x2F;details&#x2F;81588430 词法分析（Lexical Analysis）:对自然语言进行词汇层面的分析，是NLP基础性工作 分词（Word Segmentation&#x2F;Tokenization）:对没有明显边界的文本进行切分，得到词序列 新词发现（New Words Identification）:找出文本中具有新形">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-01-21T04:47:07.000Z">
+<meta property="article:modified_time" content="2020-03-04T12:46:06.823Z">
+<meta property="article:author" content="Icey">
+<meta property="article:tag" content="NLP">
+<meta name="twitter:card" content="summary">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://tlylft.github.io/NLP/nlp_task/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="小傻瓜别回头" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/images/avatar.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/tlylft" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.png" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">Icey</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">小傻瓜,别回头</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Hebei, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/tlylft?tab=repositories" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="https://www.weibo.com/tlylft/profile?rightmod=1&wvr=6&mod=personinfo" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://www.facebook.com/profile.php?id=100009783614101" target="_blank" title="Facebook" data-toggle=tooltip data-placement=top><i class="icon icon-facebook"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>Welcome!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Deep-Learning/">Deep Learning</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/">NLP</a><span class="category-list-count">28</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/NER/">NER</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/algorithm/">algorithm</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/bert/">bert</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/similarity/">similarity</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/word2vec/">word2vec</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/%E4%BF%A1%E6%81%AF%E6%8F%90%E5%8F%96/">信息提取</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/%E5%88%86%E8%AF%8D/">分词</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/chatbot/">chatbot</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/github/">github</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hive/">hive</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/machine-learning/">machine learning</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a><span class="category-list-count">32</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/python/Anaconda/">Anaconda</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/Django/">Django</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/Flask/">Flask</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/keras/">keras</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/pandas/">pandas</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/python/">python</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/tensorflow/">tensorflow</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">环境搭建</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/reading/">reading</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tools/">tools</a><span class="category-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-Learning/" rel="tag">Deep Learning</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Django/" rel="tag">Django</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flask/" rel="tag">Flask</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NER/" rel="tag">NER</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NLP/" rel="tag">NLP</a><span class="tag-list-count">27</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/algorithm/" rel="tag">algorithm</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bert/" rel="tag">bert</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/" rel="tag">blog</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/chatbot/" rel="tag">chatbot</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/env-config/" rel="tag">env_config</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gensim/" rel="tag">gensim</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/" rel="tag">github</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hive/" rel="tag">hive</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/keras/" rel="tag">keras</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kerberos/" rel="tag">kerberos</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/machine-learning/" rel="tag">machine learning</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pandas/" rel="tag">pandas</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pycharm/" rel="tag">pycharm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a><span class="tag-list-count">36</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/reading/" rel="tag">reading</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/segment/" rel="tag">segment</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/similarity/" rel="tag">similarity</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tools/" rel="tag">tools</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BF%A1%E6%81%AF%E6%8F%90%E5%8F%96/" rel="tag">信息提取</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/Deep-Learning/" style="font-size: 13.38px;">Deep Learning</a> <a href="/tags/Django/" style="font-size: 13.25px;">Django</a> <a href="/tags/Flask/" style="font-size: 13.63px;">Flask</a> <a href="/tags/NER/" style="font-size: 13.38px;">NER</a> <a href="/tags/NLP/" style="font-size: 13.88px;">NLP</a> <a href="/tags/algorithm/" style="font-size: 13.38px;">algorithm</a> <a href="/tags/bert/" style="font-size: 13.13px;">bert</a> <a href="/tags/blog/" style="font-size: 13px;">blog</a> <a href="/tags/chatbot/" style="font-size: 13.38px;">chatbot</a> <a href="/tags/env-config/" style="font-size: 13px;">env_config</a> <a href="/tags/gensim/" style="font-size: 13px;">gensim</a> <a href="/tags/git/" style="font-size: 13px;">git</a> <a href="/tags/github/" style="font-size: 13px;">github</a> <a href="/tags/hive/" style="font-size: 13.5px;">hive</a> <a href="/tags/keras/" style="font-size: 13px;">keras</a> <a href="/tags/kerberos/" style="font-size: 13px;">kerberos</a> <a href="/tags/linux/" style="font-size: 13.13px;">linux</a> <a href="/tags/machine-learning/" style="font-size: 13.75px;">machine learning</a> <a href="/tags/mysql/" style="font-size: 13px;">mysql</a> <a href="/tags/pandas/" style="font-size: 13.25px;">pandas</a> <a href="/tags/pycharm/" style="font-size: 13px;">pycharm</a> <a href="/tags/python/" style="font-size: 14px;">python</a> <a href="/tags/reading/" style="font-size: 13.25px;">reading</a> <a href="/tags/segment/" style="font-size: 13px;">segment</a> <a href="/tags/similarity/" style="font-size: 13.13px;">similarity</a> <a href="/tags/tools/" style="font-size: 13.13px;">tools</a> <a href="/tags/%E4%BF%A1%E6%81%AF%E6%8F%90%E5%8F%96/" style="font-size: 13px;">信息提取</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">6</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/NLP/">NLP</a><i class="icon icon-angle-right"></i><a class="category-link" href="/categories/NLP/NER/">NER</a>
+              </p>
+              <p class="item-title">
+                <a href="/NLP/NER/BiLSTM-CRF/" class="title">BiLSTM_CRF</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2020-07-10T06:05:35.000Z" itemprop="datePublished">2020-07-10</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/python/">python</a><i class="icon icon-angle-right"></i><a class="category-link" href="/categories/python/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">环境搭建</a>
+              </p>
+              <p class="item-title">
+                <a href="/python/Anaconda/gpu_install/" class="title">GPU 环境安装</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2020-07-04T10:43:27.000Z" itemprop="datePublished">2020-07-04</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/NLP/">NLP</a><i class="icon icon-angle-right"></i><a class="category-link" href="/categories/NLP/bert/">bert</a>
+              </p>
+              <p class="item-title">
+                <a href="/NLP/bert/transformer/" class="title">Transformer</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2020-07-02T00:36:56.000Z" itemprop="datePublished">2020-07-02</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/NLP/">NLP</a><i class="icon icon-angle-right"></i><a class="category-link" href="/categories/NLP/%E5%88%86%E8%AF%8D/">分词</a>
+              </p>
+              <p class="item-title">
+                <a href="/NLP/segment/seg_intro/" class="title">中文分词问题简介</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2020-06-10T01:16:39.000Z" itemprop="datePublished">2020-06-10</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/NLP/">NLP</a><i class="icon icon-angle-right"></i><a class="category-link" href="/categories/NLP/algorithm/">algorithm</a>
+              </p>
+              <p class="item-title">
+                <a href="/NLP/algorithm/fasttext/" class="title">fasttext</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2020-05-26T08:35:25.000Z" itemprop="datePublished">2020-05-26</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-NLP/nlp_task" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      nlp任务
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/NLP/nlp_task/" class="article-date">
+	  <time datetime="2020-01-21T04:47:07.000Z" itemprop="datePublished">2020-01-21</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/NLP/">NLP</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/NLP/" rel="tag">NLP</a>
+  </span>
+
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/NLP/nlp_task/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <p><a href="https://blog.csdn.net/lz_peter/article/details/81588430" target="_blank" rel="noopener">https://blog.csdn.net/lz_peter/article/details/81588430</a></p>
+<h4 id="词法分析（Lexical-Analysis）"><a href="#词法分析（Lexical-Analysis）" class="headerlink" title="词法分析（Lexical Analysis）:"></a>词法分析（Lexical Analysis）:</h4><p>对自然语言进行词汇层面的分析，是NLP基础性工作</p>
+<h5 id="分词（Word-Segmentation-Tokenization）"><a href="#分词（Word-Segmentation-Tokenization）" class="headerlink" title="分词（Word Segmentation/Tokenization）:"></a>分词（Word Segmentation/Tokenization）:</h5><p>对没有明显边界的文本进行切分，得到词序列</p>
+<h5 id="新词发现（New-Words-Identification）"><a href="#新词发现（New-Words-Identification）" class="headerlink" title="新词发现（New Words Identification）:"></a>新词发现（New Words Identification）:</h5><p>找出文本中具有新形势、新意义或是新用法的词</p>
+<h5 id="形态分析（Morphological-Analysis）"><a href="#形态分析（Morphological-Analysis）" class="headerlink" title="形态分析（Morphological Analysis）:"></a>形态分析（Morphological Analysis）:</h5><p>分析单词的形态组成，包括词干（Sterms）、词根（Roots）、词缀（Prefixes and Suffixes）等</p>
+<h5 id="词性标注（Part-of-speech-Tagging）"><a href="#词性标注（Part-of-speech-Tagging）" class="headerlink" title="词性标注（Part-of-speech Tagging）:"></a>词性标注（Part-of-speech Tagging）:</h5><p>确定文本中每个词的词性。词性包括动词（Verb）、名词（Noun）、代词（pronoun）等</p>
+<h5 id="拼写校正（Spelling-Correction）"><a href="#拼写校正（Spelling-Correction）" class="headerlink" title="拼写校正（Spelling Correction）:"></a>拼写校正（Spelling Correction）:</h5><p>找出拼写错误的词并进行纠正</p>
+<h4 id="句子分析（Sentence-Analysis）"><a href="#句子分析（Sentence-Analysis）" class="headerlink" title="句子分析（Sentence Analysis）:"></a>句子分析（Sentence Analysis）:</h4><p>对自然语言进行句子层面的分析，包括句法分析和其他句子级别的分析任务</p>
+<h5 id="组块分析（Chunking）"><a href="#组块分析（Chunking）" class="headerlink" title="组块分析（Chunking）:"></a>组块分析（Chunking）:</h5><p>标出句子中的短语块，例如名词短语（NP），动词短语（VP）等</p>
+<h5 id="超级标签标注（Super-Tagging）"><a href="#超级标签标注（Super-Tagging）" class="headerlink" title="超级标签标注（Super Tagging）:"></a>超级标签标注（Super Tagging）:</h5><p>给每个句子中的每个词标注上超级标签，超级标签是句法树中与该词相关的树形结构</p>
+<h5 id="成分句法分析（Constituency-Parsing）"><a href="#成分句法分析（Constituency-Parsing）" class="headerlink" title="成分句法分析（Constituency Parsing）:"></a>成分句法分析（Constituency Parsing）:</h5><p>分析句子的成分，给出一棵树由终结符和非终结符构成的句法树</p>
+<h5 id="依存句法分析（Dependency-Parsing）"><a href="#依存句法分析（Dependency-Parsing）" class="headerlink" title="依存句法分析（Dependency Parsing）:"></a>依存句法分析（Dependency Parsing）:</h5><p>分析句子中词与词之间的依存关系，给一棵由词语依存关系构成的依存句法树</p>
+<h5 id="语言模型（Language-Modeling）"><a href="#语言模型（Language-Modeling）" class="headerlink" title="语言模型（Language Modeling）:"></a>语言模型（Language Modeling）:</h5><p>对给定的一个句子进行打分，该分数代表句子合理性（流畅度）的程度</p>
+<h5 id="语种识别（Language-Identification）"><a href="#语种识别（Language-Identification）" class="headerlink" title="语种识别（Language Identification）:"></a>语种识别（Language Identification）:</h5><p>给定一段文本，确定该文本属于哪个语种<br>句子边界检测（Sentence Boundary Detection）:<br>给没有明显句子边界的文本加边界</p>
+<h4 id="语义分析（Semantic-Analysis）"><a href="#语义分析（Semantic-Analysis）" class="headerlink" title="语义分析（Semantic Analysis）:"></a>语义分析（Semantic Analysis）:</h4><p>对给定文本进行分析和理解，形成能勾够表达语义的形式化表示或分布式表示</p>
+<h5 id="词义消歧（Word-Sense-Disambiguation）"><a href="#词义消歧（Word-Sense-Disambiguation）" class="headerlink" title="词义消歧（Word Sense Disambiguation）:"></a>词义消歧（Word Sense Disambiguation）:</h5><p>对有歧义的词，确定其准确的词义</p>
+<h5 id="语义角色标注（Semantic-Role-Labeling）"><a href="#语义角色标注（Semantic-Role-Labeling）" class="headerlink" title="语义角色标注（Semantic Role Labeling）:"></a>语义角色标注（Semantic Role Labeling）:</h5><p>标注句子中的语义角色类标，语义角色，语义角色包括施事、受事、影响等</p>
+<h5 id="抽象语义表示分析（Abstract-Meaning-Representation-Parsing）"><a href="#抽象语义表示分析（Abstract-Meaning-Representation-Parsing）" class="headerlink" title="抽象语义表示分析（Abstract Meaning Representation Parsing）:"></a>抽象语义表示分析（Abstract Meaning Representation Parsing）:</h5><p>AMR是一种抽象语义表示形式，AMR parser把句子解析成AMR结构</p>
+<h5 id="一阶谓词逻辑演算（First-Order-Predicate-Calculus）"><a href="#一阶谓词逻辑演算（First-Order-Predicate-Calculus）" class="headerlink" title="一阶谓词逻辑演算（First Order Predicate Calculus）:"></a>一阶谓词逻辑演算（First Order Predicate Calculus）:</h5><p>使用一阶谓词逻辑系统表达语义</p>
+<h5 id="框架语义分析（Frame-Semantic-Parsing）"><a href="#框架语义分析（Frame-Semantic-Parsing）" class="headerlink" title="框架语义分析（Frame Semantic Parsing）:"></a>框架语义分析（Frame Semantic Parsing）:</h5><p>根据框架语义学的观点，对句子进行语义分析</p>
+<h5 id="词汇-句子-段落的向量化表示（Word-Sentence-Paragraph-Vector）"><a href="#词汇-句子-段落的向量化表示（Word-Sentence-Paragraph-Vector）" class="headerlink" title="词汇/句子/段落的向量化表示（Word/Sentence/Paragraph Vector）:"></a>词汇/句子/段落的向量化表示（Word/Sentence/Paragraph Vector）:</h5><p>研究词汇、句子、段落的向量化方法，向量的性质和应用</p>
+<h4 id="信息抽取（Information-Extraction）"><a href="#信息抽取（Information-Extraction）" class="headerlink" title="信息抽取（Information Extraction）:"></a>信息抽取（Information Extraction）:</h4><p>从无结构文本中抽取结构化的信息</p>
+<h5 id="命名实体识别（Named-Entity-Recognition）"><a href="#命名实体识别（Named-Entity-Recognition）" class="headerlink" title="命名实体识别（Named Entity Recognition）:"></a>命名实体识别（Named Entity Recognition）:</h5><p>从文本中识别出命名实体，实体一般包括人名、地名、机构名、时间、日期、货币、百分比等</p>
+<h5 id="实体消歧（Entity-Disambiguation）"><a href="#实体消歧（Entity-Disambiguation）" class="headerlink" title="实体消歧（Entity Disambiguation）:"></a>实体消歧（Entity Disambiguation）:</h5><p>确定实体指代的现实世界中的对象<br>术语抽取（Terminology/Giossary Extraction）:<br>从文本中确定术语</p>
+<h5 id="共指消解（Coreference-Resolution）"><a href="#共指消解（Coreference-Resolution）" class="headerlink" title="共指消解（Coreference Resolution）:"></a>共指消解（Coreference Resolution）:</h5><p>确定不同实体的等价描述，包括代词消解和名词消解<br>关系抽取（Relationship Extraction）:<br>确定文本中两个实体之间的关系类型</p>
+<h5 id="事件抽取（Event-Extraction）"><a href="#事件抽取（Event-Extraction）" class="headerlink" title="事件抽取（Event Extraction）:"></a>事件抽取（Event Extraction）:</h5><p>从无结构的文本中抽取结构化事件</p>
+<h5 id="情感分析（Sentiment-Analysis）"><a href="#情感分析（Sentiment-Analysis）" class="headerlink" title="情感分析（Sentiment Analysis）:"></a>情感分析（Sentiment Analysis）:</h5><p>对文本的主观性情绪进行提取</p>
+<h5 id="意图识别（Intent-Detection）"><a href="#意图识别（Intent-Detection）" class="headerlink" title="意图识别（Intent Detection）:"></a>意图识别（Intent Detection）:</h5><p>对话系统中的一个重要模块，对用户给定的对话内容进行分析，识别用户意图</p>
+<h5 id="槽位填充（Slot-Filling）"><a href="#槽位填充（Slot-Filling）" class="headerlink" title="槽位填充（Slot Filling）:"></a>槽位填充（Slot Filling）:</h5><p>对话系统中的一个重要模块，从对话内容中分析出于用户意图相关的有效信息</p>
+<h4 id="顶层任务（High-level-Tasks）"><a href="#顶层任务（High-level-Tasks）" class="headerlink" title="顶层任务（High-level Tasks）:"></a>顶层任务（High-level Tasks）:</h4><p>直接面向普通用户，提供自然语言处理产品服务的系统级任务，会用到多个层面的自然语言处理技术</p>
+<h5 id="机器翻译（Machine-Translation）"><a href="#机器翻译（Machine-Translation）" class="headerlink" title="机器翻译（Machine Translation）:"></a>机器翻译（Machine Translation）:</h5><p>通过计算机自动化的把一种语言翻译成另外一种语言</p>
+<h5 id="文本摘要（Text-summarization-Simplication）"><a href="#文本摘要（Text-summarization-Simplication）" class="headerlink" title="文本摘要（Text summarization/Simplication）:"></a>文本摘要（Text summarization/Simplication）:</h5><p>对较长文本进行内容梗概的提取</p>
+<h5 id="问答系统（Question-Answering-Systerm）"><a href="#问答系统（Question-Answering-Systerm）" class="headerlink" title="问答系统（Question-Answering Systerm）:"></a>问答系统（Question-Answering Systerm）:</h5><p>针对用户提出的问题，系统给出相应的答案</p>
+<h5 id="对话系统（Dialogue-Systerm）"><a href="#对话系统（Dialogue-Systerm）" class="headerlink" title="对话系统（Dialogue Systerm）:"></a>对话系统（Dialogue Systerm）:</h5><p>能够与用户进行聊天对话，从对话中捕获用户的意图，并分析执行</p>
+<h5 id="阅读理解（Reading-Comprehension）"><a href="#阅读理解（Reading-Comprehension）" class="headerlink" title="阅读理解（Reading Comprehension）:"></a>阅读理解（Reading Comprehension）:</h5><p>机器阅读完一篇文章后，给定一些文章相关问题，机器能够回答</p>
+<h5 id="自动文章分级（Automatic-Essay-Grading）"><a href="#自动文章分级（Automatic-Essay-Grading）" class="headerlink" title="自动文章分级（Automatic Essay Grading）:"></a>自动文章分级（Automatic Essay Grading）:</h5><p>给定一篇文章，对文章的质量进行打分或分级</p>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://tlylft.github.io/NLP/nlp_task/" title="nlp任务" target="_blank" rel="external">https://tlylft.github.io/NLP/nlp_task/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/tlylft" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.png" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/tlylft" target="_blank"><span class="text-dark">Icey</span><small class="ml-1x">小傻瓜,别回头</small></a></h3>
+        <div>以梦为马，随处可栖。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/NLP/doc_structure/" title="文档结构化"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/hive/hive_param/" title="hive运行参数"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>感谢您的支持，我会继续努力的!</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechatpayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> 支付宝</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> 微信支付</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/tlylft?tab=repositories" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="https://www.weibo.com/tlylft/profile?rightmod=1&wvr=6&mod=personinfo" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://www.facebook.com/profile.php?id=100009783614101" target="_blank" title="Facebook" data-toggle=tooltip data-placement=top><i class="icon icon-facebook"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: '',
+    appKey: '',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!-- <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
+</html>

@@ -1,0 +1,581 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>小傻瓜别回头</title>
+  
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://tlylft.github.io/"/>
+  <updated>2020-07-12T10:47:34.560Z</updated>
+  <id>https://tlylft.github.io/</id>
+  
+  <author>
+    <name>Icey</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>BiLSTM_CRF</title>
+    <link href="https://tlylft.github.io/NLP/NER/BiLSTM-CRF/"/>
+    <id>https://tlylft.github.io/NLP/NER/BiLSTM-CRF/</id>
+    <published>2020-07-10T06:05:35.000Z</published>
+    <updated>2020-07-12T10:47:34.560Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="background"><a href="#background" class="headerlink" title="background"></a>background</h3><p>CRF<br>LSTM</p><h3 id="为什么要用bi-lstm-CRF"><a href="#为什么要用bi-lstm-CRF" class="headerlink" title="为什么要用bi-lstm CRF"></a>为什么要用bi-lstm CRF</h3><p>首先，LSTM解决了长短时记忆的问题，能够捕获到语义中前后词对于标签的影响，CRF是为了解决避免B-PER后继续出现B-PER的问题，通过有前后标签的转移概率控制输出结果，更加符合期望输出。<br><img src="/NLP/NER/BiLSTM-CRF/2020-07-10-14-09-15.png" alt></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;background&quot;&gt;&lt;a href=&quot;#background&quot; class=&quot;headerlink&quot; title=&quot;background&quot;&gt;&lt;/a&gt;background&lt;/h3&gt;&lt;p&gt;CRF&lt;br&gt;LSTM&lt;/p&gt;
+&lt;h3 id=&quot;为什么要用bi-lstm-C
+      
+    
+    </summary>
+    
+    
+      <category term="NLP" scheme="https://tlylft.github.io/categories/NLP/"/>
+    
+      <category term="NER" scheme="https://tlylft.github.io/categories/NLP/NER/"/>
+    
+    
+      <category term="NLP" scheme="https://tlylft.github.io/tags/NLP/"/>
+    
+      <category term="NER" scheme="https://tlylft.github.io/tags/NER/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>GPU 环境安装</title>
+    <link href="https://tlylft.github.io/python/Anaconda/gpu_install/"/>
+    <id>https://tlylft.github.io/python/Anaconda/gpu_install/</id>
+    <published>2020-07-04T10:43:27.000Z</published>
+    <updated>2020-07-10T01:50:55.172Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="windows-安装cuda"><a href="#windows-安装cuda" class="headerlink" title="windows 安装cuda"></a>windows 安装cuda</h2><p><a href="http://blog.sina.com.cn/s/blog_14935c5880102wu86.html" target="_blank" rel="noopener">http://blog.sina.com.cn/s/blog_14935c5880102wu86.html</a></p><p><a href="https://blog.csdn.net/j879159541/article/details/93199150" target="_blank" rel="noopener">https://blog.csdn.net/j879159541/article/details/93199150</a></p><h2 id="安装tensorflow-gpu"><a href="#安装tensorflow-gpu" class="headerlink" title="安装tensorflow-gpu"></a>安装tensorflow-gpu</h2><p>tensorflow-gpu版本和cuda版本对应关系<br><a href="https://tensorflow.google.cn/install/source_windows" target="_blank" rel="noopener">https://tensorflow.google.cn/install/source_windows</a><br><img src="/python/Anaconda/gpu_install/2020-07-02-14-28-00.png" alt></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">conda create -n tf-gpu python&#x3D;3.7.4</span><br><span class="line">python -m pip install -i https:&#x2F;&#x2F;pypi.douban.com&#x2F;simple  tensorflow-gpu&#x3D;&#x3D;1.14.0</span><br><span class="line"># numpy 需要降到匹配版本 </span><br><span class="line">pip install -U -i https:&#x2F;&#x2F;pypi.tuna.tsinghua.edu.cn&#x2F;simple numpy&#x3D;&#x3D;1.16.0</span><br><span class="line">pip install bert-tensorflow</span><br><span class="line"># check</span><br><span class="line">from bert import modeling</span><br></pre></td></tr></table></figure><h2 id="安装-pytorch-gpu"><a href="#安装-pytorch-gpu" class="headerlink" title="安装 pytorch-gpu"></a>安装 pytorch-gpu</h2><p><a href="https://blog.csdn.net/Person_one/article/details/107133285" target="_blank" rel="noopener">https://blog.csdn.net/Person_one/article/details/107133285</a></p><h3 id="创建环境"><a href="#创建环境" class="headerlink" title="创建环境"></a>创建环境</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">conda create --name pytorch python&#x3D;3.7.4</span><br><span class="line">conda activate pytorch</span><br></pre></td></tr></table></figure><h3 id="找合适版本"><a href="#找合适版本" class="headerlink" title="找合适版本"></a>找合适版本</h3><p>去官网<a href="https://pytorch.org/get-started/locally/" target="_blank" rel="noopener">https://pytorch.org/get-started/locally/</a>. 找到和本机cuda版本匹配的Torch安装命令<br>我的 cuda=10.0 匹配 torch=1.2.0，官网安装命令为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 官网安装</span><br><span class="line">conda install pytorch&#x3D;&#x3D;1.2.0 torchvision&#x3D;&#x3D;0.4.0 cudatoolkit&#x3D;10.0 -c pytorch</span><br><span class="line"># 或者通过cuda版本自己寻找对应版本（没有验证）</span><br><span class="line">conda install pytorch torchvision cudatoolkit&#x3D;10.0 -c pytorch</span><br></pre></td></tr></table></figure></p><h3 id="网络连接问题"><a href="#网络连接问题" class="headerlink" title="网络连接问题"></a>网络连接问题</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 添加清华源torch镜像</span><br><span class="line">conda config --add channels https:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;anaconda&#x2F;cloud&#x2F;pytorch&#x2F;</span><br><span class="line"># 把 -c pytorch 去掉</span><br><span class="line">conda install pytorch&#x3D;&#x3D;1.2.0 torchvision&#x3D;&#x3D;0.4.0 cudatoolkit&#x3D;10.0</span><br><span class="line"># 或</span><br><span class="line">conda install pytorch torchvision cudatoolkit&#x3D;10.0</span><br></pre></td></tr></table></figure><h3 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import torch</span><br><span class="line">print(torch.__version__)# 查看pytorch版本</span><br><span class="line">print(&#39;gpu:&#39;,torch.cuda.is_available())# gpu加速是否可用</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;windows-安装cuda&quot;&gt;&lt;a href=&quot;#windows-安装cuda&quot; class=&quot;headerlink&quot; title=&quot;windows 安装cuda&quot;&gt;&lt;/a&gt;windows 安装cuda&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;http://blog.s
+      
+    
+    </summary>
+    
+    
+      <category term="python" scheme="https://tlylft.github.io/categories/python/"/>
+    
+      <category term="环境搭建" scheme="https://tlylft.github.io/categories/python/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
+    
+    
+      <category term="python" scheme="https://tlylft.github.io/tags/python/"/>
+    
+      <category term="env_config" scheme="https://tlylft.github.io/tags/env-config/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Transformer</title>
+    <link href="https://tlylft.github.io/NLP/bert/transformer/"/>
+    <id>https://tlylft.github.io/NLP/bert/transformer/</id>
+    <published>2020-07-02T00:36:56.000Z</published>
+    <updated>2020-07-02T08:14:50.915Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="basic-knowledge"><a href="#basic-knowledge" class="headerlink" title="basic knowledge"></a>basic knowledge</h2><h3 id="Seq2Seq-网络"><a href="#Seq2Seq-网络" class="headerlink" title="Seq2Seq 网络"></a>Seq2Seq 网络</h3><p>常用于机器翻译<br>输入输出很直观<br><img src="/NLP/bert/transformer/2020-07-02-09-59-05.png" alt></p><h3 id="RNN-vs-Transformer"><a href="#RNN-vs-Transformer" class="headerlink" title="RNN vs Transformer"></a>RNN vs Transformer</h3><p><img src="/NLP/bert/transformer/2020-07-02-09-59-25.png" alt><br>RNN网络一般设置为两三层解决问题，不能并行计算， 因为每个下一步都依赖于上一步。</p><p>transformer<br>通过self-attention机制解决并行问题<br>输出结果是同时被计算出来的，现在基本取代RNN<br><img src="/NLP/bert/transformer/2020-07-02-10-09-16.png" alt></p><h3 id="word2vec-vs-Transformer"><a href="#word2vec-vs-Transformer" class="headerlink" title="word2vec vs Transformer"></a>word2vec vs Transformer</h3><p><img src="/NLP/bert/transformer/2020-07-02-10-11-54.png" alt></p><p><img src="/NLP/bert/transformer/2020-07-02-10-13-52.png" alt></p><h3 id="self-attention"><a href="#self-attention" class="headerlink" title="self-attention"></a>self-attention</h3><p>让计算机关注到重点的信息<br><img src="/NLP/bert/transformer/2020-07-02-10-23-23.png" alt></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;basic-knowledge&quot;&gt;&lt;a href=&quot;#basic-knowledge&quot; class=&quot;headerlink&quot; title=&quot;basic knowledge&quot;&gt;&lt;/a&gt;basic knowledge&lt;/h2&gt;&lt;h3 id=&quot;Seq2Seq-网络&quot;&gt;&lt;
+      
+    
+    </summary>
+    
+    
+      <category term="NLP" scheme="https://tlylft.github.io/categories/NLP/"/>
+    
+      <category term="bert" scheme="https://tlylft.github.io/categories/NLP/bert/"/>
+    
+    
+      <category term="NLP" scheme="https://tlylft.github.io/tags/NLP/"/>
+    
+      <category term="bert" scheme="https://tlylft.github.io/tags/bert/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>中文分词问题简介</title>
+    <link href="https://tlylft.github.io/NLP/segment/seg_intro/"/>
+    <id>https://tlylft.github.io/NLP/segment/seg_intro/</id>
+    <published>2020-06-10T01:16:39.000Z</published>
+    <updated>2020-07-27T16:30:09.856Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="为什么会有分词问题"><a href="#为什么会有分词问题" class="headerlink" title="为什么会有分词问题"></a>为什么会有分词问题</h2><p>在英文的NLP分析中，单词已经在一句话中被空格隔开，每个单词代表了不同的含义，而中文的每个词具有同样的意义，但是没有分割符号，所以对于中文文本问题，需要进行切词处理，在词间加入边界标记符。</p><h3 id="难点："><a href="#难点：" class="headerlink" title="难点："></a>难点：</h3><p>歧义问题<br>未登录词问题<br>分词粒度的把握</p><h2 id="分词技术"><a href="#分词技术" class="headerlink" title="分词技术"></a>分词技术</h2><h3 id="基于规则分词"><a href="#基于规则分词" class="headerlink" title="基于规则分词"></a>基于规则分词</h3><p>主要通过维护词典，在切分时，对每个字符串与词表中的词进行逐一匹配。<br>简单高效，但词典维护量大，网络新词层出不穷。</p><h4 id="正向最大匹配算法-Maximum-match-method"><a href="#正向最大匹配算法-Maximum-match-method" class="headerlink" title="正向最大匹配算法 Maximum match method"></a>正向最大匹配算法 Maximum match method</h4><pre><code>研究生命的起源</code></pre><p>给定一个窗口大小：5  【研究生命的】<br>一句话正向取窗口长度的文本，与词典匹配，成功则加入分词，不成功则减掉最后一个字继续匹配。<br>【研究生命的 F】<br>【研究生命 F】<br>【研究生 T】<br>【命的起源 F】<br>【命的起 F】<br>【命的 F】<br>【命 T】<br>【的起源 F】<br>【的起 F】<br>【的 T】<br>【起源 T】</p><h4 id="逆向最大匹配算法"><a href="#逆向最大匹配算法" class="headerlink" title="逆向最大匹配算法"></a>逆向最大匹配算法</h4><pre><code>研究生命的起源</code></pre><p>给定一个窗口大小：5  【生命的起源】<br>一句话反向取窗口长度的文本，与词典匹配，成功则加入分词，不成功则减掉第一个字继续匹配。<br>【生命的起源 F】<br>【命的起源 F】<br>【的起源 F】<br>【起源 T】<br>【研究生命的 F】<br>【究生命的 F】<br>【生命的 F】<br>【命的 F】<br>【的 T】<br>【研究生命 F】<br>【究生命 F】<br>【生命 T】<br>【研究 T】</p><h4 id="双向最大匹配算法"><a href="#双向最大匹配算法" class="headerlink" title="双向最大匹配算法"></a>双向最大匹配算法</h4><p>前两种办法的结果，取划分词数最少的划分方式，如果词数相同，取单字较少的结果。</p><h3 id="基于统计分词"><a href="#基于统计分词" class="headerlink" title="基于统计分词"></a>基于统计分词</h3><p>建立统计模型<br>对单词划分，进行概率计算，获得概率最大的分词方式</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;为什么会有分词问题&quot;&gt;&lt;a href=&quot;#为什么会有分词问题&quot; class=&quot;headerlink&quot; title=&quot;为什么会有分词问题&quot;&gt;&lt;/a&gt;为什么会有分词问题&lt;/h2&gt;&lt;p&gt;在英文的NLP分析中，单词已经在一句话中被空格隔开，每个单词代表了不同的含义，而中文
+      
+    
+    </summary>
+    
+    
+      <category term="NLP" scheme="https://tlylft.github.io/categories/NLP/"/>
+    
+      <category term="分词" scheme="https://tlylft.github.io/categories/NLP/%E5%88%86%E8%AF%8D/"/>
+    
+    
+      <category term="NLP" scheme="https://tlylft.github.io/tags/NLP/"/>
+    
+      <category term="segment" scheme="https://tlylft.github.io/tags/segment/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>fasttext</title>
+    <link href="https://tlylft.github.io/NLP/algorithm/fasttext/"/>
+    <id>https://tlylft.github.io/NLP/algorithm/fasttext/</id>
+    <published>2020-05-26T08:35:25.000Z</published>
+    <updated>2020-06-02T00:40:08.632Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Fasttext（高效的文本分类和表示工具）"><a href="#Fasttext（高效的文本分类和表示工具）" class="headerlink" title="Fasttext（高效的文本分类和表示工具）"></a>Fasttext（高效的文本分类和表示工具）</h2><p>是fastText是FAIR(Facebook AIResearch) 在2016年推出的一款文本分类与向量化工具。<br>官网：(<a href="http://fasttext.cc" target="_blank" rel="noopener">http://fasttext.cc</a>)<br>fastText开源、免费、轻量级，适用于文本分类和文本向量化表示场景，运行于标准硬件环境。裁剪压缩过的模型甚至可以轻松跑在移动设备上.<br>Fasttext最惊艳的地方在于，和最前沿深度神经网络模型相比，它在分类精度等指标毫不逊色的情况下，把训练和推断速度降低了几个数量级！按Facebook的报告，在普通多核CPU上， 10亿词的文本训练时间小于10分钟， 50万句子分到31.2万类别用时小于1分钟。</p><p>Fasttext能够做到效果好，速度快，主要因为：一是利用了词内的n-gram信息(subword n-gram information)，二是用到了层次化Softmax回归(Hierarchical Softmax)的训练trick。</p><h2 id="python-api"><a href="#python-api" class="headerlink" title="python api"></a>python api</h2><p><a href="https://fasttext.cc/docs/en/python-module.html" target="_blank" rel="noopener">https://fasttext.cc/docs/en/python-module.html</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;Fasttext（高效的文本分类和表示工具）&quot;&gt;&lt;a href=&quot;#Fasttext（高效的文本分类和表示工具）&quot; class=&quot;headerlink&quot; title=&quot;Fasttext（高效的文本分类和表示工具）&quot;&gt;&lt;/a&gt;Fasttext（高效的文本分类和表示工
+      
+    
+    </summary>
+    
+    
+      <category term="NLP" scheme="https://tlylft.github.io/categories/NLP/"/>
+    
+      <category term="algorithm" scheme="https://tlylft.github.io/categories/NLP/algorithm/"/>
+    
+    
+      <category term="NLP" scheme="https://tlylft.github.io/tags/NLP/"/>
+    
+      <category term="algorithm" scheme="https://tlylft.github.io/tags/algorithm/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>word2vec 介绍</title>
+    <link href="https://tlylft.github.io/NLP/word2vec/intro/"/>
+    <id>https://tlylft.github.io/NLP/word2vec/intro/</id>
+    <published>2020-05-25T07:16:41.000Z</published>
+    <updated>2020-05-25T08:07:18.419Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="/NLP/word2vec/intro/2020-05-25-15-17-121.png" alt></p><h2 id="backgroud"><a href="#backgroud" class="headerlink" title="backgroud"></a>backgroud</h2><p>作者：Tomas MIkolov<br>下面是Tomas MIkolov的三篇有关word embedding的文章。<br>1、 Efficient Estimation of Word Representation in Vector Space, 2013<br>2、 Distributed Representations of Sentences and Documents, 2014<br>3、 Enriching Word Vectors with Subword Information, 2016</p><h2 id="what"><a href="#what" class="headerlink" title="what"></a>what</h2><p>Word2vec是词的一种表示，他将词以固定维数的向量表示出来。</p><p> 是无监督学习，因为输出并没有label。<br> 但是从输入的和输出的形式上来看，输入的是一对对单词，看起来像是有监督，其实并不是。<br> 因为词向量的本质可以看出是一个只有一层的神经网络，因此必须有输入，输出。而训练过程或者说目的不是得到预测结果单词，或者对单词进行分类。最为关键的是获得hidden layer中权重。<br> 也就是说借助了sequence2sequence模型训练过程，得到hidden layer的权重。</p><h2 id="why"><a href="#why" class="headerlink" title="why"></a>why</h2><ol><li>可以表示词相似度，有语义性<br>传统的基于词袋模型 one-hot representation在判定同义词，相似句子的时候很无力。<br>例如在一个只有两个词的词典中。快递被编码为v1 = [0,1]，快件被编码为v2 =[1,0]，计算两个的相似度。为v1*v2 = 0<br>而word2vec充分利用上下文信息，对上下文进行训练。每个词不在是 只有一个位置为1，其余位置为0的稀疏向量。而是一个稠密的固定维度向量。</li><li>减少存储<br>直观上可减少额外存储和计算开销。</li></ol><h2 id="how"><a href="#how" class="headerlink" title="how"></a>how</h2><p>1) 用上下文预测中心词 cbow（continue bag of word）<br>2) 利用中心词预测上下文 skip-gram</p><h2 id="basic-knowledge"><a href="#basic-knowledge" class="headerlink" title="basic knowledge"></a>basic knowledge</h2><p>sigmoid 和 softmax函数<br>二叉树和huffman树</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;img src=&quot;/NLP/word2vec/intro/2020-05-25-15-17-121.png&quot; alt&gt;&lt;/p&gt;
+&lt;h2 id=&quot;backgroud&quot;&gt;&lt;a href=&quot;#backgroud&quot; class=&quot;headerlink&quot; title=&quot;backgr
+      
+    
+    </summary>
+    
+    
+      <category term="NLP" scheme="https://tlylft.github.io/categories/NLP/"/>
+    
+      <category term="word2vec" scheme="https://tlylft.github.io/categories/NLP/word2vec/"/>
+    
+    
+      <category term="NLP" scheme="https://tlylft.github.io/tags/NLP/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>python 连接mysql</title>
+    <link href="https://tlylft.github.io/python/python/python_mysql/"/>
+    <id>https://tlylft.github.io/python/python/python_mysql/</id>
+    <published>2020-05-19T07:33:56.000Z</published>
+    <updated>2020-05-25T15:47:41.160Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="简单操作"><a href="#简单操作" class="headerlink" title="简单操作"></a>简单操作</h2><h3 id="insert"><a href="#insert" class="headerlink" title="insert"></a>insert</h3><h3 id="update"><a href="#update" class="headerlink" title="update"></a>update</h3><p>更改或删除操作，如捕获异常，需要回滚，否则会出问题。</p><h3 id="insert-or-update"><a href="#insert-or-update" class="headerlink" title="insert or update"></a>insert or update</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#  写入</span><br><span class="line">connection &#x3D; pymysql.connect(host&#x3D;conf.NEWS_HOST, port&#x3D;int(conf.NEWS_PORT), user&#x3D;conf.NEWS_USERNAME,</span><br><span class="line">                     passwd&#x3D;conf.NEWS_PASSWORD, db&#x3D;conf.NEWS_DATABASE)</span><br><span class="line">cur &#x3D; connection.cursor()</span><br><span class="line"># cur.executemany(&quot;REPLACE INTO news_keywords (detail_url,keywords) VALUES(%s,%s)&quot;, result)</span><br><span class="line">cur.executemany(&quot;INSERT INTO news_keywords (detail_url,keywords) VALUES(%s,%s) ON DUPLICATE KEY UPDATE detail_url &#x3D; VALUES(detail_url),keywords &#x3D; VALUES(keywords), update_time &#x3D; now()&quot;, result)</span><br><span class="line">connection.commit()</span><br><span class="line">cur.close()</span><br><span class="line">connection.close()</span><br><span class="line"></span><br><span class="line">db.session.add_all(result)</span><br><span class="line">db.session.commit()</span><br></pre></td></tr></table></figure><h2 id="封装方法"><a href="#封装方法" class="headerlink" title="封装方法"></a>封装方法</h2><p><a href="https://www.cnblogs.com/BlueSkyyj/p/10039972.html" target="_blank" rel="noopener">https://www.cnblogs.com/BlueSkyyj/p/10039972.html</a><br>self.db = pymysql.connect(self.host,self.username,self.password,self.database[,self.port,charset=’utf8’])<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br></pre></td><td class="code"><pre><span class="line"># FileName : DBHandle.py</span><br><span class="line"># Author   : Adil</span><br><span class="line"># DateTime : 2018&#x2F;11&#x2F;29 2:03 PM</span><br><span class="line"># SoftWare : PyCharm</span><br><span class="line"></span><br><span class="line">import pymysql</span><br><span class="line"></span><br><span class="line"># username : adil</span><br><span class="line"># password : helloyyj</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class DataBaseHandle(object):</span><br><span class="line">    &#39;&#39;&#39; 定义一个 MySQL 操作类&#39;&#39;&#39;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    def __init__(self,host,username,password,database,port):</span><br><span class="line">        &#39;&#39;&#39;初始化数据库信息并创建数据库连接&#39;&#39;&#39;</span><br><span class="line">        # 下面的赋值其实可以省略，connect 时 直接使用形参即可</span><br><span class="line">        self.host &#x3D; host</span><br><span class="line">        self.username &#x3D; username</span><br><span class="line">        self.password &#x3D; password</span><br><span class="line">        self.database &#x3D; database</span><br><span class="line">        self.port &#x3D; port</span><br><span class="line">        self.db &#x3D; pymysql.connect(self.host,self.username,self.password,self.database,self.port,charset&#x3D;&#39;utf8&#39;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    #  这里 注释连接的方法，是为了 实例化对象时，就创建连接。不许要单独处理连接了。</span><br><span class="line">    #</span><br><span class="line">    # def connDataBase(self):</span><br><span class="line">    #     &#39;&#39;&#39; 数据库连接 &#39;&#39;&#39;</span><br><span class="line">    #</span><br><span class="line">    #     self.db &#x3D; pymysql.connect(self.host,self.username,self.password,self.port,self.database)</span><br><span class="line">    #</span><br><span class="line">    #     # self.cursor &#x3D; self.db.cursor()</span><br><span class="line">    #</span><br><span class="line">    #     return self.db</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    def insertDB(self,sql):</span><br><span class="line">        &#39;&#39;&#39; 插入数据库操作 &#39;&#39;&#39;</span><br><span class="line"></span><br><span class="line">        self.cursor &#x3D; self.db.cursor()</span><br><span class="line"></span><br><span class="line">        try:</span><br><span class="line">            # 执行sql</span><br><span class="line">            self.cursor.execute(sql)</span><br><span class="line">            # tt &#x3D; self.cursor.execute(sql)  # 返回 插入数据 条数 可以根据 返回值 判定处理结果</span><br><span class="line">            # print(tt)</span><br><span class="line">            self.db.commit()</span><br><span class="line">        except:</span><br><span class="line">            # 发生错误时回滚</span><br><span class="line">            self.db.rollback()</span><br><span class="line">        finally:</span><br><span class="line">            self.cursor.close()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    def deleteDB(self,sql):</span><br><span class="line">        &#39;&#39;&#39; 操作数据库数据删除 &#39;&#39;&#39;</span><br><span class="line">        self.cursor &#x3D; self.db.cursor()</span><br><span class="line"></span><br><span class="line">        try:</span><br><span class="line">            # 执行sql</span><br><span class="line">            self.cursor.execute(sql)</span><br><span class="line">            # tt &#x3D; self.cursor.execute(sql) # 返回 删除数据 条数 可以根据 返回值 判定处理结果</span><br><span class="line">            # print(tt)</span><br><span class="line">            self.db.commit()</span><br><span class="line">        except:</span><br><span class="line">            # 发生错误时回滚</span><br><span class="line">            self.db.rollback()</span><br><span class="line">        finally:</span><br><span class="line">            self.cursor.close()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    def updateDb(self,sql):</span><br><span class="line">        &#39;&#39;&#39; 更新数据库操作 &#39;&#39;&#39;</span><br><span class="line"></span><br><span class="line">        self.cursor &#x3D; self.db.cursor()</span><br><span class="line"></span><br><span class="line">        try:</span><br><span class="line">            # 执行sql</span><br><span class="line">            self.cursor.execute(sql)</span><br><span class="line">            # tt &#x3D; self.cursor.execute(sql) # 返回 更新数据 条数 可以根据 返回值 判定处理结果</span><br><span class="line">            # print(tt)</span><br><span class="line">            self.db.commit()</span><br><span class="line">        except:</span><br><span class="line">            # 发生错误时回滚</span><br><span class="line">            self.db.rollback()</span><br><span class="line">        finally:</span><br><span class="line">            self.cursor.close()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    def selectDb(self,sql):</span><br><span class="line">        &#39;&#39;&#39; 数据库查询 &#39;&#39;&#39;</span><br><span class="line">        self.cursor &#x3D; self.db.cursor()</span><br><span class="line">        try:</span><br><span class="line">            self.cursor.execute(sql) # 返回 查询数据 条数 可以根据 返回值 判定处理结果</span><br><span class="line"></span><br><span class="line">            data &#x3D; self.cursor.fetchall() # 返回所有记录列表</span><br><span class="line"></span><br><span class="line">            print(data)</span><br><span class="line"></span><br><span class="line">            # 结果遍历</span><br><span class="line">            for row in data:</span><br><span class="line">                sid &#x3D; row[0]</span><br><span class="line">                name &#x3D; row[1]</span><br><span class="line">                # 遍历打印结果</span><br><span class="line">                print(&#39;sid &#x3D; %s,  name &#x3D; %s&#39;%(sid,name))</span><br><span class="line">        except:</span><br><span class="line">            print(&#39;Error: unable to fecth data&#39;)</span><br><span class="line">        finally:</span><br><span class="line">            self.cursor.close()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    def closeDb(self):</span><br><span class="line">        &#39;&#39;&#39; 数据库连接关闭 &#39;&#39;&#39;</span><br><span class="line">        self.db.close()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ &#x3D;&#x3D; &#39;__main__&#39;:</span><br><span class="line"></span><br><span class="line">    DbHandle &#x3D; DataBaseHandle(&#39;127.0.0.1&#39;,&#39;adil&#39;,&#39;helloyyj&#39;,&#39;AdilTest&#39;,3306)</span><br><span class="line"></span><br><span class="line">    DbHandle.insertDB(&#39;insert into test(name) values (&quot;%s&quot;)&#39;%(&#39;FuHongXue&#39;))</span><br><span class="line">    DbHandle.insertDB(&#39;insert into test(name) values (&quot;%s&quot;)&#39;%(&#39;FuHongXue&#39;))</span><br><span class="line">    DbHandle.selectDb(&#39;select * from test&#39;)</span><br><span class="line">    DbHandle.updateDb(&#39;update test set name &#x3D; &quot;%s&quot; where sid &#x3D; &quot;%d&quot;&#39; %(&#39;YeKai&#39;,22))</span><br><span class="line">    DbHandle.selectDb(&#39;select * from test&#39;)</span><br><span class="line">    DbHandle.insertDB(&#39;insert into test(name) values (&quot;%s&quot;)&#39;%(&#39;LiXunHuan&#39;))</span><br><span class="line">    DbHandle.deleteDB(&#39;delete from test where sid &gt; &quot;%d&quot;&#39; %(25))</span><br><span class="line">    DbHandle.selectDb(&#39;select * from test&#39;)</span><br><span class="line">    DbHandle.closeDb()</span><br></pre></td></tr></table></figure></p><h2 id="异常报错"><a href="#异常报错" class="headerlink" title="异常报错"></a>异常报错</h2><h3 id="需要回滚才能重连"><a href="#需要回滚才能重连" class="headerlink" title="需要回滚才能重连"></a>需要回滚才能重连</h3><p>sqlalchemy.exc.InvalidRequestError: Can’t reconnect until invalid transaction is rolled back</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;简单操作&quot;&gt;&lt;a href=&quot;#简单操作&quot; class=&quot;headerlink&quot; title=&quot;简单操作&quot;&gt;&lt;/a&gt;简单操作&lt;/h2&gt;&lt;h3 id=&quot;insert&quot;&gt;&lt;a href=&quot;#insert&quot; class=&quot;headerlink&quot; title=&quot;inser
+      
+    
+    </summary>
+    
+    
+      <category term="python" scheme="https://tlylft.github.io/categories/python/"/>
+    
+    
+      <category term="python" scheme="https://tlylft.github.io/tags/python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>mysql</title>
+    <link href="https://tlylft.github.io/mysql/mysql/"/>
+    <id>https://tlylft.github.io/mysql/mysql/</id>
+    <published>2020-05-15T05:11:32.000Z</published>
+    <updated>2020-06-02T00:45:03.683Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="1-表操作"><a href="#1-表操作" class="headerlink" title="1. 表操作"></a>1. 表操作</h2><h3 id="1-1-创建表"><a href="#1-1-创建表" class="headerlink" title="1.1. 创建表"></a>1.1. 创建表</h3><h3 id="1-2-更改列"><a href="#1-2-更改列" class="headerlink" title="1.2. 更改列"></a>1.2. 更改列</h3><h3 id="1-3-增删改查"><a href="#1-3-增删改查" class="headerlink" title="1.3. 增删改查"></a>1.3. 增删改查</h3><h4 id="1-3-1-insert"><a href="#1-3-1-insert" class="headerlink" title="1.3.1. insert"></a>1.3.1. insert</h4><h5 id="1-3-1-1-insert-into"><a href="#1-3-1-1-insert-into" class="headerlink" title="1.3.1.1. insert into"></a>1.3.1.1. insert into</h5><p>插入数据操作，主键存在会报错。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO &#96;enn_news&#96;.&#96;keywords_hot&#96; ( &#96;keywords&#96;, &#96;version&#96;, &#96;state&#96;, &#96;weight&#96;) VALUES ( &#39;保民生&#39;, &#39;39&#39;, &#39;1&#39;, &#39;11&#39;);</span><br></pre></td></tr></table></figure></p><h4 id="1-3-2-修改数据"><a href="#1-3-2-修改数据" class="headerlink" title="1.3.2. 修改数据"></a>1.3.2. 修改数据</h4><h5 id="1-3-2-1-update"><a href="#1-3-2-1-update" class="headerlink" title="1.3.2.1. update"></a>1.3.2.1. update</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UPDATE &#96;keywords_hot&#96; SET &#96;weight&#96;&#x3D;&#39;13&#39; WHERE (&#96;id&#96;&#x3D;&#39;1403&#39;)</span><br></pre></td></tr></table></figure><h5 id="1-3-2-2-replace-into"><a href="#1-3-2-2-replace-into" class="headerlink" title="1.3.2.2. replace into"></a>1.3.2.2. replace into</h5><p>replace into 主要作用类似insert插入操作。主要的区别是replace会根据主键或者唯一索引检查数据是否存在，如果存在就先删除在更新。所以想要修改的源数据是被执行删除操作的，create_time字段不会留痕。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">REPLACE INTO t_test (&#96;name&#96;)VALUES(&#39;a&#39;)</span><br></pre></td></tr></table></figure></p><h4 id="1-3-3-insert-or-update"><a href="#1-3-3-insert-or-update" class="headerlink" title="1.3.3. insert or update"></a>1.3.3. insert or update</h4><p><a href="https://blog.csdn.net/zfs_zs/article/details/86229538" target="_blank" rel="noopener">https://blog.csdn.net/zfs_zs/article/details/86229538</a></p><ol><li>ON DUPLICATE KEY UPDATE<blockquote><blockquote><p>ON DUPLICATE KEY UPDATE只是MySQL的特有语法，并不是SQL标准语法！ </p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO pms_statistic (</span><br><span class="line">id,</span><br><span class="line">tenantId,</span><br><span class="line">tenantName,</span><br><span class="line">isDeleted,</span><br><span class="line">createTime,</span><br><span class="line">    updateTime</span><br><span class="line">)</span><br><span class="line">VALUES</span><br><span class="line">(</span><br><span class="line">6257,50,&#39;保存或修改0&#39;,1,&#39;2020-01-00&#39;</span><br><span class="line">) ,(</span><br><span class="line">6258,51,&#39;保存或修改1&#39;,1,&#39;2020-01-01&#39;</span><br><span class="line">) ,(</span><br><span class="line">6259,52,&#39;保存或修改2&#39;,1,&#39;2020-01-02&#39;</span><br><span class="line">) ,(</span><br><span class="line">62510,53,&#39;保存或修改3&#39;,1,&#39;2020-01-03&#39;</span><br><span class="line">) </span><br><span class="line">ON DUPLICATE KEY UPDATE tenantId &#x3D; VALUES(tenantId),tenantName &#x3D; VALUES(tenantName)</span><br><span class="line">,isDeleted &#x3D; VALUES(isDeleted),createTime &#x3D; VALUES(createTime) ,updateTime &#x3D; now()</span><br></pre></td></tr></table></figure><p>该语句是基于主键（PRIMARY KEY）或唯一索引（UNIQUE INDEX）使用的。<br>如果已存在该唯一标示或主键就更新（显示受影响行的值：2）</p></blockquote></blockquote></li></ol><p>如果不存在该唯一标示或主键则作为新行插入（显示受影响行的值：1）</p><p>如上：如果id（6257，6258，6259，62510）存在，根据id更新ON DUPLICATE KEY UPDATE后的字段数据（tenantId = VALUES(tenantId),tenantName = VALUES(tenantName),isDeleted = VALUES(isDeleted),createTime = VALUES(createTime)）</p><h3 id="1-4-函数"><a href="#1-4-函数" class="headerlink" title="1.4. 函数"></a>1.4. 函数</h3><p>now()  当前时间</p><h2 id="事务操作"><a href="#事务操作" class="headerlink" title="事务操作"></a>事务操作</h2><p>delete 或 update操作失败时，需要回滚<br>db.rollback()</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;1-表操作&quot;&gt;&lt;a href=&quot;#1-表操作&quot; class=&quot;headerlink&quot; title=&quot;1. 表操作&quot;&gt;&lt;/a&gt;1. 表操作&lt;/h2&gt;&lt;h3 id=&quot;1-1-创建表&quot;&gt;&lt;a href=&quot;#1-1-创建表&quot; class=&quot;headerlink&quot; titl
+      
+    
+    </summary>
+    
+    
+      <category term="mysql" scheme="https://tlylft.github.io/categories/mysql/"/>
+    
+    
+      <category term="mysql" scheme="https://tlylft.github.io/tags/mysql/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>collection Counter</title>
+    <link href="https://tlylft.github.io/python/python/python_counter/"/>
+    <id>https://tlylft.github.io/python/python/python_counter/</id>
+    <published>2020-05-15T02:42:49.000Z</published>
+    <updated>2020-05-15T02:43:14.187Z</updated>
+    
+    <content type="html"><![CDATA[<p><a href="https://www.cnblogs.com/keke-xiaoxiami/p/8553076.html" target="_blank" rel="noopener">https://www.cnblogs.com/keke-xiaoxiami/p/8553076.html</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;a href=&quot;https://www.cnblogs.com/keke-xiaoxiami/p/8553076.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://www.cnblogs.com/keke-xiaoxiami/p/8
+      
+    
+    </summary>
+    
+    
+      <category term="python" scheme="https://tlylft.github.io/categories/python/"/>
+    
+    
+      <category term="python" scheme="https://tlylft.github.io/tags/python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>文本分类</title>
+    <link href="https://tlylft.github.io/NLP/algorithm/text_classification/"/>
+    <id>https://tlylft.github.io/NLP/algorithm/text_classification/</id>
+    <published>2020-05-12T00:53:25.000Z</published>
+    <updated>2020-05-15T02:48:22.739Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h2><p>新闻分类<br>情感分析<br>语种识别</p><h2 id="多分类问题下的调优"><a href="#多分类问题下的调优" class="headerlink" title="多分类问题下的调优"></a>多分类问题下的调优</h2><ol><li>类别样本均衡，每个类别的样本数据量大小最好相差不多。</li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;应用&quot;&gt;&lt;a href=&quot;#应用&quot; class=&quot;headerlink&quot; title=&quot;应用&quot;&gt;&lt;/a&gt;应用&lt;/h2&gt;&lt;p&gt;新闻分类&lt;br&gt;情感分析&lt;br&gt;语种识别&lt;/p&gt;
+&lt;h2 id=&quot;多分类问题下的调优&quot;&gt;&lt;a href=&quot;#多分类问题下的调优&quot; class
+      
+    
+    </summary>
+    
+    
+      <category term="NLP" scheme="https://tlylft.github.io/categories/NLP/"/>
+    
+      <category term="algorithm" scheme="https://tlylft.github.io/categories/NLP/algorithm/"/>
+    
+    
+      <category term="NLP" scheme="https://tlylft.github.io/tags/NLP/"/>
+    
+      <category term="algorithm" scheme="https://tlylft.github.io/tags/algorithm/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>爱因斯坦的梦</title>
+    <link href="https://tlylft.github.io/reading/Einsteins_dream/"/>
+    <id>https://tlylft.github.io/reading/Einsteins_dream/</id>
+    <published>2020-05-06T03:43:38.000Z</published>
+    <updated>2020-05-11T07:01:00.157Z</updated>
+    
+    <content type="html"><![CDATA[<p>有关于时间的思考</p><blockquote><p>013 这并不是说其他性质不可能存在，而是说其他的性质可能存在于其他的世界中。</p></blockquote><p>事物不是永恒的，也不是在一条时间线上多变的，在不同的世界维度，可能就有着不同的含义和表现形式。it can be everything.</p><blockquote><p>1905.04.14 假定时间是曲向自己的一个圆，而世界重复他自己，完全准确的，且是永不止息的。</p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;有关于时间的思考&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;013 这并不是说其他性质不可能存在，而是说其他的性质可能存在于其他的世界中。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;事物不是永恒的，也不是在一条时间线上多变的，在不同的世界维度，可能就有着不同的含义和表现形式。
+      
+    
+    </summary>
+    
+    
+      <category term="reading" scheme="https://tlylft.github.io/categories/reading/"/>
+    
+    
+      <category term="reading" scheme="https://tlylft.github.io/tags/reading/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>BERT入门</title>
+    <link href="https://tlylft.github.io/NLP/bert/bert_intro/"/>
+    <id>https://tlylft.github.io/NLP/bert/bert_intro/</id>
+    <published>2020-04-28T00:36:56.000Z</published>
+    <updated>2020-07-02T08:14:52.844Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Bert"><a href="#Bert" class="headerlink" title="Bert"></a>Bert</h2><p>google 提供的开源的项目解决方案<br><a href="https://github.com/google-research/bert" target="_blank" rel="noopener">https://github.com/google-research/bert</a></p><h3 id="basic-knowledge"><a href="#basic-knowledge" class="headerlink" title="basic knowledge"></a>basic knowledge</h3><p>需要熟悉 word2vec ,RNN 等<br>重点在transformer</p><h3 id="environment-required"><a href="#environment-required" class="headerlink" title="environment required"></a>environment required</h3><p>tensorflow = 1.13.0<br>numpy = 1.16.3</p><h3 id="study-link"><a href="#study-link" class="headerlink" title="study link"></a>study link</h3><p><a href="https://github.com/tangyudi/Ai-Learn/tree/master/NLP%E9%80%9A%E7%94%A8%E6%A1%86%E6%9E%B6BERT" target="_blank" rel="noopener">https://github.com/tangyudi/Ai-Learn/tree/master/NLP%E9%80%9A%E7%94%A8%E6%A1%86%E6%9E%B6BERT</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;Bert&quot;&gt;&lt;a href=&quot;#Bert&quot; class=&quot;headerlink&quot; title=&quot;Bert&quot;&gt;&lt;/a&gt;Bert&lt;/h2&gt;&lt;p&gt;google 提供的开源的项目解决方案&lt;br&gt;&lt;a href=&quot;https://github.com/google-rese
+      
+    
+    </summary>
+    
+    
+      <category term="NLP" scheme="https://tlylft.github.io/categories/NLP/"/>
+    
+      <category term="bert" scheme="https://tlylft.github.io/categories/NLP/bert/"/>
+    
+    
+      <category term="NLP" scheme="https://tlylft.github.io/tags/NLP/"/>
+    
+      <category term="bert" scheme="https://tlylft.github.io/tags/bert/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>python代码格式化工具autopep8</title>
+    <link href="https://tlylft.github.io/tools/autopep8/"/>
+    <id>https://tlylft.github.io/tools/autopep8/</id>
+    <published>2020-04-21T01:01:33.000Z</published>
+    <updated>2020-04-21T01:04:18.608Z</updated>
+    
+    <content type="html"><![CDATA[<p><a href="https://blog.csdn.net/hahahahli/article/details/86079652" target="_blank" rel="noopener">https://blog.csdn.net/hahahahli/article/details/86079652</a></p><h3 id="安装包"><a href="#安装包" class="headerlink" title="安装包"></a>安装包</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install autopep8</span><br></pre></td></tr></table></figure><p>官方文档 <a href="https://pypi.org/project/autopep8/" target="_blank" rel="noopener">https://pypi.org/project/autopep8/</a></p><h3 id="配置autopep8"><a href="#配置autopep8" class="headerlink" title="配置autopep8"></a>配置autopep8</h3><p>打开 Preferences -&gt; Tools -&gt; External Tools<br>点开左上角+号<br>Name：autopep8（可以自定义）<br>Programs：/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/autopep8.py（注意！路径必须为autopep8安装路径）<br>Arguments：—in-place —aggressive —aggressive $FilePath$<br>Working directory：$ProjectFileDir$<br>Outoput fillters：$FILE_PATH$\:$LINE$\:$COLUMN$\:.*</p><h3 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h3><p>右键 -&gt; External Tools -&gt; AutoPEP8</p><h4 id="排错"><a href="#排错" class="headerlink" title="排错"></a>排错</h4><p>1.运行时提示no such file or directory</p><p>原因：autopep8 路径写错或没写扩展名</p><p>解决办法：路径补充完整，必需精确到扩展名（windows下为autopep8.exe）如：Programs：/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/autopep8.py</p><p>2.运行时提示permission denied</p><p>原因：autopep8.py这个文件没有执行权限</p><p>解决办法：chmod 755 autopep8.py</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;a href=&quot;https://blog.csdn.net/hahahahli/article/details/86079652&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://blog.csdn.net/hahahahli/article
+      
+    
+    </summary>
+    
+    
+      <category term="tools" scheme="https://tlylft.github.io/categories/tools/"/>
+    
+    
+      <category term="tools" scheme="https://tlylft.github.io/tags/tools/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Jmeter压测工具</title>
+    <link href="https://tlylft.github.io/tools/jmeter/"/>
+    <id>https://tlylft.github.io/tools/jmeter/</id>
+    <published>2020-04-13T06:13:12.000Z</published>
+    <updated>2020-04-14T05:31:44.590Z</updated>
+    
+    <content type="html"><![CDATA[<p><a href="https://www.cnblogs.com/monjeo/p/9330464.html" target="_blank" rel="noopener">https://www.cnblogs.com/monjeo/p/9330464.html</a></p><h3 id="1-下载"><a href="#1-下载" class="headerlink" title="1. 下载"></a>1. 下载</h3><p>进入官网：<a href="http://jmeter.apache.org/" target="_blank" rel="noopener">http://jmeter.apache.org/</a><br>下载apache-jmeter-5.2.1.zip 版本，对应jdk1.8。然后就进行解压。</p><p>1）解压之后压缩包叫apache-jmeter-4.0.zip，如是src.zip后缀的都不对，打开之后会报错不可用，因为里面缺少我们下一步将要配置的环境变量.jar文件。</p><p>2）对应的jdk版本不可太低，一般jmeter3.0的对应jdk1.7，jmeter4.0对应jdk1.8以上，否者启用jmeter也会报错。</p><p>3）一定要确保环境变量配置正确（包括jdk的与jmeter的环境变量配置）。</p><p>好了，接下来进行环境变量配置吧，因为是新手所以参照了大佬们的教程，我就根据自己的实际遇到的情况，总结一下来做备忘。</p><h3 id="2-安装"><a href="#2-安装" class="headerlink" title="2. 安装"></a>2. 安装</h3><h4 id="2-1-环境变量"><a href="#2-1-环境变量" class="headerlink" title="2.1. 环境变量"></a>2.1. 环境变量</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">JMETER_HOME :</span><br><span class="line">D:\setup\apache-jmeter-5.2.1</span><br><span class="line">classpath:</span><br><span class="line"> %JMETER_HOME%\lib\ext\ApacheJMeter_core.jar;%JMETER_HOME%\lib\jorphan.jar;%JMETER_HOME%\lib&#x2F;logkit-2.0.jar;</span><br></pre></td></tr></table></figure><h3 id="3-新建测试"><a href="#3-新建测试" class="headerlink" title="3. 新建测试"></a>3. 新建测试</h3><p>进入安装目录下的bin目录，双击或管理员执行jmeter.bat</p><h3 id="4-生成报告"><a href="#4-生成报告" class="headerlink" title="4. 生成报告"></a>4. 生成报告</h3><p>jmeter -n -t E:\aa.jmx -l E:\result1.jtl -e -o E:\result_report1<br>-n 代表不使用界面启动，直接执行了<br>-t 后面是要加载的jmx文件<br>-o 后面是生成的报告目录</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;a href=&quot;https://www.cnblogs.com/monjeo/p/9330464.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://www.cnblogs.com/monjeo/p/9330464.html&lt;/a&gt;&lt;
+      
+    
+    </summary>
+    
+    
+      <category term="tools" scheme="https://tlylft.github.io/categories/tools/"/>
+    
+    
+      <category term="tools" scheme="https://tlylft.github.io/tags/tools/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>linux 系统信息查看</title>
+    <link href="https://tlylft.github.io/linux/basic_info/"/>
+    <id>https://tlylft.github.io/linux/basic_info/</id>
+    <published>2020-04-13T04:58:06.000Z</published>
+    <updated>2020-04-14T05:35:11.351Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="1-查看系统版本"><a href="#1-查看系统版本" class="headerlink" title="1. 查看系统版本"></a>1. 查看系统版本</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cat &#x2F;proc&#x2F;version</span><br><span class="line">uname -a</span><br><span class="line">&gt;&gt;Linux elcndc5fncs04t 3.10.0-693.el7.x86_64 #1 SMP Tue Aug 22 21:09:27 UTC 2017 x86_64 x86_64 x86_64 GNU&#x2F;Linux</span><br><span class="line">cat &#x2F;etc&#x2F;redhat-release</span><br><span class="line">&gt;&gt;CentOS Linux release 7.4.1708 (Core)</span><br></pre></td></tr></table></figure><h2 id="2-查看内存"><a href="#2-查看内存" class="headerlink" title="2. 查看内存"></a>2. 查看内存</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; free -h</span><br><span class="line">              total        used        free      shared  buff&#x2F;cache   available</span><br><span class="line">Mem:            31G         12G        6.7G        307M         12G         17G</span><br><span class="line">Swap:          8.0G        6.6M        8.0G</span><br></pre></td></tr></table></figure><h2 id="3-查看磁盘"><a href="#3-查看磁盘" class="headerlink" title="3. 查看磁盘"></a>3. 查看磁盘</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; df -h</span><br><span class="line">Filesystem                  Size  Used Avail Use% Mounted on</span><br><span class="line">&#x2F;dev&#x2F;mapper&#x2F;rootvg-lv_root   20G   14G  6.1G  70% &#x2F;</span><br><span class="line">devtmpfs                     16G     0   16G   0% &#x2F;dev</span><br><span class="line">tmpfs                        16G  104K   16G   1% &#x2F;dev&#x2F;shm</span><br><span class="line">tmpfs                        16G  866M   15G   6% &#x2F;run</span><br><span class="line">tmpfs                        16G     0   16G   0% &#x2F;sys&#x2F;fs&#x2F;cgroup</span><br><span class="line">&#x2F;dev&#x2F;mapper&#x2F;rootvg-lv_home   20G  724M   20G   4% &#x2F;home</span><br><span class="line">&#x2F;dev&#x2F;mapper&#x2F;datavg-lv_data  294G  146G  133G  53% &#x2F;data</span><br><span class="line">&#x2F;dev&#x2F;sda1                   497M  157M  341M  32% &#x2F;boot</span><br><span class="line">tmpfs                       3.2G   16K  3.2G   1% &#x2F;run&#x2F;user&#x2F;42</span><br><span class="line">tmpfs                       3.2G     0  3.2G   0% &#x2F;run&#x2F;user&#x2F;1001</span><br><span class="line">tmpfs                       3.2G     0  3.2G   0% &#x2F;run&#x2F;user&#x2F;1006</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;1-查看系统版本&quot;&gt;&lt;a href=&quot;#1-查看系统版本&quot; class=&quot;headerlink&quot; title=&quot;1. 查看系统版本&quot;&gt;&lt;/a&gt;1. 查看系统版本&lt;/h2&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td 
+      
+    
+    </summary>
+    
+    
+      <category term="linux" scheme="https://tlylft.github.io/categories/linux/"/>
+    
+    
+      <category term="linux" scheme="https://tlylft.github.io/tags/linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>文艺复兴</title>
+    <link href="https://tlylft.github.io/reading/the_renaissance/"/>
+    <id>https://tlylft.github.io/reading/the_renaissance/</id>
+    <published>2020-04-11T09:01:14.000Z</published>
+    <updated>2020-07-10T01:23:21.830Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+      <category term="reading" scheme="https://tlylft.github.io/categories/reading/"/>
+    
+    
+      <category term="reading" scheme="https://tlylft.github.io/tags/reading/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>句法分析</title>
+    <link href="https://tlylft.github.io/NLP/syntax/"/>
+    <id>https://tlylft.github.io/NLP/syntax/</id>
+    <published>2020-04-11T06:05:48.000Z</published>
+    <updated>2020-04-11T08:59:47.775Z</updated>
+    
+    <content type="html"><![CDATA[<p><a href="https://blog.csdn.net/qq_37171771/article/details/79342819" target="_blank" rel="noopener">https://blog.csdn.net/qq_37171771/article/details/79342819</a></p><h3 id="PCFG-content-free-grammars-probabilistic"><a href="#PCFG-content-free-grammars-probabilistic" class="headerlink" title="PCFG content free grammars probabilistic"></a>PCFG content free grammars probabilistic</h3><p>e.g.<br>S -&gt; NP  VP<br>NP -&gt; DT(The) NN(dog)</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">NP： noun phrase</span><br><span class="line">VP: verb phrase</span><br><span class="line">PP: prepositionse phrase</span><br><span class="line">DT: determiner</span><br><span class="line">Vi: intransitive verb</span><br><span class="line">Vt: transitive verb</span><br><span class="line">NN: noun</span><br><span class="line">IN: preposition</span><br></pre></td></tr></table></figure><p>CFG is 4 tuple    G=(N,sigma, R,S)<br><strong>N : non-terminals</strong><br>NN DT IN S NP VP PP  Vi Vt<br><strong>sigma: terminals</strong><br>dog the with sleep saw man woman in<br><strong>R: relation</strong><br>S -&gt; NP VP<br>VP -&gt; Vi<br>VP -&gt; Vt NP<br>VP -&gt; VP PP<br>NP -&gt; DT NN<br>NP -&gt; NP PP<br>PP -&gt; IN NP<br><strong>S: start</strong></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;a href=&quot;https://blog.csdn.net/qq_37171771/article/details/79342819&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://blog.csdn.net/qq_37171771/art
+      
+    
+    </summary>
+    
+    
+      <category term="NLP" scheme="https://tlylft.github.io/categories/NLP/"/>
+    
+    
+      <category term="NLP" scheme="https://tlylft.github.io/tags/NLP/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>NLP/NER/medical_NER</title>
+    <link href="https://tlylft.github.io/NLP/NER/medical_NER/"/>
+    <id>https://tlylft.github.io/NLP/NER/medical_NER/</id>
+    <published>2020-04-03T07:03:52.000Z</published>
+    <updated>2020-04-06T13:01:17.291Z</updated>
+    
+    <content type="html"><![CDATA[<p>网上看的一个讲特定行业的NER的思路，可以参考。</p><h2 id="项目背景"><a href="#项目背景" class="headerlink" title="项目背景"></a>项目背景</h2><p><img src="/NLP/NER/medical_NER/2020-04-03-15-05-51.png" alt><br><img src="/NLP/NER/medical_NER/2020-04-03-15-06-14.png" alt></p><p><img src="/NLP/NER/medical_NER/2020-04-03-15-04-37.png" alt></p><p><img src="/NLP/NER/medical_NER/2020-04-03-15-07-09.png" alt></p><p><img src="/NLP/NER/medical_NER/2020-04-03-15-10-33.png" alt></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;网上看的一个讲特定行业的NER的思路，可以参考。&lt;/p&gt;
+&lt;h2 id=&quot;项目背景&quot;&gt;&lt;a href=&quot;#项目背景&quot; class=&quot;headerlink&quot; title=&quot;项目背景&quot;&gt;&lt;/a&gt;项目背景&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;/NLP/NER/medical_NER
+      
+    
+    </summary>
+    
+    
+      <category term="NLP" scheme="https://tlylft.github.io/categories/NLP/"/>
+    
+      <category term="NER" scheme="https://tlylft.github.io/categories/NLP/NER/"/>
+    
+    
+      <category term="NLP" scheme="https://tlylft.github.io/tags/NLP/"/>
+    
+      <category term="NER" scheme="https://tlylft.github.io/tags/NER/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>tensorflow introduction</title>
+    <link href="https://tlylft.github.io/python/tensorflow/tensor_intro/"/>
+    <id>https://tlylft.github.io/python/tensorflow/tensor_intro/</id>
+    <published>2020-04-01T12:08:40.000Z</published>
+    <updated>2020-04-01T12:46:33.005Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="1-intro"><a href="#1-intro" class="headerlink" title="1. intro"></a>1. intro</h3><p>google的AI学习系统，底层是C++,上层是python。</p><p>windows系统目前兼容python3.5/3.6，mac和linux都可以</p><p>Tensorflow 2.0<br>取消了会话，定义完op直接可输出结果，不需要会话启动<br>清理了1.0的废弃的API和减少重复简API<br>可以使用Keras和eager execution轻松构建模型</p><h3 id="2-install"><a href="#2-install" class="headerlink" title="2. install"></a>2. install</h3><h3 id="3-tesorflow1"><a href="#3-tesorflow1" class="headerlink" title="3. tesorflow1"></a>3. tesorflow1</h3><ol><li>安装anaconda</li><li>pip install tensorflow<br> pip install tensorflow-gpu<br> pip install tensorflow —upgrade<h3 id="4-tesorflow2"><a href="#4-tesorflow2" class="headerlink" title="4. tesorflow2"></a>4. tesorflow2</h3>pip install tensorflow==2.0.0<br>pip install tensorflow-gpu==2.0.0<br>pip uninstall tensorflow</li></ol><h3 id="basic-concept"><a href="#basic-concept" class="headerlink" title="basic concept"></a>basic concept</h3><p>使用图graphs来表示计算任务，图中的节点为operation，一个op获得0个或多个tensor，执行计算，产生0或多个tensor。<br>在session会话中执行图，图必须在session里被启动。<br>使用tensor表示数据，可看做是一个n维的数组或列表。<br>通过变量variable维护状态<br>使用feed和fetch可以为任意的操作赋值和取值<br><img src="/python/tensorflow/tensor_intro/2020-04-01-20-31-12.png" alt></p><h3 id="session"><a href="#session" class="headerlink" title="session"></a>session</h3>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;1-intro&quot;&gt;&lt;a href=&quot;#1-intro&quot; class=&quot;headerlink&quot; title=&quot;1. intro&quot;&gt;&lt;/a&gt;1. intro&lt;/h3&gt;&lt;p&gt;google的AI学习系统，底层是C++,上层是python。&lt;/p&gt;
+&lt;p&gt;windows系统
+      
+    
+    </summary>
+    
+    
+      <category term="python" scheme="https://tlylft.github.io/categories/python/"/>
+    
+      <category term="tensorflow" scheme="https://tlylft.github.io/categories/python/tensorflow/"/>
+    
+    
+      <category term="python" scheme="https://tlylft.github.io/tags/python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>keras 线性回归</title>
+    <link href="https://tlylft.github.io/python/keras/keras_LR/"/>
+    <id>https://tlylft.github.io/python/keras/keras_LR/</id>
+    <published>2020-03-31T06:11:55.000Z</published>
+    <updated>2020-03-31T06:43:08.721Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="环境安装"><a href="#环境安装" class="headerlink" title="环境安装"></a>环境安装</h3><h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>可以将tensorflow等看做是后台计算，keras是前端封装，所以安装时也要先安装tensorflow,注意这两个东西的版本是有对应关系的。</p><h3 id="通过构建线性回归模型讲解keras的基本实现过程"><a href="#通过构建线性回归模型讲解keras的基本实现过程" class="headerlink" title="通过构建线性回归模型讲解keras的基本实现过程"></a>通过构建线性回归模型讲解keras的基本实现过程</h3><h4 id="一元线性回归"><a href="#一元线性回归" class="headerlink" title="一元线性回归"></a>一元线性回归</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">import keras</span><br><span class="line">from keras import layers</span><br><span class="line"></span><br><span class="line">#简单模型，先构建一个顺序模型</span><br><span class="line">model &#x3D; leras.Sequential()</span><br><span class="line"># 加入模型结构层,（输入和输出的维度 y&#x3D; ax+b 输入一个x, 输出一个y）</span><br><span class="line">model.add(layers.Dense(1, input_dim &#x3D; 1))</span><br><span class="line"># 查看构建的整体结构</span><br><span class="line">model.summary()</span><br><span class="line"># 编译模型，确定优化函数和损失函数</span><br><span class="line">model.compile(optimizer &#x3D; &#39;adam&#39;, loss &#x3D; &#39;mse&#39;)</span><br><span class="line"># 训练模型</span><br><span class="line">model.fit(x,y,epochs &#x3D; 3000)</span><br><span class="line"># 使用模型</span><br><span class="line">model.predict(x)</span><br></pre></td></tr></table></figure><h4 id="多元线性回归"><a href="#多元线性回归" class="headerlink" title="多元线性回归"></a>多元线性回归</h4><p>$f(x) = w_1x_1+w_2x_2 +b$<br>读取数据<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import pandas as pd</span><br><span class="line">data &#x3D; pd.read_csv(path)</span><br><span class="line">data.head()</span><br><span class="line">x &#x3D; data[data.columns[1:-1]]</span><br><span class="line">y &#x3D; data.iloc[:,-1]</span><br></pre></td></tr></table></figure><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">import keras</span><br><span class="line">from keras import layers</span><br><span class="line"></span><br><span class="line">#简单模型，先构建一个顺序模型</span><br><span class="line">model &#x3D; leras.Sequential()</span><br><span class="line"># 加入模型结构层,（输入和输出的维度 y&#x3D; ax+b 输入一个x, 输出一个y）</span><br><span class="line">model.add(layers.Dense(1, input_dim &#x3D; 3))</span><br><span class="line"># 查看构建的整体结构</span><br><span class="line">model.summary()</span><br><span class="line"># 编译模型，确定优化函数和损失函数</span><br><span class="line">model.compile(optimizer &#x3D; &#39;adam&#39;, loss &#x3D; &#39;mse&#39;)</span><br><span class="line"># 训练模型</span><br><span class="line">model.fit(x,y,epochs &#x3D; 3000)</span><br><span class="line"># 使用模型</span><br><span class="line">model.predict(x)</span><br></pre></td></tr></table></figure></p><h3 id="分类问题"><a href="#分类问题" class="headerlink" title="分类问题"></a>分类问题</h3><p>分类问题的损失函数，我们一般采用交叉熵表示，因为不是一个数值，用均值方差显然不合理，分类结果的表示一般采用概率分布，所以用实际值和预测值分布之间的交叉熵可以更好的表示出差异。<br>sigmoid 函数，将输出转换为趋向于0或1的解， softmax函数，将输出转换为每种类别的分布。</p><h4 id="二分类问题"><a href="#二分类问题" class="headerlink" title="二分类问题"></a>二分类问题</h4><p>keras一般使用binary_crossentropy计算二元交叉熵解决二分类问题的损失函数。<br>多分类一般使用 categorical_crossentropy 和 sparse_categorical_crossentropy</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;环境安装&quot;&gt;&lt;a href=&quot;#环境安装&quot; class=&quot;headerlink&quot; title=&quot;环境安装&quot;&gt;&lt;/a&gt;环境安装&lt;/h3&gt;&lt;h3 id=&quot;介绍&quot;&gt;&lt;a href=&quot;#介绍&quot; class=&quot;headerlink&quot; title=&quot;介绍&quot;&gt;&lt;/a&gt;介绍&lt;/h
+      
+    
+    </summary>
+    
+    
+      <category term="python" scheme="https://tlylft.github.io/categories/python/"/>
+    
+      <category term="keras" scheme="https://tlylft.github.io/categories/python/keras/"/>
+    
+    
+      <category term="python" scheme="https://tlylft.github.io/tags/python/"/>
+    
+      <category term="keras" scheme="https://tlylft.github.io/tags/keras/"/>
+    
+  </entry>
+  
+</feed>

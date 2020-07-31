@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>RNN 循环神经网络 | 小傻瓜别回头</title>
+  <meta name="description" content="1. why RNN许多数据是随着时间的变化而变化的，股票、天气、语音、文本等，这种数据叫做时序的数据，Time series data.为了处理这样的数据类型，有了RNN，处理时序的数据模型。它的好处：可以处理不同时长的数据。 RNN vs HMM继承了HMM的思路， 类比HMM中的转移状态，这一时刻的状态是和上一时刻的状态有关，我们想要解决这一时刻和上两个时刻或上好几个时刻的状态有关的情况，满">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RNN 循环神经网络">
+<meta property="og:url" content="https://tlylft.github.io/deep_learning/RNN/index.html">
+<meta property="og:site_name" content="小傻瓜别回头">
+<meta property="og:description" content="1. why RNN许多数据是随着时间的变化而变化的，股票、天气、语音、文本等，这种数据叫做时序的数据，Time series data.为了处理这样的数据类型，有了RNN，处理时序的数据模型。它的好处：可以处理不同时长的数据。 RNN vs HMM继承了HMM的思路， 类比HMM中的转移状态，这一时刻的状态是和上一时刻的状态有关，我们想要解决这一时刻和上两个时刻或上好几个时刻的状态有关的情况，满">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tlylft.github.io/deep_learning/RNN/2020-03-30-09-36-51.png">
+<meta property="og:image" content="https://tlylft.github.io/deep_learning/RNN/2020-07-10-10-06-00.png">
+<meta property="og:image" content="https://tlylft.github.io/deep_learning/RNN/2020-03-16-10-03-28.png">
+<meta property="og:image" content="https://tlylft.github.io/deep_learning/RNN/2020-03-30-15-09-19.png">
+<meta property="og:image" content="https://tlylft.github.io/deep_learning/RNN/2020-03-30-15-24-30.png">
+<meta property="og:image" content="https://tlylft.github.io/deep_learning/RNN/2020-03-30-15-30-46.png">
+<meta property="og:image" content="https://tlylft.github.io/deep_learning/RNN/2020-03-16-10-13-49.png">
+<meta property="og:image" content="https://tlylft.github.io/deep_learning/RNN/2020-07-10-10-19-29.png">
+<meta property="og:image" content="https://tlylft.github.io/deep_learning/RNN/2020-03-27-16-03-48.png">
+<meta property="og:image" content="https://tlylft.github.io/deep_learning/RNN/2020-03-27-16-14-39.png">
+<meta property="og:image" content="https://tlylft.github.io/deep_learning/RNN/2020-03-27-16-14-57.png">
+<meta property="og:image" content="https://tlylft.github.io/deep_learning/RNN/2020-03-27-16-15-50.png">
+<meta property="og:image" content="https://tlylft.github.io/deep_learning/RNN/2020-03-30-16-13-44.png">
+<meta property="og:image" content="https://tlylft.github.io/deep_learning/RNN/2020-03-30-16-18-27.png">
+<meta property="article:published_time" content="2020-03-16T00:59:56.000Z">
+<meta property="article:modified_time" content="2020-07-17T17:11:25.630Z">
+<meta property="article:author" content="Icey">
+<meta property="article:tag" content="Deep Learning">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tlylft.github.io/deep_learning/RNN/2020-03-30-09-36-51.png">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://tlylft.github.io/deep_learning/RNN/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="小傻瓜别回头" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/images/avatar.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/tlylft" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.png" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">Icey</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">小傻瓜,别回头</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Hebei, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/tlylft?tab=repositories" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="https://www.weibo.com/tlylft/profile?rightmod=1&wvr=6&mod=personinfo" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://www.facebook.com/profile.php?id=100009783614101" target="_blank" title="Facebook" data-toggle=tooltip data-placement=top><i class="icon icon-facebook"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>Welcome!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Deep-Learning/">Deep Learning</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/">NLP</a><span class="category-list-count">28</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/NER/">NER</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/algorithm/">algorithm</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/bert/">bert</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/similarity/">similarity</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/word2vec/">word2vec</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/%E4%BF%A1%E6%81%AF%E6%8F%90%E5%8F%96/">信息提取</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/%E5%88%86%E8%AF%8D/">分词</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/chatbot/">chatbot</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/github/">github</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hive/">hive</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/machine-learning/">machine learning</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a><span class="category-list-count">32</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/python/Anaconda/">Anaconda</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/Django/">Django</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/Flask/">Flask</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/keras/">keras</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/pandas/">pandas</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/python/">python</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/tensorflow/">tensorflow</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">环境搭建</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/reading/">reading</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tools/">tools</a><span class="category-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-Learning/" rel="tag">Deep Learning</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Django/" rel="tag">Django</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flask/" rel="tag">Flask</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NER/" rel="tag">NER</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NLP/" rel="tag">NLP</a><span class="tag-list-count">27</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/algorithm/" rel="tag">algorithm</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bert/" rel="tag">bert</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/" rel="tag">blog</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/chatbot/" rel="tag">chatbot</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/env-config/" rel="tag">env_config</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gensim/" rel="tag">gensim</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/" rel="tag">github</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hive/" rel="tag">hive</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/keras/" rel="tag">keras</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kerberos/" rel="tag">kerberos</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/machine-learning/" rel="tag">machine learning</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pandas/" rel="tag">pandas</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pycharm/" rel="tag">pycharm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a><span class="tag-list-count">36</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/reading/" rel="tag">reading</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/segment/" rel="tag">segment</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/similarity/" rel="tag">similarity</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tools/" rel="tag">tools</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BF%A1%E6%81%AF%E6%8F%90%E5%8F%96/" rel="tag">信息提取</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/Deep-Learning/" style="font-size: 13.38px;">Deep Learning</a> <a href="/tags/Django/" style="font-size: 13.25px;">Django</a> <a href="/tags/Flask/" style="font-size: 13.63px;">Flask</a> <a href="/tags/NER/" style="font-size: 13.38px;">NER</a> <a href="/tags/NLP/" style="font-size: 13.88px;">NLP</a> <a href="/tags/algorithm/" style="font-size: 13.38px;">algorithm</a> <a href="/tags/bert/" style="font-size: 13.13px;">bert</a> <a href="/tags/blog/" style="font-size: 13px;">blog</a> <a href="/tags/chatbot/" style="font-size: 13.38px;">chatbot</a> <a href="/tags/env-config/" style="font-size: 13px;">env_config</a> <a href="/tags/gensim/" style="font-size: 13px;">gensim</a> <a href="/tags/git/" style="font-size: 13px;">git</a> <a href="/tags/github/" style="font-size: 13px;">github</a> <a href="/tags/hive/" style="font-size: 13.5px;">hive</a> <a href="/tags/keras/" style="font-size: 13px;">keras</a> <a href="/tags/kerberos/" style="font-size: 13px;">kerberos</a> <a href="/tags/linux/" style="font-size: 13.13px;">linux</a> <a href="/tags/machine-learning/" style="font-size: 13.75px;">machine learning</a> <a href="/tags/mysql/" style="font-size: 13px;">mysql</a> <a href="/tags/pandas/" style="font-size: 13.25px;">pandas</a> <a href="/tags/pycharm/" style="font-size: 13px;">pycharm</a> <a href="/tags/python/" style="font-size: 14px;">python</a> <a href="/tags/reading/" style="font-size: 13.25px;">reading</a> <a href="/tags/segment/" style="font-size: 13px;">segment</a> <a href="/tags/similarity/" style="font-size: 13.13px;">similarity</a> <a href="/tags/tools/" style="font-size: 13.13px;">tools</a> <a href="/tags/%E4%BF%A1%E6%81%AF%E6%8F%90%E5%8F%96/" style="font-size: 13px;">信息提取</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">6</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/NLP/">NLP</a><i class="icon icon-angle-right"></i><a class="category-link" href="/categories/NLP/NER/">NER</a>
+              </p>
+              <p class="item-title">
+                <a href="/NLP/NER/BiLSTM-CRF/" class="title">BiLSTM_CRF</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2020-07-10T06:05:35.000Z" itemprop="datePublished">2020-07-10</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/python/">python</a><i class="icon icon-angle-right"></i><a class="category-link" href="/categories/python/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">环境搭建</a>
+              </p>
+              <p class="item-title">
+                <a href="/python/Anaconda/gpu_install/" class="title">GPU 环境安装</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2020-07-04T10:43:27.000Z" itemprop="datePublished">2020-07-04</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/NLP/">NLP</a><i class="icon icon-angle-right"></i><a class="category-link" href="/categories/NLP/bert/">bert</a>
+              </p>
+              <p class="item-title">
+                <a href="/NLP/bert/transformer/" class="title">Transformer</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2020-07-02T00:36:56.000Z" itemprop="datePublished">2020-07-02</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/NLP/">NLP</a><i class="icon icon-angle-right"></i><a class="category-link" href="/categories/NLP/%E5%88%86%E8%AF%8D/">分词</a>
+              </p>
+              <p class="item-title">
+                <a href="/NLP/segment/seg_intro/" class="title">中文分词问题简介</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2020-06-10T01:16:39.000Z" itemprop="datePublished">2020-06-10</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/NLP/">NLP</a><i class="icon icon-angle-right"></i><a class="category-link" href="/categories/NLP/algorithm/">algorithm</a>
+              </p>
+              <p class="item-title">
+                <a href="/NLP/algorithm/fasttext/" class="title">fasttext</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2020-05-26T08:35:25.000Z" itemprop="datePublished">2020-05-26</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-deep_learning/RNN" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      RNN 循环神经网络
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/deep_learning/RNN/" class="article-date">
+	  <time datetime="2020-03-16T00:59:56.000Z" itemprop="datePublished">2020-03-16</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/Deep-Learning/">Deep Learning</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/Deep-Learning/" rel="tag">Deep Learning</a>
+  </span>
+
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/deep_learning/RNN/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h3 id="1-why-RNN"><a href="#1-why-RNN" class="headerlink" title="1. why RNN"></a>1. why RNN</h3><p>许多数据是随着时间的变化而变化的，股票、天气、语音、文本等，这种数据叫做时序的数据，Time series data.<br>为了处理这样的数据类型，有了RNN，处理时序的数据模型。<br>它的好处：可以处理不同时长的数据。</p>
+<p><strong>RNN vs HMM</strong><br>继承了HMM的思路， 类比HMM中的转移状态，这一时刻的状态是和上一时刻的状态有关，我们想要解决这一时刻和上两个时刻或上好几个时刻的状态有关的情况，满足：<br>$S_{t+1} = f(s_o,s_1,…,s_t)$<br>区别： 隐层表示是不同的<br><img src="/deep_learning/RNN/2020-03-30-09-36-51.png" alt><br>HMM是用one hot 表示的，是一种稀疏表示方式，状态转移过程中需要转移函数，这个转移矩阵的表示会非常大，RNN采用分布式表示，是稠密的表示方式，转移的权重表示可以压缩成小的矩阵表示。</p>
+<h3 id="2-Recurrent-Neural-Network"><a href="#2-Recurrent-Neural-Network" class="headerlink" title="2. Recurrent Neural Network"></a>2. Recurrent Neural Network</h3><h4 id="线性关系的原理demo"><a href="#线性关系的原理demo" class="headerlink" title="线性关系的原理demo"></a>线性关系的原理demo</h4><p>具有记忆功能，序列顺序的改变会影响输出结果<br><img src="/deep_learning/RNN/2020-07-10-10-06-00.png" alt><br><strong>Vanilla（原始的）RNN:</strong><br>循环神经网络不仅考虑了当前输入和输出的关系，还有时序上的关系，设定：U为输入的权重矩阵，W为状态转移的（即上一状态和这一状态下的）权重矩阵，V为输出时的权重矩阵。<br>当在t时刻，输入为$x^{(t)}$<br>隐层输入和上一时刻隐层的输出对输出结果的影响：<br>$S_t = tanh(Ux_t + WS_{t-1} + bias)$<br>输出为 隐层状态的一次转换加上激活函数：<br>$O_t = softmax(VS_t+ bias)$<br><img src="/deep_learning/RNN/2020-03-16-10-03-28.png" alt><br><strong>深度：</strong> CNN是在隐层的深度，RNN是在时序上的深度，也可以延伸隐层的深度<br><strong>缺点：</strong> 会存在梯度爆炸或者梯度消失的问题<br>vanishing/exploding fradient<br><img src="/deep_learning/RNN/2020-03-30-15-09-19.png" alt><br><img src="/deep_learning/RNN/2020-03-30-15-24-30.png" alt><br>如果训练的时候范数很小，序列越长，最后训练出的梯度会越来越小，逐渐消失，反之，会发生梯度爆炸。所以RNN很难训练。<br>解决梯度爆炸，可以通过缩小计算出的梯度值，如果梯度太大，乘以一个系数的方式解决：<br><img src="/deep_learning/RNN/2020-03-30-15-30-46.png" alt></p>
+<h3 id="3-变形：Elman-network-和-Jordan-network"><a href="#3-变形：Elman-network-和-Jordan-network" class="headerlink" title="3. 变形：Elman network 和 Jordan network"></a>3. 变形：Elman network 和 Jordan network</h3><p><img src="/deep_learning/RNN/2020-03-16-10-13-49.png" alt><br>Elman network 包含了隐层自己之间的关联<br>Jordan network 包含了更多隐层和上一时刻的输出层之间的关联<br>其实他们两者的差别非常小</p>
+<h3 id="4-LSTM-Long-short-term-memory"><a href="#4-LSTM-Long-short-term-memory" class="headerlink" title="4. LSTM (Long short term memory)"></a>4. LSTM (Long short term memory)</h3><p>a special case of RNN , solve long term dependency problems. introdeced in 1997.</p>
+<p>I grow up in French, …. I speak (Frence/Chinese/English).</p>
+<p>本身是一种RNN, 会将上一时刻的状态传递给下一时刻，但是穿插了很多的类似于门电路的概念。<br><img src="/deep_learning/RNN/2020-07-10-10-19-29.png" alt></p>
+<h4 id="4-1-核心思路："><a href="#4-1-核心思路：" class="headerlink" title="4.1. 核心思路："></a>4.1. 核心思路：</h4><p>这一时刻的输出 = 上一时刻的输出 <em> 一个sigmoid的值（0-1之间可认为是权重） + 这一时刻的输入 </em> 一个权重</p>
+<p>两个权重可以表示是相对的权重，比如一个0.6一个0.8，也可以是归一化（$i_t = 1 - f_t$）以后 一个0.6一个0.4。上一时刻所处的门可以叫做重置门或遗忘门，这一时刻的输入所在的门可以叫做更新门或输入门。</p>
+<p><img src="/deep_learning/RNN/2020-03-27-16-03-48.png" alt><br><strong>详解各个门</strong><br>第一步 forget门，决定了上一时刻和这一时刻输出的关系<br><img src="/deep_learning/RNN/2020-03-27-16-14-39.png" alt><br>第二步 input gate 输入门，控制是否允许变量通过我们的输入门，$i_t$为对于输入的权重训练，会通过sigmoid函数将值控制在0-1之间，表示$C_i$的影响占比，<br><img src="/deep_learning/RNN/2020-03-27-16-14-57.png" alt></p>
+<p>第三步 更新状态<br>$f_t$是上一输出对状态影响的权重 $i_t$是这一输入对状态影响的权重，这两个变量一般通过sigmoid函数后产生，值在0-1之间。<br><img src="/deep_learning/RNN/2020-03-27-16-15-50.png" alt><br>第四步 输出门 output gate， 控制是否允许输出。<br><img src="/deep_learning/RNN/2020-03-30-16-13-44.png" alt><br>并不能保证解决梯度的问题，只是比RNN更保留更长时序的特征。</p>
+<h4 id="4-2-LSTM-应用"><a href="#4-2-LSTM-应用" class="headerlink" title="4.2. LSTM 应用"></a>4.2. LSTM 应用</h4><p><img src="/deep_learning/RNN/2020-03-30-16-18-27.png" alt></p>
+<h4 id="4-3-Bi-LSTM"><a href="#4-3-Bi-LSTM" class="headerlink" title="4.3. Bi-LSTM"></a>4.3. Bi-LSTM</h4><h3 id="5-GRU"><a href="#5-GRU" class="headerlink" title="5. GRU"></a>5. GRU</h3><p>LSTM 是三个门，GRU简化成两个门，在大多数情况下，效果是可以保证的，结构更简洁一些。</p>
+<h3 id="6-seq2seq"><a href="#6-seq2seq" class="headerlink" title="6. seq2seq"></a>6. seq2seq</h3>
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://tlylft.github.io/deep_learning/RNN/" title="RNN 循环神经网络" target="_blank" rel="external">https://tlylft.github.io/deep_learning/RNN/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/tlylft" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.png" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/tlylft" target="_blank"><span class="text-dark">Icey</span><small class="ml-1x">小傻瓜,别回头</small></a></h3>
+        <div>以梦为马，随处可栖。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/NLP/algorithm/graph_theorem/" title="概率图模型"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/python/python/python_filelock/" title="python中的文件锁"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>感谢您的支持，我会继续努力的!</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechatpayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> 支付宝</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> 微信支付</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/tlylft?tab=repositories" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="https://www.weibo.com/tlylft/profile?rightmod=1&wvr=6&mod=personinfo" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://www.facebook.com/profile.php?id=100009783614101" target="_blank" title="Facebook" data-toggle=tooltip data-placement=top><i class="icon icon-facebook"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: '',
+    appKey: '',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!-- <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
+</html>

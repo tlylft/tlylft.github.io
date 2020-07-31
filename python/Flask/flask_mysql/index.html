@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>Flask连接mysql | 小傻瓜别回头</title>
+  <meta name="description" content="https:&#x2F;&#x2F;www.jianshu.com&#x2F;p&#x2F;7e32074e4fad   1. 安装数据库的包1pip install flask-sqlalchemy pymysql 2. config 进行数据库连接配置e.g.12345678910DB_URI &#x3D; &#39;mysql+pymysql:&#x2F;&#x2F;&amp;#123;username&amp;#125;:&amp;#123;pas">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Flask连接mysql">
+<meta property="og:url" content="https://tlylft.github.io/python/Flask/flask_mysql/index.html">
+<meta property="og:site_name" content="小傻瓜别回头">
+<meta property="og:description" content="https:&#x2F;&#x2F;www.jianshu.com&#x2F;p&#x2F;7e32074e4fad   1. 安装数据库的包1pip install flask-sqlalchemy pymysql 2. config 进行数据库连接配置e.g.12345678910DB_URI &#x3D; &#39;mysql+pymysql:&#x2F;&#x2F;&amp;#123;username&amp;#125;:&amp;#123;pas">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-12-04T00:57:45.000Z">
+<meta property="article:modified_time" content="2020-07-10T01:49:46.343Z">
+<meta property="article:author" content="Icey">
+<meta property="article:tag" content="python">
+<meta property="article:tag" content="Flask">
+<meta name="twitter:card" content="summary">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://tlylft.github.io/python/Flask/flask_mysql/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="小傻瓜别回头" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/images/avatar.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/tlylft" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.png" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">Icey</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">小傻瓜,别回头</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Hebei, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/tlylft?tab=repositories" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="https://www.weibo.com/tlylft/profile?rightmod=1&wvr=6&mod=personinfo" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://www.facebook.com/profile.php?id=100009783614101" target="_blank" title="Facebook" data-toggle=tooltip data-placement=top><i class="icon icon-facebook"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>Welcome!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Deep-Learning/">Deep Learning</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/">NLP</a><span class="category-list-count">28</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/NER/">NER</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/algorithm/">algorithm</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/bert/">bert</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/similarity/">similarity</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/word2vec/">word2vec</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/%E4%BF%A1%E6%81%AF%E6%8F%90%E5%8F%96/">信息提取</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/%E5%88%86%E8%AF%8D/">分词</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/chatbot/">chatbot</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/github/">github</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hive/">hive</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/machine-learning/">machine learning</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a><span class="category-list-count">32</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/python/Anaconda/">Anaconda</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/Django/">Django</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/Flask/">Flask</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/keras/">keras</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/pandas/">pandas</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/python/">python</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/tensorflow/">tensorflow</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">环境搭建</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/reading/">reading</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tools/">tools</a><span class="category-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-Learning/" rel="tag">Deep Learning</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Django/" rel="tag">Django</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flask/" rel="tag">Flask</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NER/" rel="tag">NER</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NLP/" rel="tag">NLP</a><span class="tag-list-count">27</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/algorithm/" rel="tag">algorithm</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bert/" rel="tag">bert</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/" rel="tag">blog</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/chatbot/" rel="tag">chatbot</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/env-config/" rel="tag">env_config</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gensim/" rel="tag">gensim</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/" rel="tag">github</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hive/" rel="tag">hive</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/keras/" rel="tag">keras</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kerberos/" rel="tag">kerberos</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/machine-learning/" rel="tag">machine learning</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pandas/" rel="tag">pandas</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pycharm/" rel="tag">pycharm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a><span class="tag-list-count">36</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/reading/" rel="tag">reading</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/segment/" rel="tag">segment</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/similarity/" rel="tag">similarity</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tools/" rel="tag">tools</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BF%A1%E6%81%AF%E6%8F%90%E5%8F%96/" rel="tag">信息提取</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/Deep-Learning/" style="font-size: 13.38px;">Deep Learning</a> <a href="/tags/Django/" style="font-size: 13.25px;">Django</a> <a href="/tags/Flask/" style="font-size: 13.63px;">Flask</a> <a href="/tags/NER/" style="font-size: 13.38px;">NER</a> <a href="/tags/NLP/" style="font-size: 13.88px;">NLP</a> <a href="/tags/algorithm/" style="font-size: 13.38px;">algorithm</a> <a href="/tags/bert/" style="font-size: 13.13px;">bert</a> <a href="/tags/blog/" style="font-size: 13px;">blog</a> <a href="/tags/chatbot/" style="font-size: 13.38px;">chatbot</a> <a href="/tags/env-config/" style="font-size: 13px;">env_config</a> <a href="/tags/gensim/" style="font-size: 13px;">gensim</a> <a href="/tags/git/" style="font-size: 13px;">git</a> <a href="/tags/github/" style="font-size: 13px;">github</a> <a href="/tags/hive/" style="font-size: 13.5px;">hive</a> <a href="/tags/keras/" style="font-size: 13px;">keras</a> <a href="/tags/kerberos/" style="font-size: 13px;">kerberos</a> <a href="/tags/linux/" style="font-size: 13.13px;">linux</a> <a href="/tags/machine-learning/" style="font-size: 13.75px;">machine learning</a> <a href="/tags/mysql/" style="font-size: 13px;">mysql</a> <a href="/tags/pandas/" style="font-size: 13.25px;">pandas</a> <a href="/tags/pycharm/" style="font-size: 13px;">pycharm</a> <a href="/tags/python/" style="font-size: 14px;">python</a> <a href="/tags/reading/" style="font-size: 13.25px;">reading</a> <a href="/tags/segment/" style="font-size: 13px;">segment</a> <a href="/tags/similarity/" style="font-size: 13.13px;">similarity</a> <a href="/tags/tools/" style="font-size: 13.13px;">tools</a> <a href="/tags/%E4%BF%A1%E6%81%AF%E6%8F%90%E5%8F%96/" style="font-size: 13px;">信息提取</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">6</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/NLP/">NLP</a><i class="icon icon-angle-right"></i><a class="category-link" href="/categories/NLP/NER/">NER</a>
+              </p>
+              <p class="item-title">
+                <a href="/NLP/NER/BiLSTM-CRF/" class="title">BiLSTM_CRF</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2020-07-10T06:05:35.000Z" itemprop="datePublished">2020-07-10</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/python/">python</a><i class="icon icon-angle-right"></i><a class="category-link" href="/categories/python/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">环境搭建</a>
+              </p>
+              <p class="item-title">
+                <a href="/python/Anaconda/gpu_install/" class="title">GPU 环境安装</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2020-07-04T10:43:27.000Z" itemprop="datePublished">2020-07-04</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/NLP/">NLP</a><i class="icon icon-angle-right"></i><a class="category-link" href="/categories/NLP/bert/">bert</a>
+              </p>
+              <p class="item-title">
+                <a href="/NLP/bert/transformer/" class="title">Transformer</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2020-07-02T00:36:56.000Z" itemprop="datePublished">2020-07-02</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/NLP/">NLP</a><i class="icon icon-angle-right"></i><a class="category-link" href="/categories/NLP/%E5%88%86%E8%AF%8D/">分词</a>
+              </p>
+              <p class="item-title">
+                <a href="/NLP/segment/seg_intro/" class="title">中文分词问题简介</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2020-06-10T01:16:39.000Z" itemprop="datePublished">2020-06-10</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/NLP/">NLP</a><i class="icon icon-angle-right"></i><a class="category-link" href="/categories/NLP/algorithm/">algorithm</a>
+              </p>
+              <p class="item-title">
+                <a href="/NLP/algorithm/fasttext/" class="title">fasttext</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2020-05-26T08:35:25.000Z" itemprop="datePublished">2020-05-26</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-python/Flask/flask_mysql" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Flask连接mysql
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/python/Flask/flask_mysql/" class="article-date">
+	  <time datetime="2019-12-04T00:57:45.000Z" itemprop="datePublished">2019-12-04</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/python/">python</a>►<a class="article-category-link" href="/categories/python/Flask/">Flask</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/Flask/" rel="tag">Flask</a>, <a class="article-tag-link" href="/tags/python/" rel="tag">python</a>
+  </span>
+
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/python/Flask/flask_mysql/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <blockquote>
+<blockquote>
+<p><a href="https://www.jianshu.com/p/7e32074e4fad" target="_blank" rel="noopener">https://www.jianshu.com/p/7e32074e4fad</a></p>
+</blockquote>
+</blockquote>
+<h3 id="1-安装数据库的包"><a href="#1-安装数据库的包" class="headerlink" title="1. 安装数据库的包"></a>1. 安装数据库的包</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install flask-sqlalchemy pymysql</span><br></pre></td></tr></table></figure>
+<h3 id="2-config-进行数据库连接配置"><a href="#2-config-进行数据库连接配置" class="headerlink" title="2. config 进行数据库连接配置"></a>2. config 进行数据库连接配置</h3><p>e.g.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">DB_URI &#x3D; &#39;mysql+pymysql:&#x2F;&#x2F;&#123;username&#125;:&#123;password&#125;@&#123;server&#125;:&#123;port&#125;&#x2F;&#123;db&#125;?charset&#x3D;utf8&amp;autocommit&#x3D;true&#39;</span><br><span class="line">SQLALCHEMY_DATABASE_URI &#x3D; DB_URI</span><br><span class="line">SQLALCHEMY_COMMIT_TEARDOWN &#x3D; True</span><br><span class="line"></span><br><span class="line">SQLALCHEMY_TRACK_MODIFICATIONS &#x3D; False</span><br><span class="line">SQLALCHEMY_RECORD_QUERIES &#x3D; True</span><br><span class="line">SQLALCHEMY_POOL_SIZE &#x3D; 1024</span><br><span class="line">SQLALCHEMY_POOL_TIMEOUT &#x3D; 90</span><br><span class="line">SQLALCHEMY_POOL_RECYCLE &#x3D; 3</span><br><span class="line">SQLALCHEMY_MAX_OVERFLOW &#x3D; 1024</span><br></pre></td></tr></table></figure><br><strong>autocommit=true</strong><br><a href="https://zhuanlan.zhihu.com/p/48994990" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/48994990</a><br>解决报错：<br>错误一：<br>(mysql.connector.errors.OperationalError) MySQL Connection not available.<br>错误二：<br>(sqlalchemy.exc.InvalidRequestError) Can’t reconnect until invalid transaction is rolled back<br><strong>SQLALCHEMY_DATABASE_URI</strong><br>数据库连接地址. Examples:<br>sqlite:////tmp/test.db<br>mysql://{username}:{password}@{server}:{port}/{db}?charset=utf8<br>mysql+pymysql://{username}:{password}@{server}:{port}/{db}?charset=utf8<br>oracle://{username}:{password}@{server}:{port}/?service_name={service_name}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">HOSTNAME &#x3D; &#39;10.38.64.57&#39;</span><br><span class="line">PORT &#x3D; &#39;3306&#39;</span><br><span class="line">DATABASE &#x3D; &#39;robot&#39;</span><br><span class="line">USERNAME &#x3D; &#39;robot&#39;</span><br><span class="line">PASSWORD &#x3D; &#39;robotrobot&#39;</span><br><span class="line">DB_URI &#x3D; &#39;mysql+pymysql:&#x2F;&#x2F;&#123;&#125;:&#123;&#125;@&#123;&#125;:&#123;&#125;&#x2F;&#123;&#125;?charset&#x3D;utf8&#39;.format(</span><br><span class="line">    USERNAME, PASSWORD, HOSTNAME, PORT, DATABASE)</span><br><span class="line">SQLALCHEMY_DATABASE_URI &#x3D; DB_URI</span><br></pre></td></tr></table></figure></p>
+<p><strong>SQLALCHEMY_BINDS</strong><br>多数据源配置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ORACLE_DB_URL &#x3D; &#39;oracle:&#x2F;&#x2F;&#123;username&#125;:&#123;password&#125;@&#123;server&#125;:&#123;port&#125;&#x2F;?service_name&#x3D;&#123;service_name&#125;&#39;</span><br><span class="line">SQLALCHEMY_BINDS &#x3D; &#123;</span><br><span class="line">    &#39;edata&#39;: ORACLE_DB_URL</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><strong>SQLALCHEMY_TRACK_MODIFICATIONS</strong></p>
+<p>如果设置成 True (默认情况)，Flask-SQLAlchemy 将会追踪对象的修改并且发送信号。这需要额外的内存， 如果不必要的可以禁用它。<br>高版本的SQLALCHEMY 不设置会报错，不需要的情况设置为 False就好。<br>SQLALCHEMY_COMMIT_TEARDOWN = True</p>
+<p><strong>SQLALCHEMY_RECORD_QUERIES</strong><br>可以用于显式地禁用或者启用查询记录。查询记录 在调试或者测试模式下自动启用。更多信息请参阅 get_debug_queries()。<br><strong>SQLALCHEMY_POOL_SIZE = 1024</strong><br>数据库连接池的大小。默认值 5<br><strong>SQLALCHEMY_POOL_TIMEOUT = 90</strong><br>指定数据库连接池的超时时间。默认是 10<br><strong>SQLALCHEMY_POOL_RECYCLE = 3</strong><br>多少秒后自动回收连接。这对 MySQL 是必要的， 它默认移除闲置多于 8 小时的连接。注意如果 使用了 MySQL ， Flask-SQLALchemy 自动设定 这个值为 2 小时。<br><strong>SQLALCHEMY_MAX_OVERFLOW = 1024</strong><br>控制在连接池达到最大值后可以创建的连接数。当这些额外的 连接回收到连接池后将会被断开和抛弃。</p>
+<ol>
+<li>config 文件中配置<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">DB_URI &#x3D; &#39;mysql+pymysql:&#x2F;&#x2F;&#123;&#125;:&#123;&#125;@&#123;&#125;:&#123;&#125;&#x2F;&#123;&#125;?charset&#x3D;utf8&#39;.format(USERNAME,PASSWORD,HOSTNAME,PORT,DATABASE)</span><br><span class="line">SQLALCHEMY_DATABASE_URI &#x3D; DB_URI</span><br><span class="line">SQLALCHEMY_COMMIT_TEARDOWN &#x3D; True</span><br></pre></td></tr></table></figure></li>
+<li>或者直接在运行文件中给config赋值<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">from flask_sqlalchemy import SQLAlchemy</span><br><span class="line">app.config[&#39;SQLALCHEMY_DATABASE_URI&#39;] &#x3D;&#39;mysql+pymysql:&#x2F;&#x2F;&#123;&#125;:&#123;&#125;@&#123;&#125;:&#123;&#125;&#x2F;&#123;&#125;?charset&#x3D;utf8&#39;.format(USERNAME,PASSWORD,HOSTNAME,PORT,DATABASE)</span><br><span class="line">app.config[&#39;SQLALCHEMY_COMMIT_ON_TEARDOWN&#39;] &#x3D; True</span><br><span class="line"></span><br><span class="line">db &#x3D; SQLAlchemy(app)</span><br></pre></td></tr></table></figure>
+<h3 id="3-定义模型"><a href="#3-定义模型" class="headerlink" title="3. 定义模型"></a>3. 定义模型</h3></li>
+<li>必须有主键，否则会报错。</li>
+<li>SQLAlchemy 数据类型和数据库数据类型的对应关系</li>
+</ol>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>类型名</th>
+<th>MySQL类型</th>
+<th>python类型</th>
+<th>描述 </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SmallInteger</td>
+<td>smallint</td>
+<td>int</td>
+<td>取值范围较小，一般为16位</td>
+</tr>
+<tr>
+<td>Integer</td>
+<td>int</td>
+<td>int</td>
+<td>普通整数，一般32位</td>
+</tr>
+<tr>
+<td>BigInteger</td>
+<td>bigint</td>
+<td>int/long</td>
+<td>不限精度的整数</td>
+</tr>
+<tr>
+<td>Float</td>
+<td>float</td>
+<td>float</td>
+<td>浮点数</td>
+</tr>
+<tr>
+<td>Numeric</td>
+<td>decimal</td>
+<td>decimal.Decimal</td>
+<td>定点数</td>
+</tr>
+<tr>
+<td>String</td>
+<td>varchar</td>
+<td>str</td>
+<td>变长字符串</td>
+</tr>
+<tr>
+<td>Text</td>
+<td>tinytext</td>
+<td>str</td>
+<td>变长字符串，64K,216−1216−1 2^{16}-1216−1=65535bytes</td>
+</tr>
+<tr>
+<td>Text(65536)</td>
+<td>mediumtext</td>
+<td>str</td>
+<td>变长字符串，max16M,224−1224−1 2^{24}-1224−1=16777215bytes</td>
+</tr>
+<tr>
+<td>Text(16777216)</td>
+<td>longtext</td>
+<td>str</td>
+<td>变长字符串，max32M,232−1232−1 2^{32}-1232−1=4294967295bytes</td>
+</tr>
+<tr>
+<td>LargeBinary</td>
+<td>blob</td>
+<td>str</td>
+<td>二进制文件，64K</td>
+</tr>
+<tr>
+<td>LargeBinary(65536)</td>
+<td>mediumblob</td>
+<td>str</td>
+<td>二进制，max16M</td>
+</tr>
+<tr>
+<td>LargeBinary(16777216)</td>
+<td>longblob</td>
+<td>str</td>
+<td>二进制，max32M</td>
+</tr>
+<tr>
+<td>PickleType</td>
+<td>blob</td>
+<td>任何python对象</td>
+<td>自动使用Pickle序列化，只有blob</td>
+</tr>
+<tr>
+<td>Unicode</td>
+<td>varchar</td>
+<td>unicode</td>
+<td>变长字符串</td>
+</tr>
+<tr>
+<td>UnicodeText</td>
+<td>text</td>
+<td>unicode</td>
+<td>变长字符串，64K</td>
+</tr>
+<tr>
+<td>Boolean</td>
+<td>tinyint</td>
+<td>bool</td>
+<td>布尔值</td>
+</tr>
+<tr>
+<td>Date</td>
+<td>date</td>
+<td>datetime.date</td>
+<td>日期</td>
+</tr>
+<tr>
+<td>Time</td>
+<td>time</td>
+<td>date.time</td>
+<td>时间</td>
+</tr>
+<tr>
+<td>DateTime</td>
+<td>datetime</td>
+<td>datetime.datetime</td>
+<td>日期和时间</td>
+</tr>
+<tr>
+<td>Interval</td>
+<td>datetime</td>
+<td>datetime.timedelta</td>
+<td>时间间隔</td>
+</tr>
+<tr>
+<td>Enum</td>
+<td>enum</td>
+<td>str</td>
+<td>一组字符串</td>
+</tr>
+</tbody>
+</table>
+</div>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">from app import db</span><br><span class="line"></span><br><span class="line"># 意图类</span><br><span class="line">class User(db.Model):</span><br><span class="line">    # 定义表名</span><br><span class="line">    __tablename__ &#x3D; &#39;users&#39;</span><br><span class="line">    # 定义列对象</span><br><span class="line">    ## 设置主键primary_key，设置自增 autoincrement, 唯一性 unique&#x3D;True, 索引index&#x3D;True</span><br><span class="line">    id &#x3D; db.Column(db.Integer, autoincrement&#x3D;True, primary_key&#x3D;True )</span><br><span class="line">    username &#x3D; db.Column(db.String(64),unique&#x3D;True,index&#x3D;True)</span><br><span class="line">    role_id &#x3D; db.Column(db.Integer,db.ForeignKey(&#39;roles.id&#39;))</span><br><span class="line">    create_time &#x3D; db.Column(db.TIMESTAMP, default&#x3D;datetime.now, comment&#x3D;&#39;创建时间&#39;)</span><br><span class="line">    update_time &#x3D; db.Column(db.TIMESTAMP, default&#x3D;datetime.now, onupdate&#x3D;datetime.now, comment&#x3D;&#39;更新时间&#39;)</span><br><span class="line"></span><br><span class="line">    #repr()方法显示一个可读字符串，虽然不是完全必要，不过用于调试和测试还是很不错的。</span><br><span class="line">    def __repr__(self):</span><br><span class="line">        return &#39;&lt;Role &#123;&#125;&gt; &#39;.format(self.intent_name)</span><br><span class="line"></span><br><span class="line">class Role(db.Model):</span><br><span class="line">    __tablename__ &#x3D; &#39;roles&#39;</span><br><span class="line">    id &#x3D; db.Column(db.Integer,primary_key&#x3D;True)</span><br><span class="line">    name &#x3D; db.Column(db.String(64),unique&#x3D;True)</span><br><span class="line">    users &#x3D; db.relationship(&#39;User&#39;,backref&#x3D;&#39;role&#39;)</span><br><span class="line"></span><br><span class="line">    def __repr__(self):</span><br><span class="line">        return &#39;&lt;Slots &#123;&#125;&gt;&#39;.format(self.slot_id)</span><br><span class="line"></span><br><span class="line">#User类中：设置外键</span><br><span class="line">role_id &#x3D; db.Column(db.Integer,db.ForeignKey(&#39;roles.id&#39;))</span><br><span class="line"># Role类中：设置关系</span><br><span class="line">users &#x3D; db.Relationship(&#39;User&#39;,backref&#x3D;&#39;role&#39;)</span><br></pre></td></tr></table></figure>
+<h3 id="4-创建-删除数据库表"><a href="#4-创建-删除数据库表" class="headerlink" title="4. 创建/删除数据库表"></a>4. 创建/删除数据库表</h3><p>进入项目目录运行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 引入建好的模型类</span><br><span class="line">from model.models import *</span><br><span class="line">db.create_all()</span><br><span class="line">db.drop_all()</span><br></pre></td></tr></table></figure></p>
+<h3 id="5-增删改查"><a href="#5-增删改查" class="headerlink" title="5. 增删改查"></a>5. 增删改查</h3><h4 id="5-1-插入行"><a href="#5-1-插入行" class="headerlink" title="5.1. 插入行"></a>5.1. 插入行</h4><h5 id="5-1-1-插入单行"><a href="#5-1-1-插入单行" class="headerlink" title="5.1.1. 插入单行"></a>5.1.1. 插入单行</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">user_jim &#x3D; User(username&#x3D;&#39;jim&#39;,role&#x3D;role_admin)</span><br><span class="line">db.session.add(user_jim)</span><br><span class="line">db.session.commit()</span><br></pre></td></tr></table></figure>
+<h5 id="5-1-2-批量插入"><a href="#5-1-2-批量插入" class="headerlink" title="5.1.2. 批量插入"></a>5.1.2. 批量插入</h5><p>例子摘自这里：<br><a href="https://blog.csdn.net/weixin_44777680/article/details/105654220" target="_blank" rel="noopener">https://blog.csdn.net/weixin_44777680/article/details/105654220</a><br>这里有使用建议：<br><a href="https://blog.csdn.net/dongyouyuan/article/details/79236673?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.nonecase&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.nonecase" target="_blank" rel="noopener">https://blog.csdn.net/dongyouyuan/article/details/79236673?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.nonecase&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.nonecase</a><br>方式1：  一行一行插入add()，效率最低<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">first_time &#x3D; datetime.utcnow()</span><br><span class="line">for i in range(10000):</span><br><span class="line">    user &#x3D; User(username&#x3D;username + str(i), password&#x3D;password)</span><br><span class="line">    db.session.add(user)</span><br><span class="line">    db.session.commit()</span><br><span class="line">second_time &#x3D; datetime.utcnow()</span><br><span class="line">print((second_time - first_time).total_seconds())</span><br><span class="line"># 38.14347s</span><br></pre></td></tr></table></figure><br>方式2： session.add_all()<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">objects &#x3D; [User(name&#x3D;&quot;u1&quot;), User(name&#x3D;&quot;u2&quot;), User(name&#x3D;&quot;u3&quot;)]</span><br><span class="line">session.add_all(objects)</span><br><span class="line">session.commit()</span><br></pre></td></tr></table></figure><br>方式3：bulk_save_objects批量插入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">second_time &#x3D; datetime.utcnow()</span><br><span class="line">db.session.bulk_save_objects(</span><br><span class="line">    [</span><br><span class="line">        User(username&#x3D;username + str(i), password&#x3D;password)</span><br><span class="line">        for i in range(10000)</span><br><span class="line">    ]</span><br><span class="line">)</span><br><span class="line">db.session.commit()</span><br><span class="line">third_time &#x3D; datetime.utcnow()</span><br><span class="line">print((third_time - second_time).total_seconds())</span><br><span class="line"></span><br><span class="line"># 2.121589s</span><br></pre></td></tr></table></figure><br>方式4： bulk_insert_mappings批量插入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">third_time &#x3D; datetime.utcnow()</span><br><span class="line">db.session.bulk_insert_mappings(</span><br><span class="line">    User,</span><br><span class="line">    [</span><br><span class="line">        dict(username&#x3D;&quot;NAME INSERT &quot; + str(i), password&#x3D;password)</span><br><span class="line">        for i in range(10000)</span><br><span class="line">    ]</span><br><span class="line">)</span><br><span class="line">db.session.commit()</span><br><span class="line">fourth_time &#x3D; datetime.utcnow()</span><br><span class="line">print((fourth_time - third_time).total_seconds())</span><br><span class="line"></span><br><span class="line"># 1.13548s</span><br></pre></td></tr></table></figure><br>方式5 execute(str_sql_insert) ：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">fourth_time &#x3D; datetime.utcnow()</span><br><span class="line">db.session.execute(</span><br><span class="line">    User.__table__.insert(),</span><br><span class="line">    [&#123;&quot;username&quot;: &#39;Execute NAME &#39; + str(i), &quot;password&quot;: password&#125; for i in range(10000)]</span><br><span class="line">)</span><br><span class="line">db.session.commit()</span><br><span class="line">five_time &#x3D; datetime.utcnow()</span><br><span class="line">print((five_time - fourth_time).total_seconds())</span><br><span class="line"></span><br><span class="line"># 0.888822s</span><br></pre></td></tr></table></figure></p>
+<h4 id="5-2-删除行"><a href="#5-2-删除行" class="headerlink" title="5.2. 删除行"></a>5.2. 删除行</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">user_jim &#x3D; User(username&#x3D;&#39;jim&#39;,role&#x3D;role_admin)</span><br><span class="line">db.session.delete(user_jim)</span><br><span class="line">db.session.commit()</span><br></pre></td></tr></table></figure>
+<h4 id="5-3-更改行"><a href="#5-3-更改行" class="headerlink" title="5.3. 更改行"></a>5.3. 更改行</h4><h5 id="批量插入或更新"><a href="#批量插入或更新" class="headerlink" title="批量插入或更新"></a>批量插入或更新</h5><h6 id="textal-方式"><a href="#textal-方式" class="headerlink" title="textal 方式"></a>textal 方式</h6><h6 id="sqlalchemy-insert自带方法"><a href="#sqlalchemy-insert自带方法" class="headerlink" title="sqlalchemy insert自带方法"></a>sqlalchemy insert自带方法</h6><p>官方文档给了针对mysql的on_duplicate_key_update操作方式，原理是，对table的insert操作外封了一个on_duplicate_key_update函数，相当于insert后面拼接的内容，该函数有三种提供数据的方式（直接用insert语句的数据；传入定义的字典，传入元组）。 如下链接，结合批量执行的方法，需要传入bindparam参数，所以采用了传入字典的方式，总结如下：<br><a href="https://docs.sqlalchemy.org/en/13/dialects/mysql.html#mysql-insert-on-duplicate-key-update" target="_blank" rel="noopener">https://docs.sqlalchemy.org/en/13/dialects/mysql.html#mysql-insert-on-duplicate-key-update</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">try:</span><br><span class="line">    # insert操作的内容</span><br><span class="line">    insert_stmt &#x3D; insert(NewsArticleKeyword).values(</span><br><span class="line">        news_id&#x3D; bindparam(&#39;news_id&#39;), order&#x3D; bindparam(&#39;order&#39;),keywords&#x3D; bindparam(&#39;keywords&#39;),weight&#x3D; bindparam(&#39;weight&#39;),</span><br><span class="line">        status&#x3D; bindparam(&#39;status&#39;))</span><br><span class="line">    # update操作的内容</span><br><span class="line">    on_duplicate_key_stmt &#x3D; insert_stmt.on_duplicate_key_update(</span><br><span class="line">        &#123;&quot;keywords&quot;: bindparam(&#39;keywords&#39;), &quot;weight&quot;: bindparam(&#39;weight&#39;),&quot;update_time&quot;: func.current_timestamp()&#125;,</span><br><span class="line">    )</span><br><span class="line">    # 执行批量的更新或插入操作</span><br><span class="line">    db.session.execute(on_duplicate_key_stmt,[&#123;&quot;news_id&quot;: news.id, &quot;order&quot;: order, &quot;keywords&quot;: keywords[order][0],</span><br><span class="line">            &#39;weight&#39;: keywords[order][1], &#39;status&#39;: 1&#125;</span><br><span class="line">            for order in range(len(keywords))] )</span><br><span class="line"></span><br><span class="line">    db.session.commit()</span><br><span class="line">except SQLAlchemyError as e:</span><br><span class="line">    db.session.rollback()</span><br><span class="line">    logger.error(e)</span><br></pre></td></tr></table></figure></p>
+<h4 id="5-4-查询数据"><a href="#5-4-查询数据" class="headerlink" title="5.4. 查询数据"></a>5.4. 查询数据</h4><p><strong>获取多条或一条</strong><br>查询结果加上.all() 或 .one() 不加是查询，加上是获取查询的结果<br>.all() 返回的是满足查询结果的数据list<br>.first() 返回的是满足查询结果的第一条数据<br>.one() 返回的是满足查询结果的第一条数据， 不建议用.one()， 在没有满足查询数据的情况下，one()会因为获取不到而报错，可以采用.limit(1).all()来获取list<br>one_or_none()：跟one()方法类似，但是在结果集中没有数据的时候也不会抛出异常。</p>
+<h5 id="5-4-1-计数"><a href="#5-4-1-计数" class="headerlink" title="5.4.1. 计数"></a>5.4.1. 计数</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">db.session.query(User).filter(User.name.like(&#39;%ed%&#39;)).count()</span><br><span class="line">## 生成的sql语句比较灵活</span><br><span class="line">SELECT count(*) AS count_1</span><br><span class="line">FROM news</span><br><span class="line">WHERE news.create_time &gt;&#x3D; %(create_time_1)s AND news.create_time &lt; %(create_time_2)s</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">User.query().count()</span><br><span class="line">## 生成的sql语句嵌套复杂，一个函数一层嵌套</span><br><span class="line">SELECT count(*) AS count_1</span><br><span class="line">FROM (SELECT news.news_id AS news_news_id, news.url AS news_url</span><br><span class="line">FROM news</span><br><span class="line">WHERE news.create_time &gt;&#x3D; %(create_time_1)s AND news.create_time &lt; %(create_time_2)s) AS anon_1</span><br></pre></td></tr></table></figure>
+<h5 id="5-4-1-查询所有"><a href="#5-4-1-查询所有" class="headerlink" title="5.4.1. 查询所有"></a>5.4.1. 查询所有</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 对象类方式</span><br><span class="line">User.query.all() </span><br><span class="line">&gt;&gt; 返回结果：[&lt;User &#39;tom&#39;&gt;, &lt;User &#39;tim&#39;&gt;, &lt;User &#39;sam&#39;&gt;]</span><br><span class="line"># session 方式</span><br><span class="line">db.session.query(User).all()</span><br></pre></td></tr></table></figure>
+<h5 id="5-4-2-筛选条件"><a href="#5-4-2-筛选条件" class="headerlink" title="5.4.2. 筛选条件"></a>5.4.2. 筛选条件</h5><p><a href="https://www.jianshu.com/p/f40a4987891b" target="_blank" rel="noopener">https://www.jianshu.com/p/f40a4987891b</a><br><strong>filter_by() 和 filter() 的最主要的区别：</strong><br>filter_by() 字段直接用属性名，等于用=， 只接受键值对参数，所以 filter_by() 不支持&gt;&lt;（大于和小于）和 and_、or_查询<br>filter() 字段用类名.属性名，等于用==， 支持&gt;&lt;（大于和小于）和 and_、or_查询</p>
+<p>文本方式:<br>SQLAlchemy还提供了使用文本SQL的方式来进行查询，这种方式更加的灵活。而文本SQL要装在一个text()方法中，看以下例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">from sqlalchemy import text</span><br><span class="line">db.session.query(User).filter(text(&quot;id&lt;244&quot;)).order_by(text(&quot;id&quot;)).all()</span><br></pre></td></tr></table></figure><br>对象类方式<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">test3 &#x3D; Intent.query.filter(Intent.intent_name &#x3D;&#x3D; intent).all()</span><br><span class="line">test3 &#x3D; Intent.query.filter_by(intent_name &#x3D; intent).all()</span><br></pre></td></tr></table></figure><br>session 方式<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">from operator import or_, and_, in_</span><br><span class="line"># 文本方式</span><br><span class="line"></span><br><span class="line"># filter_by()</span><br><span class="line">       # 查询 user 表里面名字等于 Tom 的：</span><br><span class="line">       db.session.query(User).filter_by(name&#x3D;&#39;Tom&#39;).all()</span><br><span class="line">       # 查询 user 表里面名字等于 Tom 并且年龄等于 18：</span><br><span class="line">       db.session.query(User).filter_by(name&#x3D;&#39;Tom&#39;, age&#x3D;18).all()</span><br><span class="line">       # 比如新的需求，查询 user 表里面名字等于 Tom 或者年龄等于 18 的用户，那么 filter_by() 就满足不了要求了</span><br><span class="line"># filter()</span><br><span class="line">       查询 user 表里面名字等于 Tom 的：</span><br><span class="line">       db.session.query(User).filter(User.name &#x3D;&#x3D; &#39;Tom&#39;).all()</span><br><span class="line">       查询 user 表里面名字等于 Tom 并且年龄等于 18：</span><br><span class="line">       db.session.query(User).filter(User.name &#x3D;&#x3D; &#39;Tom&#39;, User.age &#x3D;&#x3D; 18).all()</span><br><span class="line">       也可以这样：</span><br><span class="line">       db.session.query(User).filter(User.name &#x3D;&#x3D; &#39;Tom&#39;）.filter(User.age &#x3D;&#x3D; 18).all()</span><br><span class="line">       如果想使用 and 拼接需要用以下方式：</span><br><span class="line">       db.session.query(User).filter(and_(User.name &#x3D;&#x3D; &#39;Tom&#39;, User.age &#x3D;&#x3D; 18)).all()</span><br><span class="line">       db.session.query(User).filter(User.name.in_(&#39;abc&#39;, &#39;def)).all()</span><br><span class="line">       以下的方式 and 后面的 User.age &#x3D;&#x3D; 18 不会生效：</span><br><span class="line">       db.session.query(User).filter(User.name &#x3D;&#x3D; &#39;Tom&#39; and User.age &#x3D;&#x3D; 18).all()</span><br><span class="line">       查询 user 表里面名字等于 Tom 的或者年龄等于 18：</span><br><span class="line">       db.session.query(User).filter(or_(User.name &#x3D;&#x3D; &#39;Tom&#39;, User.age &#x3D;&#x3D; 18)).all()</span><br><span class="line">       查询 user 表里面名字等于 Tom 的并且年龄大于 18</span><br><span class="line">       db.session.query(User).filter(User.name &#x3D;&#x3D; &#39;Tom&#39;, User.age &gt; 18).all()</span><br><span class="line">       查询 name 中包含字母 a 的所有数据(模糊查询)</span><br><span class="line">       db.session.query(User).filter(User.name.like(&#39;%&#123;0&#125;%&#39;.format(&quot;a&quot;))).all()</span><br></pre></td></tr></table></figure></p>
+<h5 id="5-4-3-关联表"><a href="#5-4-3-关联表" class="headerlink" title="5.4.3. 关联表"></a>5.4.3. 关联表</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 对象类方式</span><br><span class="line">test4 &#x3D; Slots.query.join(Intent, (Slots.slot_id &#x3D;&#x3D; Intent.slot)).filter(Intent.intent_name &#x3D;&#x3D; intent ).all()</span><br><span class="line"></span><br><span class="line"># session 方式</span><br><span class="line">test5 &#x3D; db.session.query(Intent.intent_name,Intent.intent_desc,Slots.slot_id,Slots.type,Slots.ket_word).\</span><br><span class="line">    join(Intent, (Slots.slot_id &#x3D;&#x3D; Intent.slot)).\</span><br><span class="line">    filter(Intent.intent_name &#x3D;&#x3D; intent).all()</span><br></pre></td></tr></table></figure>
+<h5 id="5-4-4-排序"><a href="#5-4-4-排序" class="headerlink" title="5.4.4. 排序"></a>5.4.4. 排序</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># 对象类方式</span><br><span class="line">test4 &#x3D; Slots.query.join(Intent, (Slots.slot_id &#x3D;&#x3D; Intent.slot)).\</span><br><span class="line">    filter(Intent.intent_name &#x3D;&#x3D; intent ).\</span><br><span class="line">    order_by(Intent.slot_sort).all()</span><br><span class="line"></span><br><span class="line"># session 方式</span><br><span class="line">test5 &#x3D; db.session.query(Intent.intent_name,Intent.intent_desc,Slots.slot_id,Slots.type,Slots.ket_word).\</span><br><span class="line">    join(Intent, (Slots.slot_id &#x3D;&#x3D; Intent.slot)).\</span><br><span class="line">    filter(Intent.intent_name &#x3D;&#x3D; intent).\</span><br><span class="line">    order_by(Intent.slot_sort).all()</span><br></pre></td></tr></table></figure>
+<h3 id="6-db和主文件循环引用的问题"><a href="#6-db和主文件循环引用的问题" class="headerlink" title="6. db和主文件循环引用的问题"></a>6. db和主文件循环引用的问题</h3><p><a href="https://www.jianshu.com/p/6103d6a79485" target="_blank" rel="noopener">https://www.jianshu.com/p/6103d6a79485</a><br><a href="https://www.cnblogs.com/zhf123/p/11566831.html" target="_blank" rel="noopener">https://www.cnblogs.com/zhf123/p/11566831.html</a><br>问题描述：<br>model引用主文件的db<br>逻辑层引用model的类进行查询<br>route层引用逻辑层实现接口<br>主文件引用route层进行蓝图管理</p>
+<p>以上，造成了循环引用，程序无法运行<br>因此，可以将db对象分离出来，单独做一个模块，供其他文件调用，用DBUtil.py表示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># DBUtiil.py</span><br><span class="line">from flask_sqlalchemy import SQLAlchemy</span><br><span class="line"></span><br><span class="line">db &#x3D; SQLAlchemy()</span><br></pre></td></tr></table></figure><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># app.py 主文件</span><br><span class="line">from DBUtil import db</span><br><span class="line">#没有这个可能导致找不到app的报错： &#39;No application found. Either work inside a view function or push&#39;</span><br><span class="line">db.app &#x3D; app </span><br><span class="line">db.init_app(app)</span><br></pre></td></tr></table></figure><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># model.py</span><br><span class="line">from DBUtil import db</span><br><span class="line">Class User(db.Model):</span><br><span class="line">    xxxx</span><br></pre></td></tr></table></figure></p>
+<h3 id="7-迁移数据库"><a href="#7-迁移数据库" class="headerlink" title="7. 迁移数据库"></a>7. 迁移数据库</h3><p><a href="https://www.jianshu.com/p/759c2fdef7d2" target="_blank" rel="noopener">https://www.jianshu.com/p/759c2fdef7d2</a></p>
+<h3 id="异常报错"><a href="#异常报错" class="headerlink" title="异常报错"></a>异常报错</h3><h4 id="需要回滚才能重连"><a href="#需要回滚才能重连" class="headerlink" title="需要回滚才能重连"></a>需要回滚才能重连</h4><p>sqlalchemy.exc.InvalidRequestError: Can’t reconnect until invalid transaction is rolled back</p>
+<p>在mysql超过wait_timeout后，连接会挂掉，服务就会报错 OperationalError:<br>由于也sqlalchemy关闭了autocommit，隐式使用了事务，还会有错误StatementError: (sqlalchemy.exc.InvalidRequestError) Can’t reconnect until invalid transaction is </p>
+<p>错误a是因为mysql的连接到达了wait_timeout, 使用超时的连接就会报错gone away, </p>
+<p>错误b是因为连接断开后，事务没有回滚，残留的锁导致后续的查询报错.</p>
+<p>解决方案一：打开autocommit</p>
+<p>sqlalchemy打开autocommit后, 就会停止使用事务，生成的查询语句立即执行, 防止了错误b.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SQLALCHEMY_DATABASE_URI &#x3D; (&#39;mysql+pymysql:&#x2F;&#x2F;username:passwrod@ip:prot&#x2F;database?charset&#x3D;utf8&amp;autocommit&#x3D;true&#39;)</span><br></pre></td></tr></table></figure></p>
+<p>解决方案二：</p>
+<p>在所有访问数据库的地方加异常捕获，报异常时rollback<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">try:</span><br><span class="line">    order &#x3D; User.query.filter_by(user_id&#x3D;1).first()</span><br><span class="line">except InvalidRequestError:</span><br><span class="line">    db.session.rollback()</span><br></pre></td></tr></table></figure></p>
+<h4 id="丢连接"><a href="#丢连接" class="headerlink" title="丢连接"></a>丢连接</h4><p>2013 lost connection to MYSQL server during query<br><a href="https://blog.csdn.net/weixin_39561473/article/details/90213914" target="_blank" rel="noopener">https://blog.csdn.net/weixin_39561473/article/details/90213914</a></p>
+<ol>
+<li>连接超时</li>
+<li>Mysql请求结果集超过max_allowed_packet 也会出现这样的报错</li>
+</ol>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://tlylft.github.io/python/Flask/flask_mysql/" title="Flask连接mysql" target="_blank" rel="external">https://tlylft.github.io/python/Flask/flask_mysql/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/tlylft" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.png" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/tlylft" target="_blank"><span class="text-dark">Icey</span><small class="ml-1x">小傻瓜,别回头</small></a></h3>
+        <div>以梦为马，随处可栖。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/NLP/similarity/gensim_part1/" title="gensim 使用笔记（一）"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/python/python/python_match/" title="python 正则表达式"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>感谢您的支持，我会继续努力的!</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechatpayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> 支付宝</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> 微信支付</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/tlylft?tab=repositories" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="https://www.weibo.com/tlylft/profile?rightmod=1&wvr=6&mod=personinfo" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://www.facebook.com/profile.php?id=100009783614101" target="_blank" title="Facebook" data-toggle=tooltip data-placement=top><i class="icon icon-facebook"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: '',
+    appKey: '',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!-- <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
+</html>
