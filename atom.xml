@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://tlylft.github.io/"/>
-  <updated>2020-07-12T10:47:34.560Z</updated>
+  <updated>2020-08-03T00:36:15.330Z</updated>
   <id>https://tlylft.github.io/</id>
   
   <author>
@@ -15,6 +15,89 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>特征工程</title>
+    <link href="https://tlylft.github.io/machine_learning/feature_preprocess/"/>
+    <id>https://tlylft.github.io/machine_learning/feature_preprocess/</id>
+    <published>2020-08-02T10:34:11.000Z</published>
+    <updated>2020-08-03T00:36:15.330Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="特征工程"><a href="#特征工程" class="headerlink" title="特征工程"></a>特征工程</h2><p>如何对数据进行预处理,通常来说，首先转换为以0为中心化的表示（数值-均值），然后做一次消除差异，做一下标准差。<br><img src="/machine_learning/feature_preprocess/2020-08-03-08-34-18.png" alt></p><p>使用工具包：sklearn.preprocessing</p><h3 id="对大数值列进行标准化"><a href="#对大数值列进行标准化" class="headerlink" title="对大数值列进行标准化"></a>对大数值列进行标准化</h3><p>让所有特征类的浮动区间都变成差不多的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">from sklearn.preprocessing import StandardScaler</span><br><span class="line">data[&#39;normAmount&#39;] &#x3D; StandardScaler().fit_transform(data[&#39;Amount&#39;].reshape(-1,1))</span><br></pre></td></tr></table></figure></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;特征工程&quot;&gt;&lt;a href=&quot;#特征工程&quot; class=&quot;headerlink&quot; title=&quot;特征工程&quot;&gt;&lt;/a&gt;特征工程&lt;/h2&gt;&lt;p&gt;如何对数据进行预处理,通常来说，首先转换为以0为中心化的表示（数值-均值），然后做一次消除差异，做一下标准差。&lt;br&gt;&lt;im
+      
+    
+    </summary>
+    
+    
+      <category term="machine learning" scheme="https://tlylft.github.io/categories/machine-learning/"/>
+    
+    
+      <category term="machine learning" scheme="https://tlylft.github.io/tags/machine-learning/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>云雀叫了一整天 -- 木心</title>
+    <link href="https://tlylft.github.io/reading/skylark_cried_all_day/"/>
+    <id>https://tlylft.github.io/reading/skylark_cried_all_day/</id>
+    <published>2020-08-01T09:13:37.000Z</published>
+    <updated>2020-08-01T09:20:38.687Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="云雀叫了一整天"><a href="#云雀叫了一整天" class="headerlink" title="云雀叫了一整天"></a>云雀叫了一整天</h3><p>我是一个在黑暗中大雪纷飞的人哪！</p><p><strong>爱情</strong></p><blockquote><p>罗密欧与朱丽叶<br>爱才是生命，然后生命才能爱<br>我想莎士比亚的原意如此<br>—《火车中的情诗》</p></blockquote><p><strong>心情</strong></p><blockquote><p>我倒并不悲伤<br>只是想放声大哭一场<br>—《哭》</p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;云雀叫了一整天&quot;&gt;&lt;a href=&quot;#云雀叫了一整天&quot; class=&quot;headerlink&quot; title=&quot;云雀叫了一整天&quot;&gt;&lt;/a&gt;云雀叫了一整天&lt;/h3&gt;&lt;p&gt;我是一个在黑暗中大雪纷飞的人哪！&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;爱情&lt;/strong&gt;&lt;/p&gt;
+&lt;b
+      
+    
+    </summary>
+    
+    
+      <category term="读书笔记" scheme="https://tlylft.github.io/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="读书笔记" scheme="https://tlylft.github.io/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>论语</title>
+    <link href="https://tlylft.github.io/reading/The_Analects/"/>
+    <id>https://tlylft.github.io/reading/The_Analects/</id>
+    <published>2020-08-01T06:00:06.000Z</published>
+    <updated>2020-08-01T06:19:28.339Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>子曰：“饭疏食饮水，曲肱而枕之，乐亦在其中矣。不义而富且贵，于我如浮云。”<br>《论语 述而篇 第十六章》</p></blockquote><p>译文：孔子说：“吃粗粮，喝清水，弯起胳膊当枕头，这其中也有着乐趣。而通过干不正当的事得来的富贵，对于我来说就像浮云一般。”</p><p>解读：孔子极力提倡“安贫乐道”，有理想有抱负的人，不会因极度追求吃穿住而，无论什么样的条件，都可以乐在其中。但不符合道的精神而得来的荣华富贵，是不值得提倡的。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;子曰：“饭疏食饮水，曲肱而枕之，乐亦在其中矣。不义而富且贵，于我如浮云。”&lt;br&gt;《论语 述而篇 第十六章》&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;译文：孔子说：“吃粗粮，喝清水，弯起胳膊当枕头，这其中也有着乐趣。而通过干不正当的事得来的富贵，
+      
+    
+    </summary>
+    
+    
+      <category term="读书笔记" scheme="https://tlylft.github.io/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="读书笔记" scheme="https://tlylft.github.io/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
   
   <entry>
     <title>BiLSTM_CRF</title>
@@ -310,7 +393,7 @@
     <link href="https://tlylft.github.io/reading/Einsteins_dream/"/>
     <id>https://tlylft.github.io/reading/Einsteins_dream/</id>
     <published>2020-05-06T03:43:38.000Z</published>
-    <updated>2020-05-11T07:01:00.157Z</updated>
+    <updated>2020-08-01T06:19:18.317Z</updated>
     
     <content type="html"><![CDATA[<p>有关于时间的思考</p><blockquote><p>013 这并不是说其他性质不可能存在，而是说其他的性质可能存在于其他的世界中。</p></blockquote><p>事物不是永恒的，也不是在一条时间线上多变的，在不同的世界维度，可能就有着不同的含义和表现形式。it can be everything.</p><blockquote><p>1905.04.14 假定时间是曲向自己的一个圆，而世界重复他自己，完全准确的，且是永不止息的。</p></blockquote>]]></content>
     
@@ -328,10 +411,10 @@
     </summary>
     
     
-      <category term="reading" scheme="https://tlylft.github.io/categories/reading/"/>
+      <category term="读书笔记" scheme="https://tlylft.github.io/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
     
     
-      <category term="reading" scheme="https://tlylft.github.io/tags/reading/"/>
+      <category term="读书笔记" scheme="https://tlylft.github.io/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
     
   </entry>
   
@@ -448,17 +531,17 @@
     <link href="https://tlylft.github.io/reading/the_renaissance/"/>
     <id>https://tlylft.github.io/reading/the_renaissance/</id>
     <published>2020-04-11T09:01:14.000Z</published>
-    <updated>2020-07-10T01:23:21.830Z</updated>
+    <updated>2020-08-01T06:19:32.185Z</updated>
     
     <summary type="html">
     
     </summary>
     
     
-      <category term="reading" scheme="https://tlylft.github.io/categories/reading/"/>
+      <category term="读书笔记" scheme="https://tlylft.github.io/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
     
     
-      <category term="reading" scheme="https://tlylft.github.io/tags/reading/"/>
+      <category term="读书笔记" scheme="https://tlylft.github.io/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
     
   </entry>
   
@@ -485,96 +568,6 @@
     
     
       <category term="NLP" scheme="https://tlylft.github.io/tags/NLP/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>NLP/NER/medical_NER</title>
-    <link href="https://tlylft.github.io/NLP/NER/medical_NER/"/>
-    <id>https://tlylft.github.io/NLP/NER/medical_NER/</id>
-    <published>2020-04-03T07:03:52.000Z</published>
-    <updated>2020-04-06T13:01:17.291Z</updated>
-    
-    <content type="html"><![CDATA[<p>网上看的一个讲特定行业的NER的思路，可以参考。</p><h2 id="项目背景"><a href="#项目背景" class="headerlink" title="项目背景"></a>项目背景</h2><p><img src="/NLP/NER/medical_NER/2020-04-03-15-05-51.png" alt><br><img src="/NLP/NER/medical_NER/2020-04-03-15-06-14.png" alt></p><p><img src="/NLP/NER/medical_NER/2020-04-03-15-04-37.png" alt></p><p><img src="/NLP/NER/medical_NER/2020-04-03-15-07-09.png" alt></p><p><img src="/NLP/NER/medical_NER/2020-04-03-15-10-33.png" alt></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;网上看的一个讲特定行业的NER的思路，可以参考。&lt;/p&gt;
-&lt;h2 id=&quot;项目背景&quot;&gt;&lt;a href=&quot;#项目背景&quot; class=&quot;headerlink&quot; title=&quot;项目背景&quot;&gt;&lt;/a&gt;项目背景&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;/NLP/NER/medical_NER
-      
-    
-    </summary>
-    
-    
-      <category term="NLP" scheme="https://tlylft.github.io/categories/NLP/"/>
-    
-      <category term="NER" scheme="https://tlylft.github.io/categories/NLP/NER/"/>
-    
-    
-      <category term="NLP" scheme="https://tlylft.github.io/tags/NLP/"/>
-    
-      <category term="NER" scheme="https://tlylft.github.io/tags/NER/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>tensorflow introduction</title>
-    <link href="https://tlylft.github.io/python/tensorflow/tensor_intro/"/>
-    <id>https://tlylft.github.io/python/tensorflow/tensor_intro/</id>
-    <published>2020-04-01T12:08:40.000Z</published>
-    <updated>2020-04-01T12:46:33.005Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="1-intro"><a href="#1-intro" class="headerlink" title="1. intro"></a>1. intro</h3><p>google的AI学习系统，底层是C++,上层是python。</p><p>windows系统目前兼容python3.5/3.6，mac和linux都可以</p><p>Tensorflow 2.0<br>取消了会话，定义完op直接可输出结果，不需要会话启动<br>清理了1.0的废弃的API和减少重复简API<br>可以使用Keras和eager execution轻松构建模型</p><h3 id="2-install"><a href="#2-install" class="headerlink" title="2. install"></a>2. install</h3><h3 id="3-tesorflow1"><a href="#3-tesorflow1" class="headerlink" title="3. tesorflow1"></a>3. tesorflow1</h3><ol><li>安装anaconda</li><li>pip install tensorflow<br> pip install tensorflow-gpu<br> pip install tensorflow —upgrade<h3 id="4-tesorflow2"><a href="#4-tesorflow2" class="headerlink" title="4. tesorflow2"></a>4. tesorflow2</h3>pip install tensorflow==2.0.0<br>pip install tensorflow-gpu==2.0.0<br>pip uninstall tensorflow</li></ol><h3 id="basic-concept"><a href="#basic-concept" class="headerlink" title="basic concept"></a>basic concept</h3><p>使用图graphs来表示计算任务，图中的节点为operation，一个op获得0个或多个tensor，执行计算，产生0或多个tensor。<br>在session会话中执行图，图必须在session里被启动。<br>使用tensor表示数据，可看做是一个n维的数组或列表。<br>通过变量variable维护状态<br>使用feed和fetch可以为任意的操作赋值和取值<br><img src="/python/tensorflow/tensor_intro/2020-04-01-20-31-12.png" alt></p><h3 id="session"><a href="#session" class="headerlink" title="session"></a>session</h3>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;1-intro&quot;&gt;&lt;a href=&quot;#1-intro&quot; class=&quot;headerlink&quot; title=&quot;1. intro&quot;&gt;&lt;/a&gt;1. intro&lt;/h3&gt;&lt;p&gt;google的AI学习系统，底层是C++,上层是python。&lt;/p&gt;
-&lt;p&gt;windows系统
-      
-    
-    </summary>
-    
-    
-      <category term="python" scheme="https://tlylft.github.io/categories/python/"/>
-    
-      <category term="tensorflow" scheme="https://tlylft.github.io/categories/python/tensorflow/"/>
-    
-    
-      <category term="python" scheme="https://tlylft.github.io/tags/python/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>keras 线性回归</title>
-    <link href="https://tlylft.github.io/python/keras/keras_LR/"/>
-    <id>https://tlylft.github.io/python/keras/keras_LR/</id>
-    <published>2020-03-31T06:11:55.000Z</published>
-    <updated>2020-03-31T06:43:08.721Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="环境安装"><a href="#环境安装" class="headerlink" title="环境安装"></a>环境安装</h3><h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>可以将tensorflow等看做是后台计算，keras是前端封装，所以安装时也要先安装tensorflow,注意这两个东西的版本是有对应关系的。</p><h3 id="通过构建线性回归模型讲解keras的基本实现过程"><a href="#通过构建线性回归模型讲解keras的基本实现过程" class="headerlink" title="通过构建线性回归模型讲解keras的基本实现过程"></a>通过构建线性回归模型讲解keras的基本实现过程</h3><h4 id="一元线性回归"><a href="#一元线性回归" class="headerlink" title="一元线性回归"></a>一元线性回归</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">import keras</span><br><span class="line">from keras import layers</span><br><span class="line"></span><br><span class="line">#简单模型，先构建一个顺序模型</span><br><span class="line">model &#x3D; leras.Sequential()</span><br><span class="line"># 加入模型结构层,（输入和输出的维度 y&#x3D; ax+b 输入一个x, 输出一个y）</span><br><span class="line">model.add(layers.Dense(1, input_dim &#x3D; 1))</span><br><span class="line"># 查看构建的整体结构</span><br><span class="line">model.summary()</span><br><span class="line"># 编译模型，确定优化函数和损失函数</span><br><span class="line">model.compile(optimizer &#x3D; &#39;adam&#39;, loss &#x3D; &#39;mse&#39;)</span><br><span class="line"># 训练模型</span><br><span class="line">model.fit(x,y,epochs &#x3D; 3000)</span><br><span class="line"># 使用模型</span><br><span class="line">model.predict(x)</span><br></pre></td></tr></table></figure><h4 id="多元线性回归"><a href="#多元线性回归" class="headerlink" title="多元线性回归"></a>多元线性回归</h4><p>$f(x) = w_1x_1+w_2x_2 +b$<br>读取数据<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import pandas as pd</span><br><span class="line">data &#x3D; pd.read_csv(path)</span><br><span class="line">data.head()</span><br><span class="line">x &#x3D; data[data.columns[1:-1]]</span><br><span class="line">y &#x3D; data.iloc[:,-1]</span><br></pre></td></tr></table></figure><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">import keras</span><br><span class="line">from keras import layers</span><br><span class="line"></span><br><span class="line">#简单模型，先构建一个顺序模型</span><br><span class="line">model &#x3D; leras.Sequential()</span><br><span class="line"># 加入模型结构层,（输入和输出的维度 y&#x3D; ax+b 输入一个x, 输出一个y）</span><br><span class="line">model.add(layers.Dense(1, input_dim &#x3D; 3))</span><br><span class="line"># 查看构建的整体结构</span><br><span class="line">model.summary()</span><br><span class="line"># 编译模型，确定优化函数和损失函数</span><br><span class="line">model.compile(optimizer &#x3D; &#39;adam&#39;, loss &#x3D; &#39;mse&#39;)</span><br><span class="line"># 训练模型</span><br><span class="line">model.fit(x,y,epochs &#x3D; 3000)</span><br><span class="line"># 使用模型</span><br><span class="line">model.predict(x)</span><br></pre></td></tr></table></figure></p><h3 id="分类问题"><a href="#分类问题" class="headerlink" title="分类问题"></a>分类问题</h3><p>分类问题的损失函数，我们一般采用交叉熵表示，因为不是一个数值，用均值方差显然不合理，分类结果的表示一般采用概率分布，所以用实际值和预测值分布之间的交叉熵可以更好的表示出差异。<br>sigmoid 函数，将输出转换为趋向于0或1的解， softmax函数，将输出转换为每种类别的分布。</p><h4 id="二分类问题"><a href="#二分类问题" class="headerlink" title="二分类问题"></a>二分类问题</h4><p>keras一般使用binary_crossentropy计算二元交叉熵解决二分类问题的损失函数。<br>多分类一般使用 categorical_crossentropy 和 sparse_categorical_crossentropy</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;环境安装&quot;&gt;&lt;a href=&quot;#环境安装&quot; class=&quot;headerlink&quot; title=&quot;环境安装&quot;&gt;&lt;/a&gt;环境安装&lt;/h3&gt;&lt;h3 id=&quot;介绍&quot;&gt;&lt;a href=&quot;#介绍&quot; class=&quot;headerlink&quot; title=&quot;介绍&quot;&gt;&lt;/a&gt;介绍&lt;/h
-      
-    
-    </summary>
-    
-    
-      <category term="python" scheme="https://tlylft.github.io/categories/python/"/>
-    
-      <category term="keras" scheme="https://tlylft.github.io/categories/python/keras/"/>
-    
-    
-      <category term="python" scheme="https://tlylft.github.io/tags/python/"/>
-    
-      <category term="keras" scheme="https://tlylft.github.io/tags/keras/"/>
     
   </entry>
   
