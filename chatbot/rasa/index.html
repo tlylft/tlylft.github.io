@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>Rasa | 小傻瓜别回头</title>
+  <meta name="description" content="1. RASARasa是一个用于自动文本和基于语音的对话的开源机器学习框架。老版本中两个模块是被独立安装的，新版本中合并到一起了，需要自定义可以独自安装模块实现拓展。https:&#x2F;&#x2F;github.com&#x2F;RasaHQ&#x2F;rasa分为Rasa core和 Rasa nlu两个模块：   基于rasa nlu 实现自然语言理解用于理解用户消息，包括意图识别和实体识别，它会把用户的输入转换为结构化的数据。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Rasa">
+<meta property="og:url" content="https://tlylft.github.io/chatbot/rasa/index.html">
+<meta property="og:site_name" content="小傻瓜别回头">
+<meta property="og:description" content="1. RASARasa是一个用于自动文本和基于语音的对话的开源机器学习框架。老版本中两个模块是被独立安装的，新版本中合并到一起了，需要自定义可以独自安装模块实现拓展。https:&#x2F;&#x2F;github.com&#x2F;RasaHQ&#x2F;rasa分为Rasa core和 Rasa nlu两个模块：   基于rasa nlu 实现自然语言理解用于理解用户消息，包括意图识别和实体识别，它会把用户的输入转换为结构化的数据。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tlylft.github.io/chatbot/rasa/2020-08-10-09-36-17.png">
+<meta property="og:image" content="https://tlylft.github.io/chatbot/rasa/2020-08-12-17-18-31.png">
+<meta property="og:image" content="https://tlylft.github.io/chatbot/rasa/2020-08-10-13-26-46.png">
+<meta property="og:image" content="https://tlylft.github.io/chatbot/rasa/2020-08-10-13-27-54.png">
+<meta property="og:image" content="https://tlylft.github.io/chatbot/rasa/2020-08-13-09-29-20.png">
+<meta property="og:image" content="https://tlylft.github.io/chatbot/rasa/2020-08-18-09-50-57.png">
+<meta property="og:image" content="https://tlylft.github.io/chatbot/rasa/2020-08-21-15-37-41.png">
+<meta property="article:published_time" content="2020-08-10T01:20:20.000Z">
+<meta property="article:modified_time" content="2020-11-24T09:11:53.943Z">
+<meta property="article:author" content="Icey">
+<meta property="article:tag" content="chatbot">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tlylft.github.io/chatbot/rasa/2020-08-10-09-36-17.png">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://tlylft.github.io/chatbot/rasa/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="小傻瓜别回头" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/images/avatar.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/tlylft" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.png" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">Icey</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">小傻瓜,别回头</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Hebei, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/tlylft?tab=repositories" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="https://www.weibo.com/tlylft/profile?rightmod=1&wvr=6&mod=personinfo" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://www.facebook.com/profile.php?id=100009783614101" target="_blank" title="Facebook" data-toggle=tooltip data-placement=top><i class="icon icon-facebook"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>Welcome!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Deep-Learning/">Deep Learning</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Flask/">Flask</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/">NLP</a><span class="category-list-count">37</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/NER/">NER</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/algorithm/">algorithm</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/bert/">bert</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/label/">label</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/similarity/">similarity</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/word2vec/">word2vec</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/%E4%BF%A1%E6%81%AF%E6%8F%90%E5%8F%96/">信息提取</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/%E5%88%86%E8%AF%8D/">分词</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/algorithms/">algorithms</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/autoML/">autoML</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/autoML/kubeflow/">kubeflow</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/bert/">bert</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/chatbot/">chatbot</a><span class="category-list-count">9</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/chatbot/rasa/">rasa</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/deep-learning/">deep learning</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/github/">github</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hive/">hive</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/knowledge-graph/">knowledge graph</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/machine-learning/">machine learning</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/math/">math</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/nlp/">nlp</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a><span class="category-list-count">40</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/python/Anaconda/">Anaconda</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/Django/">Django</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/Flask/">Flask</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/anaconda/">anaconda</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/flask/">flask</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/keras/">keras</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/matplotlib/">matplotlib</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/pandas/">pandas</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/python/">python</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/tensorflow/">tensorflow</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">环境搭建</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/pytorch/">pytorch</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/reading/">reading</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tools/">tools</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/tools/ftp/">ftp</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tools/k8s/">k8s</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tools/paper/">paper</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BA%A7%E5%93%81/">产品</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a><span class="category-list-count">6</span></li></ul>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-Learning/" rel="tag">Deep Learning</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Django/" rel="tag">Django</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/" rel="tag">Docker</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flask/" rel="tag">Flask</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NER/" rel="tag">NER</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NLP/" rel="tag">NLP</a><span class="tag-list-count">32</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/algorithm/" rel="tag">algorithm</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/algorithms/" rel="tag">algorithms</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/autoML/" rel="tag">autoML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bert/" rel="tag">bert</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/" rel="tag">blog</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/chatbot/" rel="tag">chatbot</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/deep-learning/" rel="tag">deep learning</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/doccano/" rel="tag">doccano</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/" rel="tag">docker</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/env-config/" rel="tag">env_config</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flask/" rel="tag">flask</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gensim/" rel="tag">gensim</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/" rel="tag">github</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hive/" rel="tag">hive</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/k8s/" rel="tag">k8s</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/keras/" rel="tag">keras</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kerberos/" rel="tag">kerberos</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/knowledge-graph/" rel="tag">knowledge graph</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kubeflow/" rel="tag">kubeflow</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/label/" rel="tag">label</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/machine-learning/" rel="tag">machine learning</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/math/" rel="tag">math</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/miniconda/" rel="tag">miniconda</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/navicat/" rel="tag">navicat</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nlp/" rel="tag">nlp</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/numpy/" rel="tag">numpy</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pandas/" rel="tag">pandas</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pycharm/" rel="tag">pycharm</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a><span class="tag-list-count">42</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pytorch/" rel="tag">pytorch</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rasa/" rel="tag">rasa</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/segment/" rel="tag">segment</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/similarity/" rel="tag">similarity</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tools/" rel="tag">tools</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/word2vec/" rel="tag">word2vec</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%A7%E5%93%81/" rel="tag">产品</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BF%A1%E6%81%AF%E6%8F%90%E5%8F%96/" rel="tag">信息提取</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A0%87%E6%B3%A8%E5%B7%A5%E5%85%B7/" rel="tag">标注工具</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" rel="tag">读书笔记</a><span class="tag-list-count">6</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/Deep-Learning/" style="font-size: 13.3px;">Deep Learning</a> <a href="/tags/Django/" style="font-size: 13.2px;">Django</a> <a href="/tags/Docker/" style="font-size: 13px;">Docker</a> <a href="/tags/Flask/" style="font-size: 13.6px;">Flask</a> <a href="/tags/NER/" style="font-size: 13.3px;">NER</a> <a href="/tags/NLP/" style="font-size: 13.9px;">NLP</a> <a href="/tags/algorithm/" style="font-size: 13.3px;">algorithm</a> <a href="/tags/algorithms/" style="font-size: 13.1px;">algorithms</a> <a href="/tags/autoML/" style="font-size: 13px;">autoML</a> <a href="/tags/bert/" style="font-size: 13.3px;">bert</a> <a href="/tags/blog/" style="font-size: 13px;">blog</a> <a href="/tags/chatbot/" style="font-size: 13.7px;">chatbot</a> <a href="/tags/deep-learning/" style="font-size: 13.2px;">deep learning</a> <a href="/tags/doccano/" style="font-size: 13px;">doccano</a> <a href="/tags/docker/" style="font-size: 13.1px;">docker</a> <a href="/tags/env-config/" style="font-size: 13px;">env_config</a> <a href="/tags/flask/" style="font-size: 13px;">flask</a> <a href="/tags/gensim/" style="font-size: 13px;">gensim</a> <a href="/tags/git/" style="font-size: 13px;">git</a> <a href="/tags/github/" style="font-size: 13px;">github</a> <a href="/tags/hive/" style="font-size: 13.4px;">hive</a> <a href="/tags/k8s/" style="font-size: 13px;">k8s</a> <a href="/tags/keras/" style="font-size: 13px;">keras</a> <a href="/tags/kerberos/" style="font-size: 13px;">kerberos</a> <a href="/tags/knowledge-graph/" style="font-size: 13px;">knowledge graph</a> <a href="/tags/kubeflow/" style="font-size: 13px;">kubeflow</a> <a href="/tags/label/" style="font-size: 13px;">label</a> <a href="/tags/linux/" style="font-size: 13.4px;">linux</a> <a href="/tags/machine-learning/" style="font-size: 13.8px;">machine learning</a> <a href="/tags/math/" style="font-size: 13px;">math</a> <a href="/tags/miniconda/" style="font-size: 13px;">miniconda</a> <a href="/tags/mysql/" style="font-size: 13px;">mysql</a> <a href="/tags/navicat/" style="font-size: 13px;">navicat</a> <a href="/tags/nlp/" style="font-size: 13px;">nlp</a> <a href="/tags/numpy/" style="font-size: 13px;">numpy</a> <a href="/tags/pandas/" style="font-size: 13.2px;">pandas</a> <a href="/tags/pycharm/" style="font-size: 13.1px;">pycharm</a> <a href="/tags/python/" style="font-size: 14px;">python</a> <a href="/tags/pytorch/" style="font-size: 13px;">pytorch</a> <a href="/tags/rasa/" style="font-size: 13.1px;">rasa</a> <a href="/tags/segment/" style="font-size: 13px;">segment</a> <a href="/tags/similarity/" style="font-size: 13.1px;">similarity</a> <a href="/tags/tools/" style="font-size: 13.5px;">tools</a> <a href="/tags/word2vec/" style="font-size: 13.1px;">word2vec</a> <a href="/tags/%E4%BA%A7%E5%93%81/" style="font-size: 13px;">产品</a> <a href="/tags/%E4%BF%A1%E6%81%AF%E6%8F%90%E5%8F%96/" style="font-size: 13.1px;">信息提取</a> <a href="/tags/%E6%A0%87%E6%B3%A8%E5%B7%A5%E5%85%B7/" style="font-size: 13px;">标注工具</a> <a href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" style="font-size: 13.5px;">读书笔记</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">一月 2021</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a><span class="archive-list-count">24</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/math/">math</a>
+              </p>
+              <p class="item-title">
+                <a href="/math/likelihood/" class="title">似然函数,最大似然估计</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-02-08T04:33:46.000Z" itemprop="datePublished">2021-02-08</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/python/">python</a><i class="icon icon-angle-right"></i><a class="category-link" href="/categories/python/matplotlib/">matplotlib</a>
+              </p>
+              <p class="item-title">
+                <a href="/python/matplotlib/dynamic_plot/" class="title">matplotlib实时动态图</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-02-01T13:14:58.000Z" itemprop="datePublished">2021-02-01</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/python/matplotlib/subplot/" class="title">python</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-02-01T13:04:45.000Z" itemprop="datePublished">2021-02-01</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/linux/">linux</a>
+              </p>
+              <p class="item-title">
+                <a href="/linux/linux_redistinct/" class="title">linux重定向</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-02-01T05:12:25.000Z" itemprop="datePublished">2021-02-01</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/linux/">linux</a>
+              </p>
+              <p class="item-title">
+                <a href="/linux/linux_disk/" class="title">linux centos7 磁盘扩容</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-02-01T04:36:26.000Z" itemprop="datePublished">2021-02-01</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-chatbot/rasa" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Rasa
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/chatbot/rasa/" class="article-date">
+	  <time datetime="2020-08-10T01:20:20.000Z" itemprop="datePublished">2020-08-10</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/chatbot/">chatbot</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/chatbot/" rel="tag">chatbot</a>
+  </span>
+
+
+        
+
+	<span class="article-read hidden-xs">
+    	<i class="icon icon-eye-fill" aria-hidden="true"></i>
+    	<span id="/chatbot/rasa/" class="leancloud_visitors"  data-flag-title="Rasa">
+			<span class="leancloud-visitors-count">0</span>
+		</span>
+    </span>
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/chatbot/rasa/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h2 id="1-RASA"><a href="#1-RASA" class="headerlink" title="1. RASA"></a>1. RASA</h2><p>Rasa是一个用于自动文本和基于语音的对话的开源机器学习框架。老版本中两个模块是被独立安装的，新版本中合并到一起了，需要自定义可以独自安装模块实现拓展。<br><a href="https://github.com/RasaHQ/rasa" target="_blank" rel="noopener">https://github.com/RasaHQ/rasa</a><br><img src="/chatbot/rasa/2020-08-10-09-36-17.png" alt><br>分为Rasa core和 Rasa nlu两个模块： </p>
+<ul>
+<li><p>基于rasa nlu 实现自然语言理解<br>用于理解用户消息，包括意图识别和实体识别，它会把用户的输入转换为结构化的数据。</p>
+</li>
+<li><p>基于rasa core实现对话管理<br>是一个对话管理平台，用于举行对话和决定下一步做什么。</p>
+</li>
+</ul>
+<p><img src="/chatbot/rasa/2020-08-12-17-18-31.png" alt></p>
+<p>首先，将用户输入的Message传递到Interpreter(NLU模块)，该模块负责识别Message中的”意图(intent)“和提取所有”实体”(entity)数据；<br>其次，Rasa Core会将Interpreter提取到的意图和识别传给Tracker对象，该对象的主要作用是跟踪会话状态(conversation state)；<br>第三，利用policy记录Tracker对象的当前状态，并选择执行相应的action，其中，这个action是被记录在Track对象中的；<br>最后，将执行action返回的结果输出即完成一次人机交互。<br>领域识别，要判断是开放域的问题还是专业领域的问题。</p>
+<p>demo:<br><a href="https://github.com/zqhZY/_rasa_chatbot" target="_blank" rel="noopener">https://github.com/zqhZY/_rasa_chatbot</a></p>
+<p>源码解读：<br><a href="https://zhuanlan.zhihu.com/p/231020989?utm_source=wechat_session" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/231020989?utm_source=wechat_session</a><br><a href="https://zhuanlan.zhihu.com/p/231163197" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/231163197</a><br><a href="https://zhuanlan.zhihu.com/p/231199874" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/231199874</a><br><a href="https://zhuanlan.zhihu.com/p/76623359" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/76623359</a></p>
+<p><a href="https://mubu.com/doc/19aK8HlxFw#" target="_blank" rel="noopener">https://mubu.com/doc/19aK8HlxFw#</a></p>
+<h3 id="1-1-simple-demo"><a href="#1-1-simple-demo" class="headerlink" title="1.1. simple-demo"></a>1.1. simple-demo</h3><h4 id="1-1-1-安装rasa环境"><a href="#1-1-1-安装rasa环境" class="headerlink" title="1.1.1. 安装rasa环境"></a>1.1.1. 安装rasa环境</h4><p>为rasa创建一个python环境，我用的python 3.7.4版本<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">conda create -n rasa python&#x3D;3.7.4</span><br><span class="line">## 只安装rasa</span><br><span class="line">pip install rasa  </span><br><span class="line">## 安装过程中依赖的包有很多，因为公司的网络经常出现中断的情况，中断的包可以一个个自己装</span><br><span class="line">## 安装rasa-x 和 rasa</span><br><span class="line">pip install rasa-x --extra-index-url https:&#x2F;&#x2F;pypi.rasa.com&#x2F;simple</span><br></pre></td></tr></table></figure><br>安装后检查下numpy的版本号，太高运行会报错，我试了1.19.1可以。</p>
+<h4 id="1-1-2-初始化-创建-一个rasa项目"><a href="#1-1-2-初始化-创建-一个rasa项目" class="headerlink" title="1.1.2. 初始化/创建 一个rasa项目"></a>1.1.2. 初始化/创建 一个rasa项目</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rasa init</span><br></pre></td></tr></table></figure>
+<p>会创建一个项目目录<br><img src="/chatbot/rasa/2020-08-10-13-26-46.png" alt><br><img src="/chatbot/rasa/2020-08-10-13-27-54.png" alt></p>
+<h4 id="1-1-3-NLU训练"><a href="#1-1-3-NLU训练" class="headerlink" title="1.1.3. NLU训练"></a>1.1.3. NLU训练</h4><h5 id="1-1-3-1-定义NLU训练数据"><a href="#1-1-3-1-定义NLU训练数据" class="headerlink" title="1.1.3.1. 定义NLU训练数据"></a>1.1.3.1. 定义NLU训练数据</h5><p>定义NLU训练数据，可以是一个文件，也可以是一个目录。文件可以是markdown格式，也可以是json格式。<br><a href="https://rasa.com/docs/rasa/nlu/training-data-format/#training-data-format" target="_blank" rel="noopener">https://rasa.com/docs/rasa/nlu/training-data-format/#training-data-format</a><br>data/nlu.md</p>
+<p>markdown 有两种标注形式：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[&lt;entity text&gt;](&lt;entity name&gt;)</span><br><span class="line">[&lt;entity-text&gt;]&#123;&quot;entity&quot;: &quot;&lt;entity name&gt;&quot;&#125;</span><br></pre></td></tr></table></figure><br>第二种支持拓展同义词，角色和分组。<br>分组是解决槽位多值的问题，e.g. 北京和上海的天气<br>角色是解决一个实体多义的问题，e.g. 北京到上海的机票<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[&lt;entity-text&gt;]&#123;&quot;entity&quot;: &quot;&lt;entity name&gt;&quot;, &quot;role&quot;: &quot;&lt;role name&gt;&quot;, &quot;group&quot;: &quot;&lt;group name&gt;&quot;, &quot;value&quot;: &quot;&lt;entity synonym&gt;&quot;&#125;</span><br></pre></td></tr></table></figure><br>nlu.md可以标注的东西包含：<br>意图对应的训练预料<br>同义词的语料<br>正则表达式的配置<br>查找表<br><strong>例子:</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">## intent:check_balance</span><br><span class="line">- what is my balance &lt;!-- no entity --&gt;</span><br><span class="line">- how much do I have on my [savings](source_account) &lt;!-- entity &quot;source_account&quot; has value &quot;savings&quot; --&gt;</span><br><span class="line">- how much do I have on my [savings account]&#123;&quot;entity&quot;: &quot;source_account&quot;, &quot;value&quot;: &quot;savings&quot;&#125; &lt;!-- synonyms, method 1--&gt;</span><br><span class="line">- Could I pay in [yen](currency)?  &lt;!-- entity matched by lookup table --&gt;</span><br><span class="line"></span><br><span class="line">## intent:greet</span><br><span class="line">- hey</span><br><span class="line">- hello</span><br><span class="line"></span><br><span class="line">## synonym:savings   &lt;!-- synonyms, method 2 --&gt;</span><br><span class="line">- pink pig</span><br><span class="line"></span><br><span class="line">## regex:zipcode</span><br><span class="line">- [0-9]&#123;5&#125;</span><br><span class="line"></span><br><span class="line">## lookup:additional_currencies  &lt;!-- specify lookup tables in an external file --&gt;</span><br><span class="line">path&#x2F;to&#x2F;currencies.txt</span><br></pre></td></tr></table></figure></p>
+<h5 id="1-1-3-2-定义意图和动作：domain-yml"><a href="#1-1-3-2-定义意图和动作：domain-yml" class="headerlink" title="1.1.3.2. 定义意图和动作：domain.yml"></a>1.1.3.2. 定义意图和动作：domain.yml</h5><p>Rasa基于intents、entities和当前对话的内部状态，从actions中选择下一步采取的行动。比如机器人选择utter_greet的话，就会从templates中找出相应的句子作为回复。<br>也可以定义自己的action，作为python类来调用。</p>
+<ul>
+<li>intents：NLU模型识别的意图；</li>
+<li>entities：NLU模型识别的实体；</li>
+<li>actions：机器人说和做的内容，比如问候对方、调用某个API、查询数据库等；</li>
+<li>slots：用来跟踪上下文和多轮对话的关键信息，具体参考slot types；</li>
+<li>templates：说话模板。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">intents:#定义意图</span><br><span class="line"> - greet</span><br><span class="line"> - goodbye</span><br><span class="line"> - chat</span><br><span class="line"> </span><br><span class="line">entities:</span><br><span class="line"> - action</span><br><span class="line"> </span><br><span class="line">templates:#表示对于相应的意图采取什么样的回复</span><br><span class="line">  utter_greet:</span><br><span class="line">    - &quot;hello!&quot;</span><br><span class="line">  utter_goodbye:</span><br><span class="line">    - &quot;byebye :(&quot;</span><br><span class="line">  utter_chat:</span><br><span class="line">    - &quot;It seems like funny!&quot;</span><br><span class="line"> </span><br><span class="line">actions:#定义bot可以采取的动作</span><br><span class="line">  - utter_greet</span><br><span class="line">  - utter_goodbye</span><br><span class="line">  - utter_chat</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong>pipline 的配置和选择</strong><br><a href="https://blog.csdn.net/ljp1919/article/details/103960020/" target="_blank" rel="noopener">https://blog.csdn.net/ljp1919/article/details/103960020/</a><br>源码里的方法，中文可选用crf<br><img src="/chatbot/rasa/2020-08-13-09-29-20.png" alt></p>
+<h4 id="1-1-4-rasa-core"><a href="#1-1-4-rasa-core" class="headerlink" title="1.1.4. rasa core"></a>1.1.4. rasa core</h4><p><a href="https://blog.csdn.net/ling620/article/details/99845885" target="_blank" rel="noopener">https://blog.csdn.net/ling620/article/details/99845885</a><br>Rasa Core包含两个内容： stories和domain。</p>
+<p>domain.yml：包括对话系统所适用的领域，包含意图集合，实体集合和相应集合<br>story.md：训练数据集合，原始对话在domain中的映射。</p>
+<h5 id="1-1-4-1-story"><a href="#1-1-4-1-story" class="headerlink" title="1.1.4.1. story"></a>1.1.4.1. story</h5><p>是人为定义了一条一条故事线，可以通过启用交互服务，自动拓展故事线。也可以直接在这里定义。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">## Generated Story No7</span><br><span class="line">* greet</span><br><span class="line">    - utter_greet</span><br><span class="line">* request_management&#123;&quot;package&quot;: &quot;\u5957\u9910&quot;&#125;</span><br><span class="line">    - slot&#123;&quot;package&quot;: &quot;\u5957\u9910&quot;&#125;</span><br><span class="line">    - utter_ask_package</span><br><span class="line">* inform&#123;&quot;package&quot;: &quot;\u5957\u9910\u4e00&quot;&#125;</span><br><span class="line">    - slot&#123;&quot;package&quot;: &quot;\u5957\u9910\u4e00&quot;&#125;</span><br><span class="line">    - utter_confirm</span><br><span class="line">* confirm</span><br><span class="line">    - utter_ack_management</span><br><span class="line">    - utter_ask_morehelp</span><br><span class="line">* deny</span><br><span class="line">    - utter_goodbye</span><br><span class="line">* thanks</span><br><span class="line">    - utter_thanks</span><br></pre></td></tr></table></figure></p>
+<h5 id="1-1-4-2-policy"><a href="#1-1-4-2-policy" class="headerlink" title="1.1.4.2. policy"></a>1.1.4.2. policy</h5><p><a href="https://www.jianshu.com/p/52c13eb39ab5" target="_blank" rel="noopener">https://www.jianshu.com/p/52c13eb39ab5</a><br><a href="https://www.jianshu.com/p/21808ac8d409" target="_blank" rel="noopener">https://www.jianshu.com/p/21808ac8d409</a><br>rasa内置的是keras Lstm 对每个时刻的对话状态进行学习，最终的目标是训练出policy模型。KerasPolicy的模型很简单 LSTM+Dense+softmax。导致的问题是我们需要不断地完善自己的story，把各种情况下的story进行补充，花费了大量的人工。</p>
+<p>所以后续会对policy策略进行复写和优化。更改模型或是增加一些调整策略。</p>
+<h3 id="1-2-中文支持的rasa-nlu"><a href="#1-2-中文支持的rasa-nlu" class="headerlink" title="1.2. 中文支持的rasa-nlu"></a>1.2. 中文支持的rasa-nlu</h3><h4 id="1-2-1-官网支持的方式"><a href="#1-2-1-官网支持的方式" class="headerlink" title="1.2.1. 官网支持的方式"></a>1.2.1. 官网支持的方式</h4><p>训练语料小于1000条可以采用mitie预训练中文词向量模型，默认可以加载wiki训练的词向量，大于1000条可以使用tensorflow_embedding，词向量转换后使用cos余弦相似度实现意图区分，但会有未登录词的问题。</p>
+<p><strong>nlp_mitie</strong><br>github贡献的中文rasa_nlu的配置文件常见的有两种，一种是 Rasa_NLU_Chi贡献的基于mitie预训练中文词向量模型，yml配置文件如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">language: &quot;zh&quot;</span><br><span class="line"></span><br><span class="line">pipeline:</span><br><span class="line">- name: &quot;nlp_mitie&quot;</span><br><span class="line">  model: &quot;data&#x2F;total_word_feature_extractor_zh.dat&quot;</span><br><span class="line">- name: &quot;tokenizer_jieba&quot;</span><br><span class="line">- name: &quot;ner_mitie&quot;</span><br><span class="line">- name: &quot;ner_synonyms&quot;</span><br><span class="line">- name: &quot;intent_entity_featurizer_regex&quot;</span><br><span class="line">- name: &quot;intent_classifier_mitie&quot;</span><br></pre></td></tr></table></figure><br><strong>安装mitie</strong><br>pip install git+<a href="https://github.com/mit-nlp/MITIE.git" target="_blank" rel="noopener">https://github.com/mit-nlp/MITIE.git</a><br>或<br>下载<a href="https://github.com/mit-nlp/MITIE.git" target="_blank" rel="noopener">https://github.com/mit-nlp/MITIE.git</a><br>安装cmake：pip install cmake -i <a href="http://pypi.douban.com/simple/" target="_blank" rel="noopener">http://pypi.douban.com/simple/</a>  —trusted-host pypi.douban.com<br>到手的是mitie已经从github上下载好的包。可以解压后。cmd到文件夹路径下，然后运行python setup.py build , 然后再运行python setup.py install 来安装。<br>最后, 直接pip install 文件夹的路径来安装</p>
+<p><strong>安装spacy</strong><br><a href="https://blog.csdn.net/wangyizhen_nju/article/details/93623123" target="_blank" rel="noopener">https://blog.csdn.net/wangyizhen_nju/article/details/93623123</a><br>pip install rasa[spacy]<br>英文：<br>python -m spacy download en_core_web_md<br>spacy link en_core_web_md en<br>中文：<br>python -m spacy download zh_core_web_sm(好像不行，用下面这个直接下载)<br><a href="https://github.com/howl-anderson/Chinese_models_for_SpaCy/releases" target="_blank" rel="noopener">https://github.com/howl-anderson/Chinese_models_for_SpaCy/releases</a><br>pip install zh_core_web_sm-2.x.x.tar.gz<br>python -m spacy link zh_core_web_sm zh</p>
+<p>config.yml<br><a href="https://rasa.com/docs/rasa/nlu/choosing-a-pipeline/" target="_blank" rel="noopener">https://rasa.com/docs/rasa/nlu/choosing-a-pipeline/</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">language: &quot;zh&quot;</span><br><span class="line">pipeline: &quot;pretrained_embeddings_spacy&quot;</span><br><span class="line"></span><br><span class="line">## is equal to </span><br><span class="line"></span><br><span class="line">language: &quot;zh&quot;</span><br><span class="line">pipeline:</span><br><span class="line">- name: &quot;SpacyNLP&quot;</span><br><span class="line">- name: &quot;SpacyTokenizer&quot;</span><br><span class="line">- name: &quot;SpacyFeaturizer&quot;</span><br><span class="line">- name: &quot;RegexFeaturizer&quot;</span><br><span class="line">- name: &quot;CRFEntityExtractor&quot;</span><br><span class="line">- name: &quot;EntitySynonymMapper&quot;</span><br><span class="line">- name: &quot;SklearnIntentClassifier&quot;</span><br></pre></td></tr></table></figure><br><strong>语料ui界面</strong><br><a href="https://github.com/paschmann/rasa-ui" target="_blank" rel="noopener">https://github.com/paschmann/rasa-ui</a><br><a href="https://rasahq.github.io/rasa-nlu-trainer/" target="_blank" rel="noopener">https://rasahq.github.io/rasa-nlu-trainer/</a></p>
+<h4 id="1-2-2-中文rasa项目（Rasa-NLU-Chi-复写中文支持的Rasa-NLU-）"><a href="#1-2-2-中文rasa项目（Rasa-NLU-Chi-复写中文支持的Rasa-NLU-）" class="headerlink" title="1.2.2. 中文rasa项目（Rasa_NLU_Chi 复写中文支持的Rasa NLU ）"></a>1.2.2. 中文rasa项目（Rasa_NLU_Chi 复写中文支持的Rasa NLU ）</h4><p>参考：  <a href="https://blog.csdn.net/ling620/article/details/99845885" target="_blank" rel="noopener">https://blog.csdn.net/ling620/article/details/99845885</a></p>
+<p>Rasa NLU曾经是一个独立的库，但它现在是Rasa框架的一部分。</p>
+<p>Rasa_NLU是一个开源的、可本地部署并配套有语料标注工具RASA NLU Trainer。其本身可支持任何语言，中文因其特殊性需要加入特定的tokenizer作为整个流程的一部分。</p>
+<p>Rasa_NLU_Chi 作为 Rasa_NLU 的一个 fork 版本，加入了jieba 作为中文的 tokenizer，实现了中文支持。可以理解为相当于rasa init后的项目<br>中文支持下载地址：<a href="https://github.com/crownpku/Rasa_NLU_Chi" target="_blank" rel="noopener">https://github.com/crownpku/Rasa_NLU_Chi</a></p>
+<p>该部分简单介绍基于 Rasa_NLU_Chi 构建一个本地部署的特定领域的中文 NLU 系统的过程。</p>
+<p><strong>注意sklearn和numpy的版本号，否则运行过程中报 shape()不匹配的错误！</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 训练模型</span><br><span class="line">python -m rasa_nlu.train -c sample_configs&#x2F;config_jieba_mitie_sklearn.yml --data data&#x2F;examples&#x2F;rasa&#x2F;demo-rasa_zh.json --path models</span><br><span class="line"></span><br><span class="line"># 运行nlu服务</span><br><span class="line">python -m rasa_nlu.server -c sample_configs&#x2F;config_jieba_mitie_sklearn.yml --path models</span><br></pre></td></tr></table></figure><br>训练过程demo里的Pipline自动化选取了crf的参数，也可以在自定义组件的时候将训练参数作为pipline的参数传递进来。</p>
+<p>启动服务，用postman看一下rasa-nlu的输出：<br><img src="/chatbot/rasa/2020-08-18-09-50-57.png" alt></p>
+<h4 id="1-2-3-中文rasa项目（rasa-nlu-gao自定义组件）"><a href="#1-2-3-中文rasa项目（rasa-nlu-gao自定义组件）" class="headerlink" title="1.2.3. 中文rasa项目（rasa-nlu-gao自定义组件）"></a>1.2.3. 中文rasa项目（rasa-nlu-gao自定义组件）</h4><p>rasa对话系统踩坑记<br><a href="https://www.jianshu.com/p/5d9aa2a444a3" target="_blank" rel="noopener">https://www.jianshu.com/p/5d9aa2a444a3</a><br>项目代码：<br><a href="https://github.com/GaoQ1/rasa_chatbot_cn" target="_blank" rel="noopener">https://github.com/GaoQ1/rasa_chatbot_cn</a><br>magic function :<br><a href="https://github.com/GaoQ1/rasa_nlu_gq" target="_blank" rel="noopener">https://github.com/GaoQ1/rasa_nlu_gq</a><br>可以安装直接用，也可以拷贝下来在这个基础上参考它实现的方式再完善自己系统的继续拓展方法。</p>
+<h3 id="1-3-Pros-and-Cons"><a href="#1-3-Pros-and-Cons" class="headerlink" title="1.3. Pros and  Cons"></a>1.3. Pros and  Cons</h3><p><strong>Pros</strong></p>
+<ol>
+<li>Story 对话流程结构清晰</li>
+<li>相对完整的对话工具</li>
+<li>集成好的情况下，用户配置较灵活<br><img src="/chatbot/rasa/2020-08-21-15-37-41.png" alt></li>
+</ol>
+<p><strong>Cons</strong></p>
+<ol>
+<li>基于机器学习，需要自定义的组件太多<ul>
+<li>源码中文支持不好，rasa-nlu模块需要替换为自定义的中文模块</li>
+<li>NLU内嵌的算法较固定，如果选用其他模型，需要自定义延展</li>
+<li>状态policy需要根据自己的系统需求进行自定义</li>
+</ul>
+</li>
+<li>受框架限制，延展相对不灵活<ul>
+<li>外部语料的嵌入</li>
+</ul>
+</li>
+</ol>
+<h3 id="1-4-迁移需要考虑的问题"><a href="#1-4-迁移需要考虑的问题" class="headerlink" title="1.4. 迁移需要考虑的问题"></a>1.4. 迁移需要考虑的问题</h3><ol>
+<li>语料需要重新标注，以前有些从逻辑上解决的问题转换成了语料问题</li>
+<li>需要词向量训练</li>
+<li>一个槽位多值的问题实现的效果</li>
+<li>拼音转换（文本纠错）是否可以嵌入RASA</li>
+<li>训练语料和分词器是否必须保持一致</li>
+<li>自定义扩展的实现</li>
+<li>槽位推荐的模块</li>
+</ol>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://tlylft.github.io/chatbot/rasa/" title="Rasa" target="_blank" rel="external">https://tlylft.github.io/chatbot/rasa/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/tlylft" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.png" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/tlylft" target="_blank"><span class="text-dark">Icey</span><small class="ml-1x">小傻瓜,别回头</small></a></h3>
+        <div>以梦为马，随处可栖。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/knowledge_graph/kg_intro/" title="知识图谱简介"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/NLP/bert/bert_classification/" title="bert 用于分类问题"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>感谢您的支持，我会继续努力的!</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechatpayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> 支付宝</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> 微信支付</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/tlylft?tab=repositories" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="https://www.weibo.com/tlylft/profile?rightmod=1&wvr=6&mod=personinfo" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://www.facebook.com/profile.php?id=100009783614101" target="_blank" title="Facebook" data-toggle=tooltip data-placement=top><i class="icon icon-facebook"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: 'eL0FL59XsOPmrzo5OTb0zhgE-gzGzoHsz',
+    appKey: '53Yf97Qf3bKKWC81Bh4EM9oY',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: true
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!-- <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
+</html>
