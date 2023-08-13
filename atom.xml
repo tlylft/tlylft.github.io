@@ -38,32 +38,6 @@
   </entry>
   
   <entry>
-    <title>强化学习（3）-RLHF基于人类反馈的强化学习</title>
-    <link href="https://tlylft.github.io/reinforcement_learning/03_rf_rlhf/"/>
-    <id>https://tlylft.github.io/reinforcement_learning/03_rf_rlhf/</id>
-    <published>2023-08-09T09:13:54.000Z</published>
-    <updated>2023-08-10T00:49:44.092Z</updated>
-    
-    <content type="html"><![CDATA[<p>简单介绍：<br><a href="https://www.bilibili.com/video/BV1eT411S7Yx" target="_blank" rel="noopener">ChatGPT狂飙：强化学习RLHF与PPO！【ChatGPT】原理第02篇</a><br><a href="https://www.bilibili.com/video/BV1Uv4y1V7Ec" target="_blank" rel="noopener">LLM大型语言模型如何进行微调？ RLHF强化学习代码解读</a></p><h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>finetuning 20B LLM, 微调大语言模型超过200亿参数的模型是非常困难的，需要大量的语料，否则参数调不动起不到效果，于是提出了RLHF(Reinforcement Learning  Human Feedback)强化学习的微调方式，强化学习通过人类反馈来训练大语言模型，从而提高大语言模型的性能。</p><p>实际上，RLHF(Reinforcement Learning with Human Feedback)这一概念最早被定义为基于人类反馈的强化学习，它最早是在2008年<a href="https://arxiv.org/pdf/1706.03741" target="_blank" rel="noopener">《TAMER：Training an Agent Manually via Evaluative Reinforcement》</a>一文中被提及的.<br>在2017年前后，深度强化学习(Deep Reinforcement Learning)逐渐发展并流行起来，如你所见，2017年6月由OpenAI联合Google DeepMind一块推出：基于人类偏好的深度强化学习《Deep Reinforcement Learning from Human Preferences》，也简称RLHF</p><p>huggingface 提供了trl开源库，实现微调大语言模型的方式。<a href="https://github.com/lvwerra/trl/tree/main/examples" target="_blank" rel="noopener">https://github.com/lvwerra/trl/tree/main/examples</a></p><h1 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a>实现方式</h1><p>简单说明：<br>首先，得到一个预训练语言模型的输出结果，然后，通过人类反馈对模型打分，将对输出结果的评分作为reward，来训练一个RL模型，得到新的模型参数。</p><p>也可以通过这种方式做指令微调，根据不同的指令设置不同的reward.</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;简单介绍：&lt;br&gt;&lt;a href=&quot;https://www.bilibili.com/video/BV1eT411S7Yx&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;ChatGPT狂飙：强化学习RLHF与PPO！【ChatGPT】原理第02篇&lt;/a&gt;&lt;
-      
-    
-    </summary>
-    
-    
-      <category term="强化学习" scheme="https://tlylft.github.io/categories/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-      <category term="强化学习" scheme="https://tlylft.github.io/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/"/>
-    
-  </entry>
-  
-  <entry>
     <title>强化学习（2）-马尔科夫决策过程MDP</title>
     <link href="https://tlylft.github.io/reinforcement_learning/02_rf_mdp/"/>
     <id>https://tlylft.github.io/reinforcement_learning/02_rf_mdp/</id>
@@ -78,6 +52,32 @@
       
         &lt;blockquote&gt;
 &lt;p&gt;强化学习极简入门1.2：&lt;a href=&quot;https://blog.csdn.net/v_JULY_v/article/details/128965854&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://blog.c
+      
+    
+    </summary>
+    
+    
+      <category term="强化学习" scheme="https://tlylft.github.io/categories/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="强化学习" scheme="https://tlylft.github.io/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>强化学习（3）-RLHF基于人类反馈的强化学习</title>
+    <link href="https://tlylft.github.io/reinforcement_learning/03_rf_rlhf/"/>
+    <id>https://tlylft.github.io/reinforcement_learning/03_rf_rlhf/</id>
+    <published>2023-08-09T09:13:54.000Z</published>
+    <updated>2023-08-10T00:49:44.092Z</updated>
+    
+    <content type="html"><![CDATA[<p>简单介绍：<br><a href="https://www.bilibili.com/video/BV1eT411S7Yx" target="_blank" rel="noopener">ChatGPT狂飙：强化学习RLHF与PPO！【ChatGPT】原理第02篇</a><br><a href="https://www.bilibili.com/video/BV1Uv4y1V7Ec" target="_blank" rel="noopener">LLM大型语言模型如何进行微调？ RLHF强化学习代码解读</a></p><h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>finetuning 20B LLM, 微调大语言模型超过200亿参数的模型是非常困难的，需要大量的语料，否则参数调不动起不到效果，于是提出了RLHF(Reinforcement Learning  Human Feedback)强化学习的微调方式，强化学习通过人类反馈来训练大语言模型，从而提高大语言模型的性能。</p><p>实际上，RLHF(Reinforcement Learning with Human Feedback)这一概念最早被定义为基于人类反馈的强化学习，它最早是在2008年<a href="https://arxiv.org/pdf/1706.03741" target="_blank" rel="noopener">《TAMER：Training an Agent Manually via Evaluative Reinforcement》</a>一文中被提及的.<br>在2017年前后，深度强化学习(Deep Reinforcement Learning)逐渐发展并流行起来，如你所见，2017年6月由OpenAI联合Google DeepMind一块推出：基于人类偏好的深度强化学习《Deep Reinforcement Learning from Human Preferences》，也简称RLHF</p><p>huggingface 提供了trl开源库，实现微调大语言模型的方式。<a href="https://github.com/lvwerra/trl/tree/main/examples" target="_blank" rel="noopener">https://github.com/lvwerra/trl/tree/main/examples</a></p><h1 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a>实现方式</h1><p>简单说明：<br>首先，得到一个预训练语言模型的输出结果，然后，通过人类反馈对模型打分，将对输出结果的评分作为reward，来训练一个RL模型，得到新的模型参数。</p><p>也可以通过这种方式做指令微调，根据不同的指令设置不同的reward.</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;简单介绍：&lt;br&gt;&lt;a href=&quot;https://www.bilibili.com/video/BV1eT411S7Yx&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;ChatGPT狂飙：强化学习RLHF与PPO！【ChatGPT】原理第02篇&lt;/a&gt;&lt;
       
     
     </summary>
@@ -284,6 +284,32 @@
   </entry>
   
   <entry>
+    <title>LLM（3）- chatgpt</title>
+    <link href="https://tlylft.github.io/LLM/03_chatgpt/"/>
+    <id>https://tlylft.github.io/LLM/03_chatgpt/</id>
+    <published>2023-05-16T00:52:19.000Z</published>
+    <updated>2023-08-10T09:30:33.201Z</updated>
+    
+    <content type="html"><![CDATA[<p><a href="https://github.com/shizhediao/ChatGPTPapers" target="_blank" rel="noopener">https://github.com/shizhediao/ChatGPTPapers</a><br>CSDN Blogs：<a href="https://blog.csdn.net/ganxiwu9686" target="_blank" rel="noopener">https://blog.csdn.net/ganxiwu9686</a><br>Zhihu Column: <a href="https://zhuanlan.zhihu.com/p/58108759" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/58108759</a></p><h1 id="类chatgpt模型"><a href="#类chatgpt模型" class="headerlink" title="类chatgpt模型"></a>类chatgpt模型</h1><p>openAI: gpt3.0<br>openAI: gpt3.5 更大的数据量+context learning， 用2021年之前的数据进行的训练<br>复旦：Moss</p><p>2023.03.15 google AI<br>2023.03.15 openAI gpt4.0<br>2023.03.16 百度 文心一言<br>2023.03.16 微软 Copilot<br>2023.03.22 google bardd<br>2023.03.22 github Copilot X<br>2023.03.23 openAI 插件功能，赋予chatgpt使用工具、联网、运算的能力</p><h1 id="chatGPT基本概念"><a href="#chatGPT基本概念" class="headerlink" title="chatGPT基本概念"></a>chatGPT基本概念</h1><p>chat Generative Pre-trained Transformer</p><h2 id="动机"><a href="#动机" class="headerlink" title="动机"></a>动机</h2><ul><li>之前的大规模模型(bert,bass)在输出方面和人类真实想要的结果往往无法很好对齐。</li><li>ChatGPT的一个主要训练方法是在GPT3的基础之上，通过人类提供反馈的强化学习(Reinforcement Learning from Human Feedback（RLHF）)，来让模型的输出逼近人类的意图。需要人工标注问答对的评分。</li><li>更加聚焦在人类的意图</li><li>他在很多任务上的表现效果都很好，同时他也会去拒绝用户提出的一些不合理，不合宜的请求。能够通过交互式的方式来逼近真实想要的结果。可以进一步对我们领域做一些数据增强的工作<h2 id="发展路线"><a href="#发展路线" class="headerlink" title="发展路线"></a>发展路线</h2><strong>instructGPT(基于提示学习的一系列模型)</strong>：通过设定prompt的模板，让模型输出模板的结果，而不需要进行参数的再学习，但要求设计出一套合理适用的模板，模板设计不好对输出结果有很大的影响，主要研究如何构造更好的模板让大模型进行理解。如： “这个电影剧情紧凑，非常感人” -&gt; 情感正向。 之前通过做意图训练和学习，但是prompt是让预训练模型输出完型填空：“这个电影剧情紧凑，非常感人，以上评述是说这是一个__电影” —&gt; 好<br><strong>GPT3.5(大规模预训练语言模型)</strong>，参数量超1750亿。高校、小公司做不起来。成本太高。结合prompt learning去做。<br>ChatGPT模型(高质量数据标注和反馈学习)， 专注于1. 如何用高质量数据对大规模模型进行微调 2. 如何结合人类反馈用强化学习逼近人类意图。<br><strong>ChatGPT模型</strong>高质量数据标注以及反馈学习<h2 id="技术手段"><a href="#技术手段" class="headerlink" title="技术手段"></a>技术手段</h2><img src="/LLM/03_chatgpt/2023-05-16-15-23-44.png" alt><strong>引入“人工标注数据+强化学习”</strong></li></ul><p>gpt用自回归的方式（transformer decoder）生成，侧重于做生成任务，bert用自编码的方式（transformer encoder）生成,侧重于做理解性任务<br><strong>step1： 收集高质量的数据，有监督微调语言模型</strong><br>为了让GPT 3.5初步具备理解指令中蕴含的意图，首先会从测试用户提交的prompt(就是指令或问题)中随机抽取一批，靠专业的标注人员，给出指定prompt的高质量答案，然后用这些人工标注好的<prompt,answer>数据来Fine-tune GPT 3.5模型</prompt,answer></p><p><strong>step2: 训练回报模型（Reward Model,RM）</strong></p><ol><li>随机抽样一批用户提交的prompt(大部分和第一阶段的相同)，使用第一阶段Fine-tune好的冷启动模型，对于每个prompt，由冷启动模型生成K个不同的回答，于是模型产生出了<prompt,answer1>,<prompt,answer2>….<prompt,answerK>数据</prompt,answerK></prompt,answer2></prompt,answer1></li><li>标注人员对K个结果按照很多标准（上面提到的相关性、富含信息性、有害信息等诸多标准）综合考虑进行排序打分</li></ol><p><strong>step3: 利用上一阶段学好的RM模型，靠RM打分结果来更新预训练模型参数</strong></p><ol><li>从用户提交的prompt里随机采样一批新的命令（指的是和第一第二阶段不同的新的prompt，相当于测试数据）</li><li>再使用PPO算法微调模型的参数</li><li>重复step2 和 step 3，反复迭代</li></ol><p>在一轮session对话中，会倾向于取悦用户的意图，如果反复强调1+1=3，模型会逐步接受，同意1+1=3，但释放对话后重新发起，它仍会返回1+1=2？  为什么</p><h2 id="存在的问题和可能的原因（局限性）"><a href="#存在的问题和可能的原因（局限性）" class="headerlink" title="存在的问题和可能的原因（局限性）"></a>存在的问题和可能的原因（局限性）</h2><p><strong>缺点</strong><br>以下的内容主要是来自于推特的一些失败案例，大致可以分成9类+Other<br> 推理 Reasoning： 空间推理（相对位置，导航等）物理推理和时间推理（时间发生先后顺序，事件持续时间）和心理推理（关于人物的行为或者心里要素）存在问题<br> 逻辑 Logic: 偏向于需要三段论、演绎、归纳，逐渐得到结论的过程<br> Math and Arithmetic：大数相乘，求根，计算能力(尤其是分数)，以及无理数的加减法存在问题<br> Factual Errors：有些简单的通过搜索引擎很容易找到答案，但是他会回答错误，数据基于2021年之前有关，而且基于概率计算，极大可能在编造事实。<br> Bias and Discrimination：种族偏见<br> Wit and Humor：没有幽默特性，但可以生成幽默的句子<br> Coding：可以提供一些功能性代码，但不能解决复杂的编程、以及复杂代码的debug<br> Syntactic Structure, Spelling, and Grammar：大部分可以解决，以字符为级别的往往回答错误，缺少字符集语义表示<br> Self Awareness：伦理问题，无自我意识</p><p><strong>可能的原因</strong></p><ul><li>缺乏世界模型——像ChatGPT这样的模型没有“世界模型”，因为它们对物理和社会世界没有全面的理解，也没有能力推理不同概念和实体之间的关系。他们只能根据从训练数据中学习到的模式生成文本。</li><li>缺乏检索模型——像ChatGPT这样的模型不具备从外部存储器或数据库检索信息的能力。这意味着他们可能无法准确回忆事实。（对一些历史事件回答错误）目前和Biying的结合已经能做了。但是下架了说明还有一些问题。</li><li>缺少字符级嵌入——许多像ChatGPT这样的模型都没有使用字符级嵌入进行训练。这可能会导致词汇表外的单词和拼写错误，以及对单词中不同字符之间的关系缺乏理解。（使用的词向量表示）</li><li>生成一些取悦人类的话术，无法评判生成数据的准确性<h2 id="意义"><a href="#意义" class="headerlink" title="意义"></a>意义</h2>chatgpt的成功，证明了大模型技术路线的正确性。意味着AI从之前大数据统计分类的阶段，走向类人逻辑沟通极端。<h1 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h1>文本分类/情感分析<br>序列标注：POS， 命名实体识别， 语义标注<br>句子关系判断：Entailment/QA/自然语言推理<br>生成式任务(机器翻译/文本摘要/ 智能问答）<br>其他应用：修复代码，写规划<br><img src="/LLM/03_chatgpt/2023-05-16-16-43-10.png" alt><h1 id="规模"><a href="#规模" class="headerlink" title="规模"></a>规模</h1>训练数据：45TB<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1></li></ul><ol><li><a href="https://openai.com/" target="_blank" rel="noopener">https://openai.com/</a><br>gpt-3.5-turbo模型 1000token(请求和返回) 0.0002美元</li><li>new bing<br>输入：2000字符<br>指令：简洁明了，明确目的</li></ol><p><strong>区分gpt3.5和4.0</strong><br>问：鲁迅为什么暴打周树人？<br>3.5：#@￥I#$(#的理由<br>4.0：鲁迅和周树人是一个人<br>问：树上9只鸟，打掉一只，还剩几只？<br>3.5:8只<br>4.0: 0只，其他被吓跑了</p><h1 id="微调"><a href="#微调" class="headerlink" title="微调"></a>微调</h1><p>微调： 1w句子左右</p><h1 id="未来展望"><a href="#未来展望" class="headerlink" title="未来展望"></a>未来展望</h1>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;a href=&quot;https://github.com/shizhediao/ChatGPTPapers&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://github.com/shizhediao/ChatGPTPapers&lt;/a&gt;&lt;br&gt;C
+      
+    
+    </summary>
+    
+    
+      <category term="LLM" scheme="https://tlylft.github.io/categories/LLM/"/>
+    
+    
+      <category term="LLM" scheme="https://tlylft.github.io/tags/LLM/"/>
+    
+  </entry>
+  
+  <entry>
     <title>LLM（6）-BARD</title>
     <link href="https://tlylft.github.io/LLM/06_bard/"/>
     <id>https://tlylft.github.io/LLM/06_bard/</id>
@@ -302,32 +328,6 @@
 &lt;li&gt;&lt;p&gt;联网，时效性强，依靠强大的Google搜索引擎，bard能够搜索到实时的信息，例如今天的新闻、今天的比赛比分等&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;p&gt;谷歌希望将Bard打造成谷歌全家桶的入口，
-      
-    
-    </summary>
-    
-    
-      <category term="LLM" scheme="https://tlylft.github.io/categories/LLM/"/>
-    
-    
-      <category term="LLM" scheme="https://tlylft.github.io/tags/LLM/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>LLM（3）- chatgpt</title>
-    <link href="https://tlylft.github.io/LLM/03_chatgpt/"/>
-    <id>https://tlylft.github.io/LLM/03_chatgpt/</id>
-    <published>2023-05-16T00:52:19.000Z</published>
-    <updated>2023-08-10T09:30:33.201Z</updated>
-    
-    <content type="html"><![CDATA[<p><a href="https://github.com/shizhediao/ChatGPTPapers" target="_blank" rel="noopener">https://github.com/shizhediao/ChatGPTPapers</a><br>CSDN Blogs：<a href="https://blog.csdn.net/ganxiwu9686" target="_blank" rel="noopener">https://blog.csdn.net/ganxiwu9686</a><br>Zhihu Column: <a href="https://zhuanlan.zhihu.com/p/58108759" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/58108759</a></p><h1 id="类chatgpt模型"><a href="#类chatgpt模型" class="headerlink" title="类chatgpt模型"></a>类chatgpt模型</h1><p>openAI: gpt3.0<br>openAI: gpt3.5 更大的数据量+context learning， 用2021年之前的数据进行的训练<br>复旦：Moss</p><p>2023.03.15 google AI<br>2023.03.15 openAI gpt4.0<br>2023.03.16 百度 文心一言<br>2023.03.16 微软 Copilot<br>2023.03.22 google bardd<br>2023.03.22 github Copilot X<br>2023.03.23 openAI 插件功能，赋予chatgpt使用工具、联网、运算的能力</p><h1 id="chatGPT基本概念"><a href="#chatGPT基本概念" class="headerlink" title="chatGPT基本概念"></a>chatGPT基本概念</h1><p>chat Generative Pre-trained Transformer</p><h2 id="动机"><a href="#动机" class="headerlink" title="动机"></a>动机</h2><ul><li>之前的大规模模型(bert,bass)在输出方面和人类真实想要的结果往往无法很好对齐。</li><li>ChatGPT的一个主要训练方法是在GPT3的基础之上，通过人类提供反馈的强化学习(Reinforcement Learning from Human Feedback（RLHF）)，来让模型的输出逼近人类的意图。需要人工标注问答对的评分。</li><li>更加聚焦在人类的意图</li><li>他在很多任务上的表现效果都很好，同时他也会去拒绝用户提出的一些不合理，不合宜的请求。能够通过交互式的方式来逼近真实想要的结果。可以进一步对我们领域做一些数据增强的工作<h2 id="发展路线"><a href="#发展路线" class="headerlink" title="发展路线"></a>发展路线</h2><strong>instructGPT(基于提示学习的一系列模型)</strong>：通过设定prompt的模板，让模型输出模板的结果，而不需要进行参数的再学习，但要求设计出一套合理适用的模板，模板设计不好对输出结果有很大的影响，主要研究如何构造更好的模板让大模型进行理解。如： “这个电影剧情紧凑，非常感人” -&gt; 情感正向。 之前通过做意图训练和学习，但是prompt是让预训练模型输出完型填空：“这个电影剧情紧凑，非常感人，以上评述是说这是一个__电影” —&gt; 好<br><strong>GPT3.5(大规模预训练语言模型)</strong>，参数量超1750亿。高校、小公司做不起来。成本太高。结合prompt learning去做。<br>ChatGPT模型(高质量数据标注和反馈学习)， 专注于1. 如何用高质量数据对大规模模型进行微调 2. 如何结合人类反馈用强化学习逼近人类意图。<br><strong>ChatGPT模型</strong>高质量数据标注以及反馈学习<h2 id="技术手段"><a href="#技术手段" class="headerlink" title="技术手段"></a>技术手段</h2><img src="/LLM/03_chatgpt/2023-05-16-15-23-44.png" alt><strong>引入“人工标注数据+强化学习”</strong></li></ul><p>gpt用自回归的方式（transformer decoder）生成，侧重于做生成任务，bert用自编码的方式（transformer encoder）生成,侧重于做理解性任务<br><strong>step1： 收集高质量的数据，有监督微调语言模型</strong><br>为了让GPT 3.5初步具备理解指令中蕴含的意图，首先会从测试用户提交的prompt(就是指令或问题)中随机抽取一批，靠专业的标注人员，给出指定prompt的高质量答案，然后用这些人工标注好的<prompt,answer>数据来Fine-tune GPT 3.5模型</prompt,answer></p><p><strong>step2: 训练回报模型（Reward Model,RM）</strong></p><ol><li>随机抽样一批用户提交的prompt(大部分和第一阶段的相同)，使用第一阶段Fine-tune好的冷启动模型，对于每个prompt，由冷启动模型生成K个不同的回答，于是模型产生出了<prompt,answer1>,<prompt,answer2>….<prompt,answerK>数据</prompt,answerK></prompt,answer2></prompt,answer1></li><li>标注人员对K个结果按照很多标准（上面提到的相关性、富含信息性、有害信息等诸多标准）综合考虑进行排序打分</li></ol><p><strong>step3: 利用上一阶段学好的RM模型，靠RM打分结果来更新预训练模型参数</strong></p><ol><li>从用户提交的prompt里随机采样一批新的命令（指的是和第一第二阶段不同的新的prompt，相当于测试数据）</li><li>再使用PPO算法微调模型的参数</li><li>重复step2 和 step 3，反复迭代</li></ol><p>在一轮session对话中，会倾向于取悦用户的意图，如果反复强调1+1=3，模型会逐步接受，同意1+1=3，但释放对话后重新发起，它仍会返回1+1=2？  为什么</p><h2 id="存在的问题和可能的原因（局限性）"><a href="#存在的问题和可能的原因（局限性）" class="headerlink" title="存在的问题和可能的原因（局限性）"></a>存在的问题和可能的原因（局限性）</h2><p><strong>缺点</strong><br>以下的内容主要是来自于推特的一些失败案例，大致可以分成9类+Other<br> 推理 Reasoning： 空间推理（相对位置，导航等）物理推理和时间推理（时间发生先后顺序，事件持续时间）和心理推理（关于人物的行为或者心里要素）存在问题<br> 逻辑 Logic: 偏向于需要三段论、演绎、归纳，逐渐得到结论的过程<br> Math and Arithmetic：大数相乘，求根，计算能力(尤其是分数)，以及无理数的加减法存在问题<br> Factual Errors：有些简单的通过搜索引擎很容易找到答案，但是他会回答错误，数据基于2021年之前有关，而且基于概率计算，极大可能在编造事实。<br> Bias and Discrimination：种族偏见<br> Wit and Humor：没有幽默特性，但可以生成幽默的句子<br> Coding：可以提供一些功能性代码，但不能解决复杂的编程、以及复杂代码的debug<br> Syntactic Structure, Spelling, and Grammar：大部分可以解决，以字符为级别的往往回答错误，缺少字符集语义表示<br> Self Awareness：伦理问题，无自我意识</p><p><strong>可能的原因</strong></p><ul><li>缺乏世界模型——像ChatGPT这样的模型没有“世界模型”，因为它们对物理和社会世界没有全面的理解，也没有能力推理不同概念和实体之间的关系。他们只能根据从训练数据中学习到的模式生成文本。</li><li>缺乏检索模型——像ChatGPT这样的模型不具备从外部存储器或数据库检索信息的能力。这意味着他们可能无法准确回忆事实。（对一些历史事件回答错误）目前和Biying的结合已经能做了。但是下架了说明还有一些问题。</li><li>缺少字符级嵌入——许多像ChatGPT这样的模型都没有使用字符级嵌入进行训练。这可能会导致词汇表外的单词和拼写错误，以及对单词中不同字符之间的关系缺乏理解。（使用的词向量表示）</li><li>生成一些取悦人类的话术，无法评判生成数据的准确性<h2 id="意义"><a href="#意义" class="headerlink" title="意义"></a>意义</h2>chatgpt的成功，证明了大模型技术路线的正确性。意味着AI从之前大数据统计分类的阶段，走向类人逻辑沟通极端。<h1 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h1>文本分类/情感分析<br>序列标注：POS， 命名实体识别， 语义标注<br>句子关系判断：Entailment/QA/自然语言推理<br>生成式任务(机器翻译/文本摘要/ 智能问答）<br>其他应用：修复代码，写规划<br><img src="/LLM/03_chatgpt/2023-05-16-16-43-10.png" alt><h1 id="规模"><a href="#规模" class="headerlink" title="规模"></a>规模</h1>训练数据：45TB<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1></li></ul><ol><li><a href="https://openai.com/" target="_blank" rel="noopener">https://openai.com/</a><br>gpt-3.5-turbo模型 1000token(请求和返回) 0.0002美元</li><li>new bing<br>输入：2000字符<br>指令：简洁明了，明确目的</li></ol><p><strong>区分gpt3.5和4.0</strong><br>问：鲁迅为什么暴打周树人？<br>3.5：#@￥I#$(#的理由<br>4.0：鲁迅和周树人是一个人<br>问：树上9只鸟，打掉一只，还剩几只？<br>3.5:8只<br>4.0: 0只，其他被吓跑了</p><h1 id="微调"><a href="#微调" class="headerlink" title="微调"></a>微调</h1><p>微调： 1w句子左右</p><h1 id="未来展望"><a href="#未来展望" class="headerlink" title="未来展望"></a>未来展望</h1>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;&lt;a href=&quot;https://github.com/shizhediao/ChatGPTPapers&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://github.com/shizhediao/ChatGPTPapers&lt;/a&gt;&lt;br&gt;C
       
     
     </summary>
@@ -396,6 +396,33 @@
   </entry>
   
   <entry>
+    <title>爬虫加密算法</title>
+    <link href="https://tlylft.github.io/crawler/encryption/"/>
+    <id>https://tlylft.github.io/crawler/encryption/</id>
+    <published>2023-04-17T12:54:58.000Z</published>
+    <updated>2023-08-11T09:11:06.013Z</updated>
+    
+    <content type="html"><![CDATA[<p>这个网站可以查看很多加密算法的结果：<br><a href="https://spidertools.cn/#/crypto" target="_blank" rel="noopener">https://spidertools.cn/#/crypto</a></p><h1 id="base64"><a href="#base64" class="headerlink" title="base64"></a>base64</h1><p>是一种编码，不算加密，<strong>一般末尾会有个等号</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">                      u         p</span><br><span class="line">ASCII码对应16进制数据  7  5     7      0</span><br><span class="line">转换成2进制         0111 0101  0111 0000</span><br><span class="line">按6位重组数据       011101  010111 0000(00 000000)  不足六位进行补00  再补六个0</span><br><span class="line">转换成10进制         29     23       A       &#x3D;    补位为等号</span><br><span class="line">最终结果              dXA&#x3D;</span><br></pre></td></tr></table></figure></p><h1 id="md5"><a href="#md5" class="headerlink" title="md5"></a>md5</h1><p>信息摘要算法，可用于文本表示， 可以产出一个128位（16字节）的散列值，表示为16进制<strong>是32位</strong>。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">md5_test</span><span class="params">(text)</span>:</span></span><br><span class="line">    result = hashlib.md5(text.encode(<span class="string">'utf-8'</span>).hexdigest())</span><br></pre></td></tr></table></figure></p><h1 id="SHA-1"><a href="#SHA-1" class="headerlink" title="SHA-1"></a>SHA-1</h1><p>sha-1通常长度为16进制是40位<br>sha-224通常长度为16进制是56位<br>sha-256通常长度为16进制是64位<br>sha-384通常长度为16进制是96位<br>sha-512通常长度为16进制是128位<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">SHA_test</span><span class="params">(text)</span>:</span></span><br><span class="line">    result = hashlib.sha1(text.encode(<span class="string">'utf-8'</span>).hexdigest())</span><br><span class="line">    result = hashlib.sha224(text.encode(<span class="string">'utf-8'</span>).hexdigest())</span><br><span class="line">    result = hashlib.sha246(text.encode(<span class="string">'utf-8'</span>).hexdigest())</span><br></pre></td></tr></table></figure></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;这个网站可以查看很多加密算法的结果：&lt;br&gt;&lt;a href=&quot;https://spidertools.cn/#/crypto&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://spidertools.cn/#/crypto&lt;/a&gt;&lt;/p&gt;
+&lt;h
+      
+    
+    </summary>
+    
+    
+      <category term="爬虫" scheme="https://tlylft.github.io/categories/%E7%88%AC%E8%99%AB/"/>
+    
+    
+      <category term="爬虫" scheme="https://tlylft.github.io/tags/%E7%88%AC%E8%99%AB/"/>
+    
+  </entry>
+  
+  <entry>
     <title>charles 抓包工具</title>
     <link href="https://tlylft.github.io/crawler/charles/"/>
     <id>https://tlylft.github.io/crawler/charles/</id>
@@ -412,33 +439,6 @@
 &lt;p&gt;proxy配置&lt;/p&gt;
 &lt;p&gt;手机代理：&lt;br&gt;下载夜游模拟器，设置网络无线代理为windows的ip地址。&lt;/p&gt;
 &lt;p&gt;打开浏览器： charles.pro/ssl 下载证书，&lt;br&gt;在手机设置，从sd卡安装，安装刚下载的证书
-      
-    
-    </summary>
-    
-    
-      <category term="爬虫" scheme="https://tlylft.github.io/categories/%E7%88%AC%E8%99%AB/"/>
-    
-    
-      <category term="爬虫" scheme="https://tlylft.github.io/tags/%E7%88%AC%E8%99%AB/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>爬虫加密算法</title>
-    <link href="https://tlylft.github.io/crawler/encryption/"/>
-    <id>https://tlylft.github.io/crawler/encryption/</id>
-    <published>2023-04-17T12:54:58.000Z</published>
-    <updated>2023-08-11T09:11:06.013Z</updated>
-    
-    <content type="html"><![CDATA[<p>这个网站可以查看很多加密算法的结果：<br><a href="https://spidertools.cn/#/crypto" target="_blank" rel="noopener">https://spidertools.cn/#/crypto</a></p><h1 id="base64"><a href="#base64" class="headerlink" title="base64"></a>base64</h1><p>是一种编码，不算加密，<strong>一般末尾会有个等号</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">                      u         p</span><br><span class="line">ASCII码对应16进制数据  7  5     7      0</span><br><span class="line">转换成2进制         0111 0101  0111 0000</span><br><span class="line">按6位重组数据       011101  010111 0000(00 000000)  不足六位进行补00  再补六个0</span><br><span class="line">转换成10进制         29     23       A       &#x3D;    补位为等号</span><br><span class="line">最终结果              dXA&#x3D;</span><br></pre></td></tr></table></figure></p><h1 id="md5"><a href="#md5" class="headerlink" title="md5"></a>md5</h1><p>信息摘要算法，可用于文本表示， 可以产出一个128位（16字节）的散列值，表示为16进制<strong>是32位</strong>。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">md5_test</span><span class="params">(text)</span>:</span></span><br><span class="line">    result = hashlib.md5(text.encode(<span class="string">'utf-8'</span>).hexdigest())</span><br></pre></td></tr></table></figure></p><h1 id="SHA-1"><a href="#SHA-1" class="headerlink" title="SHA-1"></a>SHA-1</h1><p>sha-1通常长度为16进制是40位<br>sha-224通常长度为16进制是56位<br>sha-256通常长度为16进制是64位<br>sha-384通常长度为16进制是96位<br>sha-512通常长度为16进制是128位<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">SHA_test</span><span class="params">(text)</span>:</span></span><br><span class="line">    result = hashlib.sha1(text.encode(<span class="string">'utf-8'</span>).hexdigest())</span><br><span class="line">    result = hashlib.sha224(text.encode(<span class="string">'utf-8'</span>).hexdigest())</span><br><span class="line">    result = hashlib.sha246(text.encode(<span class="string">'utf-8'</span>).hexdigest())</span><br></pre></td></tr></table></figure></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;这个网站可以查看很多加密算法的结果：&lt;br&gt;&lt;a href=&quot;https://spidertools.cn/#/crypto&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://spidertools.cn/#/crypto&lt;/a&gt;&lt;/p&gt;
-&lt;h
       
     
     </summary>
