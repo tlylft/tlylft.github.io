@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>【HIVE系列】01-HIVE 常用操作 | 小傻瓜别回头</title>
+  <meta name="description" content="参考资料：https:&#x2F;&#x2F;blog.csdn.net&#x2F;wisgood&#x2F;article&#x2F;details&#x2F;17376393http:&#x2F;&#x2F;ju.outofmemory.cn&#x2F;entry&#x2F;176408 1. 数据库操作（增删改查）1.1. 创建表  create table page_view  (       page_id bigint comment &#39;页面ID&#39;,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【HIVE系列】01-HIVE 常用操作">
+<meta property="og:url" content="https://tlylft.github.io/big_data/hive/hive-basic/index.html">
+<meta property="og:site_name" content="灵魂都失控">
+<meta property="og:description" content="参考资料：https:&#x2F;&#x2F;blog.csdn.net&#x2F;wisgood&#x2F;article&#x2F;details&#x2F;17376393http:&#x2F;&#x2F;ju.outofmemory.cn&#x2F;entry&#x2F;176408 1. 数据库操作（增删改查）1.1. 创建表  create table page_view  (       page_id bigint comment &#39;页面ID&#39;,">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-11-12T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-08-11T08:05:31.779Z">
+<meta property="article:author" content="Icey Liu">
+<meta property="article:tag" content="hive">
+<meta name="twitter:card" content="summary">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://tlylft.github.io/big_data/hive/hive-basic/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="灵魂都失控" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/images/avatar.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/tlylft" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.png" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">Icey</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">小傻瓜,别回头</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Hebei, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/tlylft?tab=repositories" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="https://www.weibo.com/tlylft/profile?rightmod=1&wvr=6&mod=personinfo" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://www.facebook.com/profile.php?id=100009783614101" target="_blank" title="Facebook" data-toggle=tooltip data-placement=top><i class="icon icon-facebook"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>Welcome!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/LLM/">LLM</a><span class="category-list-count">9</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/LLM/transformer/">transformer</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Leecode/">Leecode</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/">NLP</a><span class="category-list-count">62</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/NER/">NER</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/algorithm/">algorithm</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/bert/">bert</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/corrector/">corrector</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/label/">label</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/segment/">segment</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/sensitive/">sensitive</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/similarity/">similarity</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/word2vec/">word2vec</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/%E4%BF%A1%E6%81%AF%E6%8F%90%E5%8F%96/">信息提取</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/cv/">cv</a><span class="category-list-count">24</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/cv/pointcloud/">pointcloud</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/cv/segmentation/">segmentation</a><span class="category-list-count">11</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/deep-learning/">deep learning</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/knowledge-graph/">knowledge graph</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/machine-learning/">machine learning</a><span class="category-list-count">21</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/machine-learning/autoML/">autoML</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/machine-learning/time-series/">time series</a><span class="category-list-count">4</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/math/">math</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a><span class="category-list-count">53</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/python/Django/">Django</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/Flask/">Flask</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/keras/">keras</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/matplotlib/">matplotlib</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/pandas/">pandas</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/python/">python</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">环境搭建</a><span class="category-list-count">8</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/pytorch/">pytorch</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tensorflow/">tensorflow</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tools/">tools</a><span class="category-list-count">16</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/tools/ftp/">ftp</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tools/k8s/">k8s</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tools/kubernetes/">kubernetes</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tools/paper/">paper</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BA%A7%E5%93%81%E7%BB%8F%E7%90%86/">产品经理</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8A%80%E6%9C%AF/">大数据技术</a><span class="category-list-count">8</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8A%80%E6%9C%AF/hive/">hive</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8A%80%E6%9C%AF/kafka/">kafka</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8A%80%E6%9C%AF/mysql/">mysql</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AF%B9%E8%AF%9D%E7%B3%BB%E7%BB%9F/">对话系统</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/">强化学习</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB/">爬虫</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/">计算机视觉</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a><span class="category-list-count">13</span></li></ul>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/Anaconda/" style="font-size: 13px;">Anaconda</a> <a href="/tags/Django/" style="font-size: 13.14px;">Django</a> <a href="/tags/Docker/" style="font-size: 13px;">Docker</a> <a href="/tags/Flask/" style="font-size: 13.57px;">Flask</a> <a href="/tags/LLM/" style="font-size: 13.57px;">LLM</a> <a href="/tags/Leecode/" style="font-size: 13.14px;">Leecode</a> <a href="/tags/NER/" style="font-size: 13.36px;">NER</a> <a href="/tags/NLP/" style="font-size: 13.93px;">NLP</a> <a href="/tags/RASA/" style="font-size: 13.71px;">RASA</a> <a href="/tags/algorithm/" style="font-size: 13.29px;">algorithm</a> <a href="/tags/anaconda/" style="font-size: 13px;">anaconda</a> <a href="/tags/autoML/" style="font-size: 13px;">autoML</a> <a href="/tags/bert/" style="font-size: 13.64px;">bert</a> <a href="/tags/bert4keras/" style="font-size: 13.14px;">bert4keras</a> <a href="/tags/blog/" style="font-size: 13px;">blog</a> <a href="/tags/corrector/" style="font-size: 13.21px;">corrector</a> <a href="/tags/cv/" style="font-size: 13.79px;">cv</a> <a href="/tags/deep-learning/" style="font-size: 13.86px;">deep learning</a> <a href="/tags/doccano/" style="font-size: 13px;">doccano</a> <a href="/tags/docker/" style="font-size: 13.07px;">docker</a> <a href="/tags/git/" style="font-size: 13px;">git</a> <a href="/tags/github/" style="font-size: 13px;">github</a> <a href="/tags/hive/" style="font-size: 13.29px;">hive</a> <a href="/tags/k8s/" style="font-size: 13px;">k8s</a> <a href="/tags/kafka/" style="font-size: 13px;">kafka</a> <a href="/tags/keras/" style="font-size: 13px;">keras</a> <a href="/tags/kerberos/" style="font-size: 13px;">kerberos</a> <a href="/tags/knowledge-graph/" style="font-size: 13.5px;">knowledge graph</a> <a href="/tags/kubeflow/" style="font-size: 13px;">kubeflow</a> <a href="/tags/kubernetes/" style="font-size: 13px;">kubernetes</a> <a href="/tags/label/" style="font-size: 13.07px;">label</a> <a href="/tags/linux/" style="font-size: 13.5px;">linux</a> <a href="/tags/machine-learning/" style="font-size: 13.86px;">machine learning</a> <a href="/tags/math/" style="font-size: 13.14px;">math</a> <a href="/tags/matplotlib/" style="font-size: 13px;">matplotlib</a> <a href="/tags/mysql/" style="font-size: 13.07px;">mysql</a> <a href="/tags/navicat/" style="font-size: 13px;">navicat</a> <a href="/tags/neo4j/" style="font-size: 13.14px;">neo4j</a> <a href="/tags/nlp/" style="font-size: 13px;">nlp</a> <a href="/tags/numpy/" style="font-size: 13px;">numpy</a> <a href="/tags/paddle/" style="font-size: 13px;">paddle</a> <a href="/tags/pandas/" style="font-size: 13.21px;">pandas</a> <a href="/tags/pointcloud/" style="font-size: 13.07px;">pointcloud</a> <a href="/tags/ppt/" style="font-size: 13px;">ppt</a> <a href="/tags/pycharm/" style="font-size: 13.07px;">pycharm</a> <a href="/tags/python/" style="font-size: 14px;">python</a> <a href="/tags/pytorch/" style="font-size: 13.21px;">pytorch</a> <a href="/tags/segment/" style="font-size: 13.07px;">segment</a> <a href="/tags/segmentation/" style="font-size: 13.64px;">segmentation</a> <a href="/tags/sensitive/" style="font-size: 13.07px;">sensitive</a> <a href="/tags/similarity/" style="font-size: 13.43px;">similarity</a> <a href="/tags/tensorflow/" style="font-size: 13.07px;">tensorflow</a> <a href="/tags/time-series/" style="font-size: 13.07px;">time series</a> <a href="/tags/tools/" style="font-size: 13.64px;">tools</a> <a href="/tags/vp/" style="font-size: 13px;">vp</a> <a href="/tags/word2vec/" style="font-size: 13.36px;">word2vec</a> <a href="/tags/%E4%BA%A7%E5%93%81%E7%BB%8F%E7%90%86/" style="font-size: 13px;">产品经理</a> <a href="/tags/%E4%BF%A1%E6%81%AF%E6%8F%90%E5%8F%96/" style="font-size: 13.14px;">信息提取</a> <a href="/tags/%E5%AF%B9%E8%AF%9D%E7%B3%BB%E7%BB%9F/" style="font-size: 13.86px;">对话系统</a> <a href="/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" style="font-size: 13.14px;">强化学习</a> <a href="/tags/%E7%88%AC%E8%99%AB/" style="font-size: 13.07px;">爬虫</a> <a href="/tags/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" style="font-size: 13.5px;">环境搭建</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/" style="font-size: 13.36px;">计算机视觉</a> <a href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" style="font-size: 13.64px;">读书笔记</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">八月 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">七月 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">六月 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">五月 2023</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">四月 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">三月 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">二月 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">一月 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">十一月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">六月 2022</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/05/">五月 2022</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">四月 2022</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">三月 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">二月 2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">一月 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">十二月 2021</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">十一月 2021</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">十月 2021</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">八月 2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">六月 2021</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">一月 2021</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a><span class="archive-list-count">17</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a><span class="archive-list-count">24</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">9</span></li></ul>
+    </div>
+  </div>
+
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-big_data/hive/hive-basic" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      【HIVE系列】01-HIVE 常用操作
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/big_data/hive/hive-basic/" class="article-date">
+	  <time datetime="2018-11-13T12:20:31.000Z" itemprop="datePublished">创建于: 2018-11-13</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8A%80%E6%9C%AF/">大数据技术</a>►<a class="article-category-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8A%80%E6%9C%AF/hive/">hive</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/hive/" rel="tag">hive</a>
+  </span>
+
+
+        
+
+	<span class="article-read hidden-xs">
+    	<i class="icon icon-eye-fill" aria-hidden="true"></i>
+    	<span id="/big_data/hive/hive-basic/" class="leancloud_visitors"  data-flag-title="【HIVE系列】01-HIVE 常用操作">
+			<span class="leancloud-visitors-count">0</span>
+		</span>
+    </span>
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/big_data/hive/hive-basic/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <blockquote>
+<blockquote>
+<p>参考资料：<br><a href="https://blog.csdn.net/wisgood/article/details/17376393" target="_blank" rel="noopener">https://blog.csdn.net/wisgood/article/details/17376393</a><br><a href="http://ju.outofmemory.cn/entry/176408" target="_blank" rel="noopener">http://ju.outofmemory.cn/entry/176408</a></p>
+<h1 id="1-数据库操作（增删改查）"><a href="#1-数据库操作（增删改查）" class="headerlink" title="1. 数据库操作（增删改查）"></a>1. 数据库操作（增删改查）</h1><h2 id="1-1-创建表"><a href="#1-1-创建表" class="headerlink" title="1.1. 创建表"></a>1.1. 创建表</h2></blockquote>
+</blockquote>
+<pre><code>create table page_view  (  
+    page_id bigint comment &#39;页面ID&#39;,  
+    page_name string comment &#39;页面名称&#39;,  
+    page_url string comment &#39;页面URL&#39;  
+)  
+comment &#39;页面视图&#39;  
+partitioned by (ds string comment &#39;当前时间，用于分区字段&#39;)  
+ROW FORMAT DELIMITED FIELDS TERMINATED BY &#39;\001&#39; 
+stored as rcfile  
+location &#39;/user/hive/test&#39;;  
+</code></pre><h2 id="1-2-数据加载与插入"><a href="#1-2-数据加载与插入" class="headerlink" title="1.2. 数据加载与插入"></a>1.2. 数据加载与插入</h2><h4 id="1-2-1-文件导入数据"><a href="#1-2-1-文件导入数据" class="headerlink" title="1.2.1. 文件导入数据"></a>1.2.1. 文件导入数据</h4><pre><code>hive&gt; load data local inpath &#39;xiong.txt&#39; into table table_name;
+</code></pre><h4 id="1-2-2-其他表导入"><a href="#1-2-2-其他表导入" class="headerlink" title="1.2.2. 其他表导入"></a>1.2.2. 其他表导入</h4><pre><code>create table table_name as
+select * from a left join b on a.1=b.1
+</code></pre><h1 id="2-字符类型转换"><a href="#2-字符类型转换" class="headerlink" title="2. 字符类型转换"></a>2. 字符类型转换</h1><p>Hive也包括 隐式转换（implicit conversions）和显式转换（explicitly conversions）。  </p>
+<p>　　Hive在需要的时候将会对numeric类型的数据进行隐式转换。比如我们对两个不同数据类型的数字进行比较，假如一个数据类型是INT型，另一个 是SMALLINT类型，那么SMALLINT类型的数据将会被隐式转换地转换为INT类型，这个到底和Java中的一样；但是我们不能隐式地将一个INT类型的数据转换成SMALLINT或TINYINT类型的数据，这将会返回错误，除非你使用了CAST操作。</p>
+<p>　　任何整数类型都可以隐式地转换成一个范围更大的类型。TINYINT,SMALLINT,INT,BIGINT,FLOAT和STRING都可以隐式 地转换成DOUBLE；是的你没看出，STRING也可以隐式地转换成DOUBLE！但是BOOLEAN类型不能转换为其他任何数据类型！</p>
+<p>我们可以用CAST来显式的将一个类型的数据转换成另一个数据类型。</p>
+<h1 id="3-字符串操作"><a href="#3-字符串操作" class="headerlink" title="3. 字符串操作"></a>3. 字符串操作</h1><h2 id="3-1-文本替换"><a href="#3-1-文本替换" class="headerlink" title="3.1. 文本替换"></a>3.1. 文本替换</h2><pre><code>regexp_replace(&#39;2016-06-05 00:00:00.0&#39;, &#39;-&#39;, &#39;&#39;)  --第二个参数为正则表达式
+translate(description,&#39;\\t&#39;,&#39;&#39;)         --
+</code></pre><h2 id="3-2-字符串拼接"><a href="#3-2-字符串拼接" class="headerlink" title="3.2. 字符串拼接"></a>3.2. 字符串拼接</h2><h3 id="3-2-1-拼接函数"><a href="#3-2-1-拼接函数" class="headerlink" title="3.2.1. 拼接函数"></a>3.2.1. 拼接函数</h3><p><strong>concat(STRING|BINARY a, STRING|BINARY b…)</strong></p>
+<pre><code>select concat(&#39;abc&#39;,&#39;def&#39;,&#39;gh&#39;,123)
+abcdefgh123  
+</code></pre><p><strong>concat_ws(STRING sep, STRING a, STRING b…) concat_ws(STRING sep, Array)</strong></p>
+<p>和concat()一样，将多个字符串连接成一个字符串，但是可以一次性指定分隔符～（concat_ws就是concat with separator）</p>
+<p>语法：concat_ws(separator, str1, str2, …)</p>
+<p>说明：第一个参数指定分隔符。需要注意的是分隔符不能为null，如果为null，则返回结果为null。</p>
+<pre><code>select concat_ws(&#39;abc&#39;,&#39;def&#39;,&#39;gh&#39;)
+defabcgh
+</code></pre><h3 id="3-2-2-分组拼接"><a href="#3-2-2-分组拼接" class="headerlink" title="3.2.2. 分组拼接"></a>3.2.2. 分组拼接</h3><p><strong>group_concat( [distinct] 要连接的字段 [order by 排序字段 asc/desc ] [separator ‘分隔符’] )</strong></p>
+<pre><code>select userid,bankid,group_concat(cast(creditlimit as string))
+from vdm_fin.cc_user_bill_0724
+group by userid,bankid
+limit 100;
+</code></pre><p><strong>concat_ws(‘|’, collect_set(str))</strong></p>
+<p>hive 实现相同功能（只返回不重复的值）：</p>
+<pre><code>SELECT id,
+concat_ws(&#39;|&#39;, collect_set(str)) 
+FROM t  
+GROUP BY id; 
+</code></pre><h2 id="3-3-字符串补全"><a href="#3-3-字符串补全" class="headerlink" title="3.3. 字符串补全"></a>3.3. 字符串补全</h2><h3 id="3-3-1"><a href="#3-3-1" class="headerlink" title="3.3.1."></a>3.3.1.</h3><h1 id="4-时间计算"><a href="#4-时间计算" class="headerlink" title="4. 时间计算"></a>4. 时间计算</h1><h3 id="4-1-获取当前时间及格式转换"><a href="#4-1-获取当前时间及格式转换" class="headerlink" title="4.1. 获取当前时间及格式转换"></a>4.1. 获取当前时间及格式转换</h3><pre><code>from_unixtime(bigint unixtime[, string format])
+select from_unixtime(unix_timestamp())   --获取当前时间
+select from_unixtime(unix_timestamp(), &#39;yyyyMMdd HH:mm:ss&#39;)   --获取当前时间，限定格式 
+select from_unixtime(unix_timestamp(&#39;2013-01-01 10:10:10&#39;), &#39;yyyyMMdd&#39;)  --转换格式
+select from_unixtime(unix_timestamp(&#39;2013-01-01&#39;, &#39;yyyy-MM-dd&#39;), &#39;yyyyMMdd&#39;) 
+select to_date(’2011-12-08 10:03:01′) from dual;    --转成日期格式
+2011-12-08
+
+-- 获取年月日
+select year(’2011-12-08 10:03:01′) from dual;
+2011
+select month(’2011-08-08′) from dual; 
+8
+select day(’2011-12-08 10:03:01′) from dual;
+10
+--获取时分秒
+select hour(’2011-12-08 10:03:01′) from dual; 
+8
+select minute(’2011-12-08 10:03:01′) from dual;
+3
+select second(’2011-12-08 10:03:01′) from dual; 
+1
+-- 获取周数
+select weekofyear(’2011-12-08 10:03:01′) from dual;
+49
+</code></pre><h3 id="4-2-日期运算"><a href="#4-2-日期运算" class="headerlink" title="4.2. 日期运算"></a>4.2. 日期运算</h3><pre><code>--日期比较函数: datediff
+--语法: datediff(string enddate, string startdate)
+--返回值: int
+--说明:返回结束日期减去开始日期的天数。
+select datediff(&#39;2012-12-08&#39;,&#39;2012-05-09&#39;) ;
+213
+
+--日期增加函数: date_add
+--语法: date_add(string startdate, int days)
+--返回值: string
+--说明:返回开始日期startdate增加days天后的日期。
+select date_add(&#39;2012-12-08&#39;,10);
+2012-12-18
+
+--日期减少函数: date_sub
+--语法: date_sub (string startdate, int days)
+--返回值: string
+--说明:返回开始日期startdate减少days天后的日期。
+select date_sub(&#39;2012-12-08&#39;,10);
+2012-11-28
+</code></pre><h3 id="4-3-计算时间差"><a href="#4-3-计算时间差" class="headerlink" title="4.3. 计算时间差"></a>4.3. 计算时间差</h3><pre><code>-- 方法一：时间戳的差值直接按照单位换算
+select  post_date, gqdate, 
+(unix_timestamp(post_date) - unix_timestamp(gqdate))/60  diff_min,
+(unix_timestamp(post_date) - unix_timestamp(gqdate))  diff_second
+from testdata limit 10;
+
+-- 方法二：计算小时差
+(hour(from_unixtime(unix_timestamp(),&#39;yyyy-MM-dd HH:mm:ss&#39;))-hour(create_time)+(datediff(from_unixtime(unix_timestamp(),&#39;yyyy-MM-dd HH:mm:ss&#39;), create_time))*24) as hour_dValue 
+
+--计算日期差
+datediff(date1, date2) 
+</code></pre><h3 id="4-4-时间加减"><a href="#4-4-时间加减" class="headerlink" title="4.4. 时间加减"></a>4.4. 时间加减</h3><h1 id="5-数值处理"><a href="#5-数值处理" class="headerlink" title="5. 数值处理"></a>5. 数值处理</h1><h3 id="5-1-保留小数"><a href="#5-1-保留小数" class="headerlink" title="5.1. 保留小数"></a>5.1. 保留小数</h3><h3 id="5-2-取整函数"><a href="#5-2-取整函数" class="headerlink" title="5.2. 取整函数"></a>5.2. 取整函数</h3><h4 id="5-2-1-四舍五入取整-round"><a href="#5-2-1-四舍五入取整-round" class="headerlink" title="5.2.1. 四舍五入取整 round"></a>5.2.1. 四舍五入取整 round</h4><p>round(double a)<br>返回值: BIGINT<br>说明:返回double类型的整数值部分（遵循四舍五入）  </p>
+<pre><code>select round(3.1415926);
+3
+hive&gt; select round(3.5);
+4
+</code></pre><h4 id="5-2-2-向下取整-floor"><a href="#5-2-2-向下取整-floor" class="headerlink" title="5.2.2. 向下取整 floor"></a>5.2.2. 向下取整 floor</h4><pre><code>select floor(3.1415926);
+3
+</code></pre><h4 id="5-2-3-向上取整函数-ceil-ceiling"><a href="#5-2-3-向上取整函数-ceil-ceiling" class="headerlink" title="5.2.3. 向上取整函数: ceil/ceiling"></a>5.2.3. 向上取整函数: ceil/ceiling</h4><pre><code>hive&gt; select ceil(3.1415926) from lxw_dual;
+4
+hive&gt; select ceiling(3.1415926) from lxw_dual;
+4
+</code></pre><h3 id="5-3-指定精度"><a href="#5-3-指定精度" class="headerlink" title="5.3. 指定精度"></a>5.3. 指定精度</h3><h4 id="5-3-1-round-double-a-int-d"><a href="#5-3-1-round-double-a-int-d" class="headerlink" title="5.3.1. round(double a, int d)"></a>5.3.1. round(double a, int d)</h4><p>注：发现小数位用round(col1,2)在hue不起作用</p>
+<h4 id="5-3-2-强制转换-cast"><a href="#5-3-2-强制转换-cast" class="headerlink" title="5.3.2. 强制转换 cast"></a>5.3.2. 强制转换 cast</h4><p>小数位：    CAST(zl_30 AS DECIMAL(20,2))  </p>
+<h4 id="5-3-3-保留固定位数的精度转换"><a href="#5-3-3-保留固定位数的精度转换" class="headerlink" title="5.3.3. 保留固定位数的精度转换"></a>5.3.3. 保留固定位数的精度转换</h4><pre><code>format_number(3.4, 2)  
+&gt; 3.40(String)
+</code></pre>
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://tlylft.github.io/big_data/hive/hive-basic/" title="【HIVE系列】01-HIVE 常用操作" target="_blank" rel="external">https://tlylft.github.io/big_data/hive/hive-basic/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/tlylft" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.png" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/tlylft" target="_blank"><span class="text-dark">Icey</span><small class="ml-1x">小傻瓜,别回头</small></a></h3>
+        <div>以梦为马，随处可栖。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/big_data/hive/hive-senior/" title="【HIVE系列】02-HIVE 高级操作"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/machine_learning/cost_function/" title="代价函数"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>感谢您的支持，我会继续努力的!</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechatpayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> 支付宝</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> 微信支付</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/tlylft?tab=repositories" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="https://www.weibo.com/tlylft/profile?rightmod=1&wvr=6&mod=personinfo" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://www.facebook.com/profile.php?id=100009783614101" target="_blank" title="Facebook" data-toggle=tooltip data-placement=top><i class="icon icon-facebook"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: 'eL0FL59XsOPmrzo5OTb0zhgE-gzGzoHsz',
+    appKey: '53Yf97Qf3bKKWC81Bh4EM9oY',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: true
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

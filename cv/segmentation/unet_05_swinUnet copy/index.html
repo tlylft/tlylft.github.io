@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>【Unet系列】swin-Unet | 小傻瓜别回头</title>
+  <meta name="description" content="Published: 2021 May论文：https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;2105.05537代码：https:&#x2F;&#x2F;github.com&#x2F;HuCaoFighting&#x2F;Swin-Unet  1. introduction问题动机：解决医学图像分析中图像分割问题；现有的U-Net结构设计t在各种医学成像应用中取得了巨大的成功。思路来源：虽然基于CNN的方法在医学图像分割领域取得了优异的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Unet系列】swin-Unet">
+<meta property="og:url" content="https://tlylft.github.io/cv/segmentation/unet_05_swinUnet%20copy/index.html">
+<meta property="og:site_name" content="灵魂都失控">
+<meta property="og:description" content="Published: 2021 May论文：https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;2105.05537代码：https:&#x2F;&#x2F;github.com&#x2F;HuCaoFighting&#x2F;Swin-Unet  1. introduction问题动机：解决医学图像分析中图像分割问题；现有的U-Net结构设计t在各种医学成像应用中取得了巨大的成功。思路来源：虽然基于CNN的方法在医学图像分割领域取得了优异的">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tlylft.github.io/cv/segmentation/unet_05_swinUnet%20copy/2022-05-04-22-29-48.png">
+<meta property="og:image" content="https://tlylft.github.io/cv/segmentation/unet_05_swinUnet%20copy/2022-05-04-22-37-47.png">
+<meta property="og:image" content="https://tlylft.github.io/cv/segmentation/unet_05_swinUnet%20copy/2022-05-04-23-30-12.png">
+<meta property="og:image" content="https://tlylft.github.io/cv/segmentation/unet_05_swinUnet%20copy/2022-05-04-23-35-45.png">
+<meta property="og:image" content="https://tlylft.github.io/cv/segmentation/unet_05_swinUnet%20copy/2022-05-05-00-01-13.png">
+<meta property="og:image" content="https://tlylft.github.io/cv/segmentation/unet_05_swinUnet%20copy/2022-05-05-08-17-12.png">
+<meta property="og:image" content="https://tlylft.github.io/cv/segmentation/unet_05_swinUnet%20copy/2022-05-05-08-18-53.png">
+<meta property="og:image" content="https://tlylft.github.io/cv/segmentation/unet_05_swinUnet%20copy/2022-05-05-08-19-49.png">
+<meta property="og:image" content="https://tlylft.github.io/cv/segmentation/unet_05_swinUnet%20copy/2022-05-05-08-30-56.png">
+<meta property="og:image" content="https://tlylft.github.io/cv/segmentation/unet_05_swinUnet%20copy/2022-05-05-00-36-58.png">
+<meta property="og:image" content="https://tlylft.github.io/cv/segmentation/unet_05_swinUnet%20copy/2022-05-05-12-41-30.png">
+<meta property="og:image" content="https://tlylft.github.io/cv/segmentation/unet_05_swinUnet%20copy/2022-05-05-12-46-15.png">
+<meta property="og:image" content="https://tlylft.github.io/cv/segmentation/unet_05_swinUnet%20copy/2022-05-05-00-41-54.png">
+<meta property="article:published_time" content="2022-04-28T13:18:32.000Z">
+<meta property="article:modified_time" content="2022-05-12T00:30:24.838Z">
+<meta property="article:author" content="Icey Liu">
+<meta property="article:tag" content="cv">
+<meta property="article:tag" content="segmentation">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tlylft.github.io/cv/segmentation/unet_05_swinUnet%20copy/2022-05-04-22-29-48.png">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://tlylft.github.io/cv/segmentation/unet_05_swinUnet%20copy/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="灵魂都失控" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/images/avatar.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/tlylft" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.png" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">Icey</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">小傻瓜,别回头</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Hebei, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/tlylft?tab=repositories" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="https://www.weibo.com/tlylft/profile?rightmod=1&wvr=6&mod=personinfo" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://www.facebook.com/profile.php?id=100009783614101" target="_blank" title="Facebook" data-toggle=tooltip data-placement=top><i class="icon icon-facebook"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>Welcome!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/LLM/">LLM</a><span class="category-list-count">9</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/LLM/transformer/">transformer</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Leecode/">Leecode</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/">NLP</a><span class="category-list-count">62</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/NER/">NER</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/algorithm/">algorithm</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/bert/">bert</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/corrector/">corrector</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/label/">label</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/segment/">segment</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/sensitive/">sensitive</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/similarity/">similarity</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/word2vec/">word2vec</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/%E4%BF%A1%E6%81%AF%E6%8F%90%E5%8F%96/">信息提取</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/cv/">cv</a><span class="category-list-count">24</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/cv/pointcloud/">pointcloud</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/cv/segmentation/">segmentation</a><span class="category-list-count">11</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/deep-learning/">deep learning</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/knowledge-graph/">knowledge graph</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/machine-learning/">machine learning</a><span class="category-list-count">21</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/machine-learning/autoML/">autoML</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/machine-learning/time-series/">time series</a><span class="category-list-count">4</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/math/">math</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a><span class="category-list-count">53</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/python/Django/">Django</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/Flask/">Flask</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/keras/">keras</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/matplotlib/">matplotlib</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/pandas/">pandas</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/python/">python</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">环境搭建</a><span class="category-list-count">8</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/pytorch/">pytorch</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tensorflow/">tensorflow</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tools/">tools</a><span class="category-list-count">16</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/tools/ftp/">ftp</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tools/k8s/">k8s</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tools/kubernetes/">kubernetes</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tools/paper/">paper</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BA%A7%E5%93%81%E7%BB%8F%E7%90%86/">产品经理</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8A%80%E6%9C%AF/">大数据技术</a><span class="category-list-count">8</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8A%80%E6%9C%AF/hive/">hive</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8A%80%E6%9C%AF/kafka/">kafka</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8A%80%E6%9C%AF/mysql/">mysql</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AF%B9%E8%AF%9D%E7%B3%BB%E7%BB%9F/">对话系统</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/">强化学习</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB/">爬虫</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/">计算机视觉</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a><span class="category-list-count">13</span></li></ul>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/Anaconda/" style="font-size: 13px;">Anaconda</a> <a href="/tags/Django/" style="font-size: 13.14px;">Django</a> <a href="/tags/Docker/" style="font-size: 13px;">Docker</a> <a href="/tags/Flask/" style="font-size: 13.57px;">Flask</a> <a href="/tags/LLM/" style="font-size: 13.57px;">LLM</a> <a href="/tags/Leecode/" style="font-size: 13.14px;">Leecode</a> <a href="/tags/NER/" style="font-size: 13.36px;">NER</a> <a href="/tags/NLP/" style="font-size: 13.93px;">NLP</a> <a href="/tags/RASA/" style="font-size: 13.71px;">RASA</a> <a href="/tags/algorithm/" style="font-size: 13.29px;">algorithm</a> <a href="/tags/anaconda/" style="font-size: 13px;">anaconda</a> <a href="/tags/autoML/" style="font-size: 13px;">autoML</a> <a href="/tags/bert/" style="font-size: 13.64px;">bert</a> <a href="/tags/bert4keras/" style="font-size: 13.14px;">bert4keras</a> <a href="/tags/blog/" style="font-size: 13px;">blog</a> <a href="/tags/corrector/" style="font-size: 13.21px;">corrector</a> <a href="/tags/cv/" style="font-size: 13.79px;">cv</a> <a href="/tags/deep-learning/" style="font-size: 13.86px;">deep learning</a> <a href="/tags/doccano/" style="font-size: 13px;">doccano</a> <a href="/tags/docker/" style="font-size: 13.07px;">docker</a> <a href="/tags/git/" style="font-size: 13px;">git</a> <a href="/tags/github/" style="font-size: 13px;">github</a> <a href="/tags/hive/" style="font-size: 13.29px;">hive</a> <a href="/tags/k8s/" style="font-size: 13px;">k8s</a> <a href="/tags/kafka/" style="font-size: 13px;">kafka</a> <a href="/tags/keras/" style="font-size: 13px;">keras</a> <a href="/tags/kerberos/" style="font-size: 13px;">kerberos</a> <a href="/tags/knowledge-graph/" style="font-size: 13.5px;">knowledge graph</a> <a href="/tags/kubeflow/" style="font-size: 13px;">kubeflow</a> <a href="/tags/kubernetes/" style="font-size: 13px;">kubernetes</a> <a href="/tags/label/" style="font-size: 13.07px;">label</a> <a href="/tags/linux/" style="font-size: 13.5px;">linux</a> <a href="/tags/machine-learning/" style="font-size: 13.86px;">machine learning</a> <a href="/tags/math/" style="font-size: 13.14px;">math</a> <a href="/tags/matplotlib/" style="font-size: 13px;">matplotlib</a> <a href="/tags/mysql/" style="font-size: 13.07px;">mysql</a> <a href="/tags/navicat/" style="font-size: 13px;">navicat</a> <a href="/tags/neo4j/" style="font-size: 13.14px;">neo4j</a> <a href="/tags/nlp/" style="font-size: 13px;">nlp</a> <a href="/tags/numpy/" style="font-size: 13px;">numpy</a> <a href="/tags/paddle/" style="font-size: 13px;">paddle</a> <a href="/tags/pandas/" style="font-size: 13.21px;">pandas</a> <a href="/tags/pointcloud/" style="font-size: 13.07px;">pointcloud</a> <a href="/tags/ppt/" style="font-size: 13px;">ppt</a> <a href="/tags/pycharm/" style="font-size: 13.07px;">pycharm</a> <a href="/tags/python/" style="font-size: 14px;">python</a> <a href="/tags/pytorch/" style="font-size: 13.21px;">pytorch</a> <a href="/tags/segment/" style="font-size: 13.07px;">segment</a> <a href="/tags/segmentation/" style="font-size: 13.64px;">segmentation</a> <a href="/tags/sensitive/" style="font-size: 13.07px;">sensitive</a> <a href="/tags/similarity/" style="font-size: 13.43px;">similarity</a> <a href="/tags/tensorflow/" style="font-size: 13.07px;">tensorflow</a> <a href="/tags/time-series/" style="font-size: 13.07px;">time series</a> <a href="/tags/tools/" style="font-size: 13.64px;">tools</a> <a href="/tags/vp/" style="font-size: 13px;">vp</a> <a href="/tags/word2vec/" style="font-size: 13.36px;">word2vec</a> <a href="/tags/%E4%BA%A7%E5%93%81%E7%BB%8F%E7%90%86/" style="font-size: 13px;">产品经理</a> <a href="/tags/%E4%BF%A1%E6%81%AF%E6%8F%90%E5%8F%96/" style="font-size: 13.14px;">信息提取</a> <a href="/tags/%E5%AF%B9%E8%AF%9D%E7%B3%BB%E7%BB%9F/" style="font-size: 13.86px;">对话系统</a> <a href="/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" style="font-size: 13.14px;">强化学习</a> <a href="/tags/%E7%88%AC%E8%99%AB/" style="font-size: 13.07px;">爬虫</a> <a href="/tags/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" style="font-size: 13.5px;">环境搭建</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/" style="font-size: 13.36px;">计算机视觉</a> <a href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" style="font-size: 13.64px;">读书笔记</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">八月 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">七月 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">六月 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">五月 2023</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">四月 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">三月 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">二月 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">一月 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">十一月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">六月 2022</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/05/">五月 2022</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">四月 2022</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">三月 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">二月 2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">一月 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">十二月 2021</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">十一月 2021</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">十月 2021</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">八月 2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">六月 2021</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">一月 2021</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a><span class="archive-list-count">17</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a><span class="archive-list-count">24</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">9</span></li></ul>
+    </div>
+  </div>
+
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-cv/segmentation/unet_05_swinUnet copy" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      【Unet系列】swin-Unet
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/cv/segmentation/unet_05_swinUnet%20copy/" class="article-date">
+	  <time datetime="2022-04-28T13:18:32.000Z" itemprop="datePublished">创建于: 2022-04-28</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/cv/">cv</a>►<a class="article-category-link" href="/categories/cv/segmentation/">segmentation</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/cv/" rel="tag">cv</a>, <a class="article-tag-link" href="/tags/segmentation/" rel="tag">segmentation</a>
+  </span>
+
+
+        
+
+	<span class="article-read hidden-xs">
+    	<i class="icon icon-eye-fill" aria-hidden="true"></i>
+    	<span id="/cv/segmentation/unet_05_swinUnet%20copy/" class="leancloud_visitors"  data-flag-title="【Unet系列】swin-Unet">
+			<span class="leancloud-visitors-count">0</span>
+		</span>
+    </span>
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/cv/segmentation/unet_05_swinUnet%20copy/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <blockquote>
+<p>Published: 2021 May<br>论文：<a href="https://arxiv.org/abs/2105.05537" target="_blank" rel="noopener">https://arxiv.org/abs/2105.05537</a><br>代码：<a href="https://github.com/HuCaoFighting/Swin-Unet" target="_blank" rel="noopener">https://github.com/HuCaoFighting/Swin-Unet</a></p>
+</blockquote>
+<h1 id="1-introduction"><a href="#1-introduction" class="headerlink" title="1. introduction"></a>1. introduction</h1><p><strong>问题动机：</strong><br>解决医学图像分析中图像分割问题；<br>现有的U-Net结构设计t在各种医学成像应用中取得了巨大的成功。<br><strong>思路来源：</strong><br>虽然基于CNN的方法在医学图像分割领域取得了优异的性能，但仍不能完全满足医学应用对分割精度的严格要求。<br>由于卷积运算固有的局限性，基于CNN的方法很难学习显式的全局和长期语义信息交互。受Transformer在自然语言处理(NLP)领域的巨大成功的启发，研究人员试图将Transformer引入视觉领域。<br>ViT、DeiT和Swin transformer在图像识别领域的成功证明了transformer在视觉领域的应用潜力。<br><strong>实现方式</strong><br>基于Swin-transformer block构建Unet结构，主要贡献：<br>(1)基于Swin Transformer block，构建了一个具有跳跃连接的对称编码器-解码器体系结构。在编码器中实现了从局部到全局的自注意;在解码器中，将全局特征上采样到输入分辨率，进行相应的像素级分割预测。<br>(2)开发了patch扩展层，无需卷积或插值操作即可实现上采样和特征维数的增加。<br>(3)实验发现跳跃连接对transformer也是有效的，因此最终构建了一个纯基于transformer的u型编解码结构，具有跳跃连接，命名为swin-unet。<br><strong>意义</strong><br>首个基于纯Transformer的U-Net形的医学图像分割网络</p>
+<h1 id="2-算法结构"><a href="#2-算法结构" class="headerlink" title="2. 算法结构"></a>2. 算法结构</h1><h2 id="2-1-Swin-Transformer"><a href="#2-1-Swin-Transformer" class="headerlink" title="2.1. Swin-Transformer"></a>2.1. Swin-Transformer</h2><blockquote>
+<p>2021年3月论文：<a href="https://arxiv.org/abs/2103.14030" target="_blank" rel="noopener">https://arxiv.org/abs/2103.14030</a><br>源码地址：<a href="https://github.com/microsoft/Swin-Transformer" target="_blank" rel="noopener">https://github.com/microsoft/Swin-Transformer</a><br>参考博客：<a href="https://blog.csdn.net/qq_41111734/article/details/116353615" target="_blank" rel="noopener">https://blog.csdn.net/qq_41111734/article/details/116353615</a><br>预训练权重: swin_small_patch4_window7_224.pth</p>
+</blockquote>
+<p>swin transformer(<strong>shifted windows Transformer</strong>)和resnet一样设计的是一个层次结果很明显的网络，底部的结构处理的数据更多也更局部，顶部的网络处理的数据更少但是语义信息是更加丰富的。不同的是swin主要提取信息的方式是采用transformer，而resnet是卷积核。</p>
+<p>在图像分割，让很多人看到了transformer完全替代卷积的可能。而且它的设计思想吸取了resnet的精华，从局部到全局，将transformer设计成逐步扩大感受野的工具。<br>效果说明：在COCO数据集上提升2.6个点(实例分割) 2.7个点（目标检测）</p>
+<h3 id="2-1-1-Swin-Transformer网络结构"><a href="#2-1-1-Swin-Transformer网络结构" class="headerlink" title="2.1.1.  Swin-Transformer网络结构"></a>2.1.1.  Swin-Transformer网络结构</h3><h4 id="2-1-1-1-Swin-vs-VIT"><a href="#2-1-1-1-Swin-vs-VIT" class="headerlink" title="2.1.1.1. Swin vs. VIT"></a>2.1.1.1. Swin vs. VIT</h4><p><img src="/cv/segmentation/unet_05_swinUnet%20copy/2022-05-04-22-29-48.png" alt><br>1) 像CNN一样，特征层（feature map）更具有层次性（下采样倍率4-&gt; 8-&gt; 16）<br>2) VIT每一层是个整体，并没有进行分割， Swin对窗口进行分割(windows multi-head self attention), 在每个窗口内部进行W-MSA计算，windows之间不进行信息的传递， 减少运算量<br>3) 在更大数据集上做预训练，然后迁移学习，更能够提升效果<br>4) ViT在输入会给embedding进行位置编码。而Swin-T这里则是作为一个可选项（self.ape），Swin-T是在计算Attention的时候做了一个相对位置编码<br>5) ViT会单独加上一个可学习参数，作为分类的token。而Swin-T则是直接做平均，输出分类，有点类似CNN最后的全局平均池化层</p>
+<h4 id="2-1-1-2-swin整体框架"><a href="#2-1-1-2-swin整体框架" class="headerlink" title="2.1.1.2. swin整体框架"></a>2.1.1.2. swin整体框架</h4><p><img src="/cv/segmentation/unet_05_swinUnet%20copy/2022-05-04-22-37-47.png" alt><br><strong>整体说明：</strong><br>1) 整个模型采取层次化的设计，一共包含4个Stage（四次下采样），每次下采样特征图宽高分辨率缩小两倍（像CNN一样逐层扩大感受野），但通道数增加两倍<br>2) 在每个Stage里，由Patch Merging和多个Block组成。<br>3) 第一次下采样先进行的patch partition + linear embedding, 其他下采样先进行的patch merging, 但其实功能差不多：主要在每个Stage一开始降低图片分辨率<br>4) 而Block具体结构如右图所示，堆叠偶数次（因为是两个模块成对使用），主要是LayerNorm，MLP，Window Attention 和 Shifted Window Attention组成<br>5) 图中没画，分类任务在最后接入layer norm, 全局池化，全连接层，最后输出分类</p>
+<h3 id="2-1-2-步骤说明"><a href="#2-1-2-步骤说明" class="headerlink" title="2.1.2. 步骤说明"></a>2.1.2. 步骤说明</h3><h4 id="2-1-2-1-patch-partition"><a href="#2-1-2-1-patch-partition" class="headerlink" title="2.1.2.1. patch partition"></a>2.1.2.1. patch partition</h4><p>在输入开始的时候，做了一个patch embedding，将图片切成一个个图块，并嵌入到embedding。<br><img src="/cv/segmentation/unet_05_swinUnet%20copy/2022-05-04-23-30-12.png" alt><br>上图以单通道为例，我理解这个就是把原始图像中每个4*4*3的区域直接展开成1*1*48的区域，然后做embedding。 </p>
+<p>有人说也可以用卷积来替代同样的效果，应该也可以，就是理解成两种特征表示，一种是原图特征，一种是卷积后的特征。或者是通过二维卷积层，将stride，kernelsize设置为patch_size大小。设定输出通道来确定嵌入向量的大小。最后将H,W维度展开，并移动到第一维度</p>
+<h4 id="2-1-2-2-Patch-Merging"><a href="#2-1-2-2-Patch-Merging" class="headerlink" title="2.1.2.2. Patch Merging"></a>2.1.2.2. Patch Merging</h4><p>该模块的作用是在每个Stage开始前做降采样，用于缩小分辨率，调整通道数（<strong>高和宽缩减为原来一半，通道数会翻倍</strong>），进而形成层次化的设计，形成从一开始的局部信息搜索到全局信息的提取，同时也能节省一定运算量。<br><img src="/cv/segmentation/unet_05_swinUnet%20copy/2022-05-04-23-35-45.png" alt><br><img src="/cv/segmentation/unet_05_swinUnet%20copy/2022-05-05-00-01-13.png" alt><br>这个pooling操作与传统卷积里面的pooling也不太一样，它是将特征图先经过一个space to depth变为1/4，通道数变为原来的4倍，再又一个MLP缩减一半。</p>
+<h4 id="2-1-2-3-W-MSA"><a href="#2-1-2-3-W-MSA" class="headerlink" title="2.1.2.3. W-MSA"></a>2.1.2.3. W-MSA</h4><blockquote>
+<p>self attention: <a href="https://arxiv.org/abs/1706.03762" target="_blank" rel="noopener">https://arxiv.org/abs/1706.03762</a><br><a href="https://blog.csdn.net/qq_37541097/article/details/117691873" target="_blank" rel="noopener">https://blog.csdn.net/qq_37541097/article/details/117691873</a><br><img src="/cv/segmentation/unet_05_swinUnet%20copy/2022-05-05-08-17-12.png" alt><br><img src="/cv/segmentation/unet_05_swinUnet%20copy/2022-05-05-08-18-53.png" alt><br><img src="/cv/segmentation/unet_05_swinUnet%20copy/2022-05-05-08-19-49.png" alt></p>
+</blockquote>
+<p>window attention就是按照一定的尺寸将图像划分为不同的window，每次transformer的attention只在window内部进行计算。<br>目的： 减少计算量<br>缺点：窗口之间无法进行信息交互<br><img src="/cv/segmentation/unet_05_swinUnet%20copy/2022-05-05-08-30-56.png" alt></p>
+<h4 id="2-1-2-4-SW-MSA"><a href="#2-1-2-4-SW-MSA" class="headerlink" title="2.1.2.4. SW-MSA"></a>2.1.2.4. SW-MSA</h4><p>shift window attention<br>如果只有window attention就会带来每一个像素点的感受野得不到提升的问题，所以它又设计了shift window attention的方法，就是换一下window划分的方式，让每一个像素点做attention计算的window块处于变化之中。那么就起到了提升感受野的作用。<br>目的： 实现不同window之间的信息交互，提升感受野<br><img src="/cv/segmentation/unet_05_swinUnet%20copy/2022-05-05-00-36-58.png" alt><br><img src="/cv/segmentation/unet_05_swinUnet%20copy/2022-05-05-12-41-30.png" alt><br><img src="/cv/segmentation/unet_05_swinUnet%20copy/2022-05-05-12-46-15.png" alt></p>
+<h4 id="2-1-2-5-MLP"><a href="#2-1-2-5-MLP" class="headerlink" title="2.1.2.5. MLP"></a>2.1.2.5. MLP</h4><h4 id="2-1-2-6-Relative-Position-Bias"><a href="#2-1-2-6-Relative-Position-Bias" class="headerlink" title="2.1.2.6. Relative Position Bias"></a>2.1.2.6. Relative Position Bias</h4><h4 id="2-1-2-7-配置参数"><a href="#2-1-2-7-配置参数" class="headerlink" title="2.1.2.7. 配置参数"></a>2.1.2.7. 配置参数</h4><h3 id="2-1-3-存在问题"><a href="#2-1-3-存在问题" class="headerlink" title="2.1.3. 存在问题"></a>2.1.3. 存在问题</h3><p>在同尺寸通计算量的前提下，swin确实效果远好于resnet。但是有几个问题：</p>
+<ol>
+<li>预训练受限于shift操作，对不同尺寸的输入要设计不同的网络，而且也要重新开始训练，这是很难接受的。</li>
+<li>和Detr一样训练的时候收敛的太慢。我自己有训练了一下最小的swin-tiny版本，大概训练了一百多轮的时候也才到72～73左右。有这方面改进的想法的朋友可以和我交流，整一篇B类应该没问题。</li>
+<li>shift操作其实主要是为了提升感受野，不一定用这种方式</li>
+<li>虽然在几个常用benchmark上提升明显，但是在某些实际项目的落地中发现可能还不如vit好用，或者需要精细调参，这个在resnet中是不存在的；</li>
+<li>整个模型设计，我认为并没有真正从原理上真正解决cnn和vit之间的问题。transformer放在cv两个问题，local feat无法专注，长序列导致显存炸裂。swin采用的local self attention等于是套着cnn的模式到了transformer中，后面接一个shift window，我理想当中应该是采用一种全新的attention设计去解决这两个问题，我甚至有点好奇把local self attention替换一个普通卷积会怎么样。再者就是shift window那一步略显复杂，毕竟simple is best。</li>
+<li>计算损耗：显存要求很高。</li>
+</ol>
+<h1 id="3-swin-Unet"><a href="#3-swin-Unet" class="headerlink" title="3. swin-Unet"></a>3. swin-Unet</h1><blockquote>
+<p><a href="https://aistudio.baidu.com/aistudio/projectdetail/1985598?_=1651631016452" target="_blank" rel="noopener">https://aistudio.baidu.com/aistudio/projectdetail/1985598?_=1651631016452</a></p>
+</blockquote>
+<p>自从 Transformer 被引入计算机视觉以来，催生了大量相关研究与应用。在图像分割方向，涌现了像 SETR 和 TransUNet 等基于 Transformer 的语义分割网络模型。<br>在TransUNet 中，虽然引入了 Transformer 用于 UNet 编码器，但其特点还是 CNN 与 Transformer 的混合编码，解码上也是基于 CNN 的上采样。直观上看，这种混合编码的结构并没有完全发挥出 Transformer 的优势，并且作为 backbone 的 ViT 结构也需要进一步改进。</p>
+<p>Swin Transformer 正好作为视觉 Transformer 领域新的backbone。相较于 TransUNet，去掉CNN编码，用 Swin Transformer 来代替原先的 ViT，将 UNet 全部结构都换成 Swin Transformer。</p>
+<h2 id="3-1-网络结构"><a href="#3-1-网络结构" class="headerlink" title="3.1. 网络结构"></a>3.1. 网络结构</h2><p><img src="/cv/segmentation/unet_05_swinUnet%20copy/2022-05-05-00-41-54.png" alt><br>Swin-UNet由Encoder、Bottleneck、Decoder和跳跃连接组成。</p>
+<p>编码器部分，输入图像先进行patch partition，每个patch大小为4x4，输入维度为H/4 x W/4 x 48，经过linear embedding和两个Swin Transformer block后特征图尺寸为H/4 x W/4 x C，然后通过patch merging进行下采样，再经过两个Swin Transformer block后特征图尺寸变为H/8 x W/8 x 2C，最后再进行一次同样的下采样操作即可完成编码器的操作。可以看到，Swin-UNet编码器每次按照2倍来缩小patch的数量，然后按照3倍来扩大特征维度的数量。</p>
+<p>Bottleneck则是用了两个连续的Swin Transformer block，这里为防止网络太深不能收敛，所以只用了两个block，在Bottleneck中，特征尺寸保持H/32 x W/32 x 8C不变。</p>
+<p>然后是解码器部分。Swin-UNet解码器主要由patch expanding来实现上采样，作为一个完全对称的网络结构，解码器也是每次扩大2倍进行上采样，核心模块由Swin Transformer block和patch expanding组成。</p>
+<p>最后是跳跃连接。和unet一样。</p>
+<h3 id="3-1-1-跳跃连接"><a href="#3-1-1-跳跃连接" class="headerlink" title="3.1.1. 跳跃连接"></a>3.1.1. 跳跃连接</h3>
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://tlylft.github.io/cv/segmentation/unet_05_swinUnet%20copy/" title="【Unet系列】swin-Unet" target="_blank" rel="external">https://tlylft.github.io/cv/segmentation/unet_05_swinUnet%20copy/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/tlylft" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.png" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/tlylft" target="_blank"><span class="text-dark">Icey</span><small class="ml-1x">小傻瓜,别回头</small></a></h3>
+        <div>以梦为马，随处可栖。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/cv/segmentation/unet_05_swinUnet/" title="【Unet系列】swin-Unet"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/cv/segmentation/unet_04_transUnet/" title="【Unet系列】transUnet"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>感谢您的支持，我会继续努力的!</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechatpayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> 支付宝</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> 微信支付</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/tlylft?tab=repositories" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="https://www.weibo.com/tlylft/profile?rightmod=1&wvr=6&mod=personinfo" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://www.facebook.com/profile.php?id=100009783614101" target="_blank" title="Facebook" data-toggle=tooltip data-placement=top><i class="icon icon-facebook"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: 'eL0FL59XsOPmrzo5OTb0zhgE-gzGzoHsz',
+    appKey: '53Yf97Qf3bKKWC81Bh4EM9oY',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: true
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

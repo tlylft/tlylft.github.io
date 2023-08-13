@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>【mmsegmentation】01-Quick Start | 小傻瓜别回头</title>
+  <meta name="description" content="https:&#x2F;&#x2F;www.bilibili.com&#x2F;video&#x2F;BV1ub4y187DP?p&#x3D;3 1. backgroudMMSegmentation是一个基于PyTorch的开源语义分割工具箱。它是OpenMMLab项目的一部分。 1.1. OpenMMLab官网：https:&#x2F;&#x2F;openmmlab.com&#x2F;官方github：https:&#x2F;&#x2F;github.com&#x2F;open-mmlab官方bili">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【mmsegmentation】01-Quick Start">
+<meta property="og:url" content="https://tlylft.github.io/cv/segmentation/mmsegmentation_01_quick/index.html">
+<meta property="og:site_name" content="灵魂都失控">
+<meta property="og:description" content="https:&#x2F;&#x2F;www.bilibili.com&#x2F;video&#x2F;BV1ub4y187DP?p&#x3D;3 1. backgroudMMSegmentation是一个基于PyTorch的开源语义分割工具箱。它是OpenMMLab项目的一部分。 1.1. OpenMMLab官网：https:&#x2F;&#x2F;openmmlab.com&#x2F;官方github：https:&#x2F;&#x2F;github.com&#x2F;open-mmlab官方bili">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tlylft.github.io/cv/segmentation/mmsegmentation_01_quick/2022-04-17-20-56-41.png">
+<meta property="og:image" content="https://tlylft.github.io/cv/segmentation/mmsegmentation_01_quick/2022-04-24-14-25-18.png">
+<meta property="article:published_time" content="2022-04-17T12:54:40.000Z">
+<meta property="article:modified_time" content="2022-06-06T09:06:13.475Z">
+<meta property="article:author" content="Icey Liu">
+<meta property="article:tag" content="segmentation">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tlylft.github.io/cv/segmentation/mmsegmentation_01_quick/2022-04-17-20-56-41.png">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://tlylft.github.io/cv/segmentation/mmsegmentation_01_quick/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="灵魂都失控" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/images/avatar.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/tlylft" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.png" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">Icey</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">小傻瓜,别回头</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Hebei, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/tlylft?tab=repositories" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="https://www.weibo.com/tlylft/profile?rightmod=1&wvr=6&mod=personinfo" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://www.facebook.com/profile.php?id=100009783614101" target="_blank" title="Facebook" data-toggle=tooltip data-placement=top><i class="icon icon-facebook"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>Welcome!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/LLM/">LLM</a><span class="category-list-count">9</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/LLM/transformer/">transformer</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Leecode/">Leecode</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/">NLP</a><span class="category-list-count">62</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/NER/">NER</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/algorithm/">algorithm</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/bert/">bert</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/corrector/">corrector</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/label/">label</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/segment/">segment</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/sensitive/">sensitive</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/similarity/">similarity</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/word2vec/">word2vec</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/%E4%BF%A1%E6%81%AF%E6%8F%90%E5%8F%96/">信息提取</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/cv/">cv</a><span class="category-list-count">24</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/cv/pointcloud/">pointcloud</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/cv/segmentation/">segmentation</a><span class="category-list-count">11</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/deep-learning/">deep learning</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/knowledge-graph/">knowledge graph</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/machine-learning/">machine learning</a><span class="category-list-count">21</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/machine-learning/autoML/">autoML</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/machine-learning/time-series/">time series</a><span class="category-list-count">4</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/math/">math</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a><span class="category-list-count">53</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/python/Django/">Django</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/Flask/">Flask</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/keras/">keras</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/matplotlib/">matplotlib</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/pandas/">pandas</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/python/">python</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">环境搭建</a><span class="category-list-count">8</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/pytorch/">pytorch</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tensorflow/">tensorflow</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tools/">tools</a><span class="category-list-count">16</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/tools/ftp/">ftp</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tools/k8s/">k8s</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tools/kubernetes/">kubernetes</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tools/paper/">paper</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BA%A7%E5%93%81%E7%BB%8F%E7%90%86/">产品经理</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8A%80%E6%9C%AF/">大数据技术</a><span class="category-list-count">8</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8A%80%E6%9C%AF/hive/">hive</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8A%80%E6%9C%AF/kafka/">kafka</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8A%80%E6%9C%AF/mysql/">mysql</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AF%B9%E8%AF%9D%E7%B3%BB%E7%BB%9F/">对话系统</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/">强化学习</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB/">爬虫</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/">计算机视觉</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a><span class="category-list-count">13</span></li></ul>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/Anaconda/" style="font-size: 13px;">Anaconda</a> <a href="/tags/Django/" style="font-size: 13.14px;">Django</a> <a href="/tags/Docker/" style="font-size: 13px;">Docker</a> <a href="/tags/Flask/" style="font-size: 13.57px;">Flask</a> <a href="/tags/LLM/" style="font-size: 13.57px;">LLM</a> <a href="/tags/Leecode/" style="font-size: 13.14px;">Leecode</a> <a href="/tags/NER/" style="font-size: 13.36px;">NER</a> <a href="/tags/NLP/" style="font-size: 13.93px;">NLP</a> <a href="/tags/RASA/" style="font-size: 13.71px;">RASA</a> <a href="/tags/algorithm/" style="font-size: 13.29px;">algorithm</a> <a href="/tags/anaconda/" style="font-size: 13px;">anaconda</a> <a href="/tags/autoML/" style="font-size: 13px;">autoML</a> <a href="/tags/bert/" style="font-size: 13.64px;">bert</a> <a href="/tags/bert4keras/" style="font-size: 13.14px;">bert4keras</a> <a href="/tags/blog/" style="font-size: 13px;">blog</a> <a href="/tags/corrector/" style="font-size: 13.21px;">corrector</a> <a href="/tags/cv/" style="font-size: 13.79px;">cv</a> <a href="/tags/deep-learning/" style="font-size: 13.86px;">deep learning</a> <a href="/tags/doccano/" style="font-size: 13px;">doccano</a> <a href="/tags/docker/" style="font-size: 13.07px;">docker</a> <a href="/tags/git/" style="font-size: 13px;">git</a> <a href="/tags/github/" style="font-size: 13px;">github</a> <a href="/tags/hive/" style="font-size: 13.29px;">hive</a> <a href="/tags/k8s/" style="font-size: 13px;">k8s</a> <a href="/tags/kafka/" style="font-size: 13px;">kafka</a> <a href="/tags/keras/" style="font-size: 13px;">keras</a> <a href="/tags/kerberos/" style="font-size: 13px;">kerberos</a> <a href="/tags/knowledge-graph/" style="font-size: 13.5px;">knowledge graph</a> <a href="/tags/kubeflow/" style="font-size: 13px;">kubeflow</a> <a href="/tags/kubernetes/" style="font-size: 13px;">kubernetes</a> <a href="/tags/label/" style="font-size: 13.07px;">label</a> <a href="/tags/linux/" style="font-size: 13.5px;">linux</a> <a href="/tags/machine-learning/" style="font-size: 13.86px;">machine learning</a> <a href="/tags/math/" style="font-size: 13.14px;">math</a> <a href="/tags/matplotlib/" style="font-size: 13px;">matplotlib</a> <a href="/tags/mysql/" style="font-size: 13.07px;">mysql</a> <a href="/tags/navicat/" style="font-size: 13px;">navicat</a> <a href="/tags/neo4j/" style="font-size: 13.14px;">neo4j</a> <a href="/tags/nlp/" style="font-size: 13px;">nlp</a> <a href="/tags/numpy/" style="font-size: 13px;">numpy</a> <a href="/tags/paddle/" style="font-size: 13px;">paddle</a> <a href="/tags/pandas/" style="font-size: 13.21px;">pandas</a> <a href="/tags/pointcloud/" style="font-size: 13.07px;">pointcloud</a> <a href="/tags/ppt/" style="font-size: 13px;">ppt</a> <a href="/tags/pycharm/" style="font-size: 13.07px;">pycharm</a> <a href="/tags/python/" style="font-size: 14px;">python</a> <a href="/tags/pytorch/" style="font-size: 13.21px;">pytorch</a> <a href="/tags/segment/" style="font-size: 13.07px;">segment</a> <a href="/tags/segmentation/" style="font-size: 13.64px;">segmentation</a> <a href="/tags/sensitive/" style="font-size: 13.07px;">sensitive</a> <a href="/tags/similarity/" style="font-size: 13.43px;">similarity</a> <a href="/tags/tensorflow/" style="font-size: 13.07px;">tensorflow</a> <a href="/tags/time-series/" style="font-size: 13.07px;">time series</a> <a href="/tags/tools/" style="font-size: 13.64px;">tools</a> <a href="/tags/vp/" style="font-size: 13px;">vp</a> <a href="/tags/word2vec/" style="font-size: 13.36px;">word2vec</a> <a href="/tags/%E4%BA%A7%E5%93%81%E7%BB%8F%E7%90%86/" style="font-size: 13px;">产品经理</a> <a href="/tags/%E4%BF%A1%E6%81%AF%E6%8F%90%E5%8F%96/" style="font-size: 13.14px;">信息提取</a> <a href="/tags/%E5%AF%B9%E8%AF%9D%E7%B3%BB%E7%BB%9F/" style="font-size: 13.86px;">对话系统</a> <a href="/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" style="font-size: 13.14px;">强化学习</a> <a href="/tags/%E7%88%AC%E8%99%AB/" style="font-size: 13.07px;">爬虫</a> <a href="/tags/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" style="font-size: 13.5px;">环境搭建</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/" style="font-size: 13.36px;">计算机视觉</a> <a href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" style="font-size: 13.64px;">读书笔记</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">八月 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">七月 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">六月 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">五月 2023</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">四月 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">三月 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">二月 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">一月 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">十一月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">六月 2022</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/05/">五月 2022</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">四月 2022</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">三月 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">二月 2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">一月 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">十二月 2021</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">十一月 2021</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">十月 2021</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">八月 2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">六月 2021</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">一月 2021</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a><span class="archive-list-count">17</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a><span class="archive-list-count">24</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">9</span></li></ul>
+    </div>
+  </div>
+
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-cv/segmentation/mmsegmentation_01_quick" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      【mmsegmentation】01-Quick Start
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/cv/segmentation/mmsegmentation_01_quick/" class="article-date">
+	  <time datetime="2022-04-17T12:54:40.000Z" itemprop="datePublished">创建于: 2022-04-17</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/cv/">cv</a>►<a class="article-category-link" href="/categories/cv/segmentation/">segmentation</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/segmentation/" rel="tag">segmentation</a>
+  </span>
+
+
+        
+
+	<span class="article-read hidden-xs">
+    	<i class="icon icon-eye-fill" aria-hidden="true"></i>
+    	<span id="/cv/segmentation/mmsegmentation_01_quick/" class="leancloud_visitors"  data-flag-title="【mmsegmentation】01-Quick Start">
+			<span class="leancloud-visitors-count">0</span>
+		</span>
+    </span>
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/cv/segmentation/mmsegmentation_01_quick/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <blockquote>
+<p><a href="https://www.bilibili.com/video/BV1ub4y187DP?p=3" target="_blank" rel="noopener">https://www.bilibili.com/video/BV1ub4y187DP?p=3</a></p>
+<h2 id="1-backgroud"><a href="#1-backgroud" class="headerlink" title="1. backgroud"></a>1. backgroud</h2><p>MMSegmentation是一个基于PyTorch的开源语义分割工具箱。它是OpenMMLab项目的一部分。</p>
+<h3 id="1-1-OpenMMLab"><a href="#1-1-OpenMMLab" class="headerlink" title="1.1. OpenMMLab"></a>1.1. OpenMMLab</h3><p>官网：<a href="https://openmmlab.com/" target="_blank" rel="noopener">https://openmmlab.com/</a><br>官方github：<a href="https://github.com/open-mmlab" target="_blank" rel="noopener">https://github.com/open-mmlab</a><br>官方bilibili: <a href="https://space.bilibili.com/1293512903" target="_blank" rel="noopener">https://space.bilibili.com/1293512903</a></p>
+</blockquote>
+<p><img src="/cv/segmentation/mmsegmentation_01_quick/2022-04-17-20-56-41.png" alt></p>
+<h2 id="2-MMSegmentation"><a href="#2-MMSegmentation" class="headerlink" title="2. MMSegmentation"></a>2. MMSegmentation</h2><p>官方github：<a href="https://github.com/open-mmlab/mmsegmentation" target="_blank" rel="noopener">https://github.com/open-mmlab/mmsegmentation</a><br>官方文档：<a href="https://mmsegmentation.readthedocs.io/zh_CN/latest/index.html" target="_blank" rel="noopener">https://mmsegmentation.readthedocs.io/zh_CN/latest/index.html</a></p>
+<h3 id="2-1-主要特性"><a href="#2-1-主要特性" class="headerlink" title="2.1. 主要特性"></a>2.1. 主要特性</h3><ul>
+<li><strong>统一的基准平台</strong><br> 将各种各样的语义分割算法集成到了一个统一的工具箱，进行基准测试。</li>
+<li><strong>模块化设计</strong><br>MMSegmentation 将分割框架解耦成不同的模块组件，通过组合不同的模块组件，用户可以便捷地构建自定义的分割模型。</li>
+<li><strong>丰富的即插即用的算法和模型</strong><br>MMSegmentation 支持了众多主流的和最新的检测算法，例如 PSPNet，DeepLabV3，PSANet，DeepLabV3+ 等。</li>
+<li><strong>速度快</strong><br>训练速度比其他语义分割代码库更快或者相当。<h3 id="2-2-模型库"><a href="#2-2-模型库" class="headerlink" title="2.2. 模型库"></a>2.2. 模型库</h3><strong>支持backbone:</strong><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ResNet</span><br><span class="line">ResNeXt</span><br><span class="line">HRNet</span><br><span class="line">ResNeSt</span><br><span class="line">MobileNetV2</span><br><span class="line">MobileNetV3</span><br></pre></td></tr></table></figure>
+<strong>支持算法：</strong><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">FCN</span><br><span class="line">PSPNet</span><br><span class="line">DeepLabV3</span><br><span class="line">PSANet</span><br><span class="line">DeepLabV3+</span><br><span class="line">UPerNet</span><br><span class="line">NonLocal Net</span><br><span class="line">EncNet</span><br><span class="line">CCNet</span><br><span class="line">DANet</span><br><span class="line">APCNet</span><br><span class="line">GCNet</span><br><span class="line">DMNet</span><br><span class="line">ANN</span><br><span class="line">OCRNet</span><br><span class="line">Fast-SCNN</span><br><span class="line">Semantic FPN</span><br><span class="line">PointRend</span><br><span class="line">EMANet</span><br><span class="line">DNLNet</span><br><span class="line">CGNet</span><br><span class="line">Mixed Precision (FP16) Training</span><br></pre></td></tr></table></figure>
+<h3 id="2-3-安装"><a href="#2-3-安装" class="headerlink" title="2.3. 安装"></a>2.3. 安装</h3>参考官方<a href="https://github.com/open-mmlab/mmsegmentation/blob/master/docs/zh_cn/get_started.md#installation" target="_blank" rel="noopener">GitHub</a>安装流程<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1. 创建环境</span></span><br><span class="line">conda create -n mmseg python=3.7</span><br><span class="line">conda activate mmseg</span><br><span class="line"><span class="comment"># 2. 安装pytorch</span></span><br><span class="line">pip install torch==1.8.0+cu111 torchvision==0.9.0+cu111 torchaudio==0.8.0 -f https://download.pytorch.org/whl/torch_stable.html</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. 根据git版本推荐安装mmcv,一般安装full版本</span></span><br><span class="line"><span class="comment"># https://mmcv.readthedocs.io/en/latest/get_started/installation.html</span></span><br><span class="line">pip install mmcv-full -f https://download.openmmlab.com/mmcv/dist/cu111/torch1.8.0/index.html</span><br><span class="line"><span class="comment"># 4. 安装mmseg</span></span><br><span class="line">pip install mmsegmentation</span><br><span class="line"><span class="comment"># 或者需要修改源码</span></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/open-mmlab/mmsegmentation.git</span><br><span class="line"><span class="built_in">cd</span> mmsegmentation</span><br><span class="line">pip install -e .  <span class="comment"># 或者 "python setup.py develop"</span></span><br></pre></td></tr></table></figure>
+cuda10.1环境下安装<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1. 创建环境</span></span><br><span class="line">conda create -n mmseg python=3.8</span><br><span class="line">conda activate mmseg</span><br><span class="line"><span class="comment"># 2. 安装pytorch</span></span><br><span class="line"><span class="comment"># pip install torch==1.8.1+cu101 torchvision==0.9.1+cu101 torchaudio==0.8.1 -f https://download.pytorch.org/whl/torch_stable.html</span></span><br><span class="line"></span><br><span class="line">pip install https://download.pytorch.org/whl/cu101/torchvision-0.8.0-cp38-cp38-linux_x86_64.whl</span><br><span class="line">pip install torch==1.7.0+cu101 torchaudio==0.7.0 -f https://download.pytorch.org/whl/torch_stable.html</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. 根据git版本推荐安装mmcv,一般安装full版本</span></span><br><span class="line"><span class="comment"># https://mmcv.readthedocs.io/en/latest/get_started/installation.html</span></span><br><span class="line"><span class="comment"># pip install mmcv-full -f https://download.openmmlab.com/mmcv/dist/cu101/torch1.8.1/index.html</span></span><br><span class="line">pip install mmcv-full -f https://download.openmmlab.com/mmcv/dist/cu101/torch1.7.0/index.html</span><br><span class="line"><span class="comment"># 4. 安装mmseg, 找mmcv版本对应版本</span></span><br><span class="line"><span class="comment"># https://github.com/open-mmlab/mmsegmentation/blob/master/docs/zh_cn/get_started.md#installation</span></span><br><span class="line">pip install mmsegmentation</span><br><span class="line"><span class="comment"># 或者需要修改源码</span></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/open-mmlab/mmsegmentation.git</span><br><span class="line"><span class="built_in">cd</span> mmsegmentation</span><br><span class="line">pip install -e .  <span class="comment"># 或者 "python setup.py develop"</span></span><br><span class="line">pip install wcwidth==0.2.5</span><br></pre></td></tr></table></figure>
+验证<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -c <span class="string">"import mmsegmentation; print(mmsegmentation.__version__)"</span></span><br></pre></td></tr></table></figure>
+<h3 id="2-4-demo运行-quick-start"><a href="#2-4-demo运行-quick-start" class="headerlink" title="2.4. demo运行 quick start"></a>2.4. demo运行 quick start</h3><h4 id="2-4-1-数据集准备"><a href="#2-4-1-数据集准备" class="headerlink" title="2.4.1. 数据集准备"></a>2.4.1. 数据集准备</h4>眼球红血丝demo数据集：<a href="https://staffnet.kingston.ac.uk/~ku15565/CHASE_DB1/assets/CHASEDB1.zip" target="_blank" rel="noopener">CHASE DB1</a><h4 id="2-4-2-数据转换"><a href="#2-4-2-数据转换" class="headerlink" title="2.4.2. 数据转换"></a>2.4.2. 数据转换</h4>在mmsegmentation/data下放置或生成对应数据集<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">python tools&#x2F;convert_datasets&#x2F;chase_db1.py &#x2F;path&#x2F;to&#x2F;CHASEDB1.zip</span><br><span class="line"></span><br><span class="line"># 将生成数据的目录结构</span><br><span class="line">mmsegmentation</span><br><span class="line">├── mmseg</span><br><span class="line">├── tools</span><br><span class="line">├── configs</span><br><span class="line">├── data</span><br><span class="line">│   ├── CHASE_DB1</span><br><span class="line">│   │   ├── images</span><br><span class="line">│   │   │   ├── training</span><br><span class="line">│   │   │   ├── validation</span><br><span class="line">│   │   ├── annotations</span><br><span class="line">│   │   │   ├── training</span><br><span class="line">│   │   │   ├── validation</span><br></pre></td></tr></table></figure>
+<h4 id="2-4-3-模型训练"><a href="#2-4-3-模型训练" class="headerlink" title="2.4.3. 模型训练"></a>2.4.3. 模型训练</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python tools&#x2F;train.py configs&#x2F;unet&#x2F;deeplabv3_unet_s5-d16_128x128_40k_chase_db1.py</span><br></pre></td></tr></table></figure>
+<h4 id="2-4-4-模型预测"><a href="#2-4-4-模型预测" class="headerlink" title="2.4.4. 模型预测"></a>2.4.4. 模型预测</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python tools&#x2F;predict.py configs&#x2F;unet&#x2F;deeplabv3_unet_s5-d16_128x128_40k_chase_db1.py &#x2F;path&#x2F;to&#x2F;model.pth</span><br></pre></td></tr></table></figure>
+<h2 id="3-框架解读"><a href="#3-框架解读" class="headerlink" title="3. 框架解读"></a>3. 框架解读</h2>todo:!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!<br><a href="https://zhuanlan.zhihu.com/p/411494961" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/411494961</a></li>
+</ul>
+<p><img src="/cv/segmentation/mmsegmentation_01_quick/2022-04-24-14-25-18.png" alt></p>
+<p><strong>配置文件</strong><br>框架基于配置文件组装，实现对模型训练和预测的全过程。</p>
+<p>有4种基本组件类型： 数据集(dataset)，模型(model)，训练策略(schedule)和运行时的默认设置(default runtime)，可以组合配置</p>
+<p>在 config/_base_ 文件夹下的组件来构建的配置为 原始配置 (primitive)，所有其他的配置文件都应该继承自这个原始配置文件。这样就能保证配置文件的最大继承深度为 3。</p>
+<p><strong>主配置文件命名</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;model&#125;_&#123;backbone&#125;_[misc]_[gpu x batch_per_gpu]_&#123;resolution&#125;_&#123;iterations&#125;_&#123;dataset&#125;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li><p>{model}: 模型种类，例如 psp， deeplabv3 等等</p>
+</li>
+<li><p>{backbone}: 主干网络种类，例如 r50 (ResNet-50)， x101 (ResNeXt-101)</p>
+</li>
+<li><p>[misc]: 模型中各式各样的设置/插件，例如 dconv， gcb， attention， mstrain</p>
+</li>
+<li><p>[gpu x batch_per_gpu]: GPU数目 和每个 GPU 的样本数， 默认为 8x2</p>
+</li>
+<li><p>{iterations}: 训练迭代轮数，如160k</p>
+</li>
+<li><p>{dataset}: 数据集，如 cityscapes， voc12aug， ade</p>
+</li>
+</ul>
+<h3 id="3-1-数据集配置"><a href="#3-1-数据集配置" class="headerlink" title="3.1. 数据集配置"></a>3.1. 数据集配置</h3><p><a href="https://github.com/open-mmlab/mmsegmentation/blob/master/docs/zh_cn/dataset_prepare.md" target="_blank" rel="noopener">https://github.com/open-mmlab/mmsegmentation/blob/master/docs/zh_cn/dataset_prepare.md</a></p>
+<h3 id="3-2-模型配置"><a href="#3-2-模型配置" class="headerlink" title="3.2. 模型配置"></a>3.2. 模型配置</h3><h3 id="3-3-模型训练"><a href="#3-3-模型训练" class="headerlink" title="3.3. 模型训练"></a>3.3. 模型训练</h3><h4 id="3-3-1-框架设定标准"><a href="#3-3-1-框架设定标准" class="headerlink" title="3.3.1. 框架设定标准"></a>3.3.1. 框架设定标准</h4><ul>
+<li>默认使用 4 卡分布式训练</li>
+<li>ResNet 网络是基于 ResNetV1c 的变种，在这里输入层的 7x7 卷积被 3个 3x3 取代。参考 <a href="https://arxiv.org/pdf/1812.01187.pdf" target="_blank" rel="noopener">https://arxiv.org/pdf/1812.01187.pdf</a></li>
+<li>以 torch.cuda.max_memory_allocated() 的最大值作为 GPU 占用率，通常比 nvidia-smi 显示的要少</li>
+<li>推理时间：网络 forward 时间+后处理的时间作为推理时间，不包括数据加载的时间</li>
+<li>推理模式（两种）：<br>— slide 模式（滑动模式）：测试的配置文件字段 test_cfg 会是 dict(mode=’slide’, crop_size=(769, 769), stride=(513, 513)). 在这个模式下，从原图中裁剪多个小图分别输入网络中进行推理。小图的大小和小图之间的距离由 crop_size 和 stride 决定，重合区域会进行平均<br>— whole 模式 （全图模式）：测试的配置文件字段 test_cfg 会是 dict(mode=’whole’). 在这个模式下，全图会被直接输入到网络中进行推理。 对于 769x769 下训练的模型，我们默认使用 slide 进行推理，其余模型用 whole 进行推理</li>
+<li>对于输入大小为 8x+1 （比如769），我们使用 align_corners=True。其余情况，对于输入大小为 8x (比如 512，1024)，我们使用 align_corners=False</li>
+</ul>
+<h4 id="3-3-2-模型训练"><a href="#3-3-2-模型训练" class="headerlink" title="3.3.2. 模型训练"></a>3.3.2. 模型训练</h4><p><a href="https://mmsegmentation.readthedocs.io/zh_CN/latest/train.html" target="_blank" rel="noopener">https://mmsegmentation.readthedocs.io/zh_CN/latest/train.html</a><br> 可以执行分布式训练和非分布式训练，分别使用 MMDistributedDataParallel 和 MMDataParallel 命令。<br> 所有输出（日志文件和检查点）将保存到工作目录，该目录在config文件中的work_dir指定。</p>
+<p>默认情况下，会在一些迭代后在验证集上评估模型，可以通过在训练配置中添加interval参数来更改评估间隔。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">evaluation &#x3D; dict(interval&#x3D;4000) # This evaluate the model per 4000 iterations.</span><br></pre></td></tr></table></figure></p>
+<h5 id="3-3-2-1-单卡GPU训练"><a href="#3-3-2-1-单卡GPU训练" class="headerlink" title="3.3.2.1. 单卡GPU训练"></a>3.3.2.1. 单卡GPU训练</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">python tools/train.py <span class="variable">$&#123;CONFIG_FILE&#125;</span> [可选参数]</span><br><span class="line"><span class="comment"># 指定GPU  --gpu-id 0</span></span><br><span class="line"><span class="comment"># 指定保存目录 --work-dir &#123;dir_path&#125; 默认是 ./work_dirs/&#123;cofig_name&#125;</span></span><br><span class="line"><span class="comment"># 指定加载检查点 --load-from</span></span><br><span class="line"><span class="comment"># --auto-resume </span></span><br><span class="line">python tools/train.py <span class="variable">$&#123;CONFIG_FILE&#125;</span> --gpu-id 0</span><br></pre></td></tr></table></figure>
+<h5 id="3-3-2-2-使用-CPU-训练"><a href="#3-3-2-2-使用-CPU-训练" class="headerlink" title="3.3.2.2. 使用 CPU 训练"></a>3.3.2.2. 使用 CPU 训练</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 禁用GPU</span></span><br><span class="line"><span class="built_in">export</span> CUDA_VISIBLE_DEVICES=-1</span><br><span class="line">python tools/train.py <span class="variable">$&#123;CONFIG_FILE&#125;</span> [可选参数]</span><br></pre></td></tr></table></figure>
+<h5 id="3-3-2-3-多卡GPU训练"><a href="#3-3-2-3-多卡GPU训练" class="headerlink" title="3.3.2.3. 多卡GPU训练"></a>3.3.2.3. 多卡GPU训练</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh tools/dist_train.sh <span class="variable">$&#123;CONFIG_FILE&#125;</span> <span class="variable">$&#123;GPUS&#125;</span> [可选参数]</span><br></pre></td></tr></table></figure>
+<h5 id="3-3-2-4-在单个机器上启动多个任务"><a href="#3-3-2-4-在单个机器上启动多个任务" class="headerlink" title="3.3.2.4. 在单个机器上启动多个任务"></a>3.3.2.4. 在单个机器上启动多个任务</h5><h5 id="3-3-2-5-使用多台机器训练"><a href="#3-3-2-5-使用多台机器训练" class="headerlink" title="3.3.2.5. 使用多台机器训练"></a>3.3.2.5. 使用多台机器训练</h5><h3 id="3-4-模型测试"><a href="#3-4-模型测试" class="headerlink" title="3.4. 模型测试"></a>3.4. 模型测试</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># 单卡 GPU 测试</span><br><span class="line">python tools&#x2F;test.py $&#123;配置文件&#125; $&#123;检查点文件&#125; [--out $&#123;结果文件&#125;] [--eval $&#123;评估指标&#125;] [--show]</span><br><span class="line"></span><br><span class="line"># CPU: 禁用 GPU 并运行单 GPU 测试脚本</span><br><span class="line">export CUDA_VISIBLE_DEVICES&#x3D;-1</span><br><span class="line">python tools&#x2F;test.py $&#123;配置文件&#125; $&#123;检查点文件&#125; [--out $&#123;结果文件&#125;] [--eval $&#123;评估指标&#125;] [--show]</span><br><span class="line"></span><br><span class="line"># 多卡GPU 测试</span><br><span class="line">.&#x2F;tools&#x2F;dist_test.sh $&#123;配置文件&#125; $&#123;检查点文件&#125; $&#123;GPU数目&#125; [--out $&#123;结果文件&#125;] [--eval $&#123;评估指标&#125;]</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>RESULT_FILE: pickle 格式的输出结果的文件名，如果不专门指定，结果将不会被专门保存成文件。（MMseg v0.17 之后，args.out 将只会保存评估时的中间结果或者是分割图的保存路径。）</p>
+</li>
+<li><p>EVAL_METRICS: 在结果里将被评估的指标。这主要取决于数据集， mIoU 对于所有数据集都可获得，像 Cityscapes 数据集可以通过 cityscapes 命令来专门评估，就像标准的 mIoU一样。</p>
+</li>
+<li><p>—show: 如果被指定，分割结果将会在一张图像里画出来并且在另一个窗口展示。它仅仅是用来调试与可视化，并且仅针对单卡 GPU 测试。请确认 GUI 在您的环境里可用，否则您也许会遇到报错 cannot connect to X server</p>
+</li>
+<li><p>—show-dir: 如果被指定，分割结果将会在一张图像里画出来并且保存在指定文件夹里。它仅仅是用来调试与可视化，并且仅针对单卡GPU测试。使用该参数时，您的环境不需要 GUI。</p>
+</li>
+<li><p>—eval-options: 评估时的可选参数，当设置 efficient_test=True 时，它将会保存中间结果至本地文件里以节约 CPU 内存。请确认您本地硬盘有足够的存储空间（大于20GB）。（MMseg v0.17 之后，efficient_test 不再生效，我们重构了 test api，通过使用一种渐近式的方式来提升评估和保存结果的效率。）</p>
+</li>
+</ul>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://tlylft.github.io/cv/segmentation/mmsegmentation_01_quick/" title="【mmsegmentation】01-Quick Start" target="_blank" rel="external">https://tlylft.github.io/cv/segmentation/mmsegmentation_01_quick/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/tlylft" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.png" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/tlylft" target="_blank"><span class="text-dark">Icey</span><small class="ml-1x">小傻瓜,别回头</small></a></h3>
+        <div>以梦为马，随处可栖。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/cv/segmentation/segmentation/" title="语义分割"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/cv/segmentation/unet_01_unet/" title="unet"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>感谢您的支持，我会继续努力的!</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechatpayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> 支付宝</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> 微信支付</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/tlylft?tab=repositories" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="https://www.weibo.com/tlylft/profile?rightmod=1&wvr=6&mod=personinfo" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://www.facebook.com/profile.php?id=100009783614101" target="_blank" title="Facebook" data-toggle=tooltip data-placement=top><i class="icon icon-facebook"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: 'eL0FL59XsOPmrzo5OTb0zhgE-gzGzoHsz',
+    appKey: '53Yf97Qf3bKKWC81Bh4EM9oY',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: true
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

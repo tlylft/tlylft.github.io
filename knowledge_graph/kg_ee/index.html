@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>【知识图谱】-03事件抽取(Event Extraction) | 小傻瓜别回头</title>
+  <meta name="description" content="啥是事件抽取(Event Extraction)知识抽取-事件抽取开放域事件抽取及相关论文整理 百度竞赛：数据集比赛说明基准代码参考算法 ERNIE:论文  git代码YiDai-03 DuIE_pytorch SemEval-2020SemEval-2020自由文本关系抽取冠军方案解读   1. 概述1.1. 背景知识图谱的构建都是以实体为核心，缺乏事件知识事件抽取(Event Extract">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【知识图谱】-03事件抽取(Event Extraction)">
+<meta property="og:url" content="https://tlylft.github.io/knowledge_graph/kg_ee/index.html">
+<meta property="og:site_name" content="灵魂都失控">
+<meta property="og:description" content="啥是事件抽取(Event Extraction)知识抽取-事件抽取开放域事件抽取及相关论文整理 百度竞赛：数据集比赛说明基准代码参考算法 ERNIE:论文  git代码YiDai-03 DuIE_pytorch SemEval-2020SemEval-2020自由文本关系抽取冠军方案解读   1. 概述1.1. 背景知识图谱的构建都是以实体为核心，缺乏事件知识事件抽取(Event Extract">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tlylft.github.io/knowledge_graph/kg_ee/2022-01-08-10-48-23.png">
+<meta property="og:image" content="https://tlylft.github.io/knowledge_graph/kg_ee/2022-01-08-10-50-25.png">
+<meta property="og:image" content="https://tlylft.github.io/knowledge_graph/kg_ee/2022-01-08-10-30-39.png">
+<meta property="og:image" content="https://tlylft.github.io/knowledge_graph/kg_ee/2022-01-17-21-25-10.png">
+<meta property="og:image" content="https://tlylft.github.io/knowledge_graph/kg_ee/2022-01-08-11-08-04.png">
+<meta property="og:image" content="https://tlylft.github.io/knowledge_graph/kg_ee/2022-01-08-11-15-26.png">
+<meta property="og:image" content="https://tlylft.github.io/knowledge_graph/kg_ee/2022-01-08-10-26-39.png">
+<meta property="og:image" content="https://tlylft.github.io/knowledge_graph/kg_ee/2022-01-18-10-42-46.png">
+<meta property="og:image" content="https://tlylft.github.io/knowledge_graph/kg_ee/2022-01-18-13-33-26.png">
+<meta property="og:image" content="https://tlylft.github.io/knowledge_graph/kg_ee/2022-01-17-21-16-03.png">
+<meta property="og:image" content="https://tlylft.github.io/knowledge_graph/kg_ee/2022-01-17-21-16-53.png">
+<meta property="og:image" content="https://tlylft.github.io/knowledge_graph/kg_ee/2022-01-17-21-17-50.png">
+<meta property="og:image" content="https://tlylft.github.io/knowledge_graph/kg_ee/2022-01-23-20-47-24.png">
+<meta property="og:image" content="https://tlylft.github.io/knowledge_graph/kg_ee/2022-01-18-09-48-14.png">
+<meta property="og:image" content="https://tlylft.github.io/knowledge_graph/kg_ee/2022-01-20-13-34-29.png">
+<meta property="og:image" content="https://tlylft.github.io/knowledge_graph/kg_ee/2022-01-20-13-36-27.png">
+<meta property="og:image" content="https://tlylft.github.io/knowledge_graph/kg_ee/2022-01-24-14-42-45.png">
+<meta property="og:image" content="https://tlylft.github.io/knowledge_graph/kg_ee/2022-01-24-14-42-13.png">
+<meta property="og:image" content="https://tlylft.github.io/knowledge_graph/kg_ee/2022-01-24-14-48-23.png">
+<meta property="og:image" content="https://tlylft.github.io/knowledge_graph/kg_ee/2022-01-24-14-50-05.png">
+<meta property="og:image" content="https://tlylft.github.io/knowledge_graph/kg_ee/2022-01-20-13-39-27.png">
+<meta property="og:image" content="https://tlylft.github.io/knowledge_graph/kg_ee/2022-01-24-14-50-28.png">
+<meta property="og:image" content="https://tlylft.github.io/knowledge_graph/kg_ee/2022-01-18-09-49-25.png">
+<meta property="og:image" content="https://tlylft.github.io/knowledge_graph/kg_ee/2022-01-18-09-49-42.png">
+<meta property="og:image" content="https://tlylft.github.io/knowledge_graph/kg_ee/2022-01-08-10-35-01.png">
+<meta property="og:image" content="https://tlylft.github.io/knowledge_graph/kg_ee/2022-01-08-15-38-16.png">
+<meta property="og:image" content="https://tlylft.github.io/knowledge_graph/kg_ee/2022-01-08-10-35-27.png">
+<meta property="og:image" content="https://tlylft.github.io/knowledge_graph/kg_ee/2022-01-08-16-08-39.png">
+<meta property="og:image" content="https://tlylft.github.io/knowledge_graph/kg_ee/2022-01-08-15-27-21.png">
+<meta property="og:image" content="https://tlylft.github.io/knowledge_graph/kg_ee/2022-01-08-15-27-54.png">
+<meta property="og:image" content="https://tlylft.github.io/knowledge_graph/kg_ee/2022-01-08-15-31-07.png">
+<meta property="article:published_time" content="2020-11-27T06:58:56.000Z">
+<meta property="article:modified_time" content="2022-01-29T08:21:38.866Z">
+<meta property="article:author" content="Icey Liu">
+<meta property="article:tag" content="knowledge graph">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tlylft.github.io/knowledge_graph/kg_ee/2022-01-08-10-48-23.png">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://tlylft.github.io/knowledge_graph/kg_ee/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="灵魂都失控" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/images/avatar.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/tlylft" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.png" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">Icey</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">小傻瓜,别回头</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Hebei, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/tlylft?tab=repositories" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="https://www.weibo.com/tlylft/profile?rightmod=1&wvr=6&mod=personinfo" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://www.facebook.com/profile.php?id=100009783614101" target="_blank" title="Facebook" data-toggle=tooltip data-placement=top><i class="icon icon-facebook"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>Welcome!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/LLM/">LLM</a><span class="category-list-count">9</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/LLM/transformer/">transformer</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Leecode/">Leecode</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/">NLP</a><span class="category-list-count">62</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/NER/">NER</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/algorithm/">algorithm</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/bert/">bert</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/corrector/">corrector</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/label/">label</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/segment/">segment</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/sensitive/">sensitive</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/similarity/">similarity</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/word2vec/">word2vec</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/%E4%BF%A1%E6%81%AF%E6%8F%90%E5%8F%96/">信息提取</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/cv/">cv</a><span class="category-list-count">24</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/cv/pointcloud/">pointcloud</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/cv/segmentation/">segmentation</a><span class="category-list-count">11</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/deep-learning/">deep learning</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/knowledge-graph/">knowledge graph</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/machine-learning/">machine learning</a><span class="category-list-count">21</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/machine-learning/autoML/">autoML</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/machine-learning/time-series/">time series</a><span class="category-list-count">4</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/math/">math</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a><span class="category-list-count">53</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/python/Django/">Django</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/Flask/">Flask</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/keras/">keras</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/matplotlib/">matplotlib</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/pandas/">pandas</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/python/">python</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">环境搭建</a><span class="category-list-count">8</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/pytorch/">pytorch</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tensorflow/">tensorflow</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tools/">tools</a><span class="category-list-count">16</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/tools/ftp/">ftp</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tools/k8s/">k8s</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tools/kubernetes/">kubernetes</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tools/paper/">paper</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BA%A7%E5%93%81%E7%BB%8F%E7%90%86/">产品经理</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8A%80%E6%9C%AF/">大数据技术</a><span class="category-list-count">8</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8A%80%E6%9C%AF/hive/">hive</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8A%80%E6%9C%AF/kafka/">kafka</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8A%80%E6%9C%AF/mysql/">mysql</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AF%B9%E8%AF%9D%E7%B3%BB%E7%BB%9F/">对话系统</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/">强化学习</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB/">爬虫</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/">计算机视觉</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a><span class="category-list-count">13</span></li></ul>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/Anaconda/" style="font-size: 13px;">Anaconda</a> <a href="/tags/Django/" style="font-size: 13.14px;">Django</a> <a href="/tags/Docker/" style="font-size: 13px;">Docker</a> <a href="/tags/Flask/" style="font-size: 13.57px;">Flask</a> <a href="/tags/LLM/" style="font-size: 13.57px;">LLM</a> <a href="/tags/Leecode/" style="font-size: 13.14px;">Leecode</a> <a href="/tags/NER/" style="font-size: 13.36px;">NER</a> <a href="/tags/NLP/" style="font-size: 13.93px;">NLP</a> <a href="/tags/RASA/" style="font-size: 13.71px;">RASA</a> <a href="/tags/algorithm/" style="font-size: 13.29px;">algorithm</a> <a href="/tags/anaconda/" style="font-size: 13px;">anaconda</a> <a href="/tags/autoML/" style="font-size: 13px;">autoML</a> <a href="/tags/bert/" style="font-size: 13.64px;">bert</a> <a href="/tags/bert4keras/" style="font-size: 13.14px;">bert4keras</a> <a href="/tags/blog/" style="font-size: 13px;">blog</a> <a href="/tags/corrector/" style="font-size: 13.21px;">corrector</a> <a href="/tags/cv/" style="font-size: 13.79px;">cv</a> <a href="/tags/deep-learning/" style="font-size: 13.86px;">deep learning</a> <a href="/tags/doccano/" style="font-size: 13px;">doccano</a> <a href="/tags/docker/" style="font-size: 13.07px;">docker</a> <a href="/tags/git/" style="font-size: 13px;">git</a> <a href="/tags/github/" style="font-size: 13px;">github</a> <a href="/tags/hive/" style="font-size: 13.29px;">hive</a> <a href="/tags/k8s/" style="font-size: 13px;">k8s</a> <a href="/tags/kafka/" style="font-size: 13px;">kafka</a> <a href="/tags/keras/" style="font-size: 13px;">keras</a> <a href="/tags/kerberos/" style="font-size: 13px;">kerberos</a> <a href="/tags/knowledge-graph/" style="font-size: 13.5px;">knowledge graph</a> <a href="/tags/kubeflow/" style="font-size: 13px;">kubeflow</a> <a href="/tags/kubernetes/" style="font-size: 13px;">kubernetes</a> <a href="/tags/label/" style="font-size: 13.07px;">label</a> <a href="/tags/linux/" style="font-size: 13.5px;">linux</a> <a href="/tags/machine-learning/" style="font-size: 13.86px;">machine learning</a> <a href="/tags/math/" style="font-size: 13.14px;">math</a> <a href="/tags/matplotlib/" style="font-size: 13px;">matplotlib</a> <a href="/tags/mysql/" style="font-size: 13.07px;">mysql</a> <a href="/tags/navicat/" style="font-size: 13px;">navicat</a> <a href="/tags/neo4j/" style="font-size: 13.14px;">neo4j</a> <a href="/tags/nlp/" style="font-size: 13px;">nlp</a> <a href="/tags/numpy/" style="font-size: 13px;">numpy</a> <a href="/tags/paddle/" style="font-size: 13px;">paddle</a> <a href="/tags/pandas/" style="font-size: 13.21px;">pandas</a> <a href="/tags/pointcloud/" style="font-size: 13.07px;">pointcloud</a> <a href="/tags/ppt/" style="font-size: 13px;">ppt</a> <a href="/tags/pycharm/" style="font-size: 13.07px;">pycharm</a> <a href="/tags/python/" style="font-size: 14px;">python</a> <a href="/tags/pytorch/" style="font-size: 13.21px;">pytorch</a> <a href="/tags/segment/" style="font-size: 13.07px;">segment</a> <a href="/tags/segmentation/" style="font-size: 13.64px;">segmentation</a> <a href="/tags/sensitive/" style="font-size: 13.07px;">sensitive</a> <a href="/tags/similarity/" style="font-size: 13.43px;">similarity</a> <a href="/tags/tensorflow/" style="font-size: 13.07px;">tensorflow</a> <a href="/tags/time-series/" style="font-size: 13.07px;">time series</a> <a href="/tags/tools/" style="font-size: 13.64px;">tools</a> <a href="/tags/vp/" style="font-size: 13px;">vp</a> <a href="/tags/word2vec/" style="font-size: 13.36px;">word2vec</a> <a href="/tags/%E4%BA%A7%E5%93%81%E7%BB%8F%E7%90%86/" style="font-size: 13px;">产品经理</a> <a href="/tags/%E4%BF%A1%E6%81%AF%E6%8F%90%E5%8F%96/" style="font-size: 13.14px;">信息提取</a> <a href="/tags/%E5%AF%B9%E8%AF%9D%E7%B3%BB%E7%BB%9F/" style="font-size: 13.86px;">对话系统</a> <a href="/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" style="font-size: 13.14px;">强化学习</a> <a href="/tags/%E7%88%AC%E8%99%AB/" style="font-size: 13.07px;">爬虫</a> <a href="/tags/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" style="font-size: 13.5px;">环境搭建</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/" style="font-size: 13.36px;">计算机视觉</a> <a href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" style="font-size: 13.64px;">读书笔记</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">八月 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">七月 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">六月 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">五月 2023</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">四月 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">三月 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">二月 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">一月 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">十一月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">六月 2022</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/05/">五月 2022</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">四月 2022</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">三月 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">二月 2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">一月 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">十二月 2021</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">十一月 2021</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">十月 2021</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">八月 2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">六月 2021</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">一月 2021</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a><span class="archive-list-count">17</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a><span class="archive-list-count">24</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">9</span></li></ul>
+    </div>
+  </div>
+
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-knowledge_graph/kg_ee" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      【知识图谱】-03事件抽取(Event Extraction)
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/knowledge_graph/kg_ee/" class="article-date">
+	  <time datetime="2020-11-27T06:58:56.000Z" itemprop="datePublished">创建于: 2020-11-27</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/knowledge-graph/">knowledge graph</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/knowledge-graph/" rel="tag">knowledge graph</a>
+  </span>
+
+
+        
+
+	<span class="article-read hidden-xs">
+    	<i class="icon icon-eye-fill" aria-hidden="true"></i>
+    	<span id="/knowledge_graph/kg_ee/" class="leancloud_visitors"  data-flag-title="【知识图谱】-03事件抽取(Event Extraction)">
+			<span class="leancloud-visitors-count">0</span>
+		</span>
+    </span>
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/knowledge_graph/kg_ee/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <blockquote>
+<p><a href="https://zhuanlan.zhihu.com/p/173769646" target="_blank" rel="noopener">啥是事件抽取(Event Extraction)</a><br><a href="https://zhuanlan.zhihu.com/p/50903358" target="_blank" rel="noopener">知识抽取-事件抽取</a><br><a href="https://zhuanlan.zhihu.com/p/360792046" target="_blank" rel="noopener">开放域事件抽取及相关论文整理</a></p>
+<p>百度竞赛：<br><a href="https://ai.baidu.com/broad/download" target="_blank" rel="noopener">数据集</a><br><a href="https://aistudio.baidu.com/aistudio/competition/detail/31" target="_blank" rel="noopener">比赛说明</a><br><a href="https://github.com/PaddlePaddle/Research/tree/master/KG/DuEE_baseline" target="_blank" rel="noopener">基准代码</a><br>参考算法 ERNIE:<a href="https://arxiv.org/abs/1904.09223" target="_blank" rel="noopener">论文</a>  <a href="https://github.com/lonePatient/ERNIE-text-classification-pytorch?utm_source=catalyzex.com" target="_blank" rel="noopener">git代码</a><br><a href="https://github.com/YiDai-03/DuIE_pytorch" target="_blank" rel="noopener">YiDai-03 DuIE_pytorch</a><br> SemEval-2020<br><a href="https://blog.csdn.net/c9Yv2cf9I06K2A9E/article/details/108353481" target="_blank" rel="noopener">SemEval-2020自由文本关系抽取冠军方案解读 </a></p>
+</blockquote>
+<h1 id="1-概述"><a href="#1-概述" class="headerlink" title="1. 概述"></a>1. 概述</h1><h2 id="1-1-背景"><a href="#1-1-背景" class="headerlink" title="1.1. 背景"></a>1.1. 背景</h2><p>知识图谱的构建都是以实体为核心，缺乏事件知识<br><img src="/knowledge_graph/kg_ee/2022-01-08-10-48-23.png" alt><br>事件抽取(Event Extraction, EE)是NLP领域信息抽取任务中的重要研究方向，在商业、军事等领域的情报工作中应用非常广泛。<br><img src="/knowledge_graph/kg_ee/2022-01-08-10-50-25.png" alt></p>
+<h2 id="1-2-概念"><a href="#1-2-概念" class="headerlink" title="1.2. 概念"></a>1.2. 概念</h2><h3 id="1-2-1-什么是事件？"><a href="#1-2-1-什么是事件？" class="headerlink" title="1.2.1. 什么是事件？"></a>1.2.1. 什么是事件？</h3><p>事件是发生在磨具个特定的<strong>时间点或时间段</strong>，某个特定的<strong>地域范围内</strong>，由<strong>一个或者多个角色</strong>参与的<strong>一个或者多个动作</strong>组成的<strong>事情</strong>或者<strong>状态的改变</strong></p>
+<p>不同的动作或者状态改变表达了不同的事件类型，如：我吃饭和我喝水<br>同一类事件类型不同元素或不同粒度的元素代表了不同的事件实例，如我吃饭和你吃饭</p>
+<h3 id="1-2-2-什么是事件抽取？"><a href="#1-2-2-什么是事件抽取？" class="headerlink" title="1.2.2. 什么是事件抽取？"></a>1.2.2. 什么是事件抽取？</h3><p>含有事件信息的非结构化文本 -&gt; 用户感兴趣的事件信息，并以结构化的形式呈现出来<br>完整的事件（5W1H）：<br>who(施事者)<br>what(做什么) -谓语动词体现<br>whom(受事者)<br>when(什么时间)<br>where(地点)<br>how(怎么做) - 详细描述事件</p>
+<p><strong>事件抽取vs关系抽取</strong><br><img src="/knowledge_graph/kg_ee/2022-01-08-10-30-39.png" alt><br>关系抽取：两个实体之间的关系，一般是单一的关系<br>事件抽取：触发词和实体之间的关系，可能是多个关系，如和person的关系，和org的关系和pos的关系等</p>
+<h2 id="1-3-任务定义"><a href="#1-3-任务定义" class="headerlink" title="1.3. 任务定义"></a>1.3. 任务定义</h2><p><strong>Closed-domain</strong><br>Closed-domain事件抽取使用预定义的事件模式从文本中发现和提取所需的特定类型的事件。事件模式包含多个事件类型及其相应的事件结构。D.Ahn首先提出将ACE事件抽取任务分成四个子任务：触发词检测、事件/触发词类型识别、事件论元检测和参数角色识别。我们使用ACE术语来介绍如下事件结构:</p>
+<p>-「事件提及」：描述事件的短语或句子，包括触发词和几个参数。<br>-「事件触发词」：最清楚地表达事件发生的主要词，一般指动词或名词。<br>-「事件论元」：一个实体，时间表达式，作为参与者的值和在事件中具有特定角色的属性。<br>-「论元角色」：论元与它所参与的事件之间的关系<br><img src="/knowledge_graph/kg_ee/2022-01-17-21-25-10.png" alt></p>
+<ul>
+<li>事件发现（event detection）:从文本中发现事件触发词（event trigger）</li>
+<li>事件/触发词类型识别 (event/trigger type identification)：根据事件触发词，确定事件类型</li>
+<li>事件元素抽取（argument extraction）:从文本中识别事件元素（event argument）</li>
+<li>角色识别 (role identification)：根据事件元素，确定事件参与者的角色</li>
+</ul>
+<p><strong>Open domain</strong><br>在没有预定义的事件模式的情况下，开放域事件抽取的目的是从文本中检测事件，在大多数情况下，还可以通过提取的事件关键词聚类相似的事件。事件关键词指的是那些主要描述事件的词/短语，有时关键词还进一步分为触发器和参数。</p>
+<p>「故事分割」：从新闻中检测故事的边界。<br>「第一个故事检测」：检测新闻流中讨论新话题的故事。<br>「话题检测」：根据讨论的主题将故事分组。<br>「话题追踪」：检测讨论先前已知话题的故事。<br>「故事链检测」：决定两个故事是否讨论同一个主题。</p>
+<p>前两个任务主要关注事件检测;其余三个任务用于事件集群。虽然这五项任务之间的关系很明显，但每一项任务都需要一个不同的评价过程，并鼓励采用不同的方法来解决特定问题。</p>
+<p><img src="/knowledge_graph/kg_ee/2022-01-08-11-08-04.png" alt></p>
+<h2 id="1-4-应用场景"><a href="#1-4-应用场景" class="headerlink" title="1.4. 应用场景"></a>1.4. 应用场景</h2><p>丰富现有的知识图谱，支撑业务信息获取引擎<br>网络舆情监控、突发事件告警、情报收集领域<br>例：<br>喜马拉雅山有多高？  - 实体图谱<br>汶川地震死亡人数有多少？ -事件图谱</p>
+<p>垂直领域：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">**关键技术：**</span><br><span class="line">![](kg_ee&#x2F;2022-01-08-11-09-35.png)</span><br><span class="line">共指关系：不同数据源表示的是同一个事件</span><br><span class="line">时序关系：理清事件发生的先后顺序，帮助从大量的时序关系中挖掘出常见的事理关系</span><br><span class="line">![](kg_ee&#x2F;2022-01-08-14-28-46.png)</span><br><span class="line">因果关系：</span><br><span class="line">![](kg_ee&#x2F;2022-01-08-14-28-20.png)</span><br></pre></td></tr></table></figure>
+<h1 id="2-评测和数据集"><a href="#2-评测和数据集" class="headerlink" title="2. 评测和数据集"></a>2. 评测和数据集</h1><p><img src="/knowledge_graph/kg_ee/2022-01-08-11-15-26.png" alt><br>国际公开的评测组织：DARPA<br>TDT: 主要做主题检测和追踪，不会具体抽出事件的类型和元素<br>ACE：可以具体抽出事件的类型和元素<br>ECB:做因果经常用的数据集</p>
+<p>[6]ACE2005 English Corpus: <a href="https://catalog.ldc.upenn.edu/LDC2006T06" target="_blank" rel="noopener">https://catalog.ldc.upenn.edu/LDC2006T06</a></p>
+<p>[7] Rich ERE: <a href="https://www.aclweb.org/old_anthology/W/W15/W15-0812.pdf" target="_blank" rel="noopener">https://www.aclweb.org/old_anthology/W/W15/W15-0812.pdf</a></p>
+<p><a href="https://tac.nist.gov//2015/KBP/Event/index.html" target="_blank" rel="noopener">TAC2015</a></p>
+<p><a href="https://tac.nist.gov/2017/KBP/" target="_blank" rel="noopener">KBP2017</a></p>
+<p><a href="https://catalog.ldc.upenn.edu/LDC2006T06" target="_blank" rel="noopener">ACE2005 Chinese Corpus</a></p>
+<p><a href="https://www.luge.ai/#/luge/dataDetail?id=7" target="_blank" rel="noopener">DuEE-Fin</a><br>金融领域篇章级别事件抽取数据集,包含13个已定义好的事件类型约束和1.15万中文篇章（存在部分非目标篇章作为负样例）</p>
+<p>示例：ACE -英文事件识别数据集<br>根据不同领域定义了不同抽取模板和训练语料<br>包括 8个大类（life,business,personal），33 event types<br>599 documents<br>6000 labeled sentences<br><img src="/knowledge_graph/kg_ee/2022-01-08-10-26-39.png" alt></p>
+<p>ACE2005英文数据集，事件监测性能<br>2013年：67.5<br>2020年：74.9<br>元素抽取性能：<br>2013年：52.7<br>2020年：70.1<br>核心问题：依赖大量人工标注的训练数据，仅利用文本从句子中抽取固定类别的事件知识。</p>
+<h1 id="3-实现方法"><a href="#3-实现方法" class="headerlink" title="3. 实现方法"></a>3. 实现方法</h1><p>根据实现方式,元事件抽取可以分为两类:基于模式匹配的方式和基于机器学习的方式。基于机器学习的元事件抽取将元事件检测和论元识别转换成分类问题,可以分为管道式方法(pipeline)和联合学习方法(Joint Event Extraction)。</p>
+<h2 id="3-1-Pipline"><a href="#3-1-Pipline" class="headerlink" title="3.1. Pipline"></a>3.1. Pipline</h2><p>流水线方法将事件抽取任务分解为一系列基于分类的子任务 包括事件识别、元素抽取、属性分类 和可报告性判别; 每一个子任务由一个机器学习分类器负责实施。</p>
+<p>常用特征：<br><img src="/knowledge_graph/kg_ee/2022-01-18-10-42-46.png" alt></p>
+<ul>
+<li>百度DuEE模型<br><a href="https://link.springer.com/chapter/10.1007/978-3-030-60457-8_44" target="_blank" rel="noopener">DuEE: A Large-Scale Dataset for Chinese Event Extraction in Real-World Scenarios</a><br><a href="https://github.com/PaddlePaddle/PaddleNLP/tree/release/2.0-rc/examples/information_extraction/DuEE" target="_blank" rel="noopener">代码下载</a></li>
+</ul>
+<h3 id="3-1-1-DMCNN"><a href="#3-1-1-DMCNN" class="headerlink" title="3.1.1. DMCNN *"></a>3.1.1. DMCNN *</h3><p>论文解读：<a href="https://blog.csdn.net/qq_29496135/article/details/109085606" target="_blank" rel="noopener">https://blog.csdn.net/qq_29496135/article/details/109085606</a><br>论文解读：<a href="https://www.jianshu.com/p/84fd666b1900" target="_blank" rel="noopener">https://www.jianshu.com/p/84fd666b1900</a><br>论文链接：<a href="http://www.nlpr.ia.ac.cn/cip/yubochen/yubochenPageFile/acl2015chen.pdf" target="_blank" rel="noopener">http://www.nlpr.ia.ac.cn/cip/yubochen/yubochenPageFile/acl2015chen.pdf</a></p>
+<p>2015年提出的基于CNN的模型。是第一个将深度学习模型应用在事件抽取任务中，并取得显著效果的模型。<br>这是一种pipeline方式的事件抽取方案，即对触发词的检测和识别、对论元的检测和识别两个任务是分开进行的，后者依赖于前者的预测结果。两个子任务都被转换成了多分类问题，模型都采用DMCNN，只是稍有不同。</p>
+<p>第一阶段：使用DMCNN对句子中的每个单词进行分类来识别触发词<br>输入：<br>词级别语义特征：当前词的上下文词<br>句子级别语义特征：<br>CWF：词嵌入<br>PF：当前词的位置<br>EF：无<br>模型：<br>DMCNN 动态部分分为两段表示，以当前触发词作为切分<br>输出：<br>每个事件类型的softmax</p>
+<p>第二阶段：使用DMCNN对句子中的每个单词进行分类来识别论元角色<br>输入：<br>词级别语义特征：所有词的词向量拼接<br>句子级别语义特征：<br>CWF：词嵌入<br>PF：当前词与触发器词的相对距离<br>EF：触发器的事件类型编码<br>模型：<br>DMCNN 动态部分分为三段表示，以当前触发词和候选论元作为切分<br>输出：<br>每个角色类型的softmax</p>
+<p>优势：结合了词汇及和句子级特征。引入单词表示模型，规范语义，基于CNN捕捉句子级线索，动态多池卷积神经网络保留更多关键信息。<br>弊端：该方法存在错误传播的问题、无法利用事件触发器和参数角色的相互依赖关系，且未考虑到离散特征<br>通过动态多池CNN解决了上述joint system的缺点，在该系统中，单词被连续表示，feature用DMCNN从数据中被自动学习，因此减轻了unseen words或unseen features的问题，从data中抽取到了更有效的feature（Chen et al. 2015）<br><img src="/knowledge_graph/kg_ee/2022-01-18-13-33-26.png" alt></p>
+<h3 id="3-1-2-DuEE模型"><a href="#3-1-2-DuEE模型" class="headerlink" title="3.1.2. DuEE模型"></a>3.1.2. DuEE模型</h3><p>论文地址：<a href="https://sci-hub.se/10.1007/978-3-030-60457-8" target="_blank" rel="noopener">https://sci-hub.se/10.1007/978-3-030-60457-8</a><br>论文解读：<a href="https://blog.csdn.net/weixin_42691585/article/details/115497275" target="_blank" rel="noopener">https://blog.csdn.net/weixin_42691585/article/details/115497275</a><br>触发词抽取模型<br><img src="/knowledge_graph/kg_ee/2022-01-17-21-16-03.png" alt><br>论元抽取模型<br><img src="/knowledge_graph/kg_ee/2022-01-17-21-16-53.png" alt><br>枚举分类模型<br>对于一些序列标注抽取不能解决的论元提取，可以采用枚举分类的方式，构建分类任务，如：提取上市状态这个论元类型，可设置事件抽取schema为枚举型。[筹备上市、暂停上市、正式上市、终止上市]<br><img src="/knowledge_graph/kg_ee/2022-01-17-21-17-50.png" alt><br><strong>评测方法</strong><br>采用预测论元F1值作为评价指标，对于每个篇章，采用不放回的方式给每个目标事件寻找最相似的预测事件（事件级别匹配），搜寻方式是优先寻找与目标事件的事件类型相同且角色和论元正确数量最多的预测事件</p>
+<p>f1_score = (2 <em> P </em> R) / (P + R)，其中</p>
+<p>预测论元正确=事件类型和角色相同且论元正确<br>P=预测论元正确数量 / 所有预测论元的数量<br>R=预测论元正确数量 / 所有人工标注论元的数量</p>
+<p><strong>模型优化</strong><br><a href="https://github.com/onewaymyway/duee_2020" target="_blank" rel="noopener">https://github.com/onewaymyway/duee_2020</a><br><a href="https://blog.csdn.net/weixin_42691585/article/details/115557227" target="_blank" rel="noopener">https://blog.csdn.net/weixin_42691585/article/details/115557227</a><br>更改预训练模型，加bi-gru</p>
+<h2 id="3-2-Joint-Event-Extraction"><a href="#3-2-Joint-Event-Extraction" class="headerlink" title="3.2. Joint Event Extraction"></a>3.2. Joint Event Extraction</h2><p>事件抽取的流水线方法在每个子任务阶段都有可能存在误差 ， 这种误差会从前面的环节逐步传播到后面的环节，从而导致误差不断累积 ， 使得事件抽取的性能急剧衰减。 为了解决这一问题 ， 一些研究工作提出 事件的联合抽取方法。 在联合抽取方法中， 事件的所有相关信息会通过一个模型同时抽取出来。</p>
+<p>同时预测event triggers和arguments 结构化预测问题</p>
+<p>pros:<br>减少上游组件（触发器标识）到下游分类器（参数标识）的错误传播。<br>通过全局feature来利用event triggers和argument roles间的相互依赖性。</p>
+<p>例子：</p>
+<p>​ In Baghdad, a cameraman died when an American tank fired on the …</p>
+<p>这里died是Die的event trigger，fired是Attack的event trigger。cameraman是died的victim argument，也是fired的target argument。</p>
+<p>在pipelined方法中，cameraman是died的argument很好识别，因为他们的距离比较近，但cameraman和fired的距离比较远，所以可能无法识别出cameraman是fired的argument。</p>
+<p>但是joint方法可以编码全局特征，可能会学习到“died的victim argument通常是attack的target argument”这样的信息，从而来解决这一问题</p>
+<p>弊端：joint system在unseen words或unseen features上缺乏泛化能力，无法提取EE的底层结构（由于其离散表示来自于手工特征集）</p>
+<p>PSL</p>
+<h3 id="3-2-1-利用局部-amp-全局特征做结构化预测（Li-et-al-2013）"><a href="#3-2-1-利用局部-amp-全局特征做结构化预测（Li-et-al-2013）" class="headerlink" title="3.2.1. 利用局部&amp;全局特征做结构化预测（Li et al. 2013）"></a>3.2.1. 利用局部&amp;全局特征做结构化预测（Li et al. 2013）</h3><h3 id="3-2-2-JRNN（Nguyen-et-al-2016）"><a href="#3-2-2-JRNN（Nguyen-et-al-2016）" class="headerlink" title="3.2.2. JRNN（Nguyen et al. 2016）"></a>3.2.2. JRNN（Nguyen et al. 2016）</h3><p>Joint Event Extraction via Recurrent Neural Networks 2016<br>论文解读：<a href="https://blog.csdn.net/lufei99/article/details/103497761" target="_blank" rel="noopener">https://blog.csdn.net/lufei99/article/details/103497761</a><br>论文解读：<a href="https://zhuanlan.zhihu.com/p/63215208" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/63215208</a><br>论文地址：<a href="https://aclanthology.org/N16-1034/" target="_blank" rel="noopener">https://aclanthology.org/N16-1034/</a></p>
+<p>使用RNN将事件识别和论元角色分类相结合，构建包含文本序列特征和局部窗口特征的局部特征，然后将文本输入到RNN模型中，得到深度学习的上下文表示，主要针对事件触发词之间、事件论元之间、事件触发词和事件论元之间的全局特性，以同时提高多任务的性能。<br>提出了一种双向 RNN用于联合事件抽取。在编码阶段，它使用 RNN 来汇总上下文信息；在预测阶段，则根据学习到的特征表示同时预测触发词和论元。以前的方法严重依赖于特定语言的知识和现有的 NLP 工具。</p>
+<p><img src="/knowledge_graph/kg_ee/2022-01-23-20-47-24.png" alt></p>
+<h3 id="3-2-3-dbRNN事件抽取联合模型"><a href="#3-2-3-dbRNN事件抽取联合模型" class="headerlink" title="3.2.3. dbRNN事件抽取联合模型"></a>3.2.3. dbRNN事件抽取联合模型</h3><p>论文解读：<a href="https://blog.csdn.net/lufei99/article/details/107039846" target="_blank" rel="noopener">https://blog.csdn.net/lufei99/article/details/107039846</a><br>论文题目：Jointly Extracting Event Triggers and Arguments by Dependency-Bridge RNN and Tensor-Based Argument Interaction</p>
+<h3 id="3-2-4-JMEE-【EMNLP-2018-JMEE】"><a href="#3-2-4-JMEE-【EMNLP-2018-JMEE】" class="headerlink" title="3.2.4. JMEE 【EMNLP 2018 | JMEE】*"></a>3.2.4. JMEE 【EMNLP 2018 | JMEE】*</h3><p>论文题目：Jointly Multiple Events Extraction via Attention-based Graph Information Aggregation</p>
+<p>论文来源：EMNLP 2018</p>
+<p>论文链接：<a href="https://arxiv.org/abs/1809.09078" target="_blank" rel="noopener">https://arxiv.org/abs/1809.09078</a></p>
+<p>代码链接：<a href="https://github.com/lx865712528/EMNLP2018-JMEE" target="_blank" rel="noopener">https://github.com/lx865712528/EMNLP2018-JMEE</a><br>论文解读：<a href="https://blog.csdn.net/byn12345/article/details/105411433/" target="_blank" rel="noopener">https://blog.csdn.net/byn12345/article/details/105411433/</a></p>
+<p>关键词：多事件抽取，GCN，attention，句法依存结构<br><img src="/knowledge_graph/kg_ee/2022-01-18-09-48-14.png" alt></p>
+<h3 id="3-2-5-EMNLP-2019-HMEAE"><a href="#3-2-5-EMNLP-2019-HMEAE" class="headerlink" title="3.2.5. EMNLP 2019 | HMEAE"></a>3.2.5. EMNLP 2019 | HMEAE</h3><p>论文题目：HMEAE: Hierarchical Modular Event Argument Extraction</p>
+<p>论文来源：EMNLP 2019 清华、微信AI</p>
+<p>论文链接：<a href="https://www.aclweb.org/anthology/D19-1584/" target="_blank" rel="noopener">https://www.aclweb.org/anthology/D19-1584/</a></p>
+<p>代码链接：<a href="https://github.com/thunlp/HMEAE" target="_blank" rel="noopener">https://github.com/thunlp/HMEAE</a></p>
+<p>关键词：事件元素抽取（EAE），概念层次，attention，BERT，CNN</p>
+<p>论文解读：<a href="https://blog.csdn.net/byn12345/article/details/105640110" target="_blank" rel="noopener">https://blog.csdn.net/byn12345/article/details/105640110</a></p>
+<h3 id="ENNLP-2019-Doc2EDAG"><a href="#ENNLP-2019-Doc2EDAG" class="headerlink" title="ENNLP 2019 Doc2EDAG"></a>ENNLP 2019 Doc2EDAG</h3><p>论文题目： Doc2EDAG: An End-to-End Document-level Framework for Chinese Financial Event Extraction<br>论文地址：<a href="https://arxiv.org/pdf/1904.07535.pdf" target="_blank" rel="noopener">https://arxiv.org/pdf/1904.07535.pdf</a><br>论文代码：<a href="https://github.com/dolphin-zs/Doc2EDAG" target="_blank" rel="noopener">https://github.com/dolphin-zs/Doc2EDAG</a></p>
+<p>数字化财务文档， 内容抽取<br>本文聚焦金融领域： 事件元素分散（元素可能在不同句子中）； 多事件（一个文档包含多个事件）<br>现有事件抽取只能提供句子范围内的事件元素，本文聚焦篇章级。</p>
+<p><img src="/knowledge_graph/kg_ee/2022-01-20-13-34-29.png" alt><br><img src="/knowledge_graph/kg_ee/2022-01-20-13-36-27.png" alt><br><img src="/knowledge_graph/kg_ee/2022-01-24-14-42-45.png" alt><br><img src="/knowledge_graph/kg_ee/2022-01-24-14-42-13.png" alt><br><img src="/knowledge_graph/kg_ee/2022-01-24-14-48-23.png" alt><br><img src="/knowledge_graph/kg_ee/2022-01-24-14-50-05.png" alt><br><img src="/knowledge_graph/kg_ee/2022-01-20-13-39-27.png" alt><br><img src="/knowledge_graph/kg_ee/2022-01-24-14-50-28.png" alt></p>
+<p>数据集： ChFinAnn 包中国股市上市公司第一手官方信息，有五大类数据，数百种类型，如年报和盈利预测<br>标注：<br>远程监督将事件知识库映射到文本文档来获取标注数据<br>关键时间角色必须存在； 匹配的论元数目应该大于一个阈值； 不标注触发词</p>
+<h3 id="3-2-6-IJCAI-2019"><a href="#3-2-6-IJCAI-2019" class="headerlink" title="3.2.6. IJCAI 2019"></a>3.2.6. IJCAI 2019</h3><p>论文题目：Extracting Entities and Events as a Single Task Using a Transition-Based Neural Model</p>
+<p>论文来源：IJCAI 2019 武汉大学, 东华大学, 西湖大学</p>
+<p>论文链接：<a href="https://www.ijcai.org/Proceedings/2019/753" target="_blank" rel="noopener">https://www.ijcai.org/Proceedings/2019/753</a></p>
+<p>代码链接：<a href="https://github.com/zjcerwin/TransitionEvent" target="_blank" rel="noopener">https://github.com/zjcerwin/TransitionEvent</a></p>
+<p>关键词：事件抽取，实体抽取，联合学习，transition-based model<br>论文解读：<a href="https://blog.csdn.net/byn12345/article/details/105741623" target="_blank" rel="noopener">https://blog.csdn.net/byn12345/article/details/105741623</a></p>
+<h3 id="3-2-7-ACL2021-探讨跨句事件联合抽取问题"><a href="#3-2-7-ACL2021-探讨跨句事件联合抽取问题" class="headerlink" title="3.2.7. ACL2021 | 探讨跨句事件联合抽取问题*"></a>3.2.7. ACL2021 | 探讨跨句事件联合抽取问题*</h3><p>论文题目：MLBiNet: A Cross-Sentence Collective Event Detection Network</p>
+<p>本文作者：娄东方、廖智霖、邓淑敏、张宁豫、陈华钧（浙江大学）</p>
+<p>接收会议：ACL 2021</p>
+<p>论文链接：<a href="https://arxiv.org/pdf/2105.09458.pdf" target="_blank" rel="noopener">https://arxiv.org/pdf/2105.09458.pdf</a></p>
+<p>开源代码：<a href="https://github.com/zjunlp/DocED" target="_blank" rel="noopener">https://github.com/zjunlp/DocED</a></p>
+<p>论文解读：<a href="https://blog.csdn.net/TgqDT3gGaMdkHasLZv/article/details/118917619" target="_blank" rel="noopener">https://blog.csdn.net/TgqDT3gGaMdkHasLZv/article/details/118917619</a><br><img src="/knowledge_graph/kg_ee/2022-01-18-09-49-25.png" alt><br><img src="/knowledge_graph/kg_ee/2022-01-18-09-49-42.png" alt></p>
+<h2 id="3-3-小样本"><a href="#3-3-小样本" class="headerlink" title="3.3. 小样本"></a>3.3. 小样本</h2><p><a href="https://blog.csdn.net/byn12345/article/details/113868995" target="_blank" rel="noopener">https://blog.csdn.net/byn12345/article/details/113868995</a></p>
+<p>论文题目：Few-shot Learning for Multi-label Intent Detection</p>
+<p>论文来源：AAAI 2021</p>
+<p>论文链接：<a href="https://arxiv.org/abs/2010.05256" target="_blank" rel="noopener">https://arxiv.org/abs/2010.05256</a></p>
+<p>代码链接：<a href="https://github.com/AtmaHou/FewShotMultiLabel" target="_blank" rel="noopener">https://github.com/AtmaHou/FewShotMultiLabel</a></p>
+<h1 id="4-事件图谱构建的挑战"><a href="#4-事件图谱构建的挑战" class="headerlink" title="4. 事件图谱构建的挑战"></a>4. 事件图谱构建的挑战</h1><p>数据：标注规模小、数据稀疏、无标注数据，包括ace中有些事件类型的样本数也非常少。领域数据难构造，标注成本大<br>类别：事件动态发生，新事件不断出现<br>文本： 仅利用句子无法准确、完整的抽取事件（篇章信息的挑战）<br>知识：仅利用文本信息无法准确推断事件关系（人有背景知识）</p>
+<p>模型层面：<br>pipeline方式存在错误信息的传递，如何减小错误信息传递<br>论元之间的关联关系的有效利用<br>无标注数据的评价指标设计</p>
+<h1 id="5-基于知识的数据自动生成"><a href="#5-基于知识的数据自动生成" class="headerlink" title="5. 基于知识的数据自动生成"></a>5. 基于知识的数据自动生成</h1><p>生成数据 Generating labeled data<br>运用结构化的知识库自动生成语料<br>distant(weak) supervision in RE<br><img src="/knowledge_graph/kg_ee/2022-01-08-10-35-01.png" alt><br>问题挑战：</p>
+<ul>
+<li>现有知识库缺少触发词信息<br><img src="/knowledge_graph/kg_ee/2022-01-08-15-38-16.png" alt></li>
+<li>事件元素并不是都必须出现<br>知识库中只有60%的事件包含所有的事件元素</li>
+<li>一个事件的多个元素可以出现在多个句子中<br>只有0.02%的事件实例能在一句话中找到所有的事件元素</li>
+</ul>
+<p>方法：利用世界知识和语言学知识，自动生成大规模事件语料<br><img src="/knowledge_graph/kg_ee/2022-01-08-10-35-27.png" alt><br>使用tf-idf找到一些关键的实体，在百度百科中寻找这些实体的句子，把句子中的动词通过tf-idf排序、过滤，找出关键的动词，作为trigger words， 完善在frame net中， 将这些信息在百度百科的句子进行回标，<br>标注数据的评价<br><img src="/knowledge_graph/kg_ee/2022-01-08-16-08-39.png" alt></p>
+<h1 id="6-事件抽取算法"><a href="#6-事件抽取算法" class="headerlink" title="6. 事件抽取算法"></a>6. 事件抽取算法</h1><h2 id="6-1-基于阅读理解范式的事件抽取"><a href="#6-1-基于阅读理解范式的事件抽取" class="headerlink" title="6.1. 基于阅读理解范式的事件抽取"></a>6.1. 基于阅读理解范式的事件抽取</h2><p>传统方法建模为序列标注和分类任务<br>在样本量较大的常见事件类型上效果较好<br>对于样本比较少的罕见事件类型上表现较差</p>
+<p>模型框架：<br><img src="/knowledge_graph/kg_ee/2022-01-08-15-27-21.png" alt><br>实验结果：<br><img src="/knowledge_graph/kg_ee/2022-01-08-15-27-54.png" alt></p>
+<h2 id="6-2-融合frameNet的事件识别方法"><a href="#6-2-融合frameNet的事件识别方法" class="headerlink" title="6.2. 融合frameNet的事件识别方法"></a>6.2. 融合frameNet的事件识别方法</h2><p>利用FrameNet中的框架及其标注例句扩充事件抽取训练集<br>FrameNet</p>
+<ul>
+<li>语言学家定义及标注的语义框架资源</li>
+<li>层级的组织结构</li>
+</ul>
+<p>FrameNet规模</p>
+<ul>
+<li>1000+ 框架</li>
+<li>10000+ 词法单元</li>
+<li>150000+ 标注例句<br><img src="/knowledge_graph/kg_ee/2022-01-08-15-31-07.png" alt></li>
+</ul>
+<p>总结：</p>
+<p>事件知识不可或缺</p>
+<ul>
+<li>企业信息监控</li>
+<li>风险信用控制</li>
+<li>智能投顾<br>通用领域的事件抽取很难</li>
+<li>大规模、高质量的训练数据</li>
+<li>鲁棒性的特征表示<br>限定域的事件抽取有可能有不错的性能</li>
+<li>文本类型受限</li>
+<li>语言表示规律性较强，知识密集</li>
+</ul>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://tlylft.github.io/knowledge_graph/kg_ee/" title="【知识图谱】-03事件抽取(Event Extraction)" target="_blank" rel="external">https://tlylft.github.io/knowledge_graph/kg_ee/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/tlylft" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.png" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/tlylft" target="_blank"><span class="text-dark">Icey</span><small class="ml-1x">小傻瓜,别回头</small></a></h3>
+        <div>以梦为马，随处可栖。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/chatbot/rasa_02_config/" title="Rasa框架解读（2）-rasa2.0 配置"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/deep_learning/skills/" title="一些技巧"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>感谢您的支持，我会继续努力的!</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechatpayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> 支付宝</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> 微信支付</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/tlylft?tab=repositories" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="https://www.weibo.com/tlylft/profile?rightmod=1&wvr=6&mod=personinfo" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://www.facebook.com/profile.php?id=100009783614101" target="_blank" title="Facebook" data-toggle=tooltip data-placement=top><i class="icon icon-facebook"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: 'eL0FL59XsOPmrzo5OTb0zhgE-gzGzoHsz',
+    appKey: '53Yf97Qf3bKKWC81Bh4EM9oY',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: true
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

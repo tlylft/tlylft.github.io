@@ -1,289 +1,136 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>小傻瓜别回头</title>
+  <title>灵魂都失控</title>
   
   
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://tlylft.github.io/"/>
-  <updated>2021-02-08T04:34:44.149Z</updated>
+  <updated>2023-08-13T13:13:17.729Z</updated>
   <id>https://tlylft.github.io/</id>
   
   <author>
-    <name>Icey</name>
+    <name>Icey Liu</name>
     
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>似然函数,最大似然估计</title>
-    <link href="https://tlylft.github.io/math/likelihood/"/>
-    <id>https://tlylft.github.io/math/likelihood/</id>
-    <published>2021-02-08T04:33:46.000Z</published>
-    <updated>2021-02-08T04:34:44.149Z</updated>
+    <title>【transformer】 03-GPT1/2/3 微调到prompt</title>
+    <link href="https://tlylft.github.io/NLP/transformer/GPT/"/>
+    <id>https://tlylft.github.io/NLP/transformer/GPT/</id>
+    <published>2023-08-13T13:12:24.000Z</published>
+    <updated>2023-08-13T13:13:17.729Z</updated>
     
-    <content type="html"><![CDATA[<p><a href="https://zhuanlan.zhihu.com/p/75731049" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/75731049</a><br><a href="https://www.zhihu.com/question/54082000" target="_blank" rel="noopener">https://www.zhihu.com/question/54082000</a><br><a href="https://blog.csdn.net/weixin_44940258/article/details/109731281" target="_blank" rel="noopener">https://blog.csdn.net/weixin_44940258/article/details/109731281</a></p>]]></content>
+    <summary type="html">
+    
+    </summary>
+    
+    
+      <category term="LLM" scheme="https://tlylft.github.io/categories/LLM/"/>
+    
+      <category term="transformer" scheme="https://tlylft.github.io/categories/LLM/transformer/"/>
+    
+    
+      <category term="LLM" scheme="https://tlylft.github.io/tags/LLM/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>强化学习（3）-RLHF基于人类反馈的强化学习</title>
+    <link href="https://tlylft.github.io/reinforcement_learning/03_rf_rlhf/"/>
+    <id>https://tlylft.github.io/reinforcement_learning/03_rf_rlhf/</id>
+    <published>2023-08-09T09:13:54.000Z</published>
+    <updated>2023-08-10T00:49:44.092Z</updated>
+    
+    <content type="html"><![CDATA[<p>简单介绍：<br><a href="https://www.bilibili.com/video/BV1eT411S7Yx" target="_blank" rel="noopener">ChatGPT狂飙：强化学习RLHF与PPO！【ChatGPT】原理第02篇</a><br><a href="https://www.bilibili.com/video/BV1Uv4y1V7Ec" target="_blank" rel="noopener">LLM大型语言模型如何进行微调？ RLHF强化学习代码解读</a></p><h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>finetuning 20B LLM, 微调大语言模型超过200亿参数的模型是非常困难的，需要大量的语料，否则参数调不动起不到效果，于是提出了RLHF(Reinforcement Learning  Human Feedback)强化学习的微调方式，强化学习通过人类反馈来训练大语言模型，从而提高大语言模型的性能。</p><p>实际上，RLHF(Reinforcement Learning with Human Feedback)这一概念最早被定义为基于人类反馈的强化学习，它最早是在2008年<a href="https://arxiv.org/pdf/1706.03741" target="_blank" rel="noopener">《TAMER：Training an Agent Manually via Evaluative Reinforcement》</a>一文中被提及的.<br>在2017年前后，深度强化学习(Deep Reinforcement Learning)逐渐发展并流行起来，如你所见，2017年6月由OpenAI联合Google DeepMind一块推出：基于人类偏好的深度强化学习《Deep Reinforcement Learning from Human Preferences》，也简称RLHF</p><p>huggingface 提供了trl开源库，实现微调大语言模型的方式。<a href="https://github.com/lvwerra/trl/tree/main/examples" target="_blank" rel="noopener">https://github.com/lvwerra/trl/tree/main/examples</a></p><h1 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a>实现方式</h1><p>简单说明：<br>首先，得到一个预训练语言模型的输出结果，然后，通过人类反馈对模型打分，将对输出结果的评分作为reward，来训练一个RL模型，得到新的模型参数。</p><p>也可以通过这种方式做指令微调，根据不同的指令设置不同的reward.</p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;&lt;a href=&quot;https://zhuanlan.zhihu.com/p/75731049&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://zhuanlan.zhihu.com/p/75731049&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;http
+        &lt;p&gt;简单介绍：&lt;br&gt;&lt;a href=&quot;https://www.bilibili.com/video/BV1eT411S7Yx&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;ChatGPT狂飙：强化学习RLHF与PPO！【ChatGPT】原理第02篇&lt;/a&gt;&lt;
       
     
     </summary>
     
     
-      <category term="math" scheme="https://tlylft.github.io/categories/math/"/>
+      <category term="强化学习" scheme="https://tlylft.github.io/categories/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/"/>
     
     
-      <category term="math" scheme="https://tlylft.github.io/tags/math/"/>
+      <category term="强化学习" scheme="https://tlylft.github.io/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/"/>
     
   </entry>
   
   <entry>
-    <title>matplotlib实时动态图</title>
-    <link href="https://tlylft.github.io/python/matplotlib/dynamic_plot/"/>
-    <id>https://tlylft.github.io/python/matplotlib/dynamic_plot/</id>
-    <published>2021-02-01T13:14:58.000Z</published>
-    <updated>2021-02-05T02:32:51.832Z</updated>
+    <title>强化学习（2）-马尔科夫决策过程MDP</title>
+    <link href="https://tlylft.github.io/reinforcement_learning/02_rf_mdp/"/>
+    <id>https://tlylft.github.io/reinforcement_learning/02_rf_mdp/</id>
+    <published>2023-08-09T09:13:54.000Z</published>
+    <updated>2023-08-10T08:44:41.707Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="matplotlib实时动态图"><a href="#matplotlib实时动态图" class="headerlink" title="matplotlib实时动态图"></a>matplotlib实时动态图</h1><h2 id="jupyter-notebook"><a href="#jupyter-notebook" class="headerlink" title="jupyter notebook"></a>jupyter notebook</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">import matplotlib.pyplot as plt</span><br><span class="line">from IPython import display # 引用前端展示模块</span><br><span class="line">%matplotlib inline      #保证notebook内展示</span><br><span class="line">plt.ion()   # 这是实时展示的开关</span><br><span class="line">plt.show()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">for t in range(400):</span><br><span class="line">    prediction &#x3D; net(x)     # input x and predict based on x</span><br><span class="line"></span><br><span class="line">    loss &#x3D; loss_func(prediction, y)     # must be (1. nn output, 2. target)</span><br><span class="line"></span><br><span class="line">    optimizer.zero_grad()   # clear gradients for next train</span><br><span class="line">    loss.backward()         # backpropagation, compute gradients</span><br><span class="line">    optimizer.step()        # apply gradients</span><br><span class="line"></span><br><span class="line">    if t % 10 &#x3D;&#x3D; 0:</span><br><span class="line">        # plot and show learning process</span><br><span class="line">        plt.cla()</span><br><span class="line">        plt.scatter(x.numpy(), y.numpy())</span><br><span class="line">        plt.plot(x.numpy(), prediction.data.numpy(), &#39;r-&#39;, lw&#x3D;5)</span><br><span class="line">        plt.text(0.5, 0, &#39;Loss&#x3D;%.4f&#39; % loss.data.numpy(), fontdict&#x3D;&#123;&#39;size&#39;: 20, &#39;color&#39;:  &#39;red&#39;&#125;)</span><br><span class="line">        </span><br><span class="line">        plt.pause(0.1)</span><br><span class="line">        display.clear_output(wait&#x3D;True) # notebook中使用</span><br><span class="line"></span><br><span class="line">plt.ioff() #关闭实时展示</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>]]></content>
+    <content type="html"><![CDATA[<blockquote><p>强化学习极简入门1.2：<a href="https://blog.csdn.net/v_JULY_v/article/details/128965854" target="_blank" rel="noopener">https://blog.csdn.net/v_JULY_v/article/details/128965854</a></p></blockquote><h1 id="1-马尔科夫决策过程（MDP）"><a href="#1-马尔科夫决策过程（MDP）" class="headerlink" title="1. 马尔科夫决策过程（MDP）"></a>1. 马尔科夫决策过程（MDP）</h1><p>RL其实是一个马尔可夫决策过程(Markov decision process，MDP)，而为说清楚MDP，得先从随机过程、马尔可夫过程(Markov process，简称MP)开始讲起，故为考虑逻辑清晰，我们还是把整个继承/脉络梳理下。</p><p>概念理解顺序：<br>马尔科夫过程 -&gt; 马尔科夫奖励() -&gt; 马尔科夫决策过程（MDP）</p><h2 id="1-1-MDP的前置知识：随机过程、马尔可夫过程"><a href="#1-1-MDP的前置知识：随机过程、马尔可夫过程" class="headerlink" title="1.1. MDP的前置知识：随机过程、马尔可夫过程"></a>1.1. MDP的前置知识：随机过程、马尔可夫过程</h2><h2 id="随机过程"><a href="#随机过程" class="headerlink" title="随机过程"></a>随机过程</h2><p>核心：状态转移矩阵，表示当前状态下执行下一动作的概率，也是需要学习的参数？</p><h2 id="马尔可夫奖励-MRP"><a href="#马尔可夫奖励-MRP" class="headerlink" title="马尔可夫奖励(MRP)"></a>马尔可夫奖励(MRP)</h2><p>在马尔可夫过程的基础上加入奖励函数R和折扣因子\gamma，就可以得到马尔可夫奖励过程(Markov reward process，MRP)</p><ul><li>奖励函数，某个状态s的奖励R(s)，是指转移到该状态s时可以获得奖励的期望，有$R(s) = E[R_{t+1}|S_t = s]$<br>注意，有的书上奖励函数和下面回报公式中的R_{t+1}的下标t+1<br>写为t，其实严格来说，先有t时刻的状态/动作之后才有t+1时刻的奖励，但应用中两种下标法又都存在，读者注意辨别</li></ul><ul><li>在实际中，奖励可以分为即时奖励和持久奖励。<br>持久奖励是当前动作对未来n步影响的收益，这个收益可以用小于1的折扣因子的n次方* 未来产生的即时奖励 求和获得，因为一个状态可以得到的奖励是持久的，所有奖励的衰减之和称为回报，可用G表示当下即时奖励和所有持久奖励等一切奖励的加权和(考虑到一般越往后某个状态给的回报率越低，也即奖励因子或折扣因子越小，用\gamma表示)，从而有<br>$Gt=R_{t+1}+γ⋅R_{t+2}+γ^2⋅R_{t+3}+γ^3⋅R_{t+4}+⋯=R_{t+1}+γ(R_{t+2}+γ⋅R_{t+3}+γ^2⋅R_{t+4}+⋯)=R_{t+1}+γG_{t+1}$</li><li>通过奖励计算回报<br>引入概率，推导过程忽略<br>就是所谓的贝尔曼方程(bellman equation),hu<br>$V(s)=R(s)+γ∑s′∈SP(s′|s)V(s′)$<h2 id="马尔可夫决策过程-MDP-：马尔可夫奖励-MRP-智能体动作因素"><a href="#马尔可夫决策过程-MDP-：马尔可夫奖励-MRP-智能体动作因素" class="headerlink" title="马尔可夫决策过程(MDP)：马尔可夫奖励(MRP) + 智能体动作因素"></a>马尔可夫决策过程(MDP)：马尔可夫奖励(MRP) + 智能体动作因素</h2></li></ul><h2 id="aa"><a href="#aa" class="headerlink" title="aa"></a>aa</h2><p>动作价值函数<br>状态价值函数</p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;h1 id=&quot;matplotlib实时动态图&quot;&gt;&lt;a href=&quot;#matplotlib实时动态图&quot; class=&quot;headerlink&quot; title=&quot;matplotlib实时动态图&quot;&gt;&lt;/a&gt;matplotlib实时动态图&lt;/h1&gt;&lt;h2 id=&quot;jupyter-noteb
+        &lt;blockquote&gt;
+&lt;p&gt;强化学习极简入门1.2：&lt;a href=&quot;https://blog.csdn.net/v_JULY_v/article/details/128965854&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://blog.c
       
     
     </summary>
     
     
-      <category term="python" scheme="https://tlylft.github.io/categories/python/"/>
-    
-      <category term="matplotlib" scheme="https://tlylft.github.io/categories/python/matplotlib/"/>
+      <category term="强化学习" scheme="https://tlylft.github.io/categories/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/"/>
     
     
-      <category term="python" scheme="https://tlylft.github.io/tags/python/"/>
+      <category term="强化学习" scheme="https://tlylft.github.io/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/"/>
     
   </entry>
   
   <entry>
-    <title>python</title>
-    <link href="https://tlylft.github.io/python/matplotlib/subplot/"/>
-    <id>https://tlylft.github.io/python/matplotlib/subplot/</id>
-    <published>2021-02-01T13:04:45.000Z</published>
-    <updated>2021-02-01T13:14:30.473Z</updated>
+    <title>LLM（4）-chatGLM-清华</title>
+    <link href="https://tlylft.github.io/LLM/04_chatGLM/"/>
+    <id>https://tlylft.github.io/LLM/04_chatGLM/</id>
+    <published>2023-08-09T06:40:59.000Z</published>
+    <updated>2023-08-10T09:29:41.415Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="subplot"><a href="#subplot" class="headerlink" title="subplot"></a>subplot</h1><h2 id="1-demo1"><a href="#1-demo1" class="headerlink" title="1. demo1"></a>1. demo1</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.nn.functional <span class="keyword">as</span> F <span class="comment"># 激活函数在这里</span></span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br></pre></td></tr></table></figure><h3 id="1-1-Firstly-generate-some-fake-data"><a href="#1-1-Firstly-generate-some-fake-data" class="headerlink" title="1.1. Firstly generate some fake data"></a>1.1. Firstly generate some fake data</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">x = torch.linspace(<span class="number">-5</span>, <span class="number">5</span>, <span class="number">200</span>)  <span class="comment"># x data (tensor), shape=(200, 1)</span></span><br><span class="line">x_np = x.numpy()</span><br><span class="line">print(x.data)</span><br></pre></td></tr></table></figure><pre><code>tensor([-5.0000, -4.9497, -4.8995, -4.8492, -4.7990, -4.7487, -4.6985, -4.6482,        -4.5980, -4.5477, -4.4975, -4.4472, -4.3970, -4.3467, -4.2965, -4.2462,        -4.1960, -4.1457, -4.0955, -4.0452, -3.9950, -3.9447, -3.8945, -3.8442,        -3.7940, -3.7437, -3.6935, -3.6432, -3.5930, -3.5427, -3.4925, -3.4422,        -3.3920, -3.3417, -3.2915, -3.2412, -3.1910, -3.1407, -3.0905, -3.0402,        -2.9899, -2.9397, -2.8894, -2.8392, -2.7889, -2.7387, -2.6884, -2.6382,        -2.5879, -2.5377, -2.4874, -2.4372, -2.3869, -2.3367, -2.2864, -2.2362,        -2.1859, -2.1357, -2.0854, -2.0352, -1.9849, -1.9347, -1.8844, -1.8342,        -1.7839, -1.7337, -1.6834, -1.6332, -1.5829, -1.5327, -1.4824, -1.4322,        -1.3819, -1.3317, -1.2814, -1.2312, -1.1809, -1.1307, -1.0804, -1.0302,        -0.9799, -0.9296, -0.8794, -0.8291, -0.7789, -0.7286, -0.6784, -0.6281,        -0.5779, -0.5276, -0.4774, -0.4271, -0.3769, -0.3266, -0.2764, -0.2261,        -0.1759, -0.1256, -0.0754, -0.0251,  0.0251,  0.0754,  0.1256,  0.1759,         0.2261,  0.2764,  0.3266,  0.3769,  0.4271,  0.4774,  0.5276,  0.5779,         0.6281,  0.6784,  0.7286,  0.7789,  0.8291,  0.8794,  0.9296,  0.9799,         1.0302,  1.0804,  1.1307,  1.1809,  1.2312,  1.2814,  1.3317,  1.3819,         1.4322,  1.4824,  1.5327,  1.5829,  1.6332,  1.6834,  1.7337,  1.7839,         1.8342,  1.8844,  1.9347,  1.9849,  2.0352,  2.0854,  2.1357,  2.1859,         2.2362,  2.2864,  2.3367,  2.3869,  2.4372,  2.4874,  2.5377,  2.5879,         2.6382,  2.6884,  2.7387,  2.7889,  2.8392,  2.8894,  2.9397,  2.9899,         3.0402,  3.0905,  3.1407,  3.1910,  3.2412,  3.2915,  3.3417,  3.3920,         3.4422,  3.4925,  3.5427,  3.5930,  3.6432,  3.6935,  3.7437,  3.7940,         3.8442,  3.8945,  3.9447,  3.9950,  4.0452,  4.0955,  4.1457,  4.1960,         4.2462,  4.2965,  4.3467,  4.3970,  4.4472,  4.4975,  4.5477,  4.5980,         4.6482,  4.6985,  4.7487,  4.7990,  4.8492,  4.8995,  4.9497,  5.0000])</code></pre><h3 id="1-2-Following-are-popular-activation-functions"><a href="#1-2-Following-are-popular-activation-functions" class="headerlink" title="1.2. Following are popular activation functions"></a>1.2. Following are popular activation functions</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">y_relu = F.relu(x).numpy()</span><br><span class="line">y_sigmoid = torch.sigmoid(x).numpy()</span><br><span class="line">y_tanh = torch.tanh(x).numpy()</span><br><span class="line">y_softplus = F.softplus(x).numpy()</span><br><span class="line"></span><br><span class="line">y_softmax = F.softmax(x,dim=<span class="number">0</span>)</span><br><span class="line"><span class="comment"># softmax is a special kind of activation function, it is about probability</span></span><br><span class="line"><span class="comment"># and will make the sum as 1.</span></span><br></pre></td></tr></table></figure><pre><code>&lt;class &#39;torch.Tensor&#39;&gt;</code></pre><h3 id="1-3-Plot-to-visualize-these-activation-function"><a href="#1-3-Plot-to-visualize-these-activation-function" class="headerlink" title="1.3. Plot to visualize these activation function"></a>1.3. Plot to visualize these activation function</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%matplotlib inline</span><br></pre></td></tr></table></figure><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">plt.figure(<span class="number">1</span>, figsize=(<span class="number">8</span>, <span class="number">6</span>))</span><br><span class="line">plt.subplot(<span class="number">321</span>)</span><br><span class="line">plt.plot(x_np, y_relu, c=<span class="string">'red'</span>, label=<span class="string">'relu'</span>)</span><br><span class="line">plt.ylim((<span class="number">-1</span>, <span class="number">5</span>))</span><br><span class="line">plt.legend(loc=<span class="string">'best'</span>)</span><br><span class="line"></span><br><span class="line">plt.subplot(<span class="number">322</span>)</span><br><span class="line">plt.plot(x_np, y_sigmoid, c=<span class="string">'red'</span>, label=<span class="string">'sigmoid'</span>)</span><br><span class="line">plt.ylim((<span class="number">-0.2</span>, <span class="number">1.2</span>))</span><br><span class="line">plt.legend(loc=<span class="string">'best'</span>)</span><br><span class="line"></span><br><span class="line">plt.subplot(<span class="number">323</span>)</span><br><span class="line">plt.plot(x_np, y_tanh, c=<span class="string">'red'</span>, label=<span class="string">'tanh'</span>)</span><br><span class="line">plt.ylim((<span class="number">-1.2</span>, <span class="number">1.2</span>))</span><br><span class="line">plt.legend(loc=<span class="string">'best'</span>)</span><br><span class="line"></span><br><span class="line">plt.subplot(<span class="number">324</span>)</span><br><span class="line">plt.plot(x_np, y_softplus, c=<span class="string">'red'</span>, label=<span class="string">'softplus'</span>)</span><br><span class="line">plt.ylim((<span class="number">-0.2</span>, <span class="number">6</span>))</span><br><span class="line">plt.legend(loc=<span class="string">'best'</span>)</span><br><span class="line"></span><br><span class="line">plt.subplot(<span class="number">325</span>)</span><br><span class="line">plt.plot(x_np, y_softmax, c=<span class="string">'red'</span>, label=<span class="string">'softmax'</span>)</span><br><span class="line"><span class="comment"># plt.ylim((-0.05, 0.05))</span></span><br><span class="line">plt.legend(loc=<span class="string">'best'</span>)</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure><p><img src="/python/matplotlib/subplot/2021-02-01-21-11-58.png" alt></p><h2 id="2-demo2"><a href="#2-demo2" class="headerlink" title="2. demo2"></a>2. demo2</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">import matplotlib.pyplot as plt</span><br><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line">x &#x3D; np.linspace(1, 2, 2)</span><br><span class="line">y1 &#x3D; np.sin(x)</span><br><span class="line"></span><br><span class="line">y2 &#x3D; np.cos(x)</span><br><span class="line"></span><br><span class="line">ax1 &#x3D; plt.subplot(2, 2, 1, frameon &#x3D; False) # 两行一列，位置是1的子图</span><br><span class="line">plt.plot(x, y1, &#39;b--&#39;)</span><br><span class="line">plt.ylabel(&#39;y1&#39;)</span><br><span class="line">ax2 &#x3D; plt.subplot(2, 2, 2, projection &#x3D; &#39;polar&#39;)</span><br><span class="line">plt.plot(x, y2, &#39;r--&#39;)</span><br><span class="line">plt.ylabel(&#39;y2&#39;)</span><br><span class="line">plt.xlabel(&#39;x&#39;)</span><br><span class="line">plt.subplot(2, 2, 3, sharex &#x3D; ax1, facecolor &#x3D; &#39;red&#39;)</span><br><span class="line">plt.plot(x, y2, &#39;r--&#39;)</span><br><span class="line">plt.ylabel(&#39;y2&#39;)</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure><p><img src="/python/matplotlib/subplot/2021-02-01-21-13-13.png" alt></p>]]></content>
+    <content type="html"><![CDATA[<p><a href="https://github.com/mymusise/ChatGLM-Tuning" target="_blank" rel="noopener">https://github.com/mymusise/ChatGLM-Tuning</a></p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;h1 id=&quot;subplot&quot;&gt;&lt;a href=&quot;#subplot&quot; class=&quot;headerlink&quot; title=&quot;subplot&quot;&gt;&lt;/a&gt;subplot&lt;/h1&gt;&lt;h2 id=&quot;1-demo1&quot;&gt;&lt;a href=&quot;#1-demo1&quot; class=&quot;headerlink
+        &lt;p&gt;&lt;a href=&quot;https://github.com/mymusise/ChatGLM-Tuning&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://github.com/mymusise/ChatGLM-Tuning&lt;/a&gt;&lt;/p&gt;
+
       
     
     </summary>
     
     
+      <category term="LLM" scheme="https://tlylft.github.io/categories/LLM/"/>
+    
+    
+      <category term="LLM" scheme="https://tlylft.github.io/tags/LLM/"/>
     
   </entry>
   
   <entry>
-    <title>linux重定向</title>
-    <link href="https://tlylft.github.io/linux/linux_redistinct/"/>
-    <id>https://tlylft.github.io/linux/linux_redistinct/</id>
-    <published>2021-02-01T05:12:25.000Z</published>
-    <updated>2021-02-01T05:12:47.931Z</updated>
+    <title>redis</title>
+    <link href="https://tlylft.github.io/tools/redis/"/>
+    <id>https://tlylft.github.io/tools/redis/</id>
+    <published>2023-07-19T00:21:34.000Z</published>
+    <updated>2023-07-24T07:34:41.016Z</updated>
     
-    <content type="html"><![CDATA[<p>Linux的3种重定向<br>0:表示标准输入<br>1:标准输出,在一般使用时，默认的是标准输出<br>2:标准错误信息输出</p><p>只输出错误信息到日志文件<br>nohup ./program &gt;/dev/null 2&gt;log &amp;<br>什么信息也不要<br>nohup ./program &gt;/dev/null 2&gt;&amp;1 &amp;<br>知识补充，关于Linux的重定向</p><p>可以用来指定需要重定向的标准输入或输出。例如，将某个程序的错误信息输出到log文件 中：./program 2&gt;log。这样标准输出还是在屏幕上，但是错误信息会输出到log文件中。另外，也可 以实现0，1，2之间的重定向。2&gt;&amp;1：将错误信息重定向到标准输出。<br>关于/dev/null文件<br>Linux下还有一个特殊的文件/dev/null，它就像一个无底洞，所有重定向到它的信息都会消失得无影 无踪。这一点非常有用，当我们不需要回显程序的所有信息时，就可以将输出重定向到/dev/null。</p>]]></content>
+    <content type="html"><![CDATA[<p>linux 安装： <a href="https://blog.csdn.net/qq_39187538/article/details/126485922" target="_blank" rel="noopener">https://blog.csdn.net/qq_39187538/article/details/126485922</a></p><h1 id="1-下载安装"><a href="#1-下载安装" class="headerlink" title="1. 下载安装"></a>1. 下载安装</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># 下载</span><br><span class="line">yum install -y wget</span><br><span class="line">wget https:&#x2F;&#x2F;download.redis.io&#x2F;releases&#x2F;redis-7.0.2.tar.gz</span><br><span class="line"># 默认安装到了&#x2F;usr&#x2F;local&#x2F;bin&#x2F;目录，但是我想自定义安装到&#x2F;data&#x2F;software&#x2F;</span><br><span class="line">#解压</span><br><span class="line">tar -zxf redis-7.0.2.tar.gz -C &#x2F;data&#x2F;software&#x2F;</span><br><span class="line">#编译</span><br><span class="line">make</span><br><span class="line">#安装</span><br><span class="line">make install PREFIX&#x3D;&#x2F;data&#x2F;software&#x2F;</span><br></pre></td></tr></table></figure><p>添加环境变量<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">vi ~.&#x2F;bashrc</span><br><span class="line">REDIS_HOME&#x3D;&#x2F;data&#x2F;software&#x2F;</span><br><span class="line">PATH&#x3D;$PATH:$REDIS_HOME&#x2F;bin</span><br><span class="line">#配置生效</span><br><span class="line">source ~&#x2F;.bash_profile</span><br></pre></td></tr></table></figure></p><h1 id="启动和停止"><a href="#启动和停止" class="headerlink" title="启动和停止"></a>启动和停止</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#实际是去找&#x2F;data&#x2F;software&#x2F;redis-7.0.2&#x2F;bin的这个启动语句,并使用redis配置文件</span><br><span class="line">redis-server &#x2F;data&#x2F;software&#x2F;redis-7.0.2&#x2F;redis.conf</span><br><span class="line">#&#x2F;data&#x2F;software&#x2F;redis-7.0.2&#x2F;bin的这个预计进行停止</span><br><span class="line">redis-cli shutdown</span><br></pre></td></tr></table></figure><h2 id="redis-conf文件说明"><a href="#redis-conf文件说明" class="headerlink" title="redis.conf文件说明"></a>redis.conf文件说明</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#设置后台启动，如果不是后台启动，每次推出redis就关闭了</span><br><span class="line">daemonize yes</span><br><span class="line">#开启密码保护，注释则不需要密码</span><br><span class="line">requirepass 密码</span><br><span class="line">#设置端口号</span><br><span class="line">port 端口号</span><br><span class="line">#允许访问的ip，改为0.0.0.0就是所有ip均可</span><br><span class="line">bind 127.0.0.1 -::1</span><br><span class="line">bind 0.0.0.0</span><br></pre></td></tr></table></figure>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;Linux的3种重定向&lt;br&gt;0:表示标准输入&lt;br&gt;1:标准输出,在一般使用时，默认的是标准输出&lt;br&gt;2:标准错误信息输出&lt;/p&gt;
-&lt;p&gt;只输出错误信息到日志文件&lt;br&gt;nohup ./program &amp;gt;/dev/null 2&amp;gt;log &amp;amp;&lt;br&gt;什么
-      
-    
-    </summary>
-    
-    
-      <category term="linux" scheme="https://tlylft.github.io/categories/linux/"/>
-    
-    
-      <category term="linux" scheme="https://tlylft.github.io/tags/linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>linux centos7 磁盘扩容</title>
-    <link href="https://tlylft.github.io/linux/linux_disk/"/>
-    <id>https://tlylft.github.io/linux/linux_disk/</id>
-    <published>2021-02-01T04:36:26.000Z</published>
-    <updated>2021-02-01T04:44:11.118Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="查看"><a href="#查看" class="headerlink" title="查看"></a>查看</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[root@NLP-Centos ~]# df -h</span><br><span class="line">文件系统        容量  已用  可用 已用% 挂载点</span><br><span class="line">devtmpfs         56G     0   56G    0% &#x2F;dev</span><br><span class="line">tmpfs            56G     0   56G    0% &#x2F;dev&#x2F;shm</span><br><span class="line">tmpfs            56G  9.1M   56G    1% &#x2F;run</span><br><span class="line">tmpfs            56G     0   56G    0% &#x2F;sys&#x2F;fs&#x2F;cgroup</span><br><span class="line">&#x2F;dev&#x2F;sda2        30G  3.8G   26G   13% &#x2F;</span><br><span class="line">&#x2F;dev&#x2F;sda1       497M   92M  406M   19% &#x2F;boot</span><br><span class="line">&#x2F;dev&#x2F;sdb1       725G   73M  688G    1% &#x2F;mnt&#x2F;resource</span><br><span class="line">tmpfs            12G  8.0K   12G    1% &#x2F;run&#x2F;user&#x2F;1000</span><br></pre></td></tr></table></figure><h2 id="挂载盘扩容"><a href="#挂载盘扩容" class="headerlink" title="挂载盘扩容"></a>挂载盘扩容</h2><p><a href="https://docs.azure.cn/zh-cn/articles/compute/aog-virtual-machines-qa-linux-root-file-system-extension" target="_blank" rel="noopener">https://docs.azure.cn/zh-cn/articles/compute/aog-virtual-machines-qa-linux-root-file-system-extension</a><br><a href="https://blog.csdn.net/qq825545356/article/details/93619434" target="_blank" rel="noopener">https://blog.csdn.net/qq825545356/article/details/93619434</a></p><p>打开分区表<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br></pre></td><td class="code"><pre><span class="line">[root@NLP-Centos ~]# fdisk &#x2F;dev&#x2F;sda</span><br><span class="line"></span><br><span class="line">The device presents a logical sector size that is smaller than</span><br><span class="line">the physical sector size. Aligning to a physical sector (or optimal</span><br><span class="line">I&#x2F;O) size boundary is recommended, or performance may be impacted.</span><br><span class="line">欢迎使用 fdisk (util-linux 2.23.2)。</span><br><span class="line"></span><br><span class="line">更改将停留在内存中，直到您决定将更改写入磁盘。</span><br><span class="line">使用写入命令前请三思。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">命令(输入 m 获取帮助)：m</span><br><span class="line">命令操作</span><br><span class="line">   a   toggle a bootable flag</span><br><span class="line">   b   edit bsd disklabel</span><br><span class="line">   c   toggle the dos compatibility flag</span><br><span class="line">   d   delete a partition</span><br><span class="line">   g   create a new empty GPT partition table</span><br><span class="line">   G   create an IRIX (SGI) partition table</span><br><span class="line">   l   list known partition types</span><br><span class="line">   m   print this menu</span><br><span class="line">   n   add a new partition</span><br><span class="line">   o   create a new empty DOS partition table</span><br><span class="line">   p   print the partition table</span><br><span class="line">   q   quit without saving changes</span><br><span class="line">   s   create a new empty Sun disklabel</span><br><span class="line">   t   change a partition&#39;s system id</span><br><span class="line">   u   change display&#x2F;entry units</span><br><span class="line">   v   verify the partition table</span><br><span class="line">   w   write table to disk and exit</span><br><span class="line">   x   extra functionality (experts only)</span><br><span class="line"></span><br><span class="line">命令(输入 m 获取帮助)：p</span><br><span class="line"></span><br><span class="line">磁盘 &#x2F;dev&#x2F;sda：214.7 GB, 214748364800 字节，419430400 个扇区</span><br><span class="line">Units &#x3D; 扇区 of 1 * 512 &#x3D; 512 bytes</span><br><span class="line">扇区大小(逻辑&#x2F;物理)：512 字节 &#x2F; 4096 字节</span><br><span class="line">I&#x2F;O 大小(最小&#x2F;最佳)：4096 字节 &#x2F; 4096 字节</span><br><span class="line">磁盘标签类型：dos</span><br><span class="line">磁盘标识符：0x000c35bb</span><br><span class="line"></span><br><span class="line">   设备 Boot      Start         End      Blocks   Id  System</span><br><span class="line">&#x2F;dev&#x2F;sda1   *        2048     1026047      512000   83  Linux</span><br><span class="line">&#x2F;dev&#x2F;sda2         1026048    62914559    30944256   83  Linux</span><br><span class="line"></span><br><span class="line">命令(输入 m 获取帮助)：d</span><br><span class="line">分区号 (1,2，默认 2)：2</span><br><span class="line">分区 2 已删除</span><br><span class="line"></span><br><span class="line">命令(输入 m 获取帮助)：p</span><br><span class="line"></span><br><span class="line">磁盘 &#x2F;dev&#x2F;sda：214.7 GB, 214748364800 字节，419430400 个扇区</span><br><span class="line">Units &#x3D; 扇区 of 1 * 512 &#x3D; 512 bytes</span><br><span class="line">扇区大小(逻辑&#x2F;物理)：512 字节 &#x2F; 4096 字节</span><br><span class="line">I&#x2F;O 大小(最小&#x2F;最佳)：4096 字节 &#x2F; 4096 字节</span><br><span class="line">磁盘标签类型：dos</span><br><span class="line">磁盘标识符：0x000c35bb</span><br><span class="line"></span><br><span class="line">   设备 Boot      Start         End      Blocks   Id  System</span><br><span class="line">&#x2F;dev&#x2F;sda1   *        2048     1026047      512000   83  Linux</span><br><span class="line"></span><br><span class="line">命令(输入 m 获取帮助)：n</span><br><span class="line">Partition type:</span><br><span class="line">   p   primary (1 primary, 0 extended, 3 free)</span><br><span class="line">   e   extended</span><br><span class="line">Select (default p): p</span><br><span class="line">分区号 (2-4，默认 2)：2</span><br><span class="line">起始 扇区 (1026048-419430399，默认为 1026048)：</span><br><span class="line">将使用默认值 1026048</span><br><span class="line">Last 扇区, +扇区 or +size&#123;K,M,G&#125; (1026048-419430399，默认为 419430399)：</span><br><span class="line">将使用默认值 419430399</span><br><span class="line">分区 2 已设置为 Linux 类型，大小设为 199.5 GiB</span><br><span class="line"></span><br><span class="line">命令(输入 m 获取帮助)：p</span><br><span class="line"></span><br><span class="line">磁盘 &#x2F;dev&#x2F;sda：214.7 GB, 214748364800 字节，419430400 个扇区</span><br><span class="line">Units &#x3D; 扇区 of 1 * 512 &#x3D; 512 bytes</span><br><span class="line">扇区大小(逻辑&#x2F;物理)：512 字节 &#x2F; 4096 字节</span><br><span class="line">I&#x2F;O 大小(最小&#x2F;最佳)：4096 字节 &#x2F; 4096 字节</span><br><span class="line">磁盘标签类型：dos</span><br><span class="line">磁盘标识符：0x000c35bb</span><br><span class="line"></span><br><span class="line">   设备 Boot      Start         End      Blocks   Id  System</span><br><span class="line">&#x2F;dev&#x2F;sda1   *        2048     1026047      512000   83  Linux</span><br><span class="line">&#x2F;dev&#x2F;sda2         1026048   419430399   209202176   83  Linux</span><br><span class="line"></span><br><span class="line">命令(输入 m 获取帮助)：wr</span><br><span class="line">The partition table has been altered!</span><br><span class="line"></span><br><span class="line">Calling ioctl() to re-read partition table.</span><br><span class="line"></span><br><span class="line">WARNING: Re-reading the partition table failed with error 16: 设备或资源忙.</span><br><span class="line">The kernel still uses the old table. The new table will be used at</span><br><span class="line">the next reboot or after you run partprobe(8) or kpartx(8)</span><br><span class="line">正在同步磁盘。</span><br></pre></td></tr></table></figure></p><h2 id="重启后"><a href="#重启后" class="headerlink" title="重启后"></a>重启后</h2><p>还没有改变，需要修改根文件系统的大小。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">[nlpadmin@NLP-Centos ~]$ sudo xfs_growfs &#x2F;dev&#x2F;sda2</span><br><span class="line">meta-data&#x3D;&#x2F;dev&#x2F;sda2              isize&#x3D;512    agcount&#x3D;4, agsize&#x3D;1934016 blks</span><br><span class="line">         &#x3D;                       sectsz&#x3D;512   attr&#x3D;2, projid32bit&#x3D;1</span><br><span class="line">         &#x3D;                       crc&#x3D;1        finobt&#x3D;0 spinodes&#x3D;0</span><br><span class="line">data     &#x3D;                       bsize&#x3D;4096   blocks&#x3D;7736064, imaxpct&#x3D;25</span><br><span class="line">         &#x3D;                       sunit&#x3D;0      swidth&#x3D;0 blks</span><br><span class="line">naming   &#x3D;version 2              bsize&#x3D;4096   ascii-ci&#x3D;0 ftype&#x3D;1</span><br><span class="line">log      &#x3D;internal               bsize&#x3D;4096   blocks&#x3D;3777, version&#x3D;2</span><br><span class="line">         &#x3D;                       sectsz&#x3D;512   sunit&#x3D;0 blks, lazy-count&#x3D;1</span><br><span class="line">realtime &#x3D;none                   extsz&#x3D;4096   blocks&#x3D;0, rtextents&#x3D;0</span><br><span class="line">data blocks changed from 7736064 to 52300544</span><br><span class="line">[nlpadmin@NLP-Centos ~]$ df -Th</span><br><span class="line">文件系统       类型      容量  已用  可用 已用% 挂载点</span><br><span class="line">devtmpfs       devtmpfs   56G     0   56G    0% &#x2F;dev</span><br><span class="line">tmpfs          tmpfs      56G     0   56G    0% &#x2F;dev&#x2F;shm</span><br><span class="line">tmpfs          tmpfs      56G  9.0M   56G    1% &#x2F;run</span><br><span class="line">tmpfs          tmpfs      56G     0   56G    0% &#x2F;sys&#x2F;fs&#x2F;cgroup</span><br><span class="line">&#x2F;dev&#x2F;sda2      xfs       200G  3.8G  196G    2% &#x2F;</span><br><span class="line">&#x2F;dev&#x2F;sda1      xfs       497M   92M  406M   19% &#x2F;boot</span><br><span class="line">&#x2F;dev&#x2F;sdb1      ext4      725G   73M  688G    1% &#x2F;mnt&#x2F;resource</span><br><span class="line">tmpfs          tmpfs      12G     0   12G    0% &#x2F;run&#x2F;user&#x2F;1000</span><br></pre></td></tr></table></figure></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;查看&quot;&gt;&lt;a href=&quot;#查看&quot; class=&quot;headerlink&quot; title=&quot;查看&quot;&gt;&lt;/a&gt;查看&lt;/h2&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span 
-      
-    
-    </summary>
-    
-    
-      <category term="linux" scheme="https://tlylft.github.io/categories/linux/"/>
-    
-    
-      <category term="linux" scheme="https://tlylft.github.io/tags/linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>centos7 xfce xrdp远程桌面</title>
-    <link href="https://tlylft.github.io/linux/centos7_desktop/"/>
-    <id>https://tlylft.github.io/linux/centos7_desktop/</id>
-    <published>2021-01-27T03:02:49.000Z</published>
-    <updated>2021-01-27T03:10:46.584Z</updated>
-    
-    <content type="html"><![CDATA[<p><a href="https://www.cnblogs.com/bhoold/p/12266499.html" target="_blank" rel="noopener">https://www.cnblogs.com/bhoold/p/12266499.html</a></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 安装桌面协议</span><br><span class="line">yum groupinstall &quot;X Window system&quot;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 安装包含xfce的yum源</span><br><span class="line">yum install epel-release</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 安装xfce桌面</span><br><span class="line">yum groupinstall xfce</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 进入图形模式(如果是远程连接无效果)</span><br><span class="line">systemctl isolate graphical.target</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 安装基本字体(安装一个即可)</span><br><span class="line">yum install cjkuni-ukai-fonts &#x2F;&#x2F;楷体</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 安装输入法</span><br><span class="line">yum install fcitx*</span><br><span class="line">yum install im-chooser</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 安装浏览器</span><br><span class="line">yum install firefox</span><br><span class="line">yum install https:&#x2F;&#x2F;dl.google.com&#x2F;linux&#x2F;direct&#x2F;google-chrome-stable_current_x86_64.rpm &#x2F;&#x2F;必须用yum安装rpm才不会出现以来问题</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 开启桌面远程连接服务</span><br><span class="line">vi ~&#x2F;.Xclients &#x2F;&#x2F; 编辑远程桌面配置文件(用户主目录有这个文件远程连接才不会黑屏闪退)</span><br><span class="line">#!&#x2F;bin&#x2F;bash</span><br><span class="line">XFCE&#x3D;&quot;$(which xfce4-session 2&gt;&#x2F;dev&#x2F;null)&quot;</span><br><span class="line">exec &quot;$XFCE&quot;</span><br><span class="line"></span><br><span class="line">chmod +x ~&#x2F;.Xclients &#x2F;&#x2F; 修改属性</span><br><span class="line"></span><br><span class="line">yum install -y xrdp tigervnc tigervnc-server &#x2F;&#x2F; 安装服务</span><br><span class="line">systemctl start xrdp &#x2F;&#x2F; 启动服务</span><br><span class="line">systemctl enable xrdp &#x2F;&#x2F; 开机启动</span><br><span class="line">systemctl status xrdp.service &#x2F;&#x2F; 查看服务状态</span><br><span class="line">netstat -antup|grep xrdp &#x2F;&#x2F; 查看服务端口</span><br><span class="line">firewall-cmd --permanent --zone&#x3D;public --add-port&#x3D;3389&#x2F;tcp &#x2F;&#x2F; 防火墙规则</span><br><span class="line">firewall-cmd --reload &#x2F;&#x2F; 重载规则</span><br><span class="line">chcon -t bin_t &#x2F;usr&#x2F;sbin&#x2F;xrdp &#x2F;&#x2F; SELinux放行</span><br><span class="line">chcon -t bin_t &#x2F;usr&#x2F;sbin&#x2F;xrdp-sesman &#x2F;&#x2F; SELinux放行</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;&lt;a href=&quot;https://www.cnblogs.com/bhoold/p/12266499.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://www.cnblogs.com/bhoold/p/12266499.html&lt;/a
-      
-    
-    </summary>
-    
-    
-      <category term="linux" scheme="https://tlylft.github.io/categories/linux/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>云主机搭建jupyter</title>
-    <link href="https://tlylft.github.io/linux/linux_jupyter/"/>
-    <id>https://tlylft.github.io/linux/linux_jupyter/</id>
-    <published>2021-01-27T02:08:35.000Z</published>
-    <updated>2021-02-02T05:19:16.038Z</updated>
-    
-    <content type="html"><![CDATA[<p><a href="https://blog.csdn.net/qq_23845067/article/details/80474003" target="_blank" rel="noopener">https://blog.csdn.net/qq_23845067/article/details/80474003</a></p><ol><li><p>安装anaconda</p></li><li><p>python运行，设置密码，获取秘钥</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#导入设定密码模块</span><br><span class="line">from notebook.auth import passwd</span><br><span class="line"># 生成密码</span><br><span class="line">passwd()</span><br><span class="line">#输入密码，并且验证输入密码</span><br><span class="line">#输入两次之后，会生成一个加密字符串，将其复制下来</span><br><span class="line">#退出python环境，ctrl+d</span><br></pre></td></tr></table></figure></li><li><p>生成配置文件,修改配置</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">jupyter notebook --generate-config</span><br><span class="line">vi &#x2F;root&#x2F;.jupyter&#x2F;jupyter_notebook_config.py</span><br></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># 设定ip访问，允许任意ip访问</span><br><span class="line">c.NotebookApp.ip &#x3D; ‘*’</span><br><span class="line"># 不打开浏览器</span><br><span class="line">c.NotebookApp.open_browser &#x3D; False</span><br><span class="line"># 用于访问的端口，设定一个不用的端口即可，这里设置为7000</span><br><span class="line">c.NotebookApp.port &#x3D; 8888</span><br><span class="line"># 设置登录密码， 将刚刚复制的秘钥内容替换此处的xxx</span><br><span class="line">c.NotebookApp.password &#x3D; u&#39;sha1:bcd259ccf...&lt;your hashed password here&gt;&#39;</span><br><span class="line"># 配置项目文件夹，存储jupyter note和其他文件</span><br><span class="line">c.NotebookApp.notebook_dir &#x3D; u’jupyter’</span><br></pre></td></tr></table></figure></li><li><p>启动服务<br>nohup jupyter notebook —allow-root 2&gt;/data/logs/jupyter.nohup &amp;</p></li><li><p>开机自动启动</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">root: vi &#x2F;etc&#x2F;rc.d&#x2F;rc.local</span><br><span class="line">添加安装python环境的用户启动服务命令：</span><br><span class="line">su - nlpadmin -c &quot;ah &#x2F;data&#x2F;software&#x2F;cmd&#x2F;jupyter_startup.sh&quot;</span><br></pre></td></tr></table></figure></li></ol>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;&lt;a href=&quot;https://blog.csdn.net/qq_23845067/article/details/80474003&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://blog.csdn.net/qq_23845067/art
-      
-    
-    </summary>
-    
-    
-      <category term="linux" scheme="https://tlylft.github.io/categories/linux/"/>
-    
-    
-      <category term="linux" scheme="https://tlylft.github.io/tags/linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>分词工具对比</title>
-    <link href="https://tlylft.github.io/NLP/segment/seg_compare/"/>
-    <id>https://tlylft.github.io/NLP/segment/seg_compare/</id>
-    <published>2021-01-26T05:54:18.000Z</published>
-    <updated>2021-01-26T06:06:44.910Z</updated>
-    
-    <content type="html"><![CDATA[<p><a href="https://zhuanlan.zhihu.com/p/66495302" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/66495302</a></p><p>snownlp:<br><a href="https://github.com/isnowfy/snownlp" target="_blank" rel="noopener">https://github.com/isnowfy/snownlp</a><br><a href="https://zhuanlan.zhihu.com/p/101493588" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/101493588</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;&lt;a href=&quot;https://zhuanlan.zhihu.com/p/66495302&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://zhuanlan.zhihu.com/p/66495302&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;snownlp:&lt;
-      
-    
-    </summary>
-    
-    
-      <category term="nlp" scheme="https://tlylft.github.io/categories/nlp/"/>
-    
-    
-      <category term="nlp" scheme="https://tlylft.github.io/tags/nlp/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>python唯一请求码生成</title>
-    <link href="https://tlylft.github.io/python/python/unique_id/"/>
-    <id>https://tlylft.github.io/python/python/unique_id/</id>
-    <published>2021-01-26T01:39:55.000Z</published>
-    <updated>2021-01-26T01:43:29.182Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="python唯一请求码生成"><a href="#python唯一请求码生成" class="headerlink" title="python唯一请求码生成"></a>python唯一请求码生成</h2><p><a href="https://www.cnblogs.com/standby/p/7021943.html" target="_blank" rel="noopener">https://www.cnblogs.com/standby/p/7021943.html</a></p><h3 id="hashlib-time"><a href="#hashlib-time" class="headerlink" title="hashlib+time"></a>hashlib+time</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">import time, hashlib</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def create_id():</span><br><span class="line">    m &#x3D; hashlib.md5(str(time.perf_counter()).encode(&#39;utf-8&#39;))</span><br><span class="line">    return m.hexdigest()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ &#x3D;&#x3D; &#39;__main__&#39;:</span><br><span class="line">    print(type(create_id()))</span><br><span class="line">    print(create_id())</span><br><span class="line">    print(create_id())</span><br><span class="line">    print(create_id())</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;python唯一请求码生成&quot;&gt;&lt;a href=&quot;#python唯一请求码生成&quot; class=&quot;headerlink&quot; title=&quot;python唯一请求码生成&quot;&gt;&lt;/a&gt;python唯一请求码生成&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://www.cnblo
-      
-    
-    </summary>
-    
-    
-      <category term="python" scheme="https://tlylft.github.io/categories/python/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>那些怪诞又实用的日常心理学</title>
-    <link href="https://tlylft.github.io/reading/The_weird_and_practical_psychology/"/>
-    <id>https://tlylft.github.io/reading/The_weird_and_practical_psychology/</id>
-    <published>2021-01-22T06:27:48.000Z</published>
-    <updated>2021-01-26T06:07:02.435Z</updated>
-    
-    <content type="html"><![CDATA[<p>实验1：<br>看不见的大猩猩<br><a href="https://search.bilibili.com/all?keyword=%E7%9C%8B%E4%B8%8D%E8%A7%81%E7%9A%84%E5%A4%A7%E7%8C%A9%E7%8C%A9%E5%AE%9E%E9%AA%8C" target="_blank" rel="noopener">https://search.bilibili.com/all?keyword=%E7%9C%8B%E4%B8%8D%E8%A7%81%E7%9A%84%E5%A4%A7%E7%8C%A9%E7%8C%A9%E5%AE%9E%E9%AA%8C</a><br>描述：<br>几个大学生穿着白色或黑色的衣服在传球，一开始你会被告知“一会会问你穿黑色衣服的人互相传了几次球”然后你就会仔细的看着穿黑衣服的人传球，等到结束后会问你传球次数以及有没有看到什么奇怪的东西，传球次数只要认真看了基本都能答对，但是有相当一部分人表示自己没看到奇怪的东西，而一部分人表示自己看到了一只大猩猩走了过去。<br>说明：<br>简单的来说，就是所谓我们的视觉盲区。<br>你所看到的，只是你想看到的世界。你所经历的事情和环境，也许也错过了很多信息。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;实验1：&lt;br&gt;看不见的大猩猩&lt;br&gt;&lt;a href=&quot;https://search.bilibili.com/all?keyword=%E7%9C%8B%E4%B8%8D%E8%A7%81%E7%9A%84%E5%A4%A7%E7%8C%A9%E7%8C%A9%E5%AE
-      
-    
-    </summary>
-    
-    
-      <category term="reading" scheme="https://tlylft.github.io/categories/reading/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>pycharm配置</title>
-    <link href="https://tlylft.github.io/tools/pycharm/"/>
-    <id>https://tlylft.github.io/tools/pycharm/</id>
-    <published>2021-01-21T03:09:13.000Z</published>
-    <updated>2021-01-21T03:10:52.038Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="文件头设置"><a href="#文件头设置" class="headerlink" title="文件头设置"></a>文件头设置</h3><h3 id="docker连接"><a href="#docker连接" class="headerlink" title="docker连接"></a>docker连接</h3><p><a href="https://blog.csdn.net/fanxl10/article/details/106878238" target="_blank" rel="noopener">Flask + Gunicorn + Docker部署新手教程</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;文件头设置&quot;&gt;&lt;a href=&quot;#文件头设置&quot; class=&quot;headerlink&quot; title=&quot;文件头设置&quot;&gt;&lt;/a&gt;文件头设置&lt;/h3&gt;&lt;h3 id=&quot;docker连接&quot;&gt;&lt;a href=&quot;#docker连接&quot; class=&quot;headerlink&quot; titl
+        &lt;p&gt;linux 安装： &lt;a href=&quot;https://blog.csdn.net/qq_39187538/article/details/126485922&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://blog.csdn.net/qq_3
       
     
     </summary>
@@ -294,24 +141,334 @@
     
       <category term="tools" scheme="https://tlylft.github.io/tags/tools/"/>
     
-      <category term="pycharm" scheme="https://tlylft.github.io/tags/pycharm/"/>
-    
   </entry>
   
   <entry>
-    <title>flask 部署(gunicorn, docker, nginx)</title>
-    <link href="https://tlylft.github.io/python/Flask/flask_docker_deploy/"/>
-    <id>https://tlylft.github.io/python/Flask/flask_docker_deploy/</id>
-    <published>2021-01-21T02:36:07.000Z</published>
-    <updated>2021-01-26T06:10:06.248Z</updated>
+    <title>LLM（2）-Instruct GPT</title>
+    <link href="https://tlylft.github.io/LLM/02_instruct_gpt/"/>
+    <id>https://tlylft.github.io/LLM/02_instruct_gpt/</id>
+    <published>2023-06-21T01:38:32.000Z</published>
+    <updated>2023-08-10T12:22:57.896Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="flask"><a href="#flask" class="headerlink" title="flask"></a>flask</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">项目拷贝后，直接运行</span><br><span class="line">python main.py</span><br><span class="line">nohup python main.py &gt;nohup_path.txt &amp;</span><br></pre></td></tr></table></figure><h3 id="flask-docker"><a href="#flask-docker" class="headerlink" title="flask + docker"></a>flask + docker</h3><p>Dockerfile view<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">FROM python:3.7</span><br><span class="line">WORKDIR &#x2F;project&#x2F;nlp_platform</span><br><span class="line"></span><br><span class="line">COPY . .</span><br><span class="line">RUN mkdir &#x2F;logs; pip install -r requirements.txt -i https:&#x2F;&#x2F;pypi.tuna.tsinghua.edu.cn&#x2F;simple</span><br><span class="line"></span><br><span class="line">CMD [&quot;python&quot;, &quot;run.py&quot;]</span><br></pre></td></tr></table></figure><br><strong>注意： flask中设置host为0.0.0.0才能被外部调用，127.0.0.1只能在docker内被主机调用，不能产生网络端口映射</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">if __name__ &#x3D;&#x3D; &#39;__main__&#39;:</span><br><span class="line">    app.run(host&#x3D;&#39;0.0.0.0&#39;,port&#x3D;8000)</span><br></pre></td></tr></table></figure></p><p>docker 镜像构建<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker build -t 10.37.144.182:8002&#x2F;nlp&#x2F;nlp_platform:v0.1 .</span><br><span class="line"></span><br><span class="line">docker push  10.37.144.182:8002&#x2F;nlp&#x2F;nlp_platform:v0.1</span><br><span class="line"></span><br><span class="line">docker run --name platform -dit -p 8004:8000 nlp_platform:v0.1</span><br></pre></td></tr></table></figure></p><h3 id="flask-gunicorn-docker"><a href="#flask-gunicorn-docker" class="headerlink" title="flask + gunicorn + docker"></a>flask + gunicorn + docker</h3><p>参考：<a href="https://zhuanlan.zhihu.com/p/78432719?hmsr=toutiao.io" target="_blank" rel="noopener">用Docker部署Flask应用</a><br><strong>什么是gunicorn?</strong><br><a href="https://zhuanlan.zhihu.com/p/102716258" target="_blank" rel="noopener">Gunicorn介绍</a><br>简单说：做了多进程管理<br>在管理 worker 上，使用了 pre-fork 模型，即一个 master 进程管理多个 worker 进程，所有请求和响应均由 Worker 处理。Master 进程是一个简单的 loop, 监听 worker 不同进程信号并且作出响应。比如接受到 TTIN 提升 worker 数量，TTOU 降低运行 Worker 数量。如果 worker 挂了，发出 CHLD, 则重启失败的 worker, 同步的 Worker 一次处理一个请求。<br><strong>gunicorn的应用</strong><br><a href="https://www.jianshu.com/p/69e75fc3e08e" target="_blank" rel="noopener">gunicorn 配置参数详解</a><br>在windows环境中不能运行！！！！！！</p><ol><li>配置gunicorn文件[gunicorn_conf.py]<br>简单的：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">workers &#x3D; 5    # 定义同时开启的处理请求的进程数量，根据网站流量适当调整，建议workers 数量是 (2*CPU) + 1</span><br><span class="line">worker_class &#x3D; &quot;gevent&quot;   # 采用gevent库，支持异步处理请求，提高吞吐量</span><br><span class="line">bind &#x3D; &quot;0.0.0.0:8888&quot;    # 监听IP放宽，以便于Docker之间、Docker和宿主机之间的通信</span><br></pre></td></tr></table></figure>复杂的<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">import multiprocessing</span><br><span class="line"></span><br><span class="line"># !监听地址和端口</span><br><span class="line">bind &#x3D; &#39;0.0.0.0:8888&#39;</span><br><span class="line"></span><br><span class="line"># !worker进程的数量。建议值2-4 x $(NUM_CORES)， 缺省为1。</span><br><span class="line">workers &#x3D; multiprocessing.cpu_count() * 2 + 1</span><br><span class="line"></span><br><span class="line"># 每个进程的开启线程</span><br><span class="line"># threads &#x3D; multiprocessing.cpu_count() * 2</span><br><span class="line"></span><br><span class="line"># !服务器中在pending状态的最大连接数，即client处于waiting的数目。超过这个数目， client连接会得到一个error。建议值64-2048</span><br><span class="line">backlog &#x3D; 2048</span><br><span class="line"></span><br><span class="line"># !worker进程的工作方式。 有 sync, eventlet, gevent, tornado, gthread, 缺省值sync。</span><br><span class="line">worker_class &#x3D; &quot;gevent&quot;</span><br><span class="line"></span><br><span class="line"># 客户端最大同时连接数。只适用于eventlet， gevent工作方式。</span><br><span class="line"># worker_connections &#x3D; 1000</span><br><span class="line"># daemon &#x3D; False</span><br><span class="line"># debug &#x3D; True</span><br><span class="line"></span><br><span class="line">#进程名和日志</span><br><span class="line">proc_name &#x3D; &#39;gunicorn.pid&#39;</span><br><span class="line">pidfile &#x3D; &quot;log&#x2F;gunicorn.pid&quot;</span><br><span class="line">accesslog &#x3D; &quot;log&#x2F;gunicorn_access.log&quot;</span><br><span class="line"># access_log_format &#x3D; &#39;%(h)s %(t)s %(U)s %(q)s&#39;</span><br><span class="line">errorlog &#x3D; &quot;log&#x2F;gunicorn_error.log&quot;</span><br><span class="line"></span><br><span class="line">timeout &#x3D; 600  ## 指gunicorn判定启动进程timeout的时间！！ 在web服务启动初始化时间比较长时，一定要设置，在设定时间内服务未启动成功，gunicorn判定为超时，会创建新进程</span><br><span class="line">debug&#x3D;False</span><br><span class="line">capture_output &#x3D; True</span><br></pre></td></tr></table></figure></li><li>使用gunicorn运行, name为flask主程序的文件名，app为文件中的flask app变量名<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gunicorn name:app -c .&#x2F;gunicorn.conf.py</span><br></pre></td></tr></table></figure><strong>docker部署</strong><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">## Dockerfile</span><br><span class="line">FROM python:3.7</span><br><span class="line">WORKDIR &#x2F;project&#x2F;nlp_platform</span><br><span class="line"></span><br><span class="line">COPY . .</span><br><span class="line">RUN mkdir &#x2F;logs; pip install -r requirements.txt -i https:&#x2F;&#x2F;pypi.tuna.tsinghua.edu.cn&#x2F;simple</span><br><span class="line"></span><br><span class="line">CMD [&quot;gunicorn&quot;, &quot;run:app&quot;, &quot;-c&quot;, &quot;.&#x2F;gunicorn_conf.py&quot;]</span><br></pre></td></tr></table></figure></li></ol><p>docker 镜像构建和使用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker build -t 10.37.144.182:8002&#x2F;nlp&#x2F;nlp_platform:v0.2 .</span><br><span class="line"></span><br><span class="line">docker push  10.37.144.182:8002&#x2F;nlp&#x2F;nlp_platform:v0.2</span><br><span class="line"></span><br><span class="line">docker run --name platform -dit -p 8004:8888 nlp_platform:v0.2</span><br></pre></td></tr></table></figure></p><h3 id="flask-gunicorn-nginx-docker"><a href="#flask-gunicorn-nginx-docker" class="headerlink" title="flask +gunicorn+ nginx+docker"></a>flask +gunicorn+ nginx+docker</h3><p><a href="https://www.cnblogs.com/sui776265233/p/10913105.html" target="_blank" rel="noopener">基于docker部署的 flask +gunicorn+ nginx</a><br><a href="https://github.com/danriti/nginx-gunicorn-flask" target="_blank" rel="noopener">https://github.com/danriti/nginx-gunicorn-flask</a></p><p>Nginx_conf<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line"> listen 80;</span><br><span class="line"> server_name &lt;your dns&gt;;</span><br><span class="line">location &#x2F; &#123;</span><br><span class="line"> proxy_pass http:&#x2F;&#x2F;0.0.0.0:5000;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p><a href="https://zhuanlan.zhihu.com/p/78432719?hmsr=toutiao.io" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/78432719?hmsr=toutiao.io</a></p>]]></content>
+    <content type="html"><![CDATA[<p>Training language models to follow instructions with human feedback</p><p>1.基于GPT-3作为底层模型进行微调 SFT</p><ol><li>人类反馈 RM</li><li>优化参数  PPO</li></ol><h1 id="大模型的问题"><a href="#大模型的问题" class="headerlink" title="大模型的问题"></a>大模型的问题</h1><h1 id="instruct的意义"><a href="#instruct的意义" class="headerlink" title="instruct的意义"></a>instruct的意义</h1><h1 id="实现方式："><a href="#实现方式：" class="headerlink" title="实现方式："></a>实现方式：</h1><p>1.基于GPT-3作为底层模型进行微调 SFT</p><ol><li>人类反馈 RM</li><li>优化参数  PPO<br><img src="/LLM/02_instruct_gpt/2023-06-21-10-37-46.png" alt></li></ol><h1 id="效果展示说明"><a href="#效果展示说明" class="headerlink" title="效果展示说明"></a>效果展示说明</h1><p>PPO1.3B比SFT175B效果还要好</p><h1 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h1><h1 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h1><p>RM loss<br>将奖励的差异作为交叉熵损失函数，使模型更能学习到好和坏的差异。且尽量最大化差异，如选择评分8.5和4分的模型进行学习，而不是8.5和8分的数据（容易引起模型混淆）</p><p>RL-PPO</p><ol><li>最大化收益</li><li>KL散度 限制新学习的πRL强化策略 和初始的模型生成策略πSFT之间的差距不要太大，</li><li>偏置项</li></ol>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;h3 id=&quot;flask&quot;&gt;&lt;a href=&quot;#flask&quot; class=&quot;headerlink&quot; title=&quot;flask&quot;&gt;&lt;/a&gt;flask&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;
+        &lt;p&gt;Training language models to follow instructions with human feedback&lt;/p&gt;
+&lt;p&gt;1.基于GPT-3作为底层模型进行微调 SFT&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;人类反馈 RM&lt;/li&gt;
+&lt;li&gt;优化参数  PP
+      
+    
+    </summary>
+    
+    
+      <category term="LLM" scheme="https://tlylft.github.io/categories/LLM/"/>
+    
+    
+      <category term="LLM" scheme="https://tlylft.github.io/tags/LLM/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>LLM（5）-LLaMA</title>
+    <link href="https://tlylft.github.io/LLM/05_LLaMA/"/>
+    <id>https://tlylft.github.io/LLM/05_LLaMA/</id>
+    <published>2023-05-31T09:11:11.000Z</published>
+    <updated>2023-08-10T09:30:14.851Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>LLaMA发展详解：<a href="https://agi-sphere.com/llama-models/" target="_blank" rel="noopener">https://agi-sphere.com/llama-models/</a><br>Paper: LLaMA: Open and Efficient Foundation Language Models<br>meta AI blog: <a href="https://ai.facebook.com/blog/large-language-model-llama-meta-ai/" target="_blank" rel="noopener">https://ai.facebook.com/blog/large-language-model-llama-meta-ai/</a></p></blockquote><h1 id="1-LLaMA目标"><a href="#1-LLaMA目标" class="headerlink" title="1. LLaMA目标"></a>1. LLaMA目标</h1><p>LLaMA 的目标是为有限的推理预算构建性能最佳的模型，例如，可以使用小于 10GB 的 VRAM 在 NVIDIA 3090 上运行。</p><h1 id="2-LLaMA变体发展"><a href="#2-LLaMA变体发展" class="headerlink" title="2. LLaMA变体发展"></a>2. LLaMA变体发展</h1><p>development:<br>| Model               | Size        | Training data                                           |<br>|——————————-|——————-|————-|<br>| LLaMA (base model)   | 7B, 13B, 33B, 65B | Various     |<br>| Alpaca              | 7B, 13B     | 52k GPT-3 instructions  |<br>| Vicuna              | 7B, 13B     | 70k ChatGPT conversations  |<br>| Koala-distill       | 7B, 13B     | 117k cleaned ChatGPT conversations  |<br>| GPT4-x-Alpaca       | 13B         | 20k GPT4 instructions        |<br>| WizardML            | 7B          | 70k instructions synthesized with ChatGPT/GPT-3|<br>| OpenAssistant LLaMA | 13B, 30B    | 600k human interactions (OpenAssistant Conversations) |</p><h1 id="3-LLaMA模型架构"><a href="#3-LLaMA模型架构" class="headerlink" title="3. LLaMA模型架构"></a>3. LLaMA模型架构</h1><p>LLaMA是一种类似于GPT的transformer模型，优化以下结构：</p><ol><li>Normalize the input of each transformer sub-layer to improve training stability.<br>对每个transformer子层的输入进行Normalize，以提高训练稳定性。</li><li>Use SwiGLU instead of ReLU to improve performance.<br>使用 <a href>SwiGLU</a> 而不是 ReLU 来提高性能。</li><li>Use rotary embedding instead of absolute positioning to improve performance.<br>使用<a href>rotary embedding</a>而不是absolute positioning来提高性能。</li></ol><div class="table-container"><table><thead><tr><th>Parameters</th><th>Layers</th><th>Attention heads</th><th>Embedding dimension</th></tr></thead><tbody><tr><td>7B</td><td>6.7B</td><td>32</td><td>32</td><td>4,096</td></tr><tr><td>13B</td><td>13B</td><td>40</td><td>40</td><td>5,120</td></tr><tr><td>33B</td><td>33B</td><td>60</td><td>52</td><td>6,656</td></tr><tr><td>65B</td><td>65B</td><td>80</td><td>64</td><td>8,192</td></tr></tbody></table></div><h1 id="训练数据"><a href="#训练数据" class="headerlink" title="训练数据"></a>训练数据</h1><p><strong>1.4T token:<br>主要包括: 维基百科、github, 科学数据，科学和工程的高质量问答，CommonCrawl清洗后的数据。<br>分词器使用<a href="https://github.com/google/sentencepiece" target="_blank" rel="noopener">SentencePiece</a>进行字节对编码。</strong><br>detail:</p><ul><li>English CommonCrawl (67%): Removed non-English text and duplicated content. Only includes pages used as references in Wikipedia.</li><li>C4 (15%): A cleaned version of CommonCrawl. The same filters were applied.</li><li>Github (4.5%): Public GitHub dataset available on Google BigQuery.</li><li>Wikipedia (4.5%): From June-August 2022 period covering 20 languages.</li><li>Gutenberg and Books3 (4.5%): Both are book datasets.</li><li>ArXiv (45%): Scientific data.</li><li>StackExchange (2%): High-quality Q&amp;As covering science and engineering topics.</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;LLaMA发展详解：&lt;a href=&quot;https://agi-sphere.com/llama-models/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://agi-sphere.com/llama-models/
+      
+    
+    </summary>
+    
+    
+      <category term="LLM" scheme="https://tlylft.github.io/categories/LLM/"/>
+    
+    
+      <category term="LLM" scheme="https://tlylft.github.io/tags/LLM/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>xgboost回归预测</title>
+    <link href="https://tlylft.github.io/machine_learning/time_series/xgboost_regression/"/>
+    <id>https://tlylft.github.io/machine_learning/time_series/xgboost_regression/</id>
+    <published>2023-05-26T12:53:14.000Z</published>
+    <updated>2023-06-26T08:44:13.121Z</updated>
+    
+    <content type="html"><![CDATA[<p>api文档： <a href="https://xgboost.readthedocs.io/en/stable/python/index.html" target="_blank" rel="noopener">https://xgboost.readthedocs.io/en/stable/python/index.html</a></p><p>原理解释：<a href="https://baijiahao.baidu.com/s?id=1665813533927052719&amp;wfr=spider&amp;for=pc" target="_blank" rel="noopener">https://baijiahao.baidu.com/s?id=1665813533927052719&amp;wfr=spider&amp;for=pc</a><br>说清楚的原理：<a href="https://www.cnblogs.com/mantch/p/11164221.html" target="_blank" rel="noopener">https://www.cnblogs.com/mantch/p/11164221.html</a><br><a href="https://github.com/NLP-LOVE/ML-NLP/blob/master/Machine%20Learning/3.3%20XGBoost/3.3%20XGBoost.md" target="_blank" rel="noopener">https://github.com/NLP-LOVE/ML-NLP/blob/master/Machine%20Learning/3.3%20XGBoost/3.3%20XGBoost.md</a></p><h1 id="1-intro"><a href="#1-intro" class="headerlink" title="1. intro"></a>1. intro</h1><p>XGBoost是陈天奇等人开发的一个开源机器学习项目，高效地实现了GBDT算法并进行了算法和工程上的许多改进，被广泛应用在Kaggle竞赛及其他许多机器学习竞赛中并取得了不错的成绩。<br>XgBoost是梯度提升树GBDT（Gradient Boosting Decision Tree）算法的一种变体，能够更快的、更高效率的训练模型。它将多个决策树集成在一起，以提高预测准确性。<br>XgBoost在气量预测中的应用比较广泛，主要是因为它能够处理大规模、高维度的数据集，并且能够在较短时间内生成高质量的预测模型。例如，在天然气供应链中，XgBoost可以被用于预测气量需求，提前做好供应准备。</p><h2 id="1-1-regression-tree"><a href="#1-1-regression-tree" class="headerlink" title="1.1. regression tree"></a>1.1. regression tree</h2><p><img src="/machine_learning/time_series/xgboost_regression/2023-06-26-16-37-31.png" alt></p><h2 id="1-2-XGBoost与GBDT有什么不同"><a href="#1-2-XGBoost与GBDT有什么不同" class="headerlink" title="1.2. XGBoost与GBDT有什么不同"></a>1.2. XGBoost与GBDT有什么不同</h2><p>除了算法上与传统的GBDT有一些不同外，XGBoost还在工程实现上做了大量的优化。总的来说，两者之间的区别和联系可以总结成以下几个方面。</p><p>GBDT是机器学习算法，XGBoost是该算法的工程实现。<br>在使用CART作为基分类器时，XGBoost显式地加入了正则项来控制模 型的复杂度，有利于防止过拟合，从而提高模型的泛化能力。<br>GBDT在模型训练时只使用了代价函数的一阶导数信息，XGBoost对代 价函数进行二阶泰勒展开，可以同时使用一阶和二阶导数。<br>传统的GBDT采用CART作为基分类器，XGBoost支持多种类型的基分类 器，比如线性分类器。<br>传统的GBDT在每轮迭代时使用全部的数据，XGBoost则采用了与随机 森林相似的策略，支持对数据进行采样。<br>传统的GBDT没有设计对缺失值进行处理，XGBoost能够自动学习出缺 失值的处理策略。</p><h2 id="1-3-为什么XGBoost要用泰勒展开，优势在哪里？"><a href="#1-3-为什么XGBoost要用泰勒展开，优势在哪里？" class="headerlink" title="1.3. 为什么XGBoost要用泰勒展开，优势在哪里？"></a>1.3. 为什么XGBoost要用泰勒展开，优势在哪里？</h2><p>XGBoost使用了一阶和二阶偏导, 二阶导数有利于梯度下降的更快更准. 使用泰勒展开取得函数做自变量的二阶导数形式, 可以在不选定损失函数具体形式的情况下, 仅仅依靠输入数据的值就可以进行叶子分裂优化计算, 本质上也就把损失函数的选取和模型算法优化/参数选择分开了. 这种去耦合增加了XGBoost的适用性, 使得它按需选取损失函数, 可以用于分类, 也可以用于回归。</p><h2 id="线性树结构的劣势"><a href="#线性树结构的劣势" class="headerlink" title="线性树结构的劣势"></a>线性树结构的劣势</h2><h1 id="2-model"><a href="#2-model" class="headerlink" title="2. model"></a>2. model</h1><ol><li>添加树，不断地进行特征分裂来生长一棵树，每次添加一个树，其实是学习一个新函数f(x)，去拟合上次预测的残差。</li><li>训练完成得到k棵树，我们要预测一个样本的分数，其实就是根据这个样本的特征，在每棵树中会落到对应的一个叶子节点，每个叶子节点就对应一个分数</li><li>需要将每棵树对应的分数加起来就是该样本的预测值。</li></ol><h2 id="2-1-举例："><a href="#2-1-举例：" class="headerlink" title="2.1. 举例："></a>2.1. 举例：</h2><p>预测不同人游戏的喜好程度，考虑到年轻和年老相比，年轻更可能喜欢电子游戏，以及男性和女性相比，男性更喜欢电子游戏，故先根据年龄大小区分小孩和大人，然后再通过性别区分开是男是女，逐一给各人在电子游戏喜好程度上打分，如下图所示。<br><img src="/machine_learning/time_series/xgboost_regression/2023-06-26-16-38-07.png" alt><br>就这样，训练出了2棵树tree1和tree2，类似之前gbdt的原理，两棵树的结论累加起来便是最终的结论，所以小孩的预测分数就是两棵树中小孩所落到的结点的分数相加：2 + 0.9 = 2.9。爷爷的预测分数同理：-1 + （-0.9）= -1.9。具体如下图所示：<br><img src="/machine_learning/time_series/xgboost_regression/2023-06-26-16-38-15.png" alt><br>这跟上文介绍的GBDT乃异曲同工，事实上，如果不考虑工程实现、解决问题上的一些差异，XGBoost与GBDT比较大的不同就是目标函数的定义。XGBoost的目标函数如下图所示：<br><img src="/machine_learning/time_series/xgboost_regression/2023-06-26-16-39-37.png" alt></p><h1 id="3-Multiple-Outputs"><a href="#3-Multiple-Outputs" class="headerlink" title="3. Multiple Outputs"></a>3. Multiple Outputs</h1><p>并行多模型运算<br>分类：<a href="https://xgboost.readthedocs.io/en/stable/tutorials/multioutput.html" target="_blank" rel="noopener">https://xgboost.readthedocs.io/en/stable/tutorials/multioutput.html</a><br>回归：<a href="https://xgboost.readthedocs.io/en/stable/python/examples/multioutput_regression.html#sphx-glr-python-examples-multioutput-regression-py" target="_blank" rel="noopener">https://xgboost.readthedocs.io/en/stable/python/examples/multioutput_regression.html#sphx-glr-python-examples-multioutput-regression-py</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;api文档： &lt;a href=&quot;https://xgboost.readthedocs.io/en/stable/python/index.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://xgboost.readthedocs.io
+      
+    
+    </summary>
+    
+    
+      <category term="machine learning" scheme="https://tlylft.github.io/categories/machine-learning/"/>
+    
+      <category term="time series" scheme="https://tlylft.github.io/categories/machine-learning/time-series/"/>
+    
+    
+      <category term="time series" scheme="https://tlylft.github.io/tags/time-series/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Neural Prophet</title>
+    <link href="https://tlylft.github.io/machine_learning/time_series/nerualprophet/"/>
+    <id>https://tlylft.github.io/machine_learning/time_series/nerualprophet/</id>
+    <published>2023-05-26T12:39:59.000Z</published>
+    <updated>2023-06-26T08:35:15.993Z</updated>
+    
+    <content type="html"><![CDATA[<p>github: <a href="https://github.com/ourownstory/neural_prophet" target="_blank" rel="noopener">https://github.com/ourownstory/neural_prophet</a><br>官方教程：<a href="https://neuralprophet.com/tutorials/tutorial01.html" target="_blank" rel="noopener">https://neuralprophet.com/tutorials/tutorial01.html</a></p><h1 id="intro"><a href="#intro" class="headerlink" title="intro"></a>intro</h1><p>NeuralProphet是Facebook Research开发的一种新型时间序列预测模型，它是Prophet的升级版。它建立在PyTorch之上，并受到Facebook Prophet和AR-Net库的极大启发。NeuralProphet将Prophet里的模型结构改成了神经网络的形式，从而提高了模型的有效性和灵活性。相比于Prophet，NeuralProphet更能适应非线性的时间序列问题，比如气量预测中存在的带噪声的时间序列。它可以根据数据自动优化模型参数，提升预测的准确性。</p><h2 id="Neural-Prophet-vs-prophet"><a href="#Neural-Prophet-vs-prophet" class="headerlink" title="Neural Prophet vs. prophet"></a>Neural Prophet vs. prophet</h2><p><strong>功能改进：</strong><br>1）    一次可以预测未来多步<br>2）    模型结构改成了神经网络的形式，提高了模型的有效性和灵活性<br>3）    加入历史时间t预测值的自回归效应（如：参考历史多日的气量）<br>4）    加入历史时间t外生变量的回归效应（如：参考历史多日的温度）<br>5）    加入未来时间t外生变量的回归效应（如：预测多日的温度）</p><p>根据NeuralProphet的文档，增加的技术点：</p><ul><li>使用PyTorch的Gradient Descent进行优化，使建模过程比Prophet快得多</li><li>使用AR-Net建模时间序列自相关（也称为序列相关）</li><li>自定义损失和指标</li><li>具有前馈神经网络的可配置非线性层</li></ul><p>区别：</p><ul><li>不支持再训练，可以直接传入历史数据和未来特征进行预测。<h1 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h1><blockquote><p>原理参考：<br><a href="https://towardsdatascience.com/in-depth-understanding-of-neuralprophet-through-a-complete-example-2474f675bc96" target="_blank" rel="noopener">1.In-Depth Understanding of NeuralProphet through a Complete Example</a><br><a href="https://liumin.blog.csdn.net/article/details/126489531" target="_blank" rel="noopener">2.时间序列论文: NeuralProphet: Explainable Forecasting at Scale</a><br><a href="https://zhuanlan.zhihu.com/p/458061787" target="_blank" rel="noopener">3.NeuralProphet模型概述:详细公式</a></p></blockquote></li></ul><p>yˆt = T(t) + S(t) + E(t) + F(t) + A(t) + L(t)<br>T(t) = 时间 t 的趋势<br>S(t) = 时间 t 的季节性影响<br>E(t) = 时间 t 的事件和假日效应<br>F(t) = 未来已知外生变量在时间 t 的回归效应<br>A(t) = 基于过去观察的时间 t 的自回归效应<br>L(t) = t 时刻外生变量滞后观测的回归效应<br>详细公式参考3中链接</p><h1 id="预测梳理"><a href="#预测梳理" class="headerlink" title="预测梳理"></a>预测梳理</h1><ol><li>数据准备<br>ds y event1 event2 regression_1  future_regresssion_1</li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;github: &lt;a href=&quot;https://github.com/ourownstory/neural_prophet&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://github.com/ourownstory/neural_prop
+      
+    
+    </summary>
+    
+    
+      <category term="machine learning" scheme="https://tlylft.github.io/categories/machine-learning/"/>
+    
+      <category term="time series" scheme="https://tlylft.github.io/categories/machine-learning/time-series/"/>
+    
+    
+      <category term="time series" scheme="https://tlylft.github.io/tags/time-series/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>LLM（1）-大语言模型简介</title>
+    <link href="https://tlylft.github.io/LLM/01_intro/"/>
+    <id>https://tlylft.github.io/LLM/01_intro/</id>
+    <published>2023-05-16T00:52:19.000Z</published>
+    <updated>2023-08-10T13:49:32.556Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p><a href="https://mp.weixin.qq.com/s/NOcUlNPOXZheXJ9yX4wrLQ" target="_blank" rel="noopener">大模型选型的一点思考</a><br><a href="https://blog.csdn.net/v_JULY_v/article/details/128579457" target="_blank" rel="noopener">ChatGPT技术原理解析：从RL之PPO算法、RLHF到GPT4、instructGPT</a></p></blockquote><h1 id="1-LLM"><a href="#1-LLM" class="headerlink" title="1. LLM"></a>1. LLM</h1><p>大语言模型（LLM）是指使用大量文本数据训练的深度学习模型，可以生成自然语言文本或理解语言文本的含义。大语言模型可以处理多种自然语言任务，如文本分类、问答、对话等，是通向人工智能的一条重要途径。</p><p>现在是2023年5月，截止目前，网络上已经开源了众多的LLM，如何用较低的成本，判断LLM的基础性能，选到适合自己任务的LLM，成为一个关键。</p><h1 id="2-模型发展历史"><a href="#2-模型发展历史" class="headerlink" title="2. 模型发展历史"></a>2. 模型发展历史</h1><div class="table-container"><table><thead><tr><th>时间</th><th>公司</th><th>模型</th><th>描述</th></tr></thead><tbody><tr><td>2017</td><td></td><td>微积分、概率统计、最优化、策略梯度、TRPO算法(2015年提出)</td><td></td></tr><tr><td>2017年6月</td><td>OpenAI联合DeepMind</td><td>RLHF</td><td>Deep Reinforcement Learning from Human Preferences，即基于人类偏好的深度强化学习</td></tr><tr><td>2017年6月</td><td></td><td><a href="https://blog.csdn.net/v_JULY_v/article/details/127411638" target="_blank" rel="noopener">Transformer</a></td><td>self-attention</td></tr><tr><td>2017年7月</td><td>OpenAI</td><td><a href="https://blog.csdn.net/v_JULY_v/article/details/128965854" target="_blank" rel="noopener">PPO算法</a></td><td>TRPO算法的改进</td></tr><tr><td>2018</td><td>Google</td><td>BERT</td><td></td></tr><tr><td>2018.07</td><td>OpenAI</td><td>GPT(Generative Pre-trained Transformer)</td><td>基于Transformer-Decoder的Masked Self-Attention</td></tr><tr><td>2019.02</td><td>OpenAI</td><td>GPT2</td><td>融合prompt learning的GPT2，prompt learning的意义在于不用微调也能做任务</td></tr><tr><td>2019年10月</td><td>Google</td><td>T5(transfer text to text transformer)</td><td>基于transformer的encoder-decoder架构，区别于BERT的编码器架构与GPT的解码器架构</td></tr><tr><td>2020年05月</td><td>OpenAI</td><td>GPT3.0</td><td>参数规模到了1750亿，终于真正做到预训练之后<strong>不用再微调模式</strong>，通过In-context learning(简称ICL)开启prompt新范式</td></tr><tr><td>2021年7月</td><td>OpenAI</td><td>Codex</td><td>通过对GPT3进行大量的代码训练迭代而出Codex，从而具备代码/推理能力 159G的python代码微调</td></tr><tr><td>2021年9月</td><td>Google</td><td>FLAN</td><td>基于指令微调技术Instruction Fine-Tuning (IFT)的大模型</td></tr><tr><td>2021年第四季度</td><td>OpenAI</td><td><strong>GPT3.5</strong></td><td>更大的数据量+context learning，用2021年之前的数据进行的训练</td></tr><tr><td>2022年1月</td><td>Google</td><td>CoT</td><td>研究者提出的思维链技术(Chain of Thought，简称CoT) ，<strong>模仿推理能力</strong></td></tr><tr><td>2022年3月</td><td>OpenAI</td><td>instructGPT</td><td>GPT3 + instruction tuning + RLHF + PPO</td></tr><tr><td>2022年11月</td><td>OpenAI-</td><td><strong>ChatGPT</strong></td><td>语言模型层面的核心架构是GPT3.5(基于Transformer-Decoder的Masked Self-Attention且融合了Codex的代码/推理能力、instruction tuning等技术) + RLHF + PPO3</td></tr><tr><td>2022年1月</td><td>Google</td><td>LaMDA</td><td>发布LaMDA论文『 LaMDA: Language Models for Dialog Applications』</td></tr><tr><td>2022年4月</td><td>Google</td><td>PaLM</td><td>提出PaLM: Scaling Language Modeling with Pathways，5400亿参数</td></tr><tr><td>2022年10月</td><td>Google</td><td>Flan-T5</td><td>提出Flan-T5</td></tr><tr><td>23年3月6日</td><td>Google</td><td>PaLM-E</td><td>提出多模态LLM模型</td></tr><tr><td>2023.02.24</td><td>Facebook</td><td>Meta llama</td><td>基础模型</td></tr><tr><td>2023.03.15</td><td>OpenAI</td><td><strong>GPT4.0</strong></td><td>增加了多模态(支持图片的输入形式)</td></tr><tr><td>2023.03.16</td><td>百度</td><td><strong>文心一言</strong></td><td></td></tr><tr><td>2023.03.17</td><td>微软</td><td>Microsoft 365 Copilot</td><td>集成GPT4的能力，实现自动化办公</td></tr><tr><td>2023.03.22</td><td>Google</td><td>Bard</td><td></td></tr><tr><td>2023.03.23</td><td>Github</td><td>Copilot X</td><td></td></tr><tr><td>2023.03.24</td><td>OpenAI</td><td>-</td><td>插件功能，赋予chatgpt使用工具、联网、运算的能力</td></tr></tbody></table></div><h3 id="2-1-GPT3：In-context-learning正式开启prompt新范式-小样本学习"><a href="#2-1-GPT3：In-context-learning正式开启prompt新范式-小样本学习" class="headerlink" title="2.1. GPT3：In-context learning正式开启prompt新范式(小样本学习)"></a>2.1. GPT3：In-context learning正式开启prompt新范式(小样本学习)</h3><p> GPT3在0样本、单样本、小样本下的突出能力<br>GPT3简单来说，就是参数规模大(有钱)、训练数据规模大(多金)、效果出奇好，具体而言<br>为形象描述，举一个GPT3在0样本、单样本、少量样本下的机器翻译使用范例，如下图<br><img src="/LLM/01_intro/2023-06-18-14-08-39.png" alt></p><h3 id="2-2-Prompt技术的升级与创新：指令微调技术-IFT-与思维链技术-CoT"><a href="#2-2-Prompt技术的升级与创新：指令微调技术-IFT-与思维链技术-CoT" class="headerlink" title="2.2. Prompt技术的升级与创新：指令微调技术(IFT)与思维链技术(CoT)"></a>2.2. Prompt技术的升级与创新：指令微调技术(IFT)与思维链技术(CoT)</h3><p>OpenAI的GPT3虽然不再微调模型(pre-training + prompt)，但Google依然坚持预训练 + 微调的模式<br>Google提出FLAN大模型：基于指令微调技术Instruction Fine-Tuning (IFT)<br>基于思维链(Chain-of-thought)技术下的prompt</p><p>因此导致后续OpenAI的chatgpt不得不关注再次关注微调技术，也转向指令微调</p><h1 id="3-开源模型-截止至2023-06-08"><a href="#3-开源模型-截止至2023-06-08" class="headerlink" title="3. 开源模型 截止至2023/06/08"></a>3. <a href="https://blog.csdn.net/zengNLP/article/details/131119734" target="_blank" rel="noopener">开源模型 截止至2023/06/08</a></h1><blockquote><p><a href="https://huaweidevelopers.csdn.net/64c1290ebfca273ff3548e81.html" target="_blank" rel="noopener">https://huaweidevelopers.csdn.net/64c1290ebfca273ff3548e81.html</a></p></blockquote><div class="table-container"><table><thead><tr><th>time</th><th>model</th><th>github</th><th>owner</th><th>language</th><th>desc</th></tr></thead><tbody><tr><td></td><td><a href="https://arxiv.org/abs/2302.13971v1" target="_blank" rel="noopener">LLaMA</a></td><td><a href="https://github.com/facebookresearch/llama" target="_blank" rel="noopener">代码</a></td><td>meta</td><td>英</td><td>在模型参数量降低的同时，增加训练的数据量，这样可以保证模型的效果。LLaMA完全是在公共开源预训练数据上训练。并且取得相当不错的效果，LaMA-13B在绝大部分的benchmarks上超越了GPT-3(175 B)，并且LLaMA-65B的效果能够和最好的大模型，Chinchilla-70B以及PaLM-540B相比。</td></tr><tr><td></td><td>[Chinchilla]</td><td></td><td>xxx</td><td>xxx</td><td>xxx</td></tr><tr><td></td><td><a href="https://chatglm.cn/blog" target="_blank" rel="noopener">chatGLM-6B</a></td><td><a href="https://github.com/THUDM/ChatGLM-6B" target="_blank" rel="noopener">代码</a></td><td>清华</td><td>中英</td><td>ChatGLM-6B 是一个开源的、支持中英双语的对话语言模型，基于 General Language Model (GLM) 架构，具有 62 亿参数。结合模型量化技术，用户可以在消费级的显卡上进行本地部署（INT4 量化级别下最低只需 6GB 显存）。 ChatGLM-6B 使用了和 ChatGPT 相似的技术，针对中文问答和对话进行了优化。经过约 1T 标识符的中英双语训练，辅以监督微调、反馈自助、人类反馈强化学习等技术的加持，62 亿参数的 ChatGLM-6B 已经能生成相当符合人类偏好的回答。</td></tr><tr><td></td><td><a href="https://arxiv.org/abs/2212.10560" target="_blank" rel="noopener">Alpaca</a></td><td><a href="https://github.com/tatsu-lab/stanford_alpaca" target="_blank" rel="noopener">代码</a></td><td>斯坦福</td><td>英</td><td>一个遵循指令的LLaMA模型</td></tr><tr><td></td><td><a href="https://arxiv.org/pdf/2305.03025v1.pdf" target="_blank" rel="noopener">PandaLLM</a></td><td><a href="https://github.com/dandelionsllm/pandallm" target="_blank" rel="noopener">代码</a></td><td>xxx</td><td>中英</td><td>海外中文开源大语言模型：Panda 系列语言模型目前基于 Llama-7B, -13B, -33B, -65B 进行中文领域上的持续预训练, 使用了接近 15M 条数据, 并针对推理能力在中文 benchmark 上进行了评测, 希望能够为中文自然语言处理领域提供具有泛用性的通用基础工具.</td></tr><tr><td></td><td>[GPT4ALL]</td><td><a href="https://github.com/nomic-ai/gpt4all" target="_blank" rel="noopener">代码</a></td><td>xxx</td><td>xxx</td><td>可在cpu上运行的开源LLM</td></tr><tr><td></td><td><a href="https://arxiv.org/pdf/2304.01097.pdf" target="_blank" rel="noopener">DoctorGLM (MedicalGPT-zh v2)</a></td><td><a href="https://github.com/xionghonglin/DoctorGLM" target="_blank" rel="noopener">代码</a> <a href="https://huggingface.co/zhaozh/medical_chat-en-zh" target="_blank" rel="noopener">huggingface</a></td><td>xxx</td><td>中英医疗</td><td>基于 ChatGLM-6B的中文问诊模型</td></tr><tr><td></td><td><a href="https://arxiv.org/pdf/2304.01097.pdf" target="_blank" rel="noopener">MedicalGPT-zh v1</a></td><td><a href="https://github.com/MediaBrain-SJTU/MedicalGPT-zh" target="_blank" rel="noopener">代码</a></td><td>xxx</td><td>中英医疗</td><td>基于ChatGLM-6B LoRA 16-bit指令微调的中文医疗通用模型。基于共计28科室的中文医疗共识与临床指南文本，我们生成医疗知识覆盖面更全，回答内容更加精准的高质量指令数据集。以此提高模型在医疗领域的知识与对话能力。</td></tr><tr><td></td><td>[Cornucopia-LLaMA-Fin-Chinese]</td><td><a href="https://github.com/jerry1993-tech/Cornucopia-LLaMA-Fin-Chinese/tree/main" target="_blank" rel="noopener">代码</a></td><td>xxx</td><td>中文金融</td><td>基于中文金融知识的LLaMA微调模型：经过中文金融知识指令精调/指令微调(Instruct-tuning) 的LLaMA-7B模型。通过中文金融公开数据+爬取的金融数据构建指令数据集，并在此基础上对LLaMA进行了指令微调，提高了 LLaMA 在金融领域的问答效果。</td></tr><tr><td></td><td>[minGPT]</td><td><a href="https://github.com/karpathy/minGPT" target="_blank" rel="noopener">代码</a></td><td>xxx</td><td>xxx</td><td>xxx</td></tr><tr><td></td><td>[InstructGLM]</td><td><a href="https://github.com/yanqiangmiffy/InstructGLM" target="_blank" rel="noopener">代码</a></td><td>xxx</td><td>中英指令</td><td>基于ChatGLM-6B+LoRA在指令数据集上进行微调。</td></tr><tr><td></td><td>[FastChat]</td><td><a href="https://github.com/lm-sys/FastChat" target="_blank" rel="noopener">代码</a></td><td>xxx</td><td>xxx</td><td>xxx</td></tr><tr><td></td><td>[Luotuo-Chinese-LLM]</td><td><a href="https://github.com/LC1332/Luotuo-Chinese-LLM" target="_blank" rel="noopener">代码</a></td><td>商汤&amp;华中师范</td><td>中文</td><td>开源中文大语言模型</td></tr><tr><td></td><td>[CamelBell-Chinese-LoRA]</td><td><a href="https://github.com/LC1332/CamelBell-Chinese-LoRA" target="_blank" rel="noopener">代码</a></td><td>商汤&amp;华中师范</td><td>中文</td><td>开源中文大语言模型</td></tr><tr><td></td><td>[alpaca-lora]</td><td><a href="https://github.com/tloen/alpaca-lora" target="_blank" rel="noopener">代码</a></td><td>xxx</td><td>xxx</td><td>xxx</td></tr><tr><td>2023.06</td><td><a href="xxx">chatGLM2</a></td><td><a href="https://github.com/THUDM/ChatGLM2-6B" target="_blank" rel="noopener">代码</a> <a href="https://huggingface.co/THUDM/chatglm2-6b" target="_blank" rel="noopener">huggingface</a></td><td>清华</td><td>中英</td><td>1.基座模型升级，性能更强大 2. 支持8K-32k的上下文 3. 推理性能提升了42%</td></tr><tr><td></td><td><a href>baichuan</a></td><td><a href="xxx">代码</a></td><td>xxx</td><td>xxx</td><td>xxx</td></tr><tr><td></td><td><a href="xxx">LLama-2</a></td><td><a href="xxx">代码</a></td><td>xxx</td><td>xxx</td><td>xxx</td></tr><tr><td></td><td><a href="xxx"></a></td><td><a href="xxx">代码</a></td><td>xxx</td><td>xxx</td><td>xxx</td></tr><tr><td></td><td><a href="xxx"></a></td><td><a href="xxx">代码</a></td><td>xxx</td><td>xxx</td><td>xxx</td></tr></tbody></table></div><h1 id="4-多模态"><a href="#4-多模态" class="headerlink" title="4. 多模态"></a>4. 多模态</h1><h3 id="4-1-LLaVA"><a href="#4-1-LLaVA" class="headerlink" title="4.1. LLaVA"></a>4.1. LLaVA</h3><h3 id="4-2-MiniGPT-4"><a href="#4-2-MiniGPT-4" class="headerlink" title="4.2. MiniGPT-4"></a>4.2. MiniGPT-4</h3><h3 id="4-3-KOSMOS-1-微软"><a href="#4-3-KOSMOS-1-微软" class="headerlink" title="4.3. KOSMOS-1 微软"></a>4.3. KOSMOS-1 微软</h3><p>《Language Is Not All You Need: Aligning Perception with Language Models》<br>论文地址：<a href="https://arxiv.org/pdf/2302.14045.pdf" target="_blank" rel="noopener">https://arxiv.org/pdf/2302.14045.pdf</a></p><p>项目地址：<a href="https://github.com/microsoft/unilm" target="_blank" rel="noopener">https://github.com/microsoft/unilm</a><br><a href="https://www.thepaper.cn/newsDetail_forward_22122932?commTag=true" target="_blank" rel="noopener">https://www.thepaper.cn/newsDetail_forward_22122932?commTag=true</a></p><h3 id="4-4-X-LLM-中文多模态大模型"><a href="#4-4-X-LLM-中文多模态大模型" class="headerlink" title="4.4. X-LLM 中文多模态大模型"></a>4.4. X-LLM 中文多模态大模型</h3><p>简介：中文多模态大模型力作，中科院发布多模态 ChatGPT，图片、语言、视频都可以 Chat<br>来源：中科院 X-LLM<br>Paper: <a href="https://arxiv.org/pdf/2305.04160.pdf" target="_blank" rel="noopener">X-LLM: Bootstrapping Advanced Large Language Models by Treating Multi-Modalities as Foreign Languages</a><br>主页：<a href="https://x-llm.github.io/" target="_blank" rel="noopener">https://x-llm.github.io/</a><br>思路：</p><ol><li>假设“GPT-4 的多模态能力来源于其更先进，更大的语音模型，即 GPT-4 是用语言的形式表达出了其他模态的内容”</li></ol><p>这个假设也就是讲，<strong>需要将多模态的数据“对齐”到语言数据之中，然后再投入大模型以获得多模态能力</strong>， 在这个假设的基础上，作者提出了 X2L 接口，其中 X 意味着多模态数据，而 L 则表示语言，<strong>X2L 接口即将多个单模态编码器与一个大规模语言模型（LLM）进行对齐</strong>。其中，图像接口 I2L 采用 BLIP-2 中的 Q-Former，视频接口 V2L 复用图像接口的参数，但是考虑了编码后的视频特征，语言接口 S2L 采用 CIF 与 Transformer 结构将语音转换为语言。整个 X-LLM 的训练包含三个阶段，分别是（1）转换多模态信息；（2）将 X2L 对齐到 LLM；（3）将多模态数据整合到 LLM 中。<br><img src="/LLM/01_intro/2023-05-21-21-01-19.png" alt></p><h1 id="5-主流模型参数性能对比"><a href="#5-主流模型参数性能对比" class="headerlink" title="5. 主流模型参数性能对比"></a>5. 主流模型参数性能对比</h1><p>1B = 10亿</p><div class="table-container"><table><thead><tr><th>model</th><th>Parameters</th><th>Layers</th><th>Attention heads</th><th>Embedding dimension</th><th>gpu</th><th>train data</th></tr></thead><tbody><tr><td>transformer</td><td>-</td><td>-</td><td>8</td><td>8*64=512</td><td>-</td></tr><tr><td>GPT-1</td><td>1.17亿</td><td>-</td><td>-</td><td>-</td><td>-</td></tr><tr><td>GPT-2</td><td>1.5B</td><td>-</td><td>-</td><td>-</td><td>-</td></tr><tr><td>GPT-3</td><td>175B</td><td>96</td><td>96</td><td>96*128=12888</td><td>-</td><td>45T</td></tr><tr><td>LLaMA 7B</td><td>6.7B</td><td>32</td><td>32</td><td>4,096</td><td>-</td></tr><tr><td>LLaMA 13B</td><td>13B</td><td>40</td><td>40</td><td>5,120</td><td>1 V100</td></tr><tr><td>LLaMA 33B</td><td>33B</td><td>60</td><td>52</td><td>6,656</td></tr><tr><td>LLaMA 65B</td><td>65B</td><td>80</td><td>64</td><td>8,192</td></tr><tr><td>chatgpt</td><td>可能175B</td><td>-</td><td>-</td><td>-</td><td>5个80GB的A100加载</td><td></td></tr><tr><td>baidu文心</td><td>2600亿</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td></tr><tr><td>GPT-4</td><td>100000B</td><td>-</td><td>-</td><td>-</td><td>-</td></tr><tr><td>KOSMOS-1（微软多模态）</td><td>1.6B</td><td>-</td><td>-</td><td>-</td><td>-</td></tr></tbody></table></div><h1 id="6-影响LLM性能的主要因素"><a href="#6-影响LLM性能的主要因素" class="headerlink" title="6. 影响LLM性能的主要因素"></a>6. 影响LLM性能的主要因素</h1><p>openAI 论文：Scaling Laws for Neural Language Models<br><img src="/LLM/01_intro/2023-05-20-22-33-35.png" alt><br>OpenAI的论文Scaling Laws中列举了影响模型性能最大的三个因素：<strong>计算量、数据集大小、模型参数量</strong>。也就是说，当其他因素不成为瓶颈时，计算量、数据集大小、模型参数量这3个因素中的单个因素指数增加时，loss会线性的下降。同时，DeepMind的研究也得出来和OpenAI类似的结论。那么我们可以基本确定，如果一个模型在这3个方面，均做的不错，那么将会是一个很好的备选。<br>模型参数量是我们最容易注意到的，一般而言，LLM也只在训练数据上训练1个epoch（如果还有算力，其实可以扩更多的新数据），那么，数据集的大小就是很关键的参数。训练OPT-175B的Susan Zhang在Stanford分享的时候，也提到了，如果能够重新再来一次，她会选择much much more data。可见数据量的重要性。</p><p>了解到Scaling Laws之后，<strong>为了降低模型的推理成本，可以在模型参数量降低的同时，增加训练的数据量，这样可以保证模型的效果。Chinchilla和LLaMA就是这样的思路。</strong></p><p>除了以上的因素之外，还有一个比较大的影响因素就是数据质量。</p><h1 id="7-一些概念"><a href="#7-一些概念" class="headerlink" title="7. 一些概念"></a>7. 一些概念</h1><h2 id="7-1-预训练和微调的区别"><a href="#7-1-预训练和微调的区别" class="headerlink" title="7.1. 预训练和微调的区别"></a>7.1. 预训练和微调的区别</h2><p>直观体现在数据集体量， 很大规模的训练集训练出的模型可称为预训练模型。<br>预训练： 首先在一个大规模的数据集上训练一个深度学习模型，例如使用自监督学习或者无监督学习算法进行预训练；<br>微调： 使用目标任务的训练集对预训练模型进行微调。通常，只有预训练模型中的一部分层被微调，例如只微调模型的最后几层或者某些中间层。在微调过程中，通过反向传播算法对模型进行优化，使得模型在目标任务上表现更好；也可进行参数全量微调。<br>评估： 使用目标任务的测试集对微调后的模型进行评估，得到模型在目标任务上的性能指标。</p><h2 id="7-2-instruct和promot的区别"><a href="#7-2-instruct和promot的区别" class="headerlink" title="7.2. instruct和promot的区别"></a>7.2. instruct和promot的区别</h2><h2 id="指令微调是什么"><a href="#指令微调是什么" class="headerlink" title="指令微调是什么"></a>指令微调是什么</h2>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://mp.weixin.qq.com/s/NOcUlNPOXZheXJ9yX4wrLQ&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;大模型选型的一点思考&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;https:
+      
+    
+    </summary>
+    
+    
+      <category term="LLM" scheme="https://tlylft.github.io/categories/LLM/"/>
+    
+    
+      <category term="LLM" scheme="https://tlylft.github.io/tags/LLM/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>LLM（6）-BARD</title>
+    <link href="https://tlylft.github.io/LLM/06_bard/"/>
+    <id>https://tlylft.github.io/LLM/06_bard/</id>
+    <published>2023-05-16T00:52:19.000Z</published>
+    <updated>2023-08-10T12:24:19.042Z</updated>
+    
+    <content type="html"><![CDATA[<p>bard.google.com</p><p>优点：</p><ol><li><p>联网，时效性强，依靠强大的Google搜索引擎，bard能够搜索到实时的信息，例如今天的新闻、今天的比赛比分等</p></li><li><p>谷歌希望将Bard打造成谷歌全家桶的入口，因此可以方便地通过Bard和谷歌搜索、谷歌地图、gmail邮件等谷歌全家桶联动使用，提高各个工具的使用效率。</p></li><li><p>响应速度惊艳，而且同时可以提供三个答案以供选择，还有导出结果等功能，使用更加方便快捷</p></li></ol><p>缺点：</p><ol><li>目前还不支持中文提问，只支持英语、日文、韩文，但谷歌表示会在之后的版本中支持中文。</li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;bard.google.com&lt;/p&gt;
+&lt;p&gt;优点：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;联网，时效性强，依靠强大的Google搜索引擎，bard能够搜索到实时的信息，例如今天的新闻、今天的比赛比分等&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;谷歌希望将Bard打造成谷歌全家桶的入口，
+      
+    
+    </summary>
+    
+    
+      <category term="LLM" scheme="https://tlylft.github.io/categories/LLM/"/>
+    
+    
+      <category term="LLM" scheme="https://tlylft.github.io/tags/LLM/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>LLM（3）- chatgpt</title>
+    <link href="https://tlylft.github.io/LLM/03_chatgpt/"/>
+    <id>https://tlylft.github.io/LLM/03_chatgpt/</id>
+    <published>2023-05-16T00:52:19.000Z</published>
+    <updated>2023-08-10T09:30:33.201Z</updated>
+    
+    <content type="html"><![CDATA[<p><a href="https://github.com/shizhediao/ChatGPTPapers" target="_blank" rel="noopener">https://github.com/shizhediao/ChatGPTPapers</a><br>CSDN Blogs：<a href="https://blog.csdn.net/ganxiwu9686" target="_blank" rel="noopener">https://blog.csdn.net/ganxiwu9686</a><br>Zhihu Column: <a href="https://zhuanlan.zhihu.com/p/58108759" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/58108759</a></p><h1 id="类chatgpt模型"><a href="#类chatgpt模型" class="headerlink" title="类chatgpt模型"></a>类chatgpt模型</h1><p>openAI: gpt3.0<br>openAI: gpt3.5 更大的数据量+context learning， 用2021年之前的数据进行的训练<br>复旦：Moss</p><p>2023.03.15 google AI<br>2023.03.15 openAI gpt4.0<br>2023.03.16 百度 文心一言<br>2023.03.16 微软 Copilot<br>2023.03.22 google bardd<br>2023.03.22 github Copilot X<br>2023.03.23 openAI 插件功能，赋予chatgpt使用工具、联网、运算的能力</p><h1 id="chatGPT基本概念"><a href="#chatGPT基本概念" class="headerlink" title="chatGPT基本概念"></a>chatGPT基本概念</h1><p>chat Generative Pre-trained Transformer</p><h2 id="动机"><a href="#动机" class="headerlink" title="动机"></a>动机</h2><ul><li>之前的大规模模型(bert,bass)在输出方面和人类真实想要的结果往往无法很好对齐。</li><li>ChatGPT的一个主要训练方法是在GPT3的基础之上，通过人类提供反馈的强化学习(Reinforcement Learning from Human Feedback（RLHF）)，来让模型的输出逼近人类的意图。需要人工标注问答对的评分。</li><li>更加聚焦在人类的意图</li><li>他在很多任务上的表现效果都很好，同时他也会去拒绝用户提出的一些不合理，不合宜的请求。能够通过交互式的方式来逼近真实想要的结果。可以进一步对我们领域做一些数据增强的工作<h2 id="发展路线"><a href="#发展路线" class="headerlink" title="发展路线"></a>发展路线</h2><strong>instructGPT(基于提示学习的一系列模型)</strong>：通过设定prompt的模板，让模型输出模板的结果，而不需要进行参数的再学习，但要求设计出一套合理适用的模板，模板设计不好对输出结果有很大的影响，主要研究如何构造更好的模板让大模型进行理解。如： “这个电影剧情紧凑，非常感人” -&gt; 情感正向。 之前通过做意图训练和学习，但是prompt是让预训练模型输出完型填空：“这个电影剧情紧凑，非常感人，以上评述是说这是一个__电影” —&gt; 好<br><strong>GPT3.5(大规模预训练语言模型)</strong>，参数量超1750亿。高校、小公司做不起来。成本太高。结合prompt learning去做。<br>ChatGPT模型(高质量数据标注和反馈学习)， 专注于1. 如何用高质量数据对大规模模型进行微调 2. 如何结合人类反馈用强化学习逼近人类意图。<br><strong>ChatGPT模型</strong>高质量数据标注以及反馈学习<h2 id="技术手段"><a href="#技术手段" class="headerlink" title="技术手段"></a>技术手段</h2><img src="/LLM/03_chatgpt/2023-05-16-15-23-44.png" alt><strong>引入“人工标注数据+强化学习”</strong></li></ul><p>gpt用自回归的方式（transformer decoder）生成，侧重于做生成任务，bert用自编码的方式（transformer encoder）生成,侧重于做理解性任务<br><strong>step1： 收集高质量的数据，有监督微调语言模型</strong><br>为了让GPT 3.5初步具备理解指令中蕴含的意图，首先会从测试用户提交的prompt(就是指令或问题)中随机抽取一批，靠专业的标注人员，给出指定prompt的高质量答案，然后用这些人工标注好的<prompt,answer>数据来Fine-tune GPT 3.5模型</prompt,answer></p><p><strong>step2: 训练回报模型（Reward Model,RM）</strong></p><ol><li>随机抽样一批用户提交的prompt(大部分和第一阶段的相同)，使用第一阶段Fine-tune好的冷启动模型，对于每个prompt，由冷启动模型生成K个不同的回答，于是模型产生出了<prompt,answer1>,<prompt,answer2>….<prompt,answerK>数据</prompt,answerK></prompt,answer2></prompt,answer1></li><li>标注人员对K个结果按照很多标准（上面提到的相关性、富含信息性、有害信息等诸多标准）综合考虑进行排序打分</li></ol><p><strong>step3: 利用上一阶段学好的RM模型，靠RM打分结果来更新预训练模型参数</strong></p><ol><li>从用户提交的prompt里随机采样一批新的命令（指的是和第一第二阶段不同的新的prompt，相当于测试数据）</li><li>再使用PPO算法微调模型的参数</li><li>重复step2 和 step 3，反复迭代</li></ol><p>在一轮session对话中，会倾向于取悦用户的意图，如果反复强调1+1=3，模型会逐步接受，同意1+1=3，但释放对话后重新发起，它仍会返回1+1=2？  为什么</p><h2 id="存在的问题和可能的原因（局限性）"><a href="#存在的问题和可能的原因（局限性）" class="headerlink" title="存在的问题和可能的原因（局限性）"></a>存在的问题和可能的原因（局限性）</h2><p><strong>缺点</strong><br>以下的内容主要是来自于推特的一些失败案例，大致可以分成9类+Other<br> 推理 Reasoning： 空间推理（相对位置，导航等）物理推理和时间推理（时间发生先后顺序，事件持续时间）和心理推理（关于人物的行为或者心里要素）存在问题<br> 逻辑 Logic: 偏向于需要三段论、演绎、归纳，逐渐得到结论的过程<br> Math and Arithmetic：大数相乘，求根，计算能力(尤其是分数)，以及无理数的加减法存在问题<br> Factual Errors：有些简单的通过搜索引擎很容易找到答案，但是他会回答错误，数据基于2021年之前有关，而且基于概率计算，极大可能在编造事实。<br> Bias and Discrimination：种族偏见<br> Wit and Humor：没有幽默特性，但可以生成幽默的句子<br> Coding：可以提供一些功能性代码，但不能解决复杂的编程、以及复杂代码的debug<br> Syntactic Structure, Spelling, and Grammar：大部分可以解决，以字符为级别的往往回答错误，缺少字符集语义表示<br> Self Awareness：伦理问题，无自我意识</p><p><strong>可能的原因</strong></p><ul><li>缺乏世界模型——像ChatGPT这样的模型没有“世界模型”，因为它们对物理和社会世界没有全面的理解，也没有能力推理不同概念和实体之间的关系。他们只能根据从训练数据中学习到的模式生成文本。</li><li>缺乏检索模型——像ChatGPT这样的模型不具备从外部存储器或数据库检索信息的能力。这意味着他们可能无法准确回忆事实。（对一些历史事件回答错误）目前和Biying的结合已经能做了。但是下架了说明还有一些问题。</li><li>缺少字符级嵌入——许多像ChatGPT这样的模型都没有使用字符级嵌入进行训练。这可能会导致词汇表外的单词和拼写错误，以及对单词中不同字符之间的关系缺乏理解。（使用的词向量表示）</li><li>生成一些取悦人类的话术，无法评判生成数据的准确性<h2 id="意义"><a href="#意义" class="headerlink" title="意义"></a>意义</h2>chatgpt的成功，证明了大模型技术路线的正确性。意味着AI从之前大数据统计分类的阶段，走向类人逻辑沟通极端。<h1 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h1>文本分类/情感分析<br>序列标注：POS， 命名实体识别， 语义标注<br>句子关系判断：Entailment/QA/自然语言推理<br>生成式任务(机器翻译/文本摘要/ 智能问答）<br>其他应用：修复代码，写规划<br><img src="/LLM/03_chatgpt/2023-05-16-16-43-10.png" alt><h1 id="规模"><a href="#规模" class="headerlink" title="规模"></a>规模</h1>训练数据：45TB<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1></li></ul><ol><li><a href="https://openai.com/" target="_blank" rel="noopener">https://openai.com/</a><br>gpt-3.5-turbo模型 1000token(请求和返回) 0.0002美元</li><li>new bing<br>输入：2000字符<br>指令：简洁明了，明确目的</li></ol><p><strong>区分gpt3.5和4.0</strong><br>问：鲁迅为什么暴打周树人？<br>3.5：#@￥I#$(#的理由<br>4.0：鲁迅和周树人是一个人<br>问：树上9只鸟，打掉一只，还剩几只？<br>3.5:8只<br>4.0: 0只，其他被吓跑了</p><h1 id="微调"><a href="#微调" class="headerlink" title="微调"></a>微调</h1><p>微调： 1w句子左右</p><h1 id="未来展望"><a href="#未来展望" class="headerlink" title="未来展望"></a>未来展望</h1>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;a href=&quot;https://github.com/shizhediao/ChatGPTPapers&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://github.com/shizhediao/ChatGPTPapers&lt;/a&gt;&lt;br&gt;C
+      
+    
+    </summary>
+    
+    
+      <category term="LLM" scheme="https://tlylft.github.io/categories/LLM/"/>
+    
+    
+      <category term="LLM" scheme="https://tlylft.github.io/tags/LLM/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>LLM（7）-大模型微调技术</title>
+    <link href="https://tlylft.github.io/LLM/07_finetuning/"/>
+    <id>https://tlylft.github.io/LLM/07_finetuning/</id>
+    <published>2023-05-16T00:52:19.000Z</published>
+    <updated>2023-08-11T09:25:04.929Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>参考文献：<br><a href="https://zhuanlan.zhihu.com/p/618028708?utm_id=0" target="_blank" rel="noopener">ChatGPT微调技术框架-完美Clone ChatGPT背后的技术</a></p></blockquote><p>根据instructGPT论文和ChatGPT的技术报告，背后的微调技术逐步挖掘出来，大致分为：SFT；ReWard模型训练；RLHF（PPO）三个阶段。<br>思考：是否可以在第一阶段之前，补充一个PT预训练微调。</p><h1 id="1-可微调阶段"><a href="#1-可微调阶段" class="headerlink" title="1. 可微调阶段"></a>1. 可微调阶段</h1><p><img src="/LLM/07_finetuning/2023-08-10-22-21-36.png" alt></p><h2 id="1-1-stage1-SFT"><a href="#1-1-stage1-SFT" class="headerlink" title="1.1. stage1: SFT"></a>1.1. stage1: SFT</h2><p>SFT（supervised-fintuning），使用instruction datasets数据进行监督微调</p><h2 id="1-2-stage2-Reward-Model"><a href="#1-2-stage2-Reward-Model" class="headerlink" title="1.2. stage2: Reward Model"></a>1.2. stage2: Reward Model</h2><p>训练奖励模型，它通过对于同一个 prompt 的不同输出进行人工排序，得到对应分数，监督训练奖励模型。</p><h2 id="1-3-stage3-RLHF-Reinforcement-Learning-from-Human-Feedback"><a href="#1-3-stage3-RLHF-Reinforcement-Learning-from-Human-Feedback" class="headerlink" title="1.3. stage3: RLHF(Reinforcement Learning from Human Feedback)"></a>1.3. stage3: RLHF(Reinforcement Learning from Human Feedback)</h2><p>这个部分是Openai， ChatGPT和GPT4作为核心的部分,该训练流程基于PPO（Proximal Policy Optimization，近端策略优化）算法来进行优化。<br>RLHF也是目前为止常用的、最为复杂的基于强化学习的大语言模型微调方法。<br><img src="/LLM/07_finetuning/2023-08-10-20-48-36.png" alt></p><h1 id="2-微调框架和流程"><a href="#2-微调框架和流程" class="headerlink" title="2. 微调框架和流程"></a>2. 微调框架和流程</h1><h2 id="2-1-模型选择"><a href="#2-1-模型选择" class="headerlink" title="2.1. 模型选择"></a>2.1. 模型选择</h2><p>根据业务场景和算例条件，选择合适的底座参数模型</p><blockquote><p><strong>微调和高效微调</strong><br>微调， Fine-Tuning，一般指全参数的微调 (全量微调)，指是一类较早诞生的微调方法，全参数微调需要消耗大量的算力，实际使用起来并不方便，因此不久之后又诞生了只围绕部分参数进行微调的高效微调方法;不能适用于大模型敏捷开发。<br>高效微调，State-of-the-art Parameter-Efficient Fine-Tuning (SOTA PEFT)，特指部分参数的微调方法，这种方法算力功耗比更高，也是目前最为常见的微调方法;除此之外，Fine-Tuning也可以代指全部微调方法，同时OpenAl中模型微调API的名称也是Fine-Tuning，实际也是PEFT</p><h2 id="2-2-pipeline训练"><a href="#2-2-pipeline训练" class="headerlink" title="2.2. pipeline训练"></a>2.2. pipeline训练</h2></blockquote><p><strong><a href="https://github.com/hpcaitech/ColossalAI/blob/main/docs/README-zh-Hans.md" target="_blank" rel="noopener">ColossalAI</a>初步打造全流程雏形</strong><br>根据底层技术优化很好的把三个阶段训练进行了串联，实现微调的高效性。体验基于Meta LLAM 7B 微调后模型效果，中文的效果不行（可能是meta llama底座对中文不是非常友好，单纯微调中文英文的可以基于GLM模型来微调）<br>注：</p><ol><li>一些介绍：<a href="https://mp.weixin.qq.com/s?__biz=MzA3MzI4MjgzMw==&amp;mid=2650872068&amp;idx=1&amp;sn=2cb6257bbbc10dc4da19e88d4fc58cbc" target="_blank" rel="noopener">0门槛克隆ChatGPT方案再升级，开源模型完整复现</a></li><li>似乎只是基于LLaMA</li></ol><p><strong><a href="https://github.com/microsoft/DeepSpeed" target="_blank" rel="noopener">DeepSpeed Chat</a></strong></p><ol><li>一些介绍：<a href="https://zhuanlan.zhihu.com/p/621780753" target="_blank" rel="noopener">DeepSpeed-Chat：最强ChatGPT训练框架，一键完成RLHF训练</a></li><li>似乎只是gpt-2这种，但github上有chatglm相关的</li></ol><p>目前整个开源社区还没有其他能够在一个框架上面训练如上的三个阶段的流程化训练，大家都是分阶段独立训练</p><h3 id="2-2-1-stage1-SFT"><a href="#2-2-1-stage1-SFT" class="headerlink" title="2.2.1. stage1: SFT"></a>2.2.1. stage1: SFT</h3><p>SFT（supervised-fintuning），使用instruction datasets数据进行监督微调<br>数据集：<br>instruct:xxx<br>output: xxxx<br>微调方式：</p><ul><li>全量微调</li><li>Freeze</li><li>lora</li><li>P-Tuning</li><li>Prefix Tuning</li><li>PromptTuning</li><li>AdaLora</li></ul><p>开源框架：<br><strong><a href="https://github.com/huggingface/peft" target="_blank" rel="noopener">peft</a></strong>: 支持多个模型，如：GPT-2，LLaMA, ChatGLM<br><strong><a href="https://github.com/liucongg/ChatGLM-Finetuning" target="_blank" rel="noopener">ChatGLM-Finetuning</a></strong>: 支持chatGLM</p><h3 id="2-2-2-stage2-Reward-Model-amp-stage-3-RLHF"><a href="#2-2-2-stage2-Reward-Model-amp-stage-3-RLHF" class="headerlink" title="2.2.2. stage2: Reward Model &amp; stage 3: RLHF"></a>2.2.2. stage2: Reward Model &amp; stage 3: RLHF</h3><p>数据集：<br>微调方式：</p><p>开源框架：<br><a href="https://github.com/huggingface/trl" target="_blank" rel="noopener">TRL</a>: 支持Reward模型训练和PPO优化过程<br><strong><a href="https://github.com/microsoft/DeepSpeed" target="_blank" rel="noopener">DeepSpeed Chat</a></strong>： 微软开源提供的最好的RLHF流程</p><h1 id="3-SFT微调方法"><a href="#3-SFT微调方法" class="headerlink" title="3. SFT微调方法"></a>3. SFT微调方法</h1><p>参考文章： <a href="https://baijiahao.baidu.com/s?id=1771636050471546897&amp;wfr=spider&amp;for=pc" target="_blank" rel="noopener">人工智能大语言模型微调技术：SFT、LoRA、Freeze 监督微调方法</a><br>随着技术的发展，涌现出越来越多的大语言模型，且模型参数越来越多，比如 GPT3 已经达到 1750 亿的参数量，传统的监督微调方法已经不再能适用现阶段的大语言模型。为了解决微调参数量太多的问题，同时也要保证微调效果，急需研发出参数高效的微调方法（Parameter Efficient Fine Tuning, PEFT）</p><h2 id="3-1-LoRA"><a href="#3-1-LoRA" class="headerlink" title="3.1. LoRA"></a>3.1. LoRA</h2><p><strong>一句话： 冻结预训练参数，微调新增层结构，大大减少训练参数量。</strong><br>LoRA（Low-Rank Adaptation of Large Language Models），直译为大语言模型的低阶自适应。<br><strong>背景：</strong><br>随着大语言模型的发展，模型的参数量越来越大，比如 GPT-3 参数量已经高达 1750 亿，因此，微调所有模型参数变得不可行。LoRA 微调方法由微软提出，通过只微调新增参数的方式，大大减少了下游任务的可训练参数数量。<br><strong>原理简述：</strong><br>基于大模型的内在低秩特性，增加旁路矩阵来<strong>模拟全参数微调</strong>;<br>LoRA 的基本原理是冻结预训练好的模型权重参数，在冻结原模型参数的情况下，通过往模型中加入额外的网络层，并只训练这些新增的网络层参数。由于这些新增参数数量较少，这样不仅 finetune 的成本显著下降，还能获得和全模型参数参与微调类似的效果。<br>在大语言模型微调的过程中，LoRA 冻结了预先训练好的模型权重，并将可训练的秩的分解矩阵注入到 Transformer 体系结构的每一层。例如，对于预训练的权重矩阵W0，可以让其更新受到用低秩分解表示后者的约束：<br><img src="/LLM/07_finetuning/2023-08-11-10-55-28.png" alt><br><strong>优势：</strong></p><ul><li>预训练模型参数可以被共享，用于为不同的任务构建许多小的 LoRA 模块。冻结共享模型，并通过替换矩阵 A 和 B 可以有效地切换任务，从而显著降低存储需求和多个任务切换的成本。<br>当使用自适应优化器时，由于不需要计算梯度以及保存太多模型参数，LoRA 使得微调效果更好，并将微调的硬件门槛降低了 3 倍。</li><li>低秩分解采用线性设计的方式使得在部署时能够将可训练的参数矩阵与冻结的参数矩阵合并，与完全微调的方法相比，不引入推理延迟。</li><li>LoRA 与其它多种微调方法不冲突，可以与其它微调方法相结合，比如将要介绍的前缀调优方法等。</li><li>在图像生成任务中diffusion model进行微调，表现惊艳。<h2 id="3-2-Prefix-tuning"><a href="#3-2-Prefix-tuning" class="headerlink" title="3.2. Prefix-tuning"></a>3.2. Prefix-tuning</h2>Prefix-tuning（ Optimizing Continuous Prompts for Generation）基于提示词前缀优化的微调方法。由斯坦福大学提出。<br><strong>原理简述：</strong>在原始模型基础上，增加一个可被训练的Embedding层，用于给提示词增加前缀，从而让模型更好的理解提示词意图并在训练过程中不断优化这些参数。<br>在模型中加入 prefix，即连续的特定任务向量，微调时只优化这一小段参数。<br><img src="/LLM/07_finetuning/2023-08-11-11-00-15.png" alt><br><strong>优势：</strong><br>既能够在模型结构上增加一些新的灵活性，又能够在模型使用上提供一种自动的、能够改进模型表现的天天机创<h2 id="3-3-P-tuning-Prompt-tuning-v1"><a href="#3-3-P-tuning-Prompt-tuning-v1" class="headerlink" title="3.3. P-tuning/Prompt tuning v1"></a>3.3. P-tuning/Prompt tuning v1</h2>P-tuning v1 微调方法由谷歌提出的轻量级优化方法<br><strong>原理简述：</strong><br>无需调整模型参数，在已有参数中，选择一部分参数作为可学习参数，用于创建每个Prompt的前缀，从而帮助模型更好地理解和处理特定的任务。<br>不同于Prefix方法，Prompt Tuning训练得到的前缀是具备可解释性的我们可以通过查看这些前缀，来查看模型是如何帮我们优化prompt的。类似于<strong>自动化提示工程的工具。</strong><br>将Prompt 加入到微调过程中，只对 Prompt 部分的参数进行训练，而语言模型的参数固定不变。</li></ul><p><img src="/LLM/07_finetuning/2023-08-11-11-03-32.png" alt><br><strong>优势：</strong><br>该方法在参数规模非常大的模型微调时效果很好，当参数规模达100亿时和全量微调效果一致;<br><strong>不足：</strong><br>P-tuning v1 微调方法缺少普遍性。实验表明，对于那些较小的模型，P-tuning v1 方法和全参数微调方法的表现有很大差异，效果很差。同时，P-tuning v1 缺少跨任务的通用性，在序列标注任务中的有效性没有得到验证。序列标注需要预测一连串的标签，而且大都是无实际意义的标签，对于 P-tuning v1 微调方法极具挑战。此外，当模型层数很深时，微调时模型的稳定性难以保证。模型层数越深，第一层输入的 prompt 对后面的影响难以预估。</p><h2 id="3-4-P-tuning-v2"><a href="#3-4-P-tuning-v2" class="headerlink" title="3.4. P-tuning v2"></a>3.4. P-tuning v2</h2><p>P-tuning v2 微调方法是 P-tuning v1 微调方法的改进版，同时借鉴了 prefix-tuning 微调的方法。<br><img src="/LLM/07_finetuning/2023-08-10-22-14-49.png" alt><br>与 P-tuning v1 微调方法相比，P-tuning v2 微调方法采用了 prefix-tuning 的做法，在输入前面的每一层都加入可微调的参数。在 prefix 部分，每一层的 transformer 的 embedding 输入都需要被微调，而 P-tuning v1 只在第一层进行微调。同时，对于 prefix 部分，每一层 transformer 的输入不是从上一层输出，而是随机初始化的 embedding 作为输入。</p><p>此外，P-Tuning v2 还包括以下改进：</p><p>移除 Reparamerization 加速训练方式；<br>采用多任务学习优化：基于多任务数据集的 Prompt 进行预训练，然后再适配的下游任务。<br>舍弃词汇 Mapping 的 Verbalizer 的使用，重新利用 [CLS] 和字符标签，跟传统微调方法一样利用 cls 或者 token 的输出做自然语言理解，以增强通用性，可以适配到序列标注任务。<br><strong>优点：</strong></p><ul><li><p>P-tuning v2 微调方法解决了 P-tuning v1 方法的缺陷，是一种参数高效的大语言模型微调方法。</p></li><li><p>P-tuning v2 微调方法仅精调 0.1% 参数量（固定 LM 参数），在各个参数规模语言模型上，均取得和 - Fine-tuning 相比肩的性能，解决了 P-tuning v1 在参数量不够多的模型中微调效果很差的问题。如下图所示（横坐标表示模型参数量，纵坐标表示微调效果）：</p></li><li><p>将 Prompt tuning 技术首次拓展至序列标注等复杂的 NLU 任务上，而 P-tuning v1 在此任务上无法运作。</p></li><li>非常适合GLM这种双向预训练大模型微调<h2 id="3-5-freeze"><a href="#3-5-freeze" class="headerlink" title="3.5. freeze"></a>3.5. freeze</h2>Freeze 方法，即参数冻结，对原始模型部分参数进行冻结操作，仅训练部分参数，以达到在单卡或不进行 TP 或 PP 操作，就可以对大模型进行训练。在语言模型模型微调中，Freeze 微调方法仅微调 Transformer 后几层的全连接层参数，而冻结其它所有参数<br>优点：<br>大量减少了大语言模型的微调参数，是一种参数高效的微调方法；<br>由于只需微调高层特征，加快了模型的收敛，节约了微调的时间；<br>最大程度地保留了大语言模型预训练所学习到的语言的 “共性”，可解释性较强。</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;参考文献：&lt;br&gt;&lt;a href=&quot;https://zhuanlan.zhihu.com/p/618028708?utm_id=0&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;ChatGPT微调技术框架-完美Clone Chat
+      
+    
+    </summary>
+    
+    
+      <category term="LLM" scheme="https://tlylft.github.io/categories/LLM/"/>
+    
+    
+      <category term="LLM" scheme="https://tlylft.github.io/tags/LLM/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>prophet</title>
+    <link href="https://tlylft.github.io/machine_learning/time_series/prophet/"/>
+    <id>https://tlylft.github.io/machine_learning/time_series/prophet/</id>
+    <published>2023-05-04T00:40:23.000Z</published>
+    <updated>2023-06-26T08:28:41.315Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="1-what-is-prophet"><a href="#1-what-is-prophet" class="headerlink" title="1. what is prophet"></a>1. what is prophet</h1><p><a href="https://github.com/facebook/prophet" target="_blank" rel="noopener">github链接</a><br><a href="https://facebook.github.io/prophet/docs/installation.html" target="_blank" rel="noopener">官方文档</a><br>Prophet是Facebook数据科学团队于2017年发布的开源预测软件包，其内容发表在《Forecasting at scale》论文中。目前可以通过Python和R进行实现，该模型可以通过简单的参数配置，实现高精准的时间序列预测。</p><h1 id="2-Prophet适用场景"><a href="#2-Prophet适用场景" class="headerlink" title="2. Prophet适用场景"></a>2. Prophet适用场景</h1><p>预测模型均有其适用的场景，Prophet也不例外，只有在合适的场景下，才能发挥模型本身的威力，具体适用场景如下：</p><p>训练数据：拥有至少一个完整周期的数据，让模型完整学习规律。</p><p>数据趋势：数据有一定正常的周期效应，例如：周末效应、季节效应等。</p><p>跳变情况：明确可能发生跳变的时间点及窗口期，例如：双十一、国庆节等。</p><p>缺失值符合预期：历史数据的缺失值和异常值保持在合理范围内。</p><h1 id="3-模型使用QuickStart"><a href="#3-模型使用QuickStart" class="headerlink" title="3. 模型使用QuickStart"></a>3. 模型使用QuickStart</h1><h2 id="3-1-环境配置"><a href="#3-1-环境配置" class="headerlink" title="3.1. 环境配置"></a>3.1. 环境配置</h2><p>python 3.7+<br>pip install prophet</p><h2 id="3-2-训练数据格式"><a href="#3-2-训练数据格式" class="headerlink" title="3.2. 训练数据格式"></a>3.2. 训练数据格式</h2><div class="table-container"><table><thead><tr><th>DS</th><th>Y</th></tr></thead><tbody><tr><td>2007-12-10</td><td>9.590761</td></tr><tr><td>2007-12-11</td><td>8.519590</td></tr><tr><td>2007-12-12</td><td>8.183677</td></tr><tr><td>2007-12-13</td><td>8.072467</td></tr><tr><td>2007-12-14</td><td>7.893572</td></tr></tbody></table></div><h2 id="3-3-快速调用"><a href="#3-3-快速调用" class="headerlink" title="3.3. 快速调用"></a>3.3. 快速调用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">import pandas as pd</span><br><span class="line">from prophet import Prophet</span><br><span class="line">df &#x3D; pd.read_csv(&#39;https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;facebook&#x2F;prophet&#x2F;main&#x2F;examples&#x2F;example_wp_log_peyton_manning.csv&#39;)</span><br><span class="line">df.head()</span><br><span class="line"># 训练</span><br><span class="line">m &#x3D; Prophet()</span><br><span class="line">m.fit(df)</span><br><span class="line"># 生成预测数据</span><br><span class="line">future &#x3D; m.make_future_dataframe(periods&#x3D;365)  # 包含训练数据的和未来365天的预测日期</span><br><span class="line">future.tail()</span><br><span class="line"># 对上面训练+预测数据进行预测拟合</span><br><span class="line">forecast &#x3D; m.predict(future)  # 可以返回一个Prophet.Forecast对象或者对象的历</span><br><span class="line">forecast[[&#39;ds&#39;, &#39;yhat&#39;, &#39;yhat_lower&#39;, &#39;yhat_upper&#39;]].tail()</span><br><span class="line"># 画图</span><br><span class="line">fig1 &#x3D; m.plot(forecast)</span><br><span class="line">fig2 &#x3D; m.plot_components(forecast)</span><br></pre></td></tr></table></figure><h1 id="4-模型原理详解"><a href="#4-模型原理详解" class="headerlink" title="4. 模型原理详解"></a>4. 模型原理详解</h1><p>简单来说，Prophet 把时序分为四个部分，认为任意时刻的值，就是这四个部分相加的结果。这四个部分分别是：<br><img src="/machine_learning/time_series/prophet/2023-06-26-16-23-46.png" alt></p><ul><li>趋势成分g(t)：时序最内核的一个增长趋势，可设定线性或非线性增长<br><img src="/machine_learning/time_series/prophet/2023-06-26-16-22-50.png" alt></li><li>季节性成分s(t)：使用傅里叶级数拟合时序中跟时间强烈相关、周期性上升下降的成分</li><li>节假日影响h(t)：时序中非周期性出现的影响，将过去、将来相同的节假日设置成一个虚拟变量，并拟合该变量的相关性</li><li>误差项：不可预测的假设为正态分布的误差部分</li></ul><p>对于上面第二个相乘的形式，当考虑对数时，也转换为四部分相加的形式，所以两种形式都可以作为可加模型进行讨论。<br><img src="/machine_learning/time_series/prophet/2023-06-26-16-26-24.png" alt><br><a href="https://blog.csdn.net/weixin_42470516/article/details/108961132" target="_blank" rel="noopener">各部分公式详解1</a><br><a href="https://blog.csdn.net/a358463121/article/details/70194279" target="_blank" rel="noopener">各部分公式详解2</a></p><h1 id="5-模型应用调优技巧"><a href="#5-模型应用调优技巧" class="headerlink" title="5. 模型应用调优技巧"></a>5. 模型应用调优技巧</h1><h2 id="趋势项调优"><a href="#趋势项调优" class="headerlink" title="趋势项调优"></a>趋势项调优</h2><h2 id><a href="#" class="headerlink" title=" "></a> </h2><h2 id="6-推理速度优化"><a href="#6-推理速度优化" class="headerlink" title="6. 推理速度优化"></a>6. 推理速度优化</h2><p>refer:<a href="https://towardsdatascience.com/how-to-run-facebook-prophet-predict-x100-faster-cce0282ca77d" target="_blank" rel="noopener">https://towardsdatascience.com/how-to-run-facebook-prophet-predict-x100-faster-cce0282ca77d</a></p><p>prophet推理速度时间大概为1.15 s ± 55.9 ms per loop，比训练的时间还长，不符合通常模型的常规情况。<br>通过翻阅源码debug， 发现在predict过程中，Prophet’s uncertainty占据了大部分的预测时间，这个步骤主要是确定预测的不确定范围。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;1-what-is-prophet&quot;&gt;&lt;a href=&quot;#1-what-is-prophet&quot; class=&quot;headerlink&quot; title=&quot;1. what is prophet&quot;&gt;&lt;/a&gt;1. what is prophet&lt;/h1&gt;&lt;p&gt;&lt;a href=
+      
+    
+    </summary>
+    
+    
+      <category term="machine learning" scheme="https://tlylft.github.io/categories/machine-learning/"/>
+    
+      <category term="time series" scheme="https://tlylft.github.io/categories/machine-learning/time-series/"/>
+    
+    
+      <category term="machine learning" scheme="https://tlylft.github.io/tags/machine-learning/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>charles 抓包工具</title>
+    <link href="https://tlylft.github.io/crawler/charles/"/>
+    <id>https://tlylft.github.io/crawler/charles/</id>
+    <published>2023-04-17T12:54:58.000Z</published>
+    <updated>2023-08-11T09:11:12.641Z</updated>
+    
+    <content type="html"><![CDATA[<p>charles 中文乱码问题</p><p>proxy配置</p><p>手机代理：<br>下载夜游模拟器，设置网络无线代理为windows的ip地址。</p><p>打开浏览器： charles.pro/ssl 下载证书，<br>在手机设置，从sd卡安装，安装刚下载的证书<br>在浏览器设置，—隐私和安全—显示安全警告（不勾选）</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;charles 中文乱码问题&lt;/p&gt;
+&lt;p&gt;proxy配置&lt;/p&gt;
+&lt;p&gt;手机代理：&lt;br&gt;下载夜游模拟器，设置网络无线代理为windows的ip地址。&lt;/p&gt;
+&lt;p&gt;打开浏览器： charles.pro/ssl 下载证书，&lt;br&gt;在手机设置，从sd卡安装，安装刚下载的证书
+      
+    
+    </summary>
+    
+    
+      <category term="爬虫" scheme="https://tlylft.github.io/categories/%E7%88%AC%E8%99%AB/"/>
+    
+    
+      <category term="爬虫" scheme="https://tlylft.github.io/tags/%E7%88%AC%E8%99%AB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>爬虫加密算法</title>
+    <link href="https://tlylft.github.io/crawler/encryption/"/>
+    <id>https://tlylft.github.io/crawler/encryption/</id>
+    <published>2023-04-17T12:54:58.000Z</published>
+    <updated>2023-08-11T09:11:06.013Z</updated>
+    
+    <content type="html"><![CDATA[<p>这个网站可以查看很多加密算法的结果：<br><a href="https://spidertools.cn/#/crypto" target="_blank" rel="noopener">https://spidertools.cn/#/crypto</a></p><h1 id="base64"><a href="#base64" class="headerlink" title="base64"></a>base64</h1><p>是一种编码，不算加密，<strong>一般末尾会有个等号</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">                      u         p</span><br><span class="line">ASCII码对应16进制数据  7  5     7      0</span><br><span class="line">转换成2进制         0111 0101  0111 0000</span><br><span class="line">按6位重组数据       011101  010111 0000(00 000000)  不足六位进行补00  再补六个0</span><br><span class="line">转换成10进制         29     23       A       &#x3D;    补位为等号</span><br><span class="line">最终结果              dXA&#x3D;</span><br></pre></td></tr></table></figure></p><h1 id="md5"><a href="#md5" class="headerlink" title="md5"></a>md5</h1><p>信息摘要算法，可用于文本表示， 可以产出一个128位（16字节）的散列值，表示为16进制<strong>是32位</strong>。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">md5_test</span><span class="params">(text)</span>:</span></span><br><span class="line">    result = hashlib.md5(text.encode(<span class="string">'utf-8'</span>).hexdigest())</span><br></pre></td></tr></table></figure></p><h1 id="SHA-1"><a href="#SHA-1" class="headerlink" title="SHA-1"></a>SHA-1</h1><p>sha-1通常长度为16进制是40位<br>sha-224通常长度为16进制是56位<br>sha-256通常长度为16进制是64位<br>sha-384通常长度为16进制是96位<br>sha-512通常长度为16进制是128位<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">SHA_test</span><span class="params">(text)</span>:</span></span><br><span class="line">    result = hashlib.sha1(text.encode(<span class="string">'utf-8'</span>).hexdigest())</span><br><span class="line">    result = hashlib.sha224(text.encode(<span class="string">'utf-8'</span>).hexdigest())</span><br><span class="line">    result = hashlib.sha246(text.encode(<span class="string">'utf-8'</span>).hexdigest())</span><br></pre></td></tr></table></figure></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;这个网站可以查看很多加密算法的结果：&lt;br&gt;&lt;a href=&quot;https://spidertools.cn/#/crypto&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://spidertools.cn/#/crypto&lt;/a&gt;&lt;/p&gt;
+&lt;h
+      
+    
+    </summary>
+    
+    
+      <category term="爬虫" scheme="https://tlylft.github.io/categories/%E7%88%AC%E8%99%AB/"/>
+    
+    
+      <category term="爬虫" scheme="https://tlylft.github.io/tags/%E7%88%AC%E8%99%AB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>python迭代器和生成器</title>
+    <link href="https://tlylft.github.io/python/python/python_iter/"/>
+    <id>https://tlylft.github.io/python/python/python_iter/</id>
+    <published>2023-03-30T09:03:48.000Z</published>
+    <updated>2023-03-31T01:09:47.116Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="什么是可迭代对象"><a href="#什么是可迭代对象" class="headerlink" title="什么是可迭代对象"></a>什么是可迭代对象</h1><pre><code>元组、列表、字典、集合、字符串nums = [11, 22, 33]for num in nums:    print(num)</code></pre><h1 id="判断可迭代对象"><a href="#判断可迭代对象" class="headerlink" title="判断可迭代对象"></a>判断可迭代对象</h1><h2 id="for-循环测试"><a href="#for-循环测试" class="headerlink" title="for 循环测试"></a>for 循环测试</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">num &#x3D; 3.14</span><br><span class="line"># for i in num:</span><br><span class="line">#     print(i)</span><br></pre></td></tr></table></figure><h2 id="2-使用Iterable类进行迭代对象的判断"><a href="#2-使用Iterable类进行迭代对象的判断" class="headerlink" title="2. 使用Iterable类进行迭代对象的判断"></a>2. 使用Iterable类进行迭代对象的判断</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">from collections.abc import Iterable</span><br><span class="line">str_data &#x3D; &#39;abc&#39;</span><br><span class="line"></span><br><span class="line"># 判断浮点类型的实例对象是否是Iterable类的子类</span><br><span class="line">print(isinstance(num, Iterable))</span><br><span class="line"></span><br><span class="line">print(isinstance(str_data, Iterable))</span><br></pre></td></tr></table></figure><h1 id="迭代器"><a href="#迭代器" class="headerlink" title="迭代器"></a>迭代器</h1><p>迭代对象不一定是迭代器，迭代对象可用迭代器加载<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">from collections.abc import Iterator, Iterable</span><br><span class="line"></span><br><span class="line">nums &#x3D; [11, 22, 33, 44]</span><br><span class="line"></span><br><span class="line"># num是一个可迭代对象</span><br><span class="line">print(isinstance(nums, Iterable))</span><br><span class="line"></span><br><span class="line"># 但不是一个迭代器</span><br><span class="line">print(isinstance(nums, Iterator))</span><br><span class="line"></span><br><span class="line"># 可以创建一个迭代器对象的</span><br><span class="line">nums_iter &#x3D; iter(nums)</span><br><span class="line">print(isinstance(nums_iter, Iterator))  # True</span><br><span class="line">print(isinstance(nums_iter, Iterable))  # True</span><br></pre></td></tr></table></figure></p><p>自定义一个迭代器<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">class StuSystem(object):</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    学生管理系统</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line"></span><br><span class="line">    def __init__(self):</span><br><span class="line">        self.index &#x3D; 0</span><br><span class="line">        self.student_name &#x3D; []</span><br><span class="line"></span><br><span class="line">    def add(self):</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        添加一个新的学生</span><br><span class="line">        :return:</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        name &#x3D; input(&quot;请输入新学生的姓名:&quot;)</span><br><span class="line">        # tel &#x3D; input(&quot;请输入新学生的手机号:&quot;)</span><br><span class="line">        # address &#x3D; input(&quot;请输入新学生的住址:&quot;)</span><br><span class="line"></span><br><span class="line">        new_stu &#x3D; dict()</span><br><span class="line">        new_stu[&quot;name&quot;] &#x3D; name</span><br><span class="line">        # new_stu[&quot;tel&quot;] &#x3D; tel</span><br><span class="line">        # new_stu[&quot;address&quot;] &#x3D; address</span><br><span class="line"></span><br><span class="line">        self.student_name.append(new_stu)</span><br><span class="line"></span><br><span class="line">    def __iter__(self):</span><br><span class="line">        return self</span><br><span class="line"></span><br><span class="line">    def __next__(self):</span><br><span class="line">        if self.index &lt; len(self.student_name):</span><br><span class="line">            item &#x3D; self.student_name[self.index]</span><br><span class="line">            self.index +&#x3D; 1</span><br><span class="line">            return item</span><br><span class="line">        else:</span><br><span class="line">            raise StopIteration</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">stu_sys &#x3D; StuSystem()</span><br><span class="line">stu_sys.add(&#39;1&#39;)</span><br><span class="line">stu_sys.add(&#39;2&#39;)</span><br><span class="line">stu_sys.add(&#39;3&#39;)</span><br><span class="line"></span><br><span class="line">for item in stu_sys:</span><br><span class="line">    print(item)</span><br></pre></td></tr></table></figure></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;什么是可迭代对象&quot;&gt;&lt;a href=&quot;#什么是可迭代对象&quot; class=&quot;headerlink&quot; title=&quot;什么是可迭代对象&quot;&gt;&lt;/a&gt;什么是可迭代对象&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;元组、列表、字典、集合、字符串
+
+
+nums = [11, 22, 33]
+
       
     
     </summary>
@@ -319,110 +476,7 @@
     
       <category term="python" scheme="https://tlylft.github.io/categories/python/"/>
     
-      <category term="flask" scheme="https://tlylft.github.io/categories/python/flask/"/>
-    
-    
-      <category term="python" scheme="https://tlylft.github.io/tags/python/"/>
-    
-      <category term="flask" scheme="https://tlylft.github.io/tags/flask/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>AI开发平台</title>
-    <link href="https://tlylft.github.io/NLP/ai_platform/"/>
-    <id>https://tlylft.github.io/NLP/ai_platform/</id>
-    <published>2021-01-15T07:51:14.000Z</published>
-    <updated>2021-01-15T08:39:33.178Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="百度开发平台"><a href="#百度开发平台" class="headerlink" title="百度开发平台"></a>百度开发平台</h2><p><a href="https://console.bce.baidu.com/ai/?_=1550569312984&amp;locale=zh-cn#/ai/face/overview/index" target="_blank" rel="noopener">https://console.bce.baidu.com/ai/?_=1550569312984&amp;locale=zh-cn#/ai/face/overview/index</a></p><p><a href="https://cloud.baidu.com/doc/NLP/s/Ck3pmn1l6" target="_blank" rel="noopener">SDK文档</a></p><p><a href="https://ai.baidu.com/ai-doc/REFERENCE/Ck3dwjhhu" target="_blank" rel="noopener">API鉴权认证</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;百度开发平台&quot;&gt;&lt;a href=&quot;#百度开发平台&quot; class=&quot;headerlink&quot; title=&quot;百度开发平台&quot;&gt;&lt;/a&gt;百度开发平台&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://console.bce.baidu.com/ai/?_=155056931
-      
-    
-    </summary>
-    
-    
-      <category term="NLP" scheme="https://tlylft.github.io/categories/NLP/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>linux ftp 搭建使用</title>
-    <link href="https://tlylft.github.io/tools/ftp/"/>
-    <id>https://tlylft.github.io/tools/ftp/</id>
-    <published>2021-01-11T01:07:10.000Z</published>
-    <updated>2021-01-11T02:32:10.368Z</updated>
-    
-    <content type="html"><![CDATA[<p><a href="https://www.hangge.com/blog/cache/detail_2449.html" target="_blank" rel="noopener">https://www.hangge.com/blog/cache/detail_2449.html</a><br>主动模式和被动模式：<br><a href="https://blog.csdn.net/newborn2012/article/details/15812821/" target="_blank" rel="noopener">https://blog.csdn.net/newborn2012/article/details/15812821/</a><br><a href="https://www.imooc.com/article/15136" target="_blank" rel="noopener">https://www.imooc.com/article/15136</a></p><ol><li>拉取镜像<br>docker pull fauria/vsftpd</li><li>启动服务<blockquote><p>/var/ftp:/home/vsftpd：映射 docker 容器 ftp 文件根目录（冒号前面是宿主机的目录，建议宿主机使用 /var 这样公共权限文件夹，如果使用类似 /home 这样的目录可能会造成客户端无法连接上服务器问题）<br>-p：映射 docker 端口（冒号前面是宿主机的端口）<br>-e FTP_USER=test -e FTP_PASS=test ：设置默认的用户名密码（都为 test）<br>PASV_ADDRESS：宿主机 ip，当需要使用被动模式时必须设置。<br>PASV_MIN_PORT~ PASV_MAX_PORT：给客服端提供下载服务随机端口号范围，默认 21100-21110，与前面的 docker 端口映射设置成一样。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -v &#x2F;data&#x2F;kubeflow&#x2F;data&#x2F;kubeflow-nlp-pvc-pvc-b1c49f7e-760c-4b9b-a891-8a5494eec53a:&#x2F;home&#x2F;vsftpd \</span><br><span class="line">-p 8000:20 -p 8001:21 -p  21100-21110:21100-21110 \</span><br><span class="line">-e FTP_USER&#x3D;test -e FTP_PASS&#x3D;test \</span><br><span class="line">-e PASV_ADDRESS&#x3D;10.37.144.183 \</span><br><span class="line">-e PASV_MIN_PORT&#x3D;21100 -e PASV_MAX_PORT&#x3D;21110 \</span><br><span class="line">--name vsftpd --restart&#x3D;always fauria&#x2F;vsftpd</span><br></pre></td></tr></table></figure></blockquote></li></ol><p>ftp://test:test@10.37.144.183:8001/model.joblib</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;&lt;a href=&quot;https://www.hangge.com/blog/cache/detail_2449.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://www.hangge.com/blog/cache/detail_2449
-      
-    
-    </summary>
-    
-    
-      <category term="tools" scheme="https://tlylft.github.io/categories/tools/"/>
-    
-      <category term="ftp" scheme="https://tlylft.github.io/categories/tools/ftp/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>文本分类</title>
-    <link href="https://tlylft.github.io/NLP/classification/text_clas/"/>
-    <id>https://tlylft.github.io/NLP/classification/text_clas/</id>
-    <published>2021-01-06T02:35:07.000Z</published>
-    <updated>2021-01-08T06:13:44.819Z</updated>
-    
-    <content type="html"><![CDATA[<p>中文文本分类，TextCNN，TextRNN，FastText，TextRCNN，BiLSTM_Attention, DPCNN, Transformer, 基于pytorch，开箱即用。<br><a href="https://github.com/649453932/Chinese-Text-Classification-Pytorch" target="_blank" rel="noopener">https://github.com/649453932/Chinese-Text-Classification-Pytorch</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;中文文本分类，TextCNN，TextRNN，FastText，TextRCNN，BiLSTM_Attention, DPCNN, Transformer, 基于pytorch，开箱即用。&lt;br&gt;&lt;a href=&quot;https://github.com/649453932/C
-      
-    
-    </summary>
-    
-    
-      <category term="NLP" scheme="https://tlylft.github.io/categories/NLP/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>python序列化存储 pickle, joblib, json</title>
-    <link href="https://tlylft.github.io/python/python/python_storage/"/>
-    <id>https://tlylft.github.io/python/python/python_storage/</id>
-    <published>2021-01-05T02:33:10.000Z</published>
-    <updated>2021-01-05T07:34:29.511Z</updated>
-    
-    <content type="html"><![CDATA[<p><a href="https://blog.csdn.net/red_stone1/article/details/71156441" target="_blank" rel="noopener">pickle模块和joblib模块浅析</a></p><h3 id="区别"><a href="#区别" class="headerlink" title="区别"></a><strong>区别</strong></h3><p>json 和 pickle 更多应用在字符串和字典格式的转换中。<br>joblib 更多应用于磁盘存储。<br>joblib更适合大数据量的模型，比pickle更加高效，但是joblib只能将对象存储在磁盘文件中，不能保存为字符串。</p><h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a><strong>示例</strong></h3><h4 id="pickle"><a href="#pickle" class="headerlink" title="pickle"></a>pickle</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">#对象保存为一个字符串</span><br><span class="line">&gt;&gt;&gt; import pickle</span><br><span class="line">&gt;&gt;&gt; a1 &#x3D; (&quot;pickle&quot;,123,[4,5,6],&#123;&#39;A&#39;:1,&#39;B&#39;:2&#125;)</span><br><span class="line">&gt;&gt;&gt; p1 &#x3D; pickle.dumps(a1)</span><br><span class="line">&gt;&gt;&gt; a2 &#x3D; pickle.loads(p1)</span><br><span class="line"></span><br><span class="line"># 高效 的二进制来存储</span><br><span class="line">&gt;&gt;&gt; import pickle</span><br><span class="line">&gt;&gt;&gt; a1 &#x3D; (&quot;pickle&quot;,123,[4,5,6],&#123;&#39;A&#39;:1,&#39;B&#39;:2&#125;)</span><br><span class="line">&gt;&gt;&gt; p1 &#x3D; pickle.dumps(a1,True)</span><br><span class="line">&gt;&gt;&gt; a2 &#x3D; pickle.loads(p1)</span><br><span class="line"></span><br><span class="line"># 多个对象保存在磁盘文件中：</span><br><span class="line">with open(train_out_path, &#39;wb&#39;) as train_file:</span><br><span class="line">    dump((x_train, y_train), train_file)</span><br></pre></td></tr></table></figure><h4 id="joblib"><a href="#joblib" class="headerlink" title="joblib"></a>joblib</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">from joblib import dump, load</span><br><span class="line">dump((x_train, y_train), train_out_path)</span><br><span class="line">x_train, y_train &#x3D; load(train_data_path)</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;&lt;a href=&quot;https://blog.csdn.net/red_stone1/article/details/71156441&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;pickle模块和joblib模块浅析&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&quot;区别
-      
-    
-    </summary>
-    
-    
-      <category term="python" scheme="https://tlylft.github.io/categories/python/"/>
+      <category term="python" scheme="https://tlylft.github.io/categories/python/python/"/>
     
     
       <category term="python" scheme="https://tlylft.github.io/tags/python/"/>
@@ -430,117 +484,87 @@
   </entry>
   
   <entry>
-    <title>文本标注工具doccano</title>
-    <link href="https://tlylft.github.io/NLP/label/doccano/"/>
-    <id>https://tlylft.github.io/NLP/label/doccano/</id>
-    <published>2020-12-31T02:59:36.000Z</published>
-    <updated>2021-01-04T05:40:15.068Z</updated>
+    <title>arima模型</title>
+    <link href="https://tlylft.github.io/machine_learning/time_series/arima/"/>
+    <id>https://tlylft.github.io/machine_learning/time_series/arima/</id>
+    <published>2023-03-17T02:13:48.000Z</published>
+    <updated>2023-03-22T00:19:05.339Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="文本标注工具doccano"><a href="#文本标注工具doccano" class="headerlink" title="文本标注工具doccano"></a>文本标注工具doccano</h1><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker run -d --rm --name doccano \</span><br><span class="line">  -e &quot;ADMIN_USERNAME&#x3D;admin&quot; \</span><br><span class="line">  -e &quot;ADMIN_EMAIL&#x3D;admin@example.com&quot; \</span><br><span class="line">  -e &quot;ADMIN_PASSWORD&#x3D;password&quot; \</span><br><span class="line">  -p 8003:8000 chakkiworks&#x2F;doccano</span><br></pre></td></tr></table></figure><p><a href="http://10.37.144.182:8003/" target="_blank" rel="noopener">http://10.37.144.182:8003/</a>   doccano 用户名：admin  密码：password  </p>]]></content>
+    <content type="html"><![CDATA[<p><a href="https://blog.csdn.net/lam_yx/article/details/107887284" target="_blank" rel="noopener">https://blog.csdn.net/lam_yx/article/details/107887284</a></p><p>adf平稳性检验：<a href="https://blog.csdn.net/FrankieHello/article/details/86766625/" target="_blank" rel="noopener">https://blog.csdn.net/FrankieHello/article/details/86766625/</a></p><p>I 差分： 是前一个减去后一个的值，通过差分实现平稳化，一般不超过两阶，<br>时序输入：15-50个<br>预测输出：1-15个</p><p>step1: 要求序列满足平稳性，查看ADF结果分析t值，分析是否可以显著拒绝序列不平稳的假设（p&lt;0.05或0.01)<br>Step2: 查看差分前后数据对比图，判斯是否平稳（上下幅度不大），同时对时间序列进行偏自相关分析、自相关分析，根据截尾情况估算其 p、q 值。<br>Step3:ARIMA 模型要求时间序列数据具备纯随机性，即模型残差为白噪声，查看模型检验表，根据 Q 统计量的p 值对模型白噪声进行检验，也可以结合信息准则 AIC和 BIC值进行分析《越低越好》，也可通过 ACF/PACF 图进行分析<br>Step4: 根据模型参数表，出模型公式<br>Step5: 结合时间序列分析图进行分析，得到向后预测的阶数结果</p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;h1 id=&quot;文本标注工具doccano&quot;&gt;&lt;a href=&quot;#文本标注工具doccano&quot; class=&quot;headerlink&quot; title=&quot;文本标注工具doccano&quot;&gt;&lt;/a&gt;文本标注工具doccano&lt;/h1&gt;&lt;h3 id=&quot;安装&quot;&gt;&lt;a href=&quot;#安装&quot; cla
+        &lt;p&gt;&lt;a href=&quot;https://blog.csdn.net/lam_yx/article/details/107887284&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://blog.csdn.net/lam_yx/article/deta
       
     
     </summary>
     
     
-      <category term="NLP" scheme="https://tlylft.github.io/categories/NLP/"/>
+      <category term="machine learning" scheme="https://tlylft.github.io/categories/machine-learning/"/>
     
-      <category term="label" scheme="https://tlylft.github.io/categories/NLP/label/"/>
+      <category term="time series" scheme="https://tlylft.github.io/categories/machine-learning/time-series/"/>
     
     
-      <category term="NLP" scheme="https://tlylft.github.io/tags/NLP/"/>
-    
-      <category term="label" scheme="https://tlylft.github.io/tags/label/"/>
-    
-      <category term="doccano" scheme="https://tlylft.github.io/tags/doccano/"/>
+      <category term="machine learning" scheme="https://tlylft.github.io/tags/machine-learning/"/>
     
   </entry>
   
   <entry>
-    <title>kubernetes 安装</title>
-    <link href="https://tlylft.github.io/tools/kubernetes/"/>
-    <id>https://tlylft.github.io/tools/kubernetes/</id>
-    <published>2020-12-30T01:31:22.000Z</published>
-    <updated>2021-01-11T09:58:08.987Z</updated>
+    <title>刷题题库</title>
+    <link href="https://tlylft.github.io/leecode/interview/"/>
+    <id>https://tlylft.github.io/leecode/interview/</id>
+    <published>2023-02-20T01:08:45.000Z</published>
+    <updated>2023-08-11T08:02:35.823Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="install"><a href="#install" class="headerlink" title="install"></a>install</h2><ol><li><p><a href="https://kubernetes.io/zh/docs/setup/production-environment/container-runtimes/" target="_blank" rel="noopener">安装docker</a><br>依赖Docker CE， 我安装的18.06.1-ce</p></li><li><p><a href="https://kubernetes.io/zh/docs/tasks/tools/install-kubectl/" target="_blank" rel="noopener">安装kubectl</a></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; kubectl version</span><br><span class="line">Client Version: version.Info&#123;Major:&quot;1&quot;, Minor:&quot;20&quot;, GitVersion:&quot;v1.20.0&quot;, GitCommit:&quot;af46c47ce925f4c4ad5cc8d1fca46c7b77d13b38&quot;, GitTreeState:&quot;clean&quot;, BuildDate:&quot;2020-12-08T17:59:43Z&quot;, GoVersion:&quot;go1.15.5&quot;, Compiler:&quot;gc&quot;, Platform:&quot;linux&#x2F;amd64&quot;&#125;</span><br><span class="line">Server Version: version.Info&#123;Major:&quot;1&quot;, Minor:&quot;17&quot;, GitVersion:&quot;v1.17.14&quot;, GitCommit:&quot;f238f5142728be4033c37aa0ad69bf806090beae&quot;, GitTreeState:&quot;clean&quot;, BuildDate:&quot;2020-11-11T13:03:54Z&quot;, GoVersion:&quot;go1.13.15&quot;, Compiler:&quot;gc&quot;, Platform:&quot;linux&#x2F;amd64&quot;&#125;</span><br></pre></td></tr></table></figure></li></ol><h2 id="文档"><a href="#文档" class="headerlink" title="文档"></a>文档</h2><p><a href="https://www.kubernetes.org.cn/k8s" target="_blank" rel="noopener">中文文档</a></p><h2 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">kubectl get knative -n kubeflow</span><br><span class="line">kubectl get inferenceservice  -n kubeflow</span><br><span class="line">kubectl get ksvc -n kubeflow</span><br><span class="line">kubectl get revision  -n kubeflow</span><br><span class="line"> kubectl get pod -l model&#x3D;sklearn-from-uri -n kubeflow</span><br></pre></td></tr></table></figure>]]></content>
+    <content type="html"><![CDATA[<p>本文列举了一些刷题和知识点的资源：</p><h2 id="一、编程题"><a href="#一、编程题" class="headerlink" title="一、编程题"></a>一、编程题</h2><ol><li>Leecode网站</li></ol><h2 id="二、算法知识"><a href="#二、算法知识" class="headerlink" title="二、算法知识"></a>二、算法知识</h2><ol><li>机器学习、NLP相关： <a href="https://github.com/nosuggest/Reflection_Summary" target="_blank" rel="noopener">https://github.com/nosuggest/Reflection_Summary</a></li></ol>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;h2 id=&quot;install&quot;&gt;&lt;a href=&quot;#install&quot; class=&quot;headerlink&quot; title=&quot;install&quot;&gt;&lt;/a&gt;install&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;&lt;a href=&quot;https://kubernetes.io/zh/docs/se
+        &lt;p&gt;本文列举了一些刷题和知识点的资源：&lt;/p&gt;
+&lt;h2 id=&quot;一、编程题&quot;&gt;&lt;a href=&quot;#一、编程题&quot; class=&quot;headerlink&quot; title=&quot;一、编程题&quot;&gt;&lt;/a&gt;一、编程题&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;Leecode网站&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id
       
     
     </summary>
     
     
-      <category term="tools" scheme="https://tlylft.github.io/categories/tools/"/>
-    
-      <category term="k8s" scheme="https://tlylft.github.io/categories/tools/k8s/"/>
+      <category term="Leecode" scheme="https://tlylft.github.io/categories/Leecode/"/>
     
     
-      <category term="k8s" scheme="https://tlylft.github.io/tags/k8s/"/>
+      <category term="Leecode" scheme="https://tlylft.github.io/tags/Leecode/"/>
     
   </entry>
   
   <entry>
-    <title>docker打包python程序</title>
-    <link href="https://tlylft.github.io/tools/docker_python/"/>
-    <id>https://tlylft.github.io/tools/docker_python/</id>
-    <published>2020-12-23T11:08:57.000Z</published>
-    <updated>2020-12-23T11:28:04.713Z</updated>
+    <title>强化学习（1）-强化学习概念</title>
+    <link href="https://tlylft.github.io/reinforcement_learning/01_rf_intro/"/>
+    <id>https://tlylft.github.io/reinforcement_learning/01_rf_intro/</id>
+    <published>2023-02-16T00:29:53.000Z</published>
+    <updated>2023-08-10T01:53:53.089Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="程序打包"><a href="#程序打包" class="headerlink" title="程序打包"></a>程序打包</h3><p><a href="https://blog.csdn.net/weixin_41907511/article/details/85337505" target="_blank" rel="noopener">https://blog.csdn.net/weixin_41907511/article/details/85337505</a></p><h3 id="目录挂载"><a href="#目录挂载" class="headerlink" title="目录挂载"></a>目录挂载</h3><p><a href="https://blog.csdn.net/magerguo/article/details/72514813" target="_blank" rel="noopener">https://blog.csdn.net/magerguo/article/details/72514813</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;程序打包&quot;&gt;&lt;a href=&quot;#程序打包&quot; class=&quot;headerlink&quot; title=&quot;程序打包&quot;&gt;&lt;/a&gt;程序打包&lt;/h3&gt;&lt;p&gt;&lt;a href=&quot;https://blog.csdn.net/weixin_41907511/article/details
-      
-    
-    </summary>
-    
-    
-      <category term="tools" scheme="https://tlylft.github.io/categories/tools/"/>
-    
-    
-      <category term="tools" scheme="https://tlylft.github.io/tags/tools/"/>
-    
-      <category term="docker" scheme="https://tlylft.github.io/tags/docker/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>python序列化 处理json格式和文件</title>
-    <link href="https://tlylft.github.io/python/python/python_json/"/>
-    <id>https://tlylft.github.io/python/python/python_json/</id>
-    <published>2020-12-23T10:28:26.000Z</published>
-    <updated>2020-12-23T11:06:10.780Z</updated>
-    
-    <content type="html"><![CDATA[<p><a href="https://www.cnblogs.com/linwow/p/10693781.html" target="_blank" rel="noopener">https://www.cnblogs.com/linwow/p/10693781.html</a></p><h2 id="1-几种方式的介绍"><a href="#1-几种方式的介绍" class="headerlink" title="1. 几种方式的介绍"></a>1. 几种方式的介绍</h2><p> 我们把对象(变量)从内存中变成可存储或传输的过程称之为<strong>序列化</strong>，在Python中叫pickling，在其他语言中也被称之为serialization，marshalling，flattening等等，都是一个意思。</p><p><strong>为什么要序列化？</strong></p><ol><li><p>持久保存状态<br>在断电或重启程序之前将程序当前内存中所有的数据都保存下来（保存到文件中），以便于下次程序执行能够从文件中载入之前的数据，然后继续执行，这就是序列化。</p></li><li><p>跨平台数据交互<br>序列化之后，不仅可以把序列化后的内容写入磁盘，还可以通过网络传输到别的机器上，如果收发的双方约定好实用一种序列化的格式，那么便打破了平台/语言差异化带来的限制，实现了跨平台数据交互。</p></li></ol><p>在python中，有专门处理json格式的模块—— json , joblib 和 pickle模块</p><p><strong>json 和 pickle 区别</strong><br>json模块和pickle模块都有 dumps、dump、loads、load四种方法，而且用法一样。<br>不一样的是json模块序列化出来的是通用格式，其它编程语言都认识，就是普通的字符串，<br>而picle模块序列化出来的只有python可以认识，其他编程语言不认识的，表现为乱码</p><h2 id="2-使用"><a href="#2-使用" class="headerlink" title="2. 使用"></a>2. 使用</h2><h3 id="2-1-json-包的使用"><a href="#2-1-json-包的使用" class="headerlink" title="2.1. json 包的使用"></a>2.1. json 包的使用</h3><p><a href="https://www.cnblogs.com/chen55555/articles/10246730.html" target="_blank" rel="noopener">https://www.cnblogs.com/chen55555/articles/10246730.html</a></p><h4 id="2-1-1-基本操作"><a href="#2-1-1-基本操作" class="headerlink" title="2.1.1. 基本操作"></a>2.1.1. 基本操作</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">import json </span><br><span class="line">dict &#x3D; &#123;&#39;a&#39;:&#39;1111&#39;,&#39;b&#39;:&#39;2222&#39;,&#39;c&#39;:&#39;3333&#39;,&#39;d&#39;:&#39;4444&#39;&#125;</span><br></pre></td></tr></table></figure><p><strong>json.dumps() 将字典类型转化成字符串类型</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># ensure_ascii&#x3D;False 显示中文</span><br><span class="line">str &#x3D; json.dumps(dict, ensure_ascii&#x3D;False)</span><br></pre></td></tr></table></figure><br><strong>json.loads()将字符串类型转化成字典类型</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">json_dict &#x3D;  json.loads(str)</span><br></pre></td></tr></table></figure><br><strong>json.dump()用于将dict类型的数据转成str，并写入到json文件中。</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">json.dump(dict_name, open(filename, &quot;w&quot;))</span><br><span class="line"># 或</span><br><span class="line">with open(filename, &quot;w&quot;) as f:  </span><br><span class="line">    f.write(dict_name)  </span><br><span class="line">    f.close()</span><br></pre></td></tr></table></figure><br><strong>json.load()用于从json文件中读取数据。得到字典类型</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jsObj &#x3D; json.load(open(filename))</span><br></pre></td></tr></table></figure></p><h4 id="读写的文件中存在多个json"><a href="#读写的文件中存在多个json" class="headerlink" title="读写的文件中存在多个json"></a>读写的文件中存在多个json</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">with open(file,encoding&#x3D;&#39;utf-8&#39;) as f:</span><br><span class="line">    for line in f.readlines():</span><br><span class="line">        # 按行加载</span><br><span class="line">        line_json &#x3D; json.loads(line)</span><br><span class="line">        text &#x3D; line_json[&#39;text&#39;]</span><br></pre></td></tr></table></figure><h3 id="jsonlines-包的使用"><a href="#jsonlines-包的使用" class="headerlink" title="jsonlines 包的使用"></a>jsonlines 包的使用</h3><p>说是可以读写多行，待验证<br><a href="https://blog.csdn.net/weixin_43420032/article/details/88547515" target="_blank" rel="noopener">https://blog.csdn.net/weixin_43420032/article/details/88547515</a><br><a href="https://blog.csdn.net/weixin_38604274/article/details/105158918" target="_blank" rel="noopener">https://blog.csdn.net/weixin_38604274/article/details/105158918</a></p>]]></content>
+    <content type="html"><![CDATA[<h1 id="1-什么是强化学习"><a href="#1-什么是强化学习" class="headerlink" title="1. 什么是强化学习"></a>1. 什么是强化学习</h1><p>强化学习，是在于环境的互动中为了达成一个目标进行的学习过程。</p><p>所谓强化学习(Reinforcement Learning，简称RL)，是指基于智能体在复杂、不确定的环境中最大化它能获得的奖励，从而达到自主决策的目的。<br>流程：依据策略执行动作-感知状态-得到奖励</p><h2 id="1-1-基本结构"><a href="#1-1-基本结构" class="headerlink" title="1.1. 基本结构"></a>1.1. 基本结构</h2><p>总的而言，Agent依据策略决策从而执行动作action，然后通过感知环境Environment从而获取环境的状态state，进而，最后得到奖励reward(以便下次再到相同状态时能采取更优的动作)，然后再继续按此流程“依据策略执行动作-感知状态—得到奖励”循环进行。</p><p>agent在environment中，观察到环境的state，选择做出的action，每个action对应得到的正向或负向的reward，agent的goal是学习reward或goal高的action。以alphago为例：<br><img src="/reinforcement_learning/01_rf_intro/2023-02-21-10-01-07.png" alt></p><p><strong>第一层：基本元素：</strong></p><ul><li>Agent：主体、智能体<br>一般译为智能体，就是我们要训练的模型，类似玩超级玛丽的时候操纵马里奥做出相应的动作，而这个马里奥就是Agent</li><li>environment: 环境<br>它是提供reward的某个对象，它可以是AlphaGo中的人类棋手，也可以是自动驾驶中的人类驾驶员，甚至可以是某些游戏AI里的游戏规则</li><li>goal：目标   —赢得比赛</li></ul><p><strong>第二层结构：主要元素</strong></p><ul><li>state： 状态，环境的state<br>可以理解成环境的状态，简称状态</li><li>action： 行动， 会影响环境。 —落子的位置<br>玩超级玛丽的时候你会控制马里奥做三个动作，即向左走、向右走和向上跳，而马里奥做的这三个动作就是action</li><li>reward: 奖励，action的奖励<br>这个奖赏可以类比为在明确目标的情况下，接近目标意味着做得好则奖，远离目标意味着做的不好则惩，最终达到收益/奖励最大化，且这个奖励是强化学习的核心</li></ul><p>奖励是及时的反馈，而目标是长远的结果。</p><p><strong>第三层结构：核心元素</strong></p><ul><li>policy:策略<br>在某一状态下应该采取怎样的行动，一个策略函数</li><li>value: 价值  <ol><li>state value 状态价值函数  输入状态，输出实数，表示预期得到的所有奖励之和</li><li>state-action value 状态-行动价值函数 在特定状态下，采取某种行动所具有的价值</li></ol></li></ul><p>学习的是一个好的价值函数，决定了一个好的策略<br>状态价值函数决定了策略</p><h2 id="1-2-特点"><a href="#1-2-特点" class="headerlink" title="1.2. 特点"></a>1.2. 特点</h2><p>Trial and error 试错,在不断的尝试中学习<br><strong>难点</strong>：<br>delayed reward 延迟奖励，一个行动可能没有奖励，但最终通过他获胜，是有价值的<br>action affect 核心问题，行为影响后续的状态，需要行为探索世界，<br>exploration vs. exploitation</p><p><strong>与监督学习的区别</strong>：<br>监督学习是每一步都向一个老师学习概率，强化学习是通过经验学习，自己通过不断试错来学习。需要大量的训练。 </p><ol><li>训练数据中没有标签，只有奖励函数</li><li>训练数据不是现成给定的，而是由行为获得</li><li>监督学习中输入是独立分布的，即各项数据之间没有关联;RL现在的行为不仅影响后续训练数据的获得，也影响奖励函数的取值</li><li>训练目的:构建状态-&gt;行为的函数</li><li>监督学习如果做了比较坏的选择则会立刻反馈给算法<br>RL的结果反馈有延时，有时候可能需要走了很多步以后才知道之前某步的选择是好还是坏<br><img src="/reinforcement_learning/01_rf_intro/2023-02-21-10-14-13.png" alt></li></ol><p>ML:  学习一个函数：<br>input-&gt; obsevation   learning -&gt; func(obsevation)  output-&gt; action<br><img src="/reinforcement_learning/01_rf_intro/2023-06-05-14-15-14.png" alt></p><h2 id="1-3-应用领域："><a href="#1-3-应用领域：" class="headerlink" title="1.3. 应用领域："></a>1.3. 应用领域：</h2><ul><li>围棋：alphago</li><li>玩游戏: <a href="https://gym.openai.com" target="_blank" rel="noopener">gym</a>, <a href="https://openai.com/blog/universe" target="_blank" rel="noopener">Universe</a></li><li><a href="https://www.youtube.com/watch?v=0JL04JJjocc" target="_blank" rel="noopener">直升机</a></li><li><a href="https://www.youtube.com/watch?v=370cT-OAzzM" target="_blank" rel="noopener">机器人</a></li><li><a href="https://www.youtube.com/watch?v=0xo1Ldx3L5Q" target="_blank" rel="noopener">无人驾驶</a></li><li><a href="https://www.youtube.com/watch?v=pbQ4qe8EwLo" target="_blank" rel="noopener">文本生成（对话）</a>:chatgpt<h2 id="1-4-算法分类"><a href="#1-4-算法分类" class="headerlink" title="1.4. 算法分类"></a>1.4. 算法分类</h2>RL为得到最优策略从而获取最大化奖励，有以下两大类方法：<br><img src="/reinforcement_learning/01_rf_intro/2023-02-21-10-41-11.png" alt></li></ul><ol><li><strong>基于值函数的方法</strong><br>通过价值选行为，如：Q-learning, Sarsa, Deep Q Network，学习一个评判器,适合离散的环境下，比如围棋和某些游戏领域。</li><li><p><strong>基于策略的方法</strong><br>一般先进行策略评估，即对当前已经搜索到的策略函数进行估值，得到估值后，进行策略改进，不断重复这两步直至策略收敛，直接训练行为策略，<br>比如策略梯度法(policy gradient，简称PG)，适合连续动作的场景，比如机器人控制领域</p></li><li><p>结合以上两种方式：<strong>actor+critic架构</strong><br>Actor-Criti(一般被翻译为演员-评论家算法)，Actor学习参数化的策略即策略函数，Criti学习值函数用来评估状态-动作对，不过，Actor-Criti本质上是属于基于策略的算法，毕竟算法的目标是优化一个带参数的策略，只是会额外学习价值函数，从而帮助策略函数更好的学习</p></li></ol><p>想象环境未来会发生的状况并从中学习： Model based RL， 棋类游戏比较多，游戏场景比较少用到，因为游戏场景未来的发生情况不好穷举。</p><h1 id="2-实例"><a href="#2-实例" class="headerlink" title="2. 实例"></a>2. 实例</h1><p>Alpha GO: policy-based+value-based + model-based<br>原理 = 深度 + 强化</p><h2 id="2-1-围棋"><a href="#2-1-围棋" class="headerlink" title="2.1. 围棋"></a>2.1. 围棋</h2><p>agent: 下棋的人   environment：对手、棋盘   goal：赢得游戏<br>state：棋盘上棋子的分布情况  action：落子行为  reward: 一个好的学习模型，除非赢，奖励应该为0，如果以吃子作为奖励，不一定能赢<br>state-1: empty board 有361个可采取的行动对应361个 state-action value, reward之和为状态价值<br>action-1: star point<br>reward-1:0</p><h2 id="2-2-chatbot"><a href="#2-2-chatbot" class="headerlink" title="2.2. chatbot"></a>2.2. chatbot</h2><h1 id="3-参考资料"><a href="#3-参考资料" class="headerlink" title="3. 参考资料"></a>3. 参考资料</h1><p>Textbook: Reinforcement Learning: An introduction<br><a href="https://webdocs.cs.ualberta.ca/~sutton/book/the-book.html" target="_blank" rel="noopener">https://webdocs.cs.ualberta.ca/~sutton/book/the-book.html</a><br>Lectures of David Silver</p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;&lt;a href=&quot;https://www.cnblogs.com/linwow/p/10693781.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://www.cnblogs.com/linwow/p/10693781.html&lt;/a
+        &lt;h1 id=&quot;1-什么是强化学习&quot;&gt;&lt;a href=&quot;#1-什么是强化学习&quot; class=&quot;headerlink&quot; title=&quot;1. 什么是强化学习&quot;&gt;&lt;/a&gt;1. 什么是强化学习&lt;/h1&gt;&lt;p&gt;强化学习，是在于环境的互动中为了达成一个目标进行的学习过程。&lt;/p&gt;
+&lt;p&gt;所谓
       
     
     </summary>
     
     
-      <category term="python" scheme="https://tlylft.github.io/categories/python/"/>
+      <category term="强化学习" scheme="https://tlylft.github.io/categories/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/"/>
     
     
-      <category term="python" scheme="https://tlylft.github.io/tags/python/"/>
+      <category term="强化学习" scheme="https://tlylft.github.io/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/"/>
     
   </entry>
   
