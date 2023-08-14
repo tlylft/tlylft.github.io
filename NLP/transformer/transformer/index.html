@@ -49,8 +49,9 @@
 <meta property="og:image" content="https://tlylft.github.io/NLP/transformer/transformer/2021-10-19-09-02-40.png">
 <meta property="og:image" content="https://tlylft.github.io/NLP/transformer/transformer/2021-10-19-13-04-20.png">
 <meta property="og:image" content="https://tlylft.github.io/NLP/transformer/transformer/2021-10-19-13-35-11.png">
+<meta property="og:image" content="https://tlylft.github.io/NLP/transformer/transformer/2023-08-14-10-13-06.png">
 <meta property="article:published_time" content="2020-04-01T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-08-14T01:59:55.986Z">
+<meta property="article:modified_time" content="2023-08-14T05:43:24.249Z">
 <meta property="article:author" content="Icey Liu">
 <meta property="article:tag" content="LLM">
 <meta name="twitter:card" content="summary">
@@ -66,6 +67,8 @@
   
 <link rel="stylesheet" href="/css/style.css">
 
+  
+    <link href="//cdn.jsdelivr.net/npm/katex@0.9.0/dist/katex.min.css" rel="stylesheet">
   
   
   
@@ -302,7 +305,7 @@
 <p>$ Attention(Q,K,V) = softmax(\frac{QK^T}{\sqrt{d_k} })V $<br>QK做点乘得到某个值，一个向量在另一个向量上的投影长度，是个标量，可以反映两个向量的相似度，点乘结果越大，可以表示越相似。</p>
 <h4 id="2-2-1-举例说明"><a href="#2-2-1-举例说明" class="headerlink" title="2.2.1. 举例说明"></a>2.2.1. 举例说明</h4><p><strong>图片表示示例</strong><br><img src="/NLP/transformer/transformer/2021-10-19-09-19-31.png" alt></p>
 <p>q: 查询矩阵 （输入的矩阵表示—婴儿部分的矩阵向量）<br>k_i: 待查询矩阵 （将图片划分多个查询区域，每个区域的不同矩阵表示）<br>q*k: 婴儿矩阵和区域矩阵的相似度，该相似度作为后续该区域计算婴儿关系的权重，相似度越高，表示这部分和婴儿的关系越密切，权重越高。<br>v_i: 自身含义的编码序列 （每个图片区域i的值向量表示）<br>最终， </p>
-<p>$attention(婴儿， 图片) \\\<br>= sim(婴儿, 区域1) <em> v1 + sim(婴儿, 区域2) </em> v2 + sim(婴儿, 区域3) <em> v3 + sim(婴儿, 区域4) </em> v4  \\\<br>= weight1 <em> v1 + weight2 </em> v2 + weight3 <em> v3 + weight4 </em> v4$</p>
+<p>$attention(婴儿， 图片)$<br>$= sim(婴儿, 区域1) <em> v1 + sim(婴儿, 区域2) </em> v2 + sim(婴儿, 区域3) <em> v3 + sim(婴儿, 区域4) </em> v4$<br>$= weight1 <em> v1 + weight2 </em> v2 + weight3 <em> v3 + weight4 </em> v4$</p>
 <p><strong>文本表示示例</strong></p>
 <p><img src="/NLP/transformer/transformer/2021-10-19-09-41-26.png" alt><br>F(Q,K) ： F函数为计算相似性的函数，有多种实现方式，如：点乘，cos mlt<br>softmax： 归一化，使得 a1+a2 +a3+a4 = 1，即表示为权重<br>和V矩阵相乘得到attention value</p>
 <h4 id="2-2-2-模型中的self-attention机制"><a href="#2-2-2-模型中的self-attention机制" class="headerlink" title="2.2.2. 模型中的self-attention机制"></a>2.2.2. 模型中的self-attention机制</h4><p>模型为自注意力机制，多了一个自（self),我的理解是因为一条文本内自己的单词的注意力表示？</p>
@@ -375,6 +378,8 @@
 ![](transformer/2020-08-07-08-39-38.png)
 
 -->
+<p><img src="/NLP/transformer/transformer/2023-08-14-10-13-06.png" alt></p>
+
       
     </div>
     <div class="article-footer">

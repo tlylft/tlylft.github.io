@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://tlylft.github.io/"/>
-  <updated>2023-08-14T02:58:58.268Z</updated>
+  <updated>2023-08-14T05:32:56.280Z</updated>
   <id>https://tlylft.github.io/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="https://tlylft.github.io/NLP/transformer/GPT/"/>
     <id>https://tlylft.github.io/NLP/transformer/GPT/</id>
     <published>2023-08-13T13:12:24.000Z</published>
-    <updated>2023-08-14T02:58:58.268Z</updated>
+    <updated>2023-08-14T05:32:56.280Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="GPT1：-生成式的预训练"><a href="#GPT1：-生成式的预训练" class="headerlink" title="GPT1： 生成式的预训练"></a>GPT1： 生成式的预训练</h1><p>2018<br>预训练(单向Transformer) + Fine-tuning<br>GPT是“Generative Pre-Training”的简称，从名字看其含义是指的生成式的预训练。<br>GPT提出两阶段训练方式，第一个阶段是利用语言模型进行预训练，第二阶段通过Fine-tuning的模式解决下游任务</p><p><strong>预训练过程</strong></p><ol><li>从ELMO中优化：特征抽取器使用Transformer解码器，将输入序列编码为固定长度的向量。</li><li>使用单向语言模型：ELMO在做语言模型预训练的时候，预测单词可以同时使用上文和下文，用的双向LSTM结构，而GPT则只采用单词的上文来进行单词预测，而抛开了下文。说人话，就是让你根据提示造句，从左到右，是单向的<br><img src="/NLP/transformer/GPT/2023-08-14-09-31-21.png" alt></li></ol><blockquote><p>关于为啥使用单向的说明，需要再详细看一下</p></blockquote><p><strong>第二阶段：下游任务</strong><br><img src="/NLP/transformer/GPT/2023-08-14-09-37-54.png" alt></p><blockquote><p>??? 什么是结构改造？</p></blockquote><h1 id="GPT2"><a href="#GPT2" class="headerlink" title="GPT2:"></a>GPT2:</h1><p>初步具备小样本学习上的潜能</p><h1 id="GPT3"><a href="#GPT3" class="headerlink" title="GPT3"></a>GPT3</h1><p>增大参数量： 成为1750亿的大语言模型</p><p><img src="/NLP/transformer/GPT/2023-08-14-10-42-53.png" alt><br><img src="/NLP/transformer/GPT/2023-08-14-10-43-07.png" alt></p><p>为什么通过提示可以不微调？<br>few-shot: 通过上下文学习学到了一种隐士微调，学习到了映射的分布。</p><h1 id="3-5"><a href="#3-5" class="headerlink" title="3.5"></a>3.5</h1><p>加强代码推理能力： 使用github的代码库作为训练数据<br>本质是三个阶段都是在做微调<br>继续增强代码训练<br>增加指令微调： 借鉴instructGPT<br>RHLF强化学习</p><h2 id="指令微调"><a href="#指令微调" class="headerlink" title="指令微调"></a>指令微调</h2><p>Google论文：《FINETUNED LANGUAGE MODELS ARE ZERO-SHOT LEARNERS》</p>]]></content>
+    <content type="html"><![CDATA[<h1 id="GPT1：-生成式的预训练"><a href="#GPT1：-生成式的预训练" class="headerlink" title="GPT1： 生成式的预训练"></a>GPT1： 生成式的预训练</h1><p>2018<br>预训练(单向Transformer) + Fine-tuning<br>GPT是“Generative Pre-Training”的简称，从名字看其含义是指的生成式的预训练。<br>GPT提出两阶段训练方式，第一个阶段是利用语言模型进行预训练，第二阶段通过Fine-tuning的模式解决下游任务</p><p><strong>预训练过程</strong></p><ol><li>从ELMO中优化：特征抽取器使用Transformer解码器，将输入序列编码为固定长度的向量。</li><li>使用单向语言模型：ELMO在做语言模型预训练的时候，预测单词可以同时使用上文和下文，用的双向LSTM结构，而GPT则只采用单词的上文来进行单词预测，而抛开了下文。说人话，就是让你根据提示造句，从左到右，是单向的<br><img src="/NLP/transformer/GPT/2023-08-14-09-31-21.png" alt></li></ol><blockquote><p>关于为啥使用单向的说明，需要再详细看一下</p></blockquote><p><strong>第二阶段：下游任务</strong><br><img src="/NLP/transformer/GPT/2023-08-14-09-37-54.png" alt></p><blockquote><p>??? 什么是结构改造？</p></blockquote><h1 id="GPT2"><a href="#GPT2" class="headerlink" title="GPT2:"></a>GPT2:</h1><p>初步具备小样本学习上的潜能</p><h1 id="GPT3"><a href="#GPT3" class="headerlink" title="GPT3"></a>GPT3</h1><p>增大参数量： 成为1750亿的大语言模型</p><p><img src="/NLP/transformer/GPT/2023-08-14-10-42-53.png" alt><br><img src="/NLP/transformer/GPT/2023-08-14-10-43-07.png" alt></p><p>为什么通过提示可以不微调？<br>few-shot: 通过上下文学习学到了一种隐士微调，学习到了映射的分布。</p><h1 id="3-5"><a href="#3-5" class="headerlink" title="3.5"></a>3.5</h1><p>加强代码推理能力： 使用github的代码库作为训练数据<br>本质是三个阶段都是在做微调<br>继续增强代码训练<br>增加指令微调： 借鉴instructGPT<br>RHLF强化学习</p><h2 id="指令微调"><a href="#指令微调" class="headerlink" title="指令微调"></a>指令微调</h2><p>Google论文：《FINETUNED LANGUAGE MODELS ARE ZERO-SHOT LEARNERS》<br><img src="/NLP/transformer/GPT/2023-08-14-10-59-41.png" alt></p>]]></content>
     
     <summary type="html">
     
@@ -403,6 +403,33 @@
   </entry>
   
   <entry>
+    <title>爬虫加密算法</title>
+    <link href="https://tlylft.github.io/crawler/encryption/"/>
+    <id>https://tlylft.github.io/crawler/encryption/</id>
+    <published>2023-04-17T12:54:58.000Z</published>
+    <updated>2023-08-11T09:11:06.013Z</updated>
+    
+    <content type="html"><![CDATA[<p>这个网站可以查看很多加密算法的结果：<br><a href="https://spidertools.cn/#/crypto" target="_blank" rel="noopener">https://spidertools.cn/#/crypto</a></p><h1 id="base64"><a href="#base64" class="headerlink" title="base64"></a>base64</h1><p>是一种编码，不算加密，<strong>一般末尾会有个等号</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">                      u         p</span><br><span class="line">ASCII码对应16进制数据  7  5     7      0</span><br><span class="line">转换成2进制         0111 0101  0111 0000</span><br><span class="line">按6位重组数据       011101  010111 0000(00 000000)  不足六位进行补00  再补六个0</span><br><span class="line">转换成10进制         29     23       A       &#x3D;    补位为等号</span><br><span class="line">最终结果              dXA&#x3D;</span><br></pre></td></tr></table></figure></p><h1 id="md5"><a href="#md5" class="headerlink" title="md5"></a>md5</h1><p>信息摘要算法，可用于文本表示， 可以产出一个128位（16字节）的散列值，表示为16进制<strong>是32位</strong>。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">md5_test</span><span class="params">(text)</span>:</span></span><br><span class="line">    result = hashlib.md5(text.encode(<span class="string">'utf-8'</span>).hexdigest())</span><br></pre></td></tr></table></figure></p><h1 id="SHA-1"><a href="#SHA-1" class="headerlink" title="SHA-1"></a>SHA-1</h1><p>sha-1通常长度为16进制是40位<br>sha-224通常长度为16进制是56位<br>sha-256通常长度为16进制是64位<br>sha-384通常长度为16进制是96位<br>sha-512通常长度为16进制是128位<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">SHA_test</span><span class="params">(text)</span>:</span></span><br><span class="line">    result = hashlib.sha1(text.encode(<span class="string">'utf-8'</span>).hexdigest())</span><br><span class="line">    result = hashlib.sha224(text.encode(<span class="string">'utf-8'</span>).hexdigest())</span><br><span class="line">    result = hashlib.sha246(text.encode(<span class="string">'utf-8'</span>).hexdigest())</span><br></pre></td></tr></table></figure></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;这个网站可以查看很多加密算法的结果：&lt;br&gt;&lt;a href=&quot;https://spidertools.cn/#/crypto&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://spidertools.cn/#/crypto&lt;/a&gt;&lt;/p&gt;
+&lt;h
+      
+    
+    </summary>
+    
+    
+      <category term="爬虫" scheme="https://tlylft.github.io/categories/%E7%88%AC%E8%99%AB/"/>
+    
+    
+      <category term="爬虫" scheme="https://tlylft.github.io/tags/%E7%88%AC%E8%99%AB/"/>
+    
+  </entry>
+  
+  <entry>
     <title>charles 抓包工具</title>
     <link href="https://tlylft.github.io/crawler/charles/"/>
     <id>https://tlylft.github.io/crawler/charles/</id>
@@ -419,33 +446,6 @@
 &lt;p&gt;proxy配置&lt;/p&gt;
 &lt;p&gt;手机代理：&lt;br&gt;下载夜游模拟器，设置网络无线代理为windows的ip地址。&lt;/p&gt;
 &lt;p&gt;打开浏览器： charles.pro/ssl 下载证书，&lt;br&gt;在手机设置，从sd卡安装，安装刚下载的证书
-      
-    
-    </summary>
-    
-    
-      <category term="爬虫" scheme="https://tlylft.github.io/categories/%E7%88%AC%E8%99%AB/"/>
-    
-    
-      <category term="爬虫" scheme="https://tlylft.github.io/tags/%E7%88%AC%E8%99%AB/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>爬虫加密算法</title>
-    <link href="https://tlylft.github.io/crawler/encryption/"/>
-    <id>https://tlylft.github.io/crawler/encryption/</id>
-    <published>2023-04-17T12:54:58.000Z</published>
-    <updated>2023-08-11T09:11:06.013Z</updated>
-    
-    <content type="html"><![CDATA[<p>这个网站可以查看很多加密算法的结果：<br><a href="https://spidertools.cn/#/crypto" target="_blank" rel="noopener">https://spidertools.cn/#/crypto</a></p><h1 id="base64"><a href="#base64" class="headerlink" title="base64"></a>base64</h1><p>是一种编码，不算加密，<strong>一般末尾会有个等号</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">                      u         p</span><br><span class="line">ASCII码对应16进制数据  7  5     7      0</span><br><span class="line">转换成2进制         0111 0101  0111 0000</span><br><span class="line">按6位重组数据       011101  010111 0000(00 000000)  不足六位进行补00  再补六个0</span><br><span class="line">转换成10进制         29     23       A       &#x3D;    补位为等号</span><br><span class="line">最终结果              dXA&#x3D;</span><br></pre></td></tr></table></figure></p><h1 id="md5"><a href="#md5" class="headerlink" title="md5"></a>md5</h1><p>信息摘要算法，可用于文本表示， 可以产出一个128位（16字节）的散列值，表示为16进制<strong>是32位</strong>。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">md5_test</span><span class="params">(text)</span>:</span></span><br><span class="line">    result = hashlib.md5(text.encode(<span class="string">'utf-8'</span>).hexdigest())</span><br></pre></td></tr></table></figure></p><h1 id="SHA-1"><a href="#SHA-1" class="headerlink" title="SHA-1"></a>SHA-1</h1><p>sha-1通常长度为16进制是40位<br>sha-224通常长度为16进制是56位<br>sha-256通常长度为16进制是64位<br>sha-384通常长度为16进制是96位<br>sha-512通常长度为16进制是128位<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">SHA_test</span><span class="params">(text)</span>:</span></span><br><span class="line">    result = hashlib.sha1(text.encode(<span class="string">'utf-8'</span>).hexdigest())</span><br><span class="line">    result = hashlib.sha224(text.encode(<span class="string">'utf-8'</span>).hexdigest())</span><br><span class="line">    result = hashlib.sha246(text.encode(<span class="string">'utf-8'</span>).hexdigest())</span><br></pre></td></tr></table></figure></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;这个网站可以查看很多加密算法的结果：&lt;br&gt;&lt;a href=&quot;https://spidertools.cn/#/crypto&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://spidertools.cn/#/crypto&lt;/a&gt;&lt;/p&gt;
-&lt;h
       
     
     </summary>
